@@ -4,8 +4,7 @@ import lombok.Data;
 
 @Data
 public class Major {
-	
-	private int major_no;
-	private String major_name;
-	private String major_room;
+	private int majorNo; //학과코드
+	private String majorName; //학과명
+	private String majorRoom; //학과방
 }
