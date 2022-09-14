@@ -8,5 +8,7 @@
 </head>
 <body>
  각자 밀기 전에는 꼭 백업하기 war이랑 zip으로 저장하기?
+ 
+ 지영확인
 </body>
 </html>
