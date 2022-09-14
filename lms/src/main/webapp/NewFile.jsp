@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-희원 , 서정 , 지영2, 재은
+희원 , 서정 , 지영2, 재은2
 </body>
 </html>
