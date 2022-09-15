@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gd.lms.vo.Professor;
 
 @Mapper
-public interface loginMapper {
-	Professor loginProfesser(Professor professor);
+public interface ProfessorMapper {
+	Professor professerLogin(Professor professor);
 }

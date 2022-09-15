@@ -60,12 +60,12 @@ body {font-family: Arial;}
 <div id="studnet" class="tabcontent">
   <h3>학생</h3>
   
-  <form action="${pageContext.request.contextPath}/loginForm" method="post">
+  <form action="${pageContext.request.contextPath}/StudentForm" method="post">
 
    <table border="1">
       <tr>
          <td> 
-            id: <input type="text" name=studentNo" id="studentNo">
+            id: <input type="text" name="studentNo" id="studentNo">
           </td>
        </tr>
       <tr>
@@ -83,7 +83,7 @@ body {font-family: Arial;}
 
 <div id="professor" class="tabcontent">
   <h3>교수</h3>
-  <form action="${pageContext.request.contextPath}/loginForm" method="post">
+  <form action="${pageContext.request.contextPath}/ProfessorForm" method="post">
 
    <table border="1">
       <tr>
@@ -106,7 +106,7 @@ body {font-family: Arial;}
 
 <div id="employee" class="tabcontent">
   <h3>관리자</h3>
-  <form action="${pageContext.request.contextPath}/loginForm" method="post">
+  <form action="${pageContext.request.contextPath}/EmployeeForm" method="post">
 
    <table border="1">
       <tr>
