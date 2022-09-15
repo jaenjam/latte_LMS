@@ -3,13 +3,49 @@
 <mapper namespace="com.gd.lms.mapper.loginMapper">
 
 
-	<select id="loginMember" resultType="com.gd.lms.vo.Professor">
-		SELECT professor_no professorNo,
-			   professor_pass professorPass
-				FROM professor
+	<select id="loginProfesser" resultType="com.gd.lms.vo.Professor">
+		SELECT
+			professor_no professorNo
+			, professor_pass professorPass
+			, major_no majorNo
+			, professor_name professorName
+			, professor_age professorAge
+			, professor_gender professorGender
+			, professor_telephone professorTelephone
+			, professor_email professorEmail
+			, professor_address professorAddress
+			, professor_detail_address professorDetail
+			, professor_room professorRoom
+			, professor_state professorState
+			, salary_no salaryNo
+		FROM
+				professor
+		WHERE
+			professor_no = #{professorNo}
+		AND	
+			professor_pass = #{professorPass}	
+	</select>
+
+
+
+
+	<select id="loginEmployee" resultType="com.gd.lms.vo.Employee">
+		SELECT employee_no employeeNo,
+			   employee_pass employeePass
+				FROM employee
 				WHERE 
-				professor_no = ${professorNo}
-				professor_pass = ${professorPass}				
+				employee_no = ${employeeNo}
+				employee_pass = ${employeePass}				
+	</select>
+	
+	
+	<select id="loginStudent" resultType="com.gd.lms.vo.Student">
+		SELECT student_no studentNo,
+			   student_pass studentPass
+				FROM employee
+				WHERE 
+				student_no = ${studentNo}
+				student_pass = ${studentPass}				
 	</select>
 
 

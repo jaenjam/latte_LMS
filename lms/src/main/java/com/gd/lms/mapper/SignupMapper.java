@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gd.lms.vo.Professor;
 
 @Mapper
-public interface loginMapper {
-	Professor loginProfesser(Professor professor);
+public interface SignupMapper {
+	
+	// 교수추가 (회원가입)
+	int insertProfessor(Professor professor);
+
 }

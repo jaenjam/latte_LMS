@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gd.lms.service.loginService;
 import com.gd.lms.vo.Professor;
 
+
 @Controller
 public class loginController {
 	@Autowired loginService loginservice;
@@ -24,8 +25,10 @@ public class loginController {
 	public String professorlogin(Professor professor, Model model) {
 		
 		Professor loginprofessor = loginservice.getProfessor(professor);
-		model.addAttribute("ProfessorId",loginprofessor);
+		model.addAttribute("ProfessorId", loginprofessor);
 		
 		return "result";
 	}
+	
+	
 }

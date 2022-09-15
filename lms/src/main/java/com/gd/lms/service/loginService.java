@@ -12,7 +12,7 @@ public class loginService {
 	@Autowired loginMapper loginmapper;
 	
 	public Professor getProfessor(Professor professor) {
-		Professor loginprofessor = loginmapper.loginMember(professor);
+		Professor loginprofessor = loginmapper.loginProfesser(professor);
 
 		return loginprofessor;
 	}
