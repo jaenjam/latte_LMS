@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Professor {
-	private int prigessorNo; // 교수사번(아이디)
+	private int prifessorNo; // 교수사번(아이디)
 	private String professorPass; // 교수비밀번호
 	private int majorNo; // 학과코드
 	private String professorName; // 이름
