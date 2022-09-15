@@ -26,7 +26,6 @@
 		</tr>		
 	</table>	
 	<button type="button" id="loginBtn"> LOGIN </button>
-	<a href=""> SIGN IN </a>
 
 </form>
 </body>

@@ -62,8 +62,6 @@ body {font-family: Arial;}
   
   <form action="${pageContext.request.contextPath}/loginForm" method="post">
 
-   <h1> Professor login test </h1>
-
    <table border="1">
       <tr>
          <td> 
@@ -87,8 +85,6 @@ body {font-family: Arial;}
   <h3>교수</h3>
   <form action="${pageContext.request.contextPath}/loginForm" method="post">
 
-   <h1> Professor login test </h1>
-
    <table border="1">
       <tr>
          <td> 
@@ -111,8 +107,6 @@ body {font-family: Arial;}
 <div id="employee" class="tabcontent">
   <h3>관리자</h3>
   <form action="${pageContext.request.contextPath}/loginForm" method="post">
-
-   <h1> Professor login test </h1>
 
    <table border="1">
       <tr>
