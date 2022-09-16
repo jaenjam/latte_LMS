@@ -17,5 +17,7 @@ public class Professor {
 	private String professorDetailAddress; // 상세주소
 	private String professorRoom; // 교수실
 	private String professorState; // 재직상태
+	private String createDate; // 생성일
+	private String updateDate; // 수정일
 	private String salaryNo; // 연봉등급
 }

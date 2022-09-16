@@ -19,6 +19,8 @@ public class Student {
 	private String studentState; //학적상태
 	private String studentTop; //과대표 여부
 	private String studentActive; //계정상태
+	private String createDate; //생성일
+	private String updateDate; //수정일
 	private String clubNo; //동아리코드
 	private int scholarNo; //장학코드
 	
