@@ -65,12 +65,12 @@ body {font-family: Arial;}
    <table border="1">
       <tr>
          <td> 
-            id: <input type="text" name="studentNo" id="studentNo">
+            id: <input type="text" name="studentNo" id="studentNo" value="300001">
           </td>
        </tr>
       <tr>
          <td> 
-            pw: <input type="password" name="studentPass" id="studentPass">
+            pw: <input type="password" name="studentPass" id="studentPass" value="1234">
          </td>
       </tr>      
    </table>   
@@ -88,12 +88,12 @@ body {font-family: Arial;}
    <table border="1">
       <tr>
          <td> 
-            id: <input type="text" name="professorNo" id="professorNo">
+            id: <input type="text" name="professorNo" id="professorNo" value="100001">
           </td>
        </tr>
       <tr>
          <td> 
-            pw: <input type="password" name="professorPass" id="professorPass">
+            pw: <input type="password" name="professorPass" id="professorPass" value="1234">
          </td>
       </tr>      
    </table>   
@@ -111,12 +111,12 @@ body {font-family: Arial;}
    <table border="1">
       <tr>
          <td> 
-            id: <input type="text" name="employeeNo" id="employeeNo">
+            id: <input type="text" name="employeeNo" id="employeeNo" value="200001">
           </td>
        </tr>
       <tr>
          <td> 
-            pw: <input type="password" name="employeePass" id="employeePass">
+            pw: <input type="password" name="employeePass" id="employeePass" value="1234">
          </td>
       </tr>      
    </table>   
