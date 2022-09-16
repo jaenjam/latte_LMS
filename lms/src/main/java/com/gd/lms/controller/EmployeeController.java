@@ -1,5 +1,8 @@
 package com.gd.lms.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -34,5 +37,35 @@ public class EmployeeController {
 		
 		return "result";
 	}
+	
+	//관리자로그인 form
+		@GetMapping("login")
+		public String loginEmployee() {
+			
+			System.out.println("loginEmployee get");
+			
+			return "loginForm";
+		}
+		
+	//관리자로그인 action
+		@PostMapping("EmployeeForm")
+		public String loginEmployee(Employee employee, Model model) {
+			
+			Employee loginEmployee = employeeservice.loginEmployee(employee);
+			List<Map<String,Object>> employeeList = employeeservice.getEmployeeList();
+			
+			model.addAttribute("loginEmployee", loginEmployee);
+			model.addAttribute("employeeList", employeeList);
+			
+			System.out.println("loginEmployee post");
+			System.out.println("employeeList get");
+			
+			return "result";
+	
 
+}
+		
+		
+		
+		
 }
