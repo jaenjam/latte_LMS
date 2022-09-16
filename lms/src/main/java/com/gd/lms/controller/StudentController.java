@@ -18,21 +18,6 @@ public class StudentController {
 	@Autowired StudentService studentService;
 	@Autowired MajorService majorService;
 	
-	
-	// 학생 로그인 form
-	@PostMapping("StudentForm")
-	public String loginstudent(Student studnet, Model model) {
-		
-		// 서비스의 getStudent 실행
-		Student loginstudent = studentService.getStudent(studnet);
-		
-		// model에 저장하기
-		model.addAttribute("StudentId", loginstudent);
-		
-		return "result";
-	}
-
-	
 	// 학생 회원가입 form
 	@GetMapping("/addStudent")
 	public String addStudent(Model model) {
@@ -61,7 +46,21 @@ public class StudentController {
 		
 		System.out.println("addStudent post");
 		
-		return "result";		
+		return "home";		
+	}
+	
+	
+	// 학생 로그인 form
+	@PostMapping("StudentForm")
+	public String loginstudent(Student studnet, Model model) {
+		
+		// 서비스의 getStudent 실행
+		Student loginstudent = studentService.getStudent(studnet);
+		
+		// model에 저장하기
+		model.addAttribute("StudentId", loginstudent);
+		
+		return "home";
 	}
 	
 }

@@ -6,76 +6,80 @@
 	<insert id="insertEmployee"
 		parameterType="com.gd.lms.vo.Employee">
 		INSERT INTO employee
-		(
-		employee_no,
-		employee_pass,
-		employee_name,
-		employee_regi_no,
-		employee_age,
-		employee_gender,
-		employee_telephone,
-		employee_email,
-		employee_address,
-		employee_detail_address
-		)
+			(
+				employee_no,
+				employee_pass,
+				employee_name,
+				employee_regi_no,
+				employee_age,
+				employee_gender,
+				employee_telephone,
+				employee_email,
+				employee_address,
+				employee_detail_address
+				
+			)
 		VALUES
-		(
-		#{employeeNo},
-		#{employeePass},
-		#{employeeName},
-		#{employeeRegiNo},
-		#{employeeAge},
-		#{employeeGender},
-		#{employeeTelephone},
-		#{employeeEmail},
-		#{employeeAddress},
-		#{employeeDetailAddress}
-		)
+			(
+				#{employeeNo},
+				#{employeePass},
+				#{employeeName},
+				#{employeeRegiNo},
+				#{employeeAge},
+				#{employeeGender},
+				#{employeeTelephone},
+				#{employeeEmail},
+				#{employeeAddress},
+				#{employeeDetailAddress}
+			)
 	</insert>
 
 	<!-- 관리자 로그인 -->
 	<select id="getEmployee" resultType="com.gd.lms.vo.Employee"
 		parameterType="com.gd.lms.vo.Employee">
 		SELECT
-		 employee_no employeeNo
-		,employee_pass employeePass
-		,employee_name employeeName
-		,employee_regi_no employeeRegiNo
-		,employee_age employeeAge
-		,employee_gender employeeGender
-		,employee_telephone employeeTelephone
-		,employee_email employeeEmail
-		,employee_address employeeAddress
-		,employee_detail_address employeeDetailAddress
+			 employee_no employeeNo
+			, employee_pass employeePass
+			, employee_name employeeName
+			, employee_regi_no employeeRegiNo
+			, employee_age employeeAge
+			, employee_gender employeeGender
+			, employee_telephone employeeTelephone
+			, employee_email employeeEmail
+			, employee_address employeeAddress
+			, employee_detail_address employeeDetailAddress
+			, create_date createDate
+			, update_date updateDate
+			, salary_no salaryNo
 		FROM
-		employee
-		WHERE employee_no = #{employeeNo}
-
-		AND employee_pass = #{employeePass}
+			employee
+		WHERE
+			employee_no = #{employeeNo}
+		AND
+			employee_pass = #{employeePass}
 	</select>
 	
 	<!-- 관리자 목록 -->
 	<select id="selectEmployeeList" resultType="map">
 		
 		SELECT
-		 
-		 employee_no employeeNo
-		,employee_pass employeePass
-		,employee_name employeeName
-		,employee_regi_no employeeRegiNo
-		,employee_age employeeAge
-		,employee_gender employeeGender
-		,employee_telephone employeeTelephone
-		,employee_email employeeEmail
-		,employee_address employeeAddress
-		,employee_detail_address employeeDetailAddress
-		,employee_state employeeState
-		,employee_active employeeActive
-		,salary_no salaryNo
-		
+			  employee_no employeeNo
+			, employee_pass employeePass
+			, employee_name employeeName
+			, employee_regi_no employeeRegiNo
+			, employee_age employeeAge
+			, employee_gender employeeGender
+			, employee_telephone employeeTelephone
+			, employee_email employeeEmail
+			, employee_address employeeAddress
+			, employee_detail_address employeeDetailAddress
+			, employee_state employeeState
+			, employee_active employeeActive
+			, create_date createDate
+			, update_date updateDate
+			, salary_no salaryNo
 		FROM
-		
-		employee
+			employee
 		
 		
 	</select>

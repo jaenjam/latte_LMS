@@ -36,35 +36,36 @@
 	<!--  학생 회원가입 >>> 실제로는 -->
 	<insert id="insertStudent" parameterType="com.gd.lms.vo.Student">
 		INSERT INTO student
-			(student_no
-			, student_pass
-			, major_no
-			, student_name
-			, student_regi_no
-			, student_age
-			, student_gender
-			, student_telephone
-			, student_email
-			, student_address
-			, student_detail_address
-			, create_date
-			, update_date
-			)
-			VALUES
 			(
-			#{studentNo}
-			, #{studentPass}
-			, #{majorNo}
-			, #{studentName}
-			, #{studentRegiNo}
-			, #{studentAge}
-			, #{studentGender}
-			, #{studentTelephone}
-			, #{studentEmail}
-			, #{studentAddress}
-			, #{studentDetailAddress}
-			, now()
-			, now()
-		)
+				 student_no
+				, student_pass
+				, major_no
+				, student_name
+				, student_regi_no
+				, student_age
+				, student_gender
+				, student_telephone
+				, student_email
+				, student_address
+				, student_detail_address
+				, create_date
+				, update_date
+			)
+		VALUES
+			(
+				#{studentNo}
+				, #{studentPass}
+				, #{majorNo}
+				, #{studentName}
+				, #{studentRegiNo}
+				, #{studentAge}
+				, #{studentGender}
+				, #{studentTelephone}
+				, #{studentEmail}
+				, #{studentAddress}
+				, #{studentDetailAddress}
+				, now()
+				, now()
+			s)
 	</insert>
 </mapper>

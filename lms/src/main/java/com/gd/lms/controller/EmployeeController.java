@@ -35,17 +35,9 @@ public class EmployeeController {
 		
 		System.out.println("addEmployee post");
 		
-		return "result";
+		return "loginForm";
 	}
 	
-	//관리자로그인 form
-		@GetMapping("login")
-		public String loginEmployee() {
-			
-			System.out.println("loginEmployee get");
-			
-			return "loginForm";
-		}
 		
 	//관리자로그인 action
 		@PostMapping("EmployeeForm")
@@ -60,7 +52,7 @@ public class EmployeeController {
 			System.out.println("loginEmployee post");
 			System.out.println("employeeList get");
 			
-			return "result";
+			return "home";
 	
 
 }

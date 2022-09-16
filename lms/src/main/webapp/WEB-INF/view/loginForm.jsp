@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,9 +47,35 @@ body {font-family: Arial;}
 }
 </style>
 </head>
-<body>
 
-<h2>로그인</h2>
+<body class="h-100">
+    
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+
+
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            
+                            <h2>로그인</h2>
 <p>신입생 여러분들 환영합니다.</p>
 
 <div class="tab">
@@ -75,7 +102,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href="${pageContext.request.contextPath}/addStudent"> SIGN UP </a>
+   <a href=""> SIGN IN </a>
 
 
 </form>
@@ -98,7 +125,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href="${pageContext.request.contextPath}/addProfessor"> SIGN UP </a>
+   <a href=""> SIGN IN </a>
 
 
 </form>
@@ -121,12 +148,19 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href="${pageContext.request.contextPath}/addEmployee"> SIGN UP </a>
+   <a href=""> SIGN IN </a>
 
 
 </form>
 </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 <script>
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
@@ -146,6 +180,15 @@ function openCity(evt, cityName) {
 document.getElementById("defaultOpen").click();
 
 </script>
-   
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
 </body>
-</html> 
+</html>

@@ -19,22 +19,6 @@ public class ProfessorController {
 	@Autowired ProfessorService professorService;
 	@Autowired MajorService majorService;
 	
-	//로그인폼
-	@GetMapping("loginForm")
-	public String professorLogin() {
-		return "loginForm";
-	}
-	
-	//로그인 액션
-	@PostMapping("ProfessorForm")
-	public String professorLogin(Professor professor, Model model) {
-		
-		Professor professorLogin = professorService.getProfessor(professor);
-		model.addAttribute("ProfessorId", professorLogin);
-		
-		return "result";
-		
-	}
 	
 	//교수회원가입 form
 		@GetMapping("/addProfessor")
@@ -56,6 +40,23 @@ public class ProfessorController {
 			
 			System.out.println("addProfessor post실행");
 			
-			return "result";
+			return "loginForm";
+		}
+		
+		//로그인폼
+		@GetMapping("loginForm")
+		public String professorLogin() {
+			return "loginForm";
+		}
+		
+		//로그인 액션
+		@PostMapping("ProfessorForm")
+		public String professorLogin(Professor professor, Model model) {
+			
+			Professor professorLogin = professorService.getProfessor(professor);
+			model.addAttribute("ProfessorId", professorLogin);
+			
+			return "home";
+			
 		}
 }
