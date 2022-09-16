@@ -10,9 +10,18 @@ import com.gd.lms.vo.Student;
 public class StudentService {
 	@Autowired StudentMapper studentMapper;
 	
+	// 학생로그인
 	public Student getStudent(Student student) {
 		Student loginstudent = studentMapper.loginstudent(student);
 		
 		return loginstudent;
 	}
+	
+	 // 학생 회원가입
+	 public int addStudent(Student student) {
+		 System.out.println("Student srvice");		 
+		 
+		 return studentMapper.insertStudent(student);
+	 }
+	
 }
