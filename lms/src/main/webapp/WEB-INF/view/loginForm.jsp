@@ -102,7 +102,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href=""> SIGN IN </a>
+   <a href="/addStudent"> SIGN UP </a>
 
 
 </form>
@@ -125,7 +125,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href=""> SIGN IN </a>
+   <a href="/addProfessor"> SIGN UP </a>
 
 
 </form>
@@ -148,7 +148,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href=""> SIGN IN </a>
+   <a href="/addEmployee"> SIGN UP </a>
 
 
 </form>

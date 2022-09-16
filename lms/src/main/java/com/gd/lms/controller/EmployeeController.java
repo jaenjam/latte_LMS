@@ -1,6 +1,7 @@
 package com.gd.lms.controller;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,26 @@ public class EmployeeController {
 		
 		System.out.println("addEmployee post");
 		
-		return "loginForm";
+		return "result";
 	}
 	
+	
+	
+	
+	//관리자로그인 form
+		@GetMapping("login")
+		public String loginEmployee() {
+			
+			System.out.println("loginEmployee get");
+			
+			return "loginForm";
+		}
+		
+	//메인페이지
+		@GetMapping("/index")
+		public String index() {
+			return "index"; 
+		}
 		
 	//관리자로그인 action
 		@PostMapping("EmployeeForm")
@@ -52,12 +70,22 @@ public class EmployeeController {
 			System.out.println("loginEmployee post");
 			System.out.println("employeeList get");
 			
-			return "home";
+			return "index";
 	
 
 }
 		
 		
+	//관리자 정보수정 form
+		@GetMapping("/modifyEmployee")
+		public String modifyEmployee(Model model, Employee employee) {
+			model.addAttribute("e", employee);
+			System.out.println(model);
+			
+			return "redirect:/employeeList";
 		
 		
+		}
+		
+	
 }
