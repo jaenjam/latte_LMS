@@ -24,5 +24,10 @@
 		AND	
 			professor_pass = #{professorPass}	
 	</select>
+	
+	<insert id="insertProfessor" parameterType="com.gd.lms.vo.Professor">
+	INSERT INTO professor (professor_no,professor_pass,major_no,professor_name,professor_regi_no,professor_age,professor_gender,professor_telephone,professor_email,professor_address,professor_detail_address,create_date,update_date)
+	VALUES (#{professorNo},#{professorPass},#{majorNo},#{professorName},#{professorRegiNo},#{professorAge},#{professorGender},#{professorTelephone},#{professorEmail},#{professorAddress},#{professorDetailAddress},NOW(),NOW())
+	</insert>
 
 </mapper>

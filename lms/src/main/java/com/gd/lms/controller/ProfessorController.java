@@ -30,4 +30,23 @@ public class ProfessorController {
 		return "result";
 		
 	}
+	
+	//교수회원가입 form
+		@GetMapping("/addProfessor")
+		public String addProfessor() {
+			System.out.println("addProfessor get실행");
+			return "addProfessor";
+		}
+		
+		//교수회원가입 action
+		@PostMapping("/addProfessor")
+		public String addProfessor(Professor professor,Model model) {
+			
+			int insertProfessor = professorService.addProfessor(professor);
+			model.addAttribute("addProfessor",insertProfessor);
+			
+			System.out.println("addProfessor post실행");
+			
+			return "result";
+		}
 }
