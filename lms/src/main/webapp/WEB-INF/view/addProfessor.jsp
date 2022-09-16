@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,16 +17,21 @@
 		<h1>addProfessor</h1>
 		<table border="1">
 			<tr>
-				<td>ID: <input type="text" name="professorNo" id="professorNo">
+				<td>아이디: <input type="text" name="professorNo" id="professorNo">
 				</td>
 			</tr>
 			<tr>
-				<td>PASSWORD: <input type="password" name="professorPass"
+				<td>비밀번호: <input type="password" name="professorPass"
 					id="professorPass">
 				</td>
 			</tr>
 			<tr>
-				<td>전공: <input type="text" name="majorNo" id="majorNo">
+				<td>전공: 
+					<select name="majorNo">
+						<c:forEach items="${majorList}" var="M">
+							<option value="${M.majorNo}">${M.majorName}</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>

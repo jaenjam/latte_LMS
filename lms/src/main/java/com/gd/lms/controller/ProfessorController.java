@@ -1,5 +1,8 @@
 package com.gd.lms.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.vo.Professor;
+import com.gd.lms.service.MajorService;
 
 
 @Controller
 public class ProfessorController {
 	@Autowired ProfessorService professorService;
+	@Autowired MajorService majorService;
 	
 	//로그인폼
 	@GetMapping("loginForm")
@@ -33,8 +38,12 @@ public class ProfessorController {
 	
 	//교수회원가입 form
 		@GetMapping("/addProfessor")
-		public String addProfessor() {
+		public String addProfessor(Model model) {
 			System.out.println("addProfessor get실행");
+			
+			List<Map<String,Object>> majorList = majorService.getMajorList();
+			model.addAttribute("majorList",majorList);
+			
 			return "addProfessor";
 		}
 		

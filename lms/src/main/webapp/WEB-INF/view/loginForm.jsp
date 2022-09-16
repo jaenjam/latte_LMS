@@ -75,7 +75,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href=""> SIGN IN </a>
+   <a href="${pageContext.request.contextPath}/addStudent"> SIGN UP </a>
 
 
 </form>
@@ -98,7 +98,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href=""> SIGN IN </a>
+   <a href="${pageContext.request.contextPath}/addProfessor"> SIGN UP </a>
 
 
 </form>
@@ -121,7 +121,7 @@ body {font-family: Arial;}
       </tr>      
    </table>   
    <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href=""> SIGN IN </a>
+   <a href="${pageContext.request.contextPath}/addEmployee"> SIGN UP </a>
 
 
 </form>

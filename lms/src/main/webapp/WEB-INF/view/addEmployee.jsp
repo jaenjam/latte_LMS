@@ -16,11 +16,11 @@
       <h1>addEmployee</h1>
       <table border="1">
          <tr>
-            <td>ID: <input type="text" name="employeeNo" id="employeeNo">
+            <td>아이디: <input type="text" name="employeeNo" id="employeeNo">
             </td>
          </tr>
          <tr>
-            <td>PASSWORD: <input type="password" name="employeePass"
+            <td>비밀번호: <input type="password" name="employeePass"
                id="employeePass">
             </td>
          </tr>
@@ -58,11 +58,8 @@
             <td>주소: <input type="text" name="employeeAddress"
                id="employeeAddress">상세주소 : <input type="text"
                name="employeeDetailAddress" id="employeeDetailAddress">
-            </td>
-            <button type="button" id="employeeAddrBtn" class="btn btn-light">주소검색</button>
-         </tr>
-         <tr>
-            <td></td>
+
+            <button type="button" id="employeeAddrBtn" class="btn btn-light">주소검색</button></td>
          </tr>
 
       </table>
