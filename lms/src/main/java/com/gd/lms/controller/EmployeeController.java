@@ -19,6 +19,18 @@ public class EmployeeController {
 	
 	@Autowired EmployeeService employeeservice;
 	
+	
+	//관리자 정보수정 form
+	@GetMapping("/modifyEmployee")
+	public String modifyEmployee(Model model, Employee employee) {
+		model.addAttribute("e", employee);
+		System.out.println(model);
+		
+		return "redirect:/employeeList";
+	
+	}
+	
+	
 	//관리자회원가입 form
 	@GetMapping("/addEmployee")
 	public String addEmployee() {
@@ -26,6 +38,7 @@ public class EmployeeController {
 		System.out.println("addEmployee get");
 		return "addEmployee";
 	}
+	
 	
 	//관리자회원가입 action
 	@PostMapping("addEmployee")
@@ -36,26 +49,9 @@ public class EmployeeController {
 		
 		System.out.println("addEmployee post");
 		
-		return "result";
+		return "loginForm";
 	}
 	
-	
-	
-	
-	//관리자로그인 form
-		@GetMapping("login")
-		public String loginEmployee() {
-			
-			System.out.println("loginEmployee get");
-			
-			return "loginForm";
-		}
-		
-	//메인페이지
-		@GetMapping("/index")
-		public String index() {
-			return "index"; 
-		}
 		
 	//관리자로그인 action
 		@PostMapping("EmployeeForm")
@@ -70,22 +66,7 @@ public class EmployeeController {
 			System.out.println("loginEmployee post");
 			System.out.println("employeeList get");
 			
-			return "index";
-	
-
-}
-		
-		
-	//관리자 정보수정 form
-		@GetMapping("/modifyEmployee")
-		public String modifyEmployee(Model model, Employee employee) {
-			model.addAttribute("e", employee);
-			System.out.println(model);
+			return "home";
 			
-			return "redirect:/employeeList";
-		
-		
 		}
-		
-	
 }
