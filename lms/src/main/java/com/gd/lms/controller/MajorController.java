@@ -8,8 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @Controller
 public class MajorController {
 	
@@ -19,12 +24,13 @@ public class MajorController {
 	@GetMapping("/majorList")
 	public String majorList(Model model) {
 		
-		System.out.println("MajorController.majorList실행");
+		log.debug(TeamColor.CSJ +"MajorController.majorList실행");
 		
 		List<Map<String,Object>> majorList = majorService.getMajorList();
 		
 		model.addAttribute("majorList",majorList);
-		System.out.println("majorController majorList값 : " + majorList);
+		log.debug(TeamColor.CSJ +("majorController majorList값 : " + majorList));
+		
 		
 		return "majorList";
 	}

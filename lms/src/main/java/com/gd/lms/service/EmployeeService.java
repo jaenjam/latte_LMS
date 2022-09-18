@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.EmployeeMapper;
 import com.gd.lms.vo.Employee;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional
 public class EmployeeService {
@@ -19,20 +23,20 @@ public class EmployeeService {
 	
 	//관리자 회원가입
 	public int addEmployee(Employee employee) {
-		System.out.println("addEmployee service");
+		log.debug(TeamColor.CSJ +"addEmployee service");
 		return employeeMapper.insertEmployee(employee);
 	}
 	
 	//관리자 로그인
 	public Employee loginEmployee(Employee employee) {
-		System.out.println("loginEmployee service");
+		log.debug(TeamColor.CSJ +"loginEmployee service");
+
 		return employeeMapper.getEmployee(employee);
 	}
 	
 	//관리자 목록
 		public List<Map<String,Object>> getEmployeeList(){
-			
-			System.out.println("getEmployee service");
+			log.debug(TeamColor.CSJ +"getEmployee service");
 			
 			return employeeMapper.selectEmployeeList();
 		}

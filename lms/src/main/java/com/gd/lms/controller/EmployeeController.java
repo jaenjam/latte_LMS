@@ -11,9 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.vo.Employee;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class EmployeeController {
 	
@@ -24,7 +28,8 @@ public class EmployeeController {
 	@GetMapping("/modifyEmployee")
 	public String modifyEmployee(Model model, Employee employee) {
 		model.addAttribute("e", employee);
-		System.out.println(model);
+		
+		log.debug(TeamColor.CSJ+"EmployeeController의 modifyEmployee:" +model);
 		
 		return "redirect:/employeeList";
 	
@@ -35,7 +40,7 @@ public class EmployeeController {
 	@GetMapping("/addEmployee")
 	public String addEmployee() {
 		
-		System.out.println("addEmployee get");
+		log.debug(TeamColor.CSJ+"EmployeeController의 addEmployee get");
 		return "addEmployee";
 	}
 	
@@ -47,7 +52,7 @@ public class EmployeeController {
 		int insertEmployee = employeeservice.addEmployee(employee);
 		model.addAttribute("addemployee",insertEmployee);
 		
-		System.out.println("addEmployee post");
+		log.debug(TeamColor.CSJ+"EmployeeController의 addEmployee post:" +model);
 		
 		return "loginForm";
 	}
@@ -63,8 +68,9 @@ public class EmployeeController {
 			model.addAttribute("loginEmployee", loginEmployee);
 			model.addAttribute("employeeList", employeeList);
 			
-			System.out.println("loginEmployee post");
-			System.out.println("employeeList get");
+			log.debug(TeamColor.CSJ+"EmployeeController의 loginEmployee post:" +loginEmployee);
+			log.debug(TeamColor.CSJ+"EmployeeController의 employeeList get:" +employeeList);
+			
 			
 			return "home";
 			

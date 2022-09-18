@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.vo.Professor;
+
+import lombok.extern.slf4j.Slf4j;
+
+import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
 
-
+@Slf4j
 @Controller
 public class ProfessorController {
 	@Autowired ProfessorService professorService;
@@ -23,10 +27,13 @@ public class ProfessorController {
 	//교수회원가입 form
 		@GetMapping("/addProfessor")
 		public String addProfessor(Model model) {
+			log.debug(TeamColor.JJY +"addProfessor get실행");
 			System.out.println("addProfessor get실행");
 			
 			List<Map<String,Object>> majorList = majorService.getMajorList();
 			model.addAttribute("majorList",majorList);
+			
+			log.debug(TeamColor.JJY +"addProfessor의 model:" +majorList);
 			
 			return "addProfessor";
 		}
@@ -39,6 +46,7 @@ public class ProfessorController {
 			model.addAttribute("addProfessor",insertProfessor);
 			
 			System.out.println("addProfessor post실행");
+			log.debug(TeamColor.JJY +"addProfessor post실행");
 			
 			return "loginForm";
 		}
@@ -46,6 +54,8 @@ public class ProfessorController {
 		//로그인폼
 		@GetMapping("loginForm")
 		public String professorLogin() {
+			
+			log.debug(TeamColor.JJY +"LOGINFORM");
 			return "loginForm";
 		}
 		
@@ -55,6 +65,8 @@ public class ProfessorController {
 			
 			Professor professorLogin = professorService.getProfessor(professor);
 			model.addAttribute("ProfessorId", professorLogin);
+			
+			log.debug(TeamColor.JJY +"professorLogin의 model:" +professorLogin);
 			
 			return "home";
 			

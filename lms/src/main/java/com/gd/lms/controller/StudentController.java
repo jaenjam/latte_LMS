@@ -9,10 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Student;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class StudentController {
 	@Autowired StudentService studentService;
@@ -24,12 +28,15 @@ public class StudentController {
 		
 		// 디버깅
 		System.out.println("addStudent get(form)");
+		log.debug(TeamColor.KHW+ "StudentController의 addStudent get(form)");
 		
 		// major_no용 리스트
 		List<Map<String,Object>> majorList = majorService.getMajorList();
 		// model에 저장하기
 		model.addAttribute("majorList",majorList);
 
+		// 디버깅
+		log.debug(TeamColor.KHW+ "StudentController의 majorList:" +majorList);
 		
 		return "addStudent";
 	}
@@ -44,8 +51,8 @@ public class StudentController {
 		// model에 해당 값을 저장
 		model.addAttribute("addStudent", insertStudent);
 		
-		System.out.println("addStudent post");
-		
+		// 디버깅
+		log.debug(TeamColor.KHW+ "StudentController의 addStudent의 model:" +model);
 		return "home";		
 	}
 	
@@ -60,6 +67,8 @@ public class StudentController {
 		// model에 저장하기
 		model.addAttribute("StudentId", loginstudent);
 		
+		// 디버깅
+		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 model:" +model);
 		return "home";
 	}
 	

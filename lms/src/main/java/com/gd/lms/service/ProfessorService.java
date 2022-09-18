@@ -3,9 +3,13 @@ package com.gd.lms.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.ProfessorMapper;
 import com.gd.lms.vo.Professor;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ProfessorService {
 	@Autowired ProfessorMapper professorMapper;
@@ -19,7 +23,7 @@ public class ProfessorService {
 	
 	//교수추가(회원가입)
 		public int addProfessor(Professor professor) {
-			System.out.println("addprofessor service실행");
+			log.debug(TeamColor.JJY+"addprofessor service실행");
 			return professorMapper.insertProfessor(professor);
 		}
 }
