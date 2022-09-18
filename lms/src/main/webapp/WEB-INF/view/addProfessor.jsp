@@ -49,11 +49,12 @@
 					id="professorAge">
 				</td>
 			</tr>
-			<tr>
-				<td>성별: <input type="text" name="professorGender"
-					id="professorGender">
-				</td>
-			</tr>
+			 <tr>
+            <td>성별: 
+				<input type="radio" name="professorGender" value="남자"> 남자
+				<input type="radio" name="professorGender" value="여자"> 여자
+			</td>
+         </tr>
 			<tr>
 				<td>전화번호: <input type="text" name="professorTelephone"
 					id="professorTelephone">
