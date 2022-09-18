@@ -25,9 +25,73 @@
 			professor_pass = #{professorPass}	
 	</select>
 	
+	<!-- 교수회원가입 -->
 	<insert id="insertProfessor" parameterType="com.gd.lms.vo.Professor">
-	INSERT INTO professor (professor_no,professor_pass,major_no,professor_name,professor_regi_no,professor_age,professor_gender,professor_telephone,professor_email,professor_address,professor_detail_address,create_date,update_date)
-	VALUES (#{professorNo},#{professorPass},#{majorNo},#{professorName},#{professorRegiNo},#{professorAge},#{professorGender},#{professorTelephone},#{professorEmail},#{professorAddress},#{professorDetailAddress},NOW(),NOW())
+	INSERT INTO professor (
+		  professor_no
+		, professor_pass
+		, major_no
+		, professor_name
+		, professor_regi_no
+		, professor_age
+		, professor_gender
+		, professor_telephone
+		, professor_email
+		, professor_address
+		, professor_detail_address
+		, create_date
+		, update_date)
+	VALUES (
+		  #{professorNo}
+		, #{professorPass}
+		, #{majorNo}
+		, #{professorName}
+		, #{professorRegiNo}
+		, #{professorAge}
+		, #{professorGender}
+		, #{professorTelephone}
+		, #{professorEmail}
+		, #{professorAddress}
+		, #{professorDetailAddress}
+		, NOW()
+		, NOW())
 	</insert>
+	
+	<select id="selectProfessorOne" resultType="com.gd.lms.vo.Professor">
+		SELECT
+			  p.professor_no
+			, p.professor_pass
+			, p.major_no
+			, m.major_name
+			, p.professor_name
+			, p.professor_regi_no
+			, p.professor_age
+			, p.professor_gender
+			, p.professor_telephone
+			, p.professor_email
+			, p.professor_address
+			, p.professor_detail_address
+			, p.professor_room
+			, p.professor_state
+			, p.create_date
+			, p.update_date
+			, i.content_type
+			, i.filename
+			, i.origin_filename
+			, s.salary_no
+			, s.salary_value
+		FROM
+			professor p LEFT JOIN professor_img i
+		ON
+			p.professor_no = p.professor_no
+		INNER JOIN salary s	
+		ON 
+			p.salary_no = s.salary_no
+		LEFT JOIN major m
+		ON
+			p.major_no = m.major_no
+		WHERE 
+			p.professor_no = #{professorNo}
+	</select>
 
 </mapper>
