@@ -30,6 +30,11 @@
             </td>
          </tr>
          <tr>
+				<td>나이: <input type="text" name="employeeAge"
+					id="employeeAge">
+				</td>
+			</tr>
+         <tr>
             <td>주민번호: <input type="text" name="employeeRegiNo"
                id="employeeRegiNo">
             </td>

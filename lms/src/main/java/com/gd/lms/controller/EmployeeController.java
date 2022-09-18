@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
@@ -22,6 +23,22 @@ import lombok.extern.slf4j.Slf4j;
 public class EmployeeController {
 	
 	@Autowired EmployeeService employeeservice;
+	
+	//관리자 상세보기
+		@GetMapping("/employeeOne")
+		public String getEmployeeOne(@RequestParam(value="employeeNo") int employeeNo, Model model) {
+			
+			Employee employeeOne = employeeservice.getEmployeeOne(employeeNo);
+		
+			model.addAttribute("e",employeeOne);
+			//log.debug(TeamColor.CSJ+ "EmployeeController의 employeeOne" + employeeOne);
+			
+			return "/employeeOne";
+			
+		}
+	
+	
+	
 	
 	
 	//관리자 정보수정 form

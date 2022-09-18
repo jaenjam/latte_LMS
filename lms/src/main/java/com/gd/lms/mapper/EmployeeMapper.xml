@@ -85,7 +85,8 @@
 	</select>
 	
 	<!-- 관리자 정보 상세보기 -->
-	<select id="selectEmployeeOne" parameterType="String" resultType="com.gd.lms.vo.Employee">
+	<select id="selectEmployeeOne"  parameterType="int" resultType="com.gd.lms.vo.Employee">
+		
 		SELECT 
 		e.employee_no employeeNo
 		,e.employee_pass employeePass
@@ -101,12 +102,13 @@
 		,e.employee_active employeeActive
 		,s.salary_no salaryNo
 		,ei.filename fileName
-
-		FROM employee e INNER JOIN salary s
+		
+		FROM employee e LEFT JOIN salary s
 		ON e.salary_no = s.salary_no
-		INNER JOIN employee_img ei
+		LEFT JOIN employee_img ei
 		ON e.employee_no = ei.employee_no
-		WHERE employee_no = #{employeeNo}
+		WHERE e.employee_no = #{employeeNo}
+
 	</select>
 	  
 	
