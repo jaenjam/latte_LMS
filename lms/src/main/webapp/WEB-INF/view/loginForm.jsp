@@ -3,49 +3,18 @@
 
 
 <!DOCTYPE html>
-<html>
+<html class="h-100" lang="en">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial;}
-
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
+    <link href="css/style.css" rel="stylesheet">
+    
 </head>
 
 <body class="h-100">
@@ -74,86 +43,83 @@ body {font-family: Arial;}
                 <div class="col-xl-6">
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
                             
-                            <h2>로그인</h2>
-<p>신입생 여러분들 환영합니다.</p>
-
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'studnet')" id="defaultOpen">학생</button>
-  <button class="tablinks" onclick="openCity(event, 'professor')">교수</button>
-  <button class="tablinks" onclick="openCity(event, 'employee')">관리자</button>
-</div>
-
-<div id="studnet" class="tabcontent">
-  <h3>학생</h3>
-  
-  <form action="${pageContext.request.contextPath}/StudentForm" method="post">
-
-   <table border="1">
-      <tr>
-         <td> 
-            id: <input type="text" name="studentNo" id="studentNo" value="300001">
-          </td>
-       </tr>
-      <tr>
-         <td> 
-            pw: <input type="password" name="studentPass" id="studentPass" value="1234">
-         </td>
-      </tr>      
-   </table>   
-   <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href="/addStudent"> SIGN UP </a>
-
-
-</form>
-</div>
-
-<div id="professor" class="tabcontent">
-  <h3>교수</h3>
-  <form action="${pageContext.request.contextPath}/ProfessorForm" method="post">
-
-   <table border="1">
-      <tr>
-         <td> 
-            id: <input type="text" name="professorNo" id="professorNo" value="100001">
-          </td>
-       </tr>
-      <tr>
-         <td> 
-            pw: <input type="password" name="professorPass" id="professorPass" value="1234">
-         </td>
-      </tr>      
-   </table>   
-   <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href="/addProfessor"> SIGN UP </a>
-
-
-</form>
-</div>
-
-<div id="employee" class="tabcontent">
-  <h3>관리자</h3>
-  <form action="${pageContext.request.contextPath}/EmployeeForm" method="post">
-
-   <table border="1">
-      <tr>
-         <td> 
-            id: <input type="text" name="employeeNo" id="employeeNo" value="200001">
-          </td>
-       </tr>
-      <tr>
-         <td> 
-            pw: <input type="password" name="employeePass" id="employeePass" value="1234">
-         </td>
-      </tr>      
-   </table>   
-   <button type="submit" id="loginBtn"> LOGIN </button>
-   <a href="/addEmployee"> SIGN UP </a>
-
-
-</form>
-</div>
-
+                            	<h2 class="text-center">로그인</h2>
+								<br>
+								
+                                <!-- Nav tabs -->
+                                <div class="default-tab">
+                                    <ul class="nav nav-tabs mb-3" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#student">Student</a>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#professor">Professor</a>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#employee">Employee</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                    
+                                    
+                                    <!-- Student Form -->
+                                    
+                                        <div class="tab-pane fade show active" id="studnet" role="tabpanel">
+                                            <div class="p-t-15">
+	                                            <form class="mt-5 mb-5 login-input" action="${pageContext.request.contextPath}/StudentForm" method="post">
+				                                    <div class="form-group">
+				                                        <input type="text" class="form-control" name="studentNo" id="studentNo" placeholder="Id" value="300001">
+				                                    </div>
+				                                    <div class="form-group">
+				                                        <input type="password" class="form-control" name="studentPass" id="studentPass" placeholder="Password" value="1234">
+				                                    </div>
+				                                    <button class="btn login-form__btn submit w-100" type="submit" id="loginBtn">Sign In</button>
+				                                </form>
+				                                
+			                                	<p class="mt-5 login-form__footer">Dont have account? <a href="${pageContext.request.contextPath}/addStudent" class="text-primary">Sign Up</a> now</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Professor Form -->
+                                        
+                                        <div class="tab-pane fade" id="professor">
+                                            <div class="p-t-15">
+	                                            <form class="mt-5 mb-5 login-input" action="${pageContext.request.contextPath}/ProfessorForm" method="post">
+				                                    <div class="form-group">
+				                                        <input type="text" class="form-control" name="professorNo" id="professorNo" placeholder="Id" value="100001">
+				                                    </div>
+				                                    <div class="form-group">
+				                                        <input type="password" class="form-control" name="professorPass" id="professorPass" placeholder="Password" value="1234">
+				                                    </div>
+				                                    <button class="btn login-form__btn submit w-100" type="submit" id="loginBtn">Sign In</button>
+				                                </form>
+				                                
+			                                	<p class="mt-5 login-form__footer">Dont have account? <a href="${pageContext.request.contextPath}/addProfessor" class="text-primary">Sign Up</a> now</p>
+			                                </div>
+                                        </div>
+                                        
+                                        <!-- Employee Form -->
+                                        
+                                        <div class="tab-pane fade" id="employee">
+                                            <div class="p-t-15">
+	                                            <form class="mt-5 mb-5 login-input" action="${pageContext.request.contextPath}/EmployeeForm" method="post">
+				                                    <div class="form-group">
+				                                        <input type="text" class="form-control" name="employeeNo" id="employeeNo" placeholder="Id" value="200001">
+				                                    </div>
+				                                    <div class="form-group">
+				                                        <input type="password" class="form-control" name="employeePass" id="employeePass" placeholder="Password" value="1234">
+				                                    </div>
+				                                    <button class="btn login-form__btn submit w-100" type="submit" id="loginBtn">Sign In</button>
+				                                </form>
+				                                
+			                                	<p class="mt-5 login-form__footer">Dont have account? <a href="${pageContext.request.contextPath}/addEmployee" class="text-primary">Sign Up</a> now</p>
+			                                </div>
+			                            </div>
+			                            
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,25 +127,7 @@ body {font-family: Arial;}
         </div>
     </div>
     
-<script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
 
-
-document.getElementById("defaultOpen").click();
-
-</script>
     
 
     <!--**********************************
