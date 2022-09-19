@@ -23,7 +23,7 @@ public class StudentController {
 	@Autowired MajorService majorService;
 	
 	// 학생 회원가입 form
-	@GetMapping("/addStudent")
+	@GetMapping("/student/signupStudentForm")
 	public String addStudent(Model model) {
 		
 		// 디버깅
@@ -53,7 +53,7 @@ public class StudentController {
 		
 		// 디버깅
 		log.debug(TeamColor.KHW+ "StudentController의 addStudent의 model:" +model);
-		return "home";		
+		return "loginForm";		
 	}
 	
 	
