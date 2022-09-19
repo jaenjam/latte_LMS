@@ -54,7 +54,7 @@ public class EmployeeController {
 	
 	
 	//관리자회원가입 form
-	@GetMapping("/addEmployee")
+	@GetMapping("/employee/signupEmployeeForm")
 	public String addEmployee() {
 		
 		log.debug(TeamColor.CSJ+"EmployeeController의 addEmployee get");
@@ -63,7 +63,7 @@ public class EmployeeController {
 	
 	
 	//관리자회원가입 action
-	@PostMapping("addEmployee")
+	@PostMapping("/addEmployee")
 	public String addEmployee(Employee employee, Model model) {
 		
 		int insertEmployee = employeeservice.addEmployee(employee);
