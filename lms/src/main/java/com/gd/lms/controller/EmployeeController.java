@@ -58,7 +58,7 @@ public class EmployeeController {
 	public String addEmployee() {
 		
 		log.debug(TeamColor.CSJ+"EmployeeController의 addEmployee get");
-		return "addEmployee";
+		return "/employee/signupEmployeeForm";
 	}
 	
 	

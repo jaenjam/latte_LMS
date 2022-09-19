@@ -38,7 +38,7 @@ public class StudentController {
 		// 디버깅
 		log.debug(TeamColor.KHW+ "StudentController의 majorList:" +majorList);
 		
-		return "addStudent";
+		return "/student/signupStudentForm";
 	}
 	
 	

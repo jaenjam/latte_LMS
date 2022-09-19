@@ -35,7 +35,7 @@ public class ProfessorController {
 			
 			log.debug(TeamColor.JJY +"addProfessor의 model:" +majorList);
 			
-			return "addProfessor";
+			return "/professor/signupProfessorForm";
 		}
 		
 		//교수회원가입 action
