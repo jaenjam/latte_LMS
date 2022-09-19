@@ -93,7 +93,7 @@
 				                                    <button class="btn login-form__btn submit w-100" type="submit" id="loginBtn">Sign In</button>
 				                                </form>
 				                                
-			                                	<p class="mt-5 login-form__footer">Dont have account? <a href="${pageContext.request.contextPath}/addProfessor" class="text-primary">Sign Up</a> now</p>
+			                                	<p class="mt-5 login-form__footer">Dont have account? <a href="${pageContext.request.contextPath}/professor/signupProfessorForm" class="text-primary">Sign Up</a> now</p>
 			                                </div>
                                         </div>
                                         

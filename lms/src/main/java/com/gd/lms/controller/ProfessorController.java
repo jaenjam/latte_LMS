@@ -25,7 +25,7 @@ public class ProfessorController {
 	
 	
 	//교수회원가입 form
-		@GetMapping("/addProfessor")
+		@GetMapping("/professor/signupProfessorForm")
 		public String addProfessor(Model model) {
 			log.debug(TeamColor.JJY +"addProfessor get실행");
 			System.out.println("addProfessor get실행");
