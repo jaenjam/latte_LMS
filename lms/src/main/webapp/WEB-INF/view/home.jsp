@@ -67,6 +67,17 @@ body {font-family: Arial;}
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
+                                    <div class="tempt">
+                                	 <a href="${pageContext.request.contextPath}/getStudentOne?studentNo=${StudentId.studentNo}"> MY INFO1</a>
+                                	 ${StudentId.studentNo}
+									 ${StudentId.studentName}
+									  ${StudentId.majorNo}
+									   ${StudentId.studentRegiNo}
+									    ${StudentId.studentGender}
+                                	</div>
+                                
+                                
+                                
                                     <div class="card-body pb-0 d-flex justify-content-between">
                                         <div>
                                             <h4 class="mb-1">Product Sales</h4>

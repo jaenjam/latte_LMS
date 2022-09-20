@@ -1,5 +1,8 @@
 package com.gd.lms.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,11 @@ public class StudentService {
 		 
 		log.debug(TeamColor.KHW+ "StudentService의 addStudent");
 		 return studentMapper.insertStudent(student);
+	 }
+	 
+	 // 학생정보상세보기
+	 public List<Map<String, Object>> getStudentOne(int studentNo){
+		 return studentMapper.selectStudentOne(studentNo);
 	 }
 	
 }

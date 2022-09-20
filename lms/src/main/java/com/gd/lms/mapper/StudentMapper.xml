@@ -6,7 +6,7 @@
 	<!-- 학생로그인 -->
 	<select id="loginstudent" resultType="com.gd.lms.vo.Student">
 		select
-			student_no studnetNo
+			student_no studentNo
 			, student_pass studentPass
 			, major_no majorNo
 			, student_name studentName
@@ -70,8 +70,8 @@
 	</insert>
 	
 	
-		<!-- 학생정보 상세보기 -->
-	<select id="selectStudentOne" resultType="map">
+	<!-- 학생정보 상세보기 -->
+	<select id="selectStudentOne" parameterType="int" resultType="map">
 	SELECT 
 		s.student_no
 		, s.student_pass
