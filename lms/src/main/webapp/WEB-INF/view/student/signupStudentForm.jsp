@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html class="h-100" lang="en">
+<html class="h-100" lang="kor">
 
 <head>
     <meta charset="utf-8">
@@ -51,14 +51,14 @@
                                     	<form action="${pageContext.request.contextPath}/addStudent" method="post">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label>아이디: </label>
+                                                <label>학번</label>
                                   
                                                 <input type="text" class="form-control"name="studentNo" id="studentNo"
                                                 placeholder="학번을 입력해주세요">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label>비밀번호: </label>
-                                                <input type="password" class="form-control" name="studentPass" id="studentPass" placeholder="Password">
+                                                <label>비밀번호</label>
+                                                <input type="password" class="form-control" name="studentPass" id="studentPass" placeholder="비밀번호를 입력해주세요">
                                             </div>
                                         </div>                                            
                                         <div class="form-group">
@@ -71,29 +71,28 @@
 		                                 </div>
 		                         
                                           <div class="form-group">
-                                         <label>이름: </label>
-                                            <input type="text" class="form-control" name="studentName" id="studentName">
+                                         <label>이름</label>
+                                            <input type="text" class="form-control" name="studentName" id="studentName" placeholder="이름을 입력해주세요">
                                         </div>
                                         <div class="form-group">
-                                        <label>주민번호: </label>
-                                            <input type="text" class="form-control" name="studentRegiNo" id="studentRegiNo">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>나이: </label>
-                                            <input type="text" class="form-control" name="studentAge" id="studentAge">
+                                            <label>나이</label>
+                                            <input type="text" class="form-control" name="studentAge" id="studentAge" placeholder="나이를 입력해주세요">
+                                        </div>                                  <div class="form-group">
+                                        <label>주민번호</label>
+                                            <input type="text" class="form-control" name="studentRegiNo" id="studentRegiNo" placeholder="주민번호를 입력해주세요">
                                         </div>
 										<div class="form-group">
-												<label>성별</label><br> <input type="radio"
+											<label>성별</label><br> <input type="radio"
 													name="studentGender" value="남자"> 남자 <input
 													type="radio" name="studentGender" value="여자"> 여자
 											</div>
                                         <div class="form-group">
-                                            <label>핸드폰: </label>
-                                            <input type="text" class="form-control" name="studentTelephone" id="studentTelephone">
+                                            <label>전화번호</label>
+                                            <input type="text" class="form-control" name="studentTelephone" id="studentTelephone" placeholder="전화번호를 입력해주세요">
                                         </div>
                                         <div class="form-group">
-                                            <label>이메일: </label>
-                                            <input type="text" class="form-control" name="studentEmail" id="studentEmail">
+                                            <label>이메일</label>
+                                            <input type="text" class="form-control" name="studentEmail" id="studentEmail" placeholder="이메일을 입력해주세요">
                                         </div>
                                         
                                         
@@ -101,11 +100,11 @@
                                         <div class="form-row">
 												<div class="form-group col-md-6">
 													<label>주소</label> <input type="text" class="form-control"
-														name="studentAddress" id="studentAddress">
+														name="studentAddress" id="studentAddress" placeholder="주소를 입력해주세요">
 												</div>
 												<div class="form-group col-md-6">
 													<label>상세주소</label> <input type="text" class="form-control"
-														name="studentDetailAddress" id="studentDetailAddress">
+														name="studentDetailAddress" id="studentDetailAddress" placeholder="상세주소를 입력해주세요">
 												</div>
 											</div>
 											<div class="form-group">

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html class="h-100" lang="en">
+<html class="h-100" lang="kor">
 
 <head>
 <meta charset="utf-8">
@@ -56,18 +56,19 @@
 											method="post">
 											<div class="form-row">
 												<div class="form-group col-md-6">
-													<label>아이디</label> <input type="text" name="professorNo"
-														id="professorNo" class="form-control">
+													<label>사번</label> <input type="text" name="professorNo"
+														id="professorNo" class="form-control" placeholder="사번을 입력해주세요">
 												</div>
 												<div class="form-group col-md-6">
 													<label>비밀번호</label> <input type="password"
 														name="professorPass" id="professorPass"
-														class="form-control">
+														class="form-control" placeholder="비밀번호를 입력해주세요">
 												</div>
 											</div>
 											<div class="form-group">
 												<label>전공</label> <select name="majorNo"
 													class="form-control">
+														<option>==선택해주세요==</option>
 													<c:forEach items="${majorList}" var="M">
 														<option value="${M.majorNo}">${M.majorName}</option>
 													</c:forEach>
@@ -75,11 +76,11 @@
 											</div>
 											<div class="form-group">
 												<label>이름</label> <input type="text" name="professorName"
-													class="form-control" id="professorName">
+													class="form-control" id="professorName" placeholder="이름을 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>나이</label> <input type="text" name="professorAge"
-													class="form-control" id="professorAge">
+													class="form-control" id="professorAge" placeholder="나이를 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>성별</label><br> <input type="radio"
@@ -89,28 +90,28 @@
 											<div class="form-group">
 												<label>주민번호</label> <input type="text"
 													name="professorRegiNo" id="professorRegiNo"
-													class="form-control">
+													class="form-control" placeholder="주민번호를 입력해주세요">
 											</div>
 
 											<div class="form-group">
 												<label>전화번호</label> <input type="text"
 													name="professorTelephone" class="form-control"
-													id="professorTelephone">
+													id="professorTelephone" placeholder="비밀번호를 입력해주세요">
 											</div>
 
 											<div class="form-group">
 												<label>이메일</label> <input type="text" name="professorEmail"
-													class="form-control" id="professorEmail">
+													class="form-control" id="professorEmail" placeholder="이메일을 입력해주세요">
 											</div>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<label>주소</label> <input type="text"
 														name="professorAddress" class="form-control"
-														id="professorAddress">
+														id="professorAddress" placeholder="주소를 입력해주세요">
 												</div>
 												<div class="form-group col-md-6">
 													<label>상세주소</label> <input type="text" class="form-control"
-														name="professorDetailAddress" id="professorDetailAddress">
+														name="professorDetailAddress" id="professorDetailAddress" placeholder="상세주소를 입력해주세요">
 												</div>
 											</div>
 											<div class="form-group">

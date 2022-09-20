@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html class="h-100" lang="en">
+<html class="h-100" lang="kor">
 
 <head>
 <meta charset="utf-8">
@@ -58,20 +58,20 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<label>사번</label> <input type="text" class="form-control"
-														name="employeeNo" id="employeeNo">
+														name="employeeNo" id="employeeNo" placeholder="사번을 입력해주세요">
 												</div>
 												<div class="form-group col-md-6">
 													<label>비밀번호</label> <input type="password"
-														class="form-control" name="employeePass" id="employeePass">
+														class="form-control" name="employeePass" id="employeePass" placeholder="비밀번호를 입력해주세요">
 												</div>
 											</div>
 											<div class="form-group">
 												<label>이름</label> <input type="text" class="form-control"
-													name="employeeName" id="employeeName">
+													name="employeeName" id="employeeName" placeholder="이름을 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>나이</label> <input type="text" class="form-control"
-													name="employeeAge" id="employeeAge">
+													name="employeeAge" id="employeeAge" placeholder="나이을 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>성별</label><br> <input type="radio"
@@ -80,26 +80,26 @@
 											</div>
 											<div class="form-group">
 												<label>주민번호</label> <input type="text" class="form-control"
-													name="employeeRegiNo" id="employeeRegiNo">
+													name="employeeRegiNo" id="employeeRegiNo" placeholder="주민번호을 입력해주세요">
 											</div>
 
 											<div class="form-group">
 												<label>전화번호</label> <input type="text" class="form-control"
-													name="employeeTelephone" id="employeeTelephone">
+													name="employeeTelephone" id="employeeTelephone" placeholder="전화번호을 입력해주세요">
 											</div>
 
 											<div class="form-group">
 												<label>이메일</label> <input type="text" class="form-control"
-													name="employeeEmail" id="employeeEmail">
+													name="employeeEmail" id="employeeEmail" placeholder="이메일을 입력해주세요">
 											</div>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<label>주소</label> <input type="text" class="form-control"
-														name="employeeAddress" id="employeeAddress">
+														name="employeeAddress" id="employeeAddress" placeholder="주소를 입력해주세요">
 												</div>
 												<div class="form-group col-md-6">
 													<label>상세주소</label> <input type="text" class="form-control"
-														name="employeeDetailAddress" id="employeeDetailAddress">
+														name="employeeDetailAddress" id="employeeDetailAddress" placeholder="상세주소를 입력해주세요">
 												</div>
 											</div>
 											<div class="form-group">
