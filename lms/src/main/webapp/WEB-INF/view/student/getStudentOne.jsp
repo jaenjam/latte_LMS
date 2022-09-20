@@ -3,53 +3,198 @@
 
 
 <!DOCTYPE html>
-<html class="h-100" lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>latte_LMS</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
 </head>
+<body>
 
-<body class="h-100" data-theme-version="light" data-layout="vertical" data-nav-headerbg="color_1" data-headerbg="color_1" data-sidebar-style="mini" data-sibebarbg="color_1" data-sidebar-position="static" data-header-position="static" data-container="wide" direction="ltr">
-    
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader" style="display: none;">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"></circle>
-            </svg>
+<!-- header.jsp -->
+<%@include file = "/WEB-INF/template/header.jsp"%>
+
+<!-- sidebar.jsp -->
+<%@include file = "/WEB-INF/template/sidebar.jsp"%>
+        <!--**********************************
+            Content body start
+        ***********************************-->
+          <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center mb-4">
+                                    <img class="mr-2" src="images/avatar/11.png" width="80" height="80" alt="">
+                                   
+                                
+                                </div>
+                           
+                                
+                                <div class="row mb-8">
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-danger px-5"> 사진첨부하기 </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="${pageContext.request.contextPath}/modifyStudent" method="post" class="form-profile">
+                                    <div class="form-group">
+                                      
+                                     <h4 class="card-title"> 정보보기 </h4>
+                                  <div class="basic-form">
+	                                 
+		             					<div class="form-row">
+				             				<div class="form-group col-md-8">	
+				             					<div class="form-group">
+												<label> 이름: </label>
+												<input type="text" class="form-control" name="studentName" id="studentName"
+		                                           value="${Name}">
+												</div>
+												
+												<div class="form-group">
+												<label> 전공: </label>
+													<input type="text" class="form-control" name="studentMajor" id="studentMajo"
+			                                           value="${studentMajor}">
+												</div>
+												
+												<div class="form-group">
+												<label> 주민번호: </label>
+													<input type="text" class="form-control" name="studentRegiNo" id="studentRegiNo"
+			                                           value="${studentRegiNo}">
+												</div>
+												
+												<div class="form-group">		
+												<label> 나이: </label>
+													<input type="text" class="form-control" name="studentAge" id="studentAge"
+			                                           value="${studentAge}">
+			                                           </div>
+			                                           
+			                                    <div class="form-group">       
+												<label> 성별: </label>
+													<input type="text" class="form-control" name="studentGender" id="studentGender"
+			                                           value="${studentGender}">
+			                                    </div>      
+												
+												<div class="form-group">
+												<label> 핸드폰: </label>
+													<input type="text" class="form-control" name="studentTelephone" id="studentNo"
+			                                           value="${studentTelephone}">
+												</div>
+												
+												<div class="form-group">
+												<label> 이메일: </label>
+													<input type="text" class="form-control" name="studentEmail" id="studentEmail"
+			                                           value="${studentEmail}">
+												</div>
+												
+												<div class="form-group">
+												<label> 주소: </label>
+													<input type="text" class="form-control" name="studentAddress" id="studentAddress"
+			                                           value="${studentAddress}">
+												</div>
+												
+												<div class="form-group">
+												<label> 상세주소: </label>
+													<input type="text" class="form-control" name="studentDetailAddress" id="studentDetailAddress"
+			                                           value="${studentDetailAddress}">
+												</div>
+												
+												<div class="form-group">
+												<label> 학적상태: </label>
+													<input type="text" class="form-control" name="studentState" id="studentState"
+			                                           value="${studentState}">	
+				                                 </div>          							
+											</div>
+										</div>
+										    
+                                    </div>
+                                     <button class="btn btn-primary px-3 ml-4"> 이전화면으로 </button>   
+                                     <button class="btn btn-primary px-3 ml-4"> 정보수정하기 </button>                                                                   
+                                </form>
+                            </div>
+                        </div>
+
+                   
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
         </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
 
 
 
-<!--  임시본문 -->
-             
-						<h1>정보수정상세보기</h1>
-				
-			${StudentId}	
-		
 
 
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
 
-<script>
 
-
-</script>
-   
 </body>
-</html> 
+
+</html>

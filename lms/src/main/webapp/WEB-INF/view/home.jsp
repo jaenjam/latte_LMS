@@ -68,7 +68,7 @@ body {font-family: Arial;}
                             <div class="col-12">
                                 <div class="card">
                                     <div class="tempt">
-                                	 <a href="${pageContext.request.contextPath}/getStudentOne?studentNo=${StudentId.studentNo}"> MY INFO1</a>
+                                	 <a href="${pageContext.request.contextPath}/getStudentOne?No=${No}"> MY INFO1</a>
                                 	 ${StudentId.studentNo}
 									 ${StudentId.studentName}
 									  ${StudentId.majorNo}
