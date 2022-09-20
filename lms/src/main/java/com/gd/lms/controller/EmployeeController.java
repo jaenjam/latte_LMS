@@ -1,8 +1,6 @@
 package com.gd.lms.controller;
 
-import java.util.List;
 
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -58,6 +56,8 @@ public class EmployeeController {
 	public String addEmployee() {
 		
 		log.debug(TeamColor.CSJ+"EmployeeController의 addEmployee get");
+		
+		
 		return "/employee/signupEmployeeForm";
 	}
 	
@@ -66,28 +66,36 @@ public class EmployeeController {
 	@PostMapping("/addEmployee")
 	public String addEmployee(Employee employee, Model model) {
 		
-		int insertEmployee = employeeservice.addEmployee(employee);
-		model.addAttribute("addemployee",insertEmployee);
+		int row = employeeservice.addEmployee(employee);
+		model.addAttribute("addemployee",row);
 		
 		log.debug(TeamColor.CSJ+"EmployeeController의 addEmployee post:" +model);
 		
-		return "loginForm";
+		//실패시에 입력폼으로 리다이렉트
+		if(row == 0) {
+					return "redirect:/employee/signupEmployeeForm";
+		}
+		// 해당하는 뷰 페이지로 이동 
+		return "redirect:/loginForm";
 	}
 	
 		
 	//관리자로그인 action
-		@PostMapping("EmployeeForm")
+		@PostMapping("/EmployeeForm")
 		public String loginEmployee(Employee employee, Model model) {
 			
 			Employee loginEmployee = employeeservice.loginEmployee(employee);
-			List<Map<String,Object>> employeeList = employeeservice.getEmployeeList();
+			
 			
 			model.addAttribute("loginEmployee", loginEmployee);
-			model.addAttribute("employeeList", employeeList);
-			
 			log.debug(TeamColor.CSJ+"EmployeeController의 loginEmployee post:" +loginEmployee);
-			log.debug(TeamColor.CSJ+"EmployeeController의 employeeList get:" +employeeList);
 			
+			//계정 정보가 없으면 로그인 실패
+			if(loginEmployee == null) {
+				log.debug(TeamColor.CSJ+"EmployeeController.login : "+"로그인 실패");
+				
+				return "/loginForm";
+			}
 			
 			return "home";
 			
