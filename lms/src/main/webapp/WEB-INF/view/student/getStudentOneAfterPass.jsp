@@ -101,7 +101,7 @@ body {font-family: Arial;}
                                 <form action="${pageContext.request.contextPath}/modifyStudentPass" class="form-profile">
                                     <div class="form-group">
                                       
-                                     <h4 class="card-title"> 정보보기 </h4>
+                                     <h4 class="card-title"> 정보수정하기 </h4>
                                   <div class="basic-form">
 	                                 
 		             					<div class="form-row">
@@ -175,7 +175,7 @@ body {font-family: Arial;}
 										</div>
 										    
                                     </div>
-                                      <button type="submit" class="btn btn-primary px-3 ml-4"> 정보수정하기 </button>                                                                   
+                                      <button type="submit" class="btn btn-primary px-3 ml-4"> 정보수정완료 </button>                                                                   
                                 </form>
                                 	  <button class="btn btn-primary px-3 ml-4" type="button" id="backStudentOnePage" name="backStudentOnePage"> 이전화면으로 </button>   
                             </div>

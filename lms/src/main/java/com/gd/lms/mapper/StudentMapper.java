@@ -18,4 +18,7 @@ public interface StudentMapper {
 	
 	// 학생정보 상세보기
 	List<Map<String, Object>> selectStudentOne(int studentNo);
+	
+	// 학생정보 상세보기(비밀번호 입력 후)
+	List<Map<String, Object>>selectStudentOneAfterPass(Student student);
 }

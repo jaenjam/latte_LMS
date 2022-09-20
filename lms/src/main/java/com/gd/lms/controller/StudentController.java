@@ -29,6 +29,7 @@ public class StudentController {
 	@Autowired StudentService studentService;
 	@Autowired MajorService majorService;
 	
+	
 	// 학생 회원가입 form
 	@GetMapping("/student/signupStudentForm")
 	public String addStudent(Model model) {
@@ -65,89 +66,144 @@ public class StudentController {
 	
 	
 	// 학생 로그인 action
-		@PostMapping("/StudentForm")
-		public String loginstudent(Student student, Model model, HttpServletRequest request) {
-			
-			// 세션 사용하기위해 선언
-			HttpSession session =  request.getSession();	
-			
-			// 서비스의 getStudent 실행
-			Student loginstudent = studentService.getStudent(student);
-			
-			// model에 저장하기
-			model.addAttribute("StudentId", loginstudent);
-
-			
-			
-			// 디버깅
-			//${StudentId.studentNo}
-			log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 model:" +model);
-			log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 loginstudent:" +loginstudent);
-			
+	@PostMapping("/StudentForm")
+	public String loginstudent(Student student, Model model, HttpServletRequest request) {
 		
-			if (loginstudent == null) { // 로그인시 null값이면 >>> 쿼리에서 맞는 값을 찾지 못했다면
-				log.debug(TeamColor.KHW +"로그인 실패");
-				return "loginForm";	// 로그인화면으로
-				
-			} else {// 로그인시 null값이 아니라면 >>> 쿼리에서 맞는 값을 찾았다면
-				
-				// 세션에 저장하기
-						session.setAttribute("No", loginstudent.getStudentNo() );
-				
-						session.setAttribute("Name", loginstudent.getStudentName() );
-						
-						session.setAttribute("studentMajor", loginstudent.getMajorNo() );
-						
-						 session.setAttribute("studentRegiNo", loginstudent.getStudentRegiNo() );
-						 
-						 session.setAttribute("studentAge", loginstudent.getStudentAge() );
-						   
-						 session.setAttribute("studentGender", loginstudent.getStudentGender() );
-						  
-						 session.setAttribute("studentTelephone", loginstudent.getStudentTelephone());
-						 
-						 session.setAttribute("studentEmail", loginstudent.getStudentEmail() );
-						 
-						session.setAttribute("studentAddress", loginstudent.getStudentAddress() );
-						  
-						session.setAttribute("studentDetailAddress",
-						 loginstudent.getStudentDetailAddress() );
-
-						session.setAttribute("studentState", loginstudent.getStudentState() );
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();	
 		
-						session.setAttribute("user", "student");
+		// 서비스의 getStudent 실행
+		Student loginstudent = studentService.getStudent(student);
+		
+		// model에 저장하기
+		model.addAttribute("StudentId", loginstudent);
+
+		
+		
+		// 디버깅
+		//${StudentId.studentNo}
+		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 model:" +model);
+		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 loginstudent:" +loginstudent);
+		
+	
+		if (loginstudent == null) { // 로그인시 null값이면 >>> 쿼리에서 맞는 값을 찾지 못했다면
+			log.debug(TeamColor.KHW +"로그인 실패");
+			return "loginForm";	// 로그인화면으로
+			
+		} else {// 로그인시 null값이 아니라면 >>> 쿼리에서 맞는 값을 찾았다면
+			
+			// 세션에 저장하기
+					session.setAttribute("No", loginstudent.getStudentNo() );
+			
+					session.setAttribute("Name", loginstudent.getStudentName() );
 					
-				// 디버깅
-				log.debug(TeamColor.KHW+session.getAttribute("studentMajor")); // 세션에 값 저장되는지 확인용으로 랜덤 하나	
-				log.debug(TeamColor.KHW +session.getAttribute("studentNo"));
+					session.setAttribute("studentMajor", loginstudent.getMajorNo() );
+					
+					 session.setAttribute("studentRegiNo", loginstudent.getStudentRegiNo() );
+					 
+					 session.setAttribute("studentAge", loginstudent.getStudentAge() );
+					   
+					 session.setAttribute("studentGender", loginstudent.getStudentGender() );
+					  
+					 session.setAttribute("studentTelephone", loginstudent.getStudentTelephone());
+					 
+					 session.setAttribute("studentEmail", loginstudent.getStudentEmail() );
+					 
+					session.setAttribute("studentAddress", loginstudent.getStudentAddress() );
+					  
+					session.setAttribute("studentDetailAddress",
+					 loginstudent.getStudentDetailAddress() );
+
+					session.setAttribute("studentState", loginstudent.getStudentState() );
+	
+					session.setAttribute("user", "student");
 				
-				log.debug(TeamColor.KHW +session.getAttribute("studentRegiNo"));
-				log.debug(TeamColor.KHW +session.getAttribute("studentAddress"));
-				log.debug(TeamColor.KHW +session.getAttribute("studentState"));
-				log.debug(TeamColor.KHW +"로그인 성공");
-				return "home"; // 성공시 main이동
-			}
+			// 디버깅
+			log.debug(TeamColor.KHW+session.getAttribute("studentMajor")); // 세션에 값 저장되는지 확인용으로 랜덤 하나	
+			log.debug(TeamColor.KHW +session.getAttribute("studentNo"));
+			
+			log.debug(TeamColor.KHW +session.getAttribute("studentRegiNo"));
+			log.debug(TeamColor.KHW +session.getAttribute("studentAddress"));
+			log.debug(TeamColor.KHW +session.getAttribute("studentState"));
+			log.debug(TeamColor.KHW +session.getAttribute("user"));
+			log.debug(TeamColor.KHW +"로그인 성공");
+			return "home"; // 성공시 main이동
 		}
-		
-		
-		// 학생정보 상세보기 FORM
-		//@RequestMapping(value="/student/getStudentOne", method = {RequestMethod.GET, RequestMethod.POST})
-		@GetMapping("/getStudentOne") 
-		public String getStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("No") int studentNo) {
-			
-			List<Map<String, Object>> studentOne = studentService.getStudentOne(studentNo);
-			//디버그
-			log.debug(TeamColor.KHW +studentOne);
-			
-			
-			model.addAttribute("StudentIdd", studentOne);
-			
-			//디버그
-			log.debug(TeamColor.KHW +model);
-			log.debug(TeamColor.KHW +studentNo);
-			return "/student/getStudentOne";
-		}
-		
-		
-		
 	}
+	
+	
+	// 학생정보 상세보기 FORM (비밀번호입력전)
+	//@RequestMapping(value="/student/getStudentOne", method = {RequestMethod.GET, RequestMethod.POST})
+	@GetMapping("/getStudentOne") 
+	public String getStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("No") int studentNo) {
+		
+		List<Map<String, Object>> studentOne = studentService.getStudentOne(studentNo);
+		//디버그
+		log.debug(TeamColor.KHW +studentOne);
+		
+		
+		model.addAttribute("StudentIdd", studentOne);
+		
+		//디버그
+		log.debug(TeamColor.KHW +model);
+		log.debug(TeamColor.KHW +studentNo);
+		return "/student/getStudentOne";
+	}
+	
+	
+	// 학생정보 수정전 비밀번호확인 FORM
+	@GetMapping("/modifyStudentPass")
+	public String pageLock() {
+		
+		log.debug(TeamColor.KHW +"비밀번호확인폼으로 이동");
+		return "/student/modifyStudentPass";
+	}
+	
+	// 학생정보 수정전 비밀번호확인입력 Action
+	@PostMapping("/modifyStudentPass")
+	public String pageLock(Student student, Model model, HttpServletRequest request, @RequestParam("studentPass") String studentPass) {
+		
+		log.debug(TeamColor.KHW +"비밀번호확인 적용 액션");
+		
+		// 이전페이지에서 입력된 비밀번호와 히든으로 넘겨받은 아이디를 입력받아 쿼리 실행시킨 것을 담기
+		List<Map<String, Object>> studentOneAfterPass= studentService.getStudentOneAfterPass(student);
+		
+		// 디버그
+		log.debug(TeamColor.KHW +studentOneAfterPass);
+		
+		// 모델에 담기
+		model.addAttribute("studentOneAfterPass", studentOneAfterPass);
+		
+		// 디버그
+		log.debug(TeamColor.KHW +model);
+		
+		
+		return "/student/getStudentOneAfterPass";
+	}
+	
+	
+	
+	// 학생정보 상세보기 FORM (비밀번호입력후)
+	@GetMapping("/getStudentOneAfterPass")
+	public String modifyStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("studentPass") String studentPass) {
+		
+		// 이전페이지에서 입력된 비밀번호와 히든으로 넘겨받은 아이디를 입력받아 쿼리 실행시킨 것을 담기
+		List<Map<String, Object>> studentOneAfterPass= studentService.getStudentOneAfterPass(student);
+		
+		// 디버그
+		log.debug(TeamColor.KHW +studentOneAfterPass);
+		
+		// 모델에 담기
+		model.addAttribute("studentOneAfterPass", studentOneAfterPass);
+		
+		// 디버그
+		log.debug(TeamColor.KHW +model);
+		
+		
+		return "student/getStudentOneAfterPass";
+	}
+	
+	
+	// 학생정보 상세보기 수정 ACTION
+	
+}

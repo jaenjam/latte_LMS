@@ -70,7 +70,7 @@
 	</insert>
 	
 	
-	<!-- 학생정보 상세보기 -->
+	<!-- 학생정보 상세보기 비밀번호 입력전 -->
 	<select id="selectStudentOne" parameterType="int" resultType="map">
 	SELECT 
 		s.student_no
@@ -100,4 +100,38 @@
 	WHERE 
 		s.student_no=#{studentNo}	
 	</select>
+	
+	<!-- 학생정보 상세보기 확인비밀번호 입력 후 -->
+	<select id="selectStudentOneAfterPass" parameterType="com.gd.lms.vo.Student" resultType="map">
+		SELECT 
+		s.student_no
+		, s.student_pass
+		, s.major_no
+		, s.student_name
+		, s.student_regi_no
+		, s.student_age
+		, s.student_gender
+		, s.student_telephone
+		, s.student_email
+		, s.student_address
+		, s.student_detail_address
+		, s.scholar_no
+		, s.create_date
+		, s.update_date
+		, sh.scholar_name
+		, si.filename
+	FROM 
+		student s LEFT JOIN scholar sh
+	ON 
+		s.scholar_no = sh.scholar_no
+	LEFT JOIN 
+		student_img si
+	ON 
+		s.student_no = si.student_no
+	WHERE 
+		s.student_no=#{studentNo}
+	AND
+		s.student_pass=#{studentPass}		
+	</select>
+	
 </mapper>

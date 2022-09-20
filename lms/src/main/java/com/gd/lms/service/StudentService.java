@@ -38,4 +38,9 @@ public class StudentService {
 		 return studentMapper.selectStudentOne(studentNo);
 	 }
 	
+	// 학생정보 상세보기(비밀번호 입력 후)
+	 public List<Map<String, Object>> getStudentOneAfterPass(Student student){
+		 return studentMapper.selectStudentOneAfterPass(student);
+	 };
+	 
 }
