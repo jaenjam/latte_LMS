@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +22,12 @@ import lombok.extern.slf4j.Slf4j;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
 
-@Slf4j
 @Controller
+@Transactional
+@Slf4j
 public class ProfessorController {
-	@Autowired
-	ProfessorService professorService;
-	@Autowired
-	MajorService majorService;
+	@Autowired ProfessorService professorService;
+	@Autowired MajorService majorService;
 
 	// 로그인폼
 	@GetMapping("loginForm")
@@ -58,17 +58,21 @@ public class ProfessorController {
 		} else {
 			log.debug(TeamColor.JJY + "로그인성공");
 			// 세션에 로그인시 받은값 저장
-			session.setAttribute("No", professorLogin.getProfessorNo());
-			session.setAttribute("Name", professorLogin.getProfessorName()); // student,employee랑 같이 공유할거임
-			session.setAttribute("MajorNo", professorLogin.getMajorNo());
-			session.setAttribute("professorRegiNo", professorLogin.getProfessorRegiNo());
-			session.setAttribute("professorAge", professorLogin.getProfessorAge());
-			session.setAttribute("professorGender", professorLogin.getProfessorGender());
-			session.setAttribute("professorTelephone", professorLogin.getProfessorTelephone());
-			session.setAttribute("professorEmail", professorLogin.getProfessorEmail());
-			session.setAttribute("professorAddress", professorLogin.getProfessorAddress());
-			session.setAttribute("professorDetailAddress", professorLogin.getProfessorDetailAddress());
-			session.setAttribute("professorState", professorLogin.getProfessorState());
+			 //로그인 성공시 세션에 로그인시 받은값 저장           
+            session.setAttribute("user", "professor"); //user에 넣어주기
+			session.setAttribute("No", professorLogin.getProfessorNo()); //사번
+            session.setAttribute("Name",professorLogin.getProfessorName()); //이름
+            session.setAttribute("MajorNo", professorLogin.getMajorNo()); //전공
+            session.setAttribute("professorRegiNo", professorLogin.getProfessorRegiNo());//주민번호
+            session.setAttribute("professorAge", professorLogin.getProfessorAge());//나이
+            session.setAttribute("professorGender", professorLogin.getProfessorGender());//성별
+            session.setAttribute("professorTelephone", professorLogin.getProfessorTelephone());//전화번호
+            session.setAttribute("professorEmail", professorLogin.getProfessorEmail());//이메일
+            session.setAttribute("professorAddress", professorLogin.getProfessorAddress());//주소
+            session.setAttribute("professorDetailAddress", professorLogin.getProfessorDetailAddress());//상세주소
+            session.setAttribute("professorRoom", professorLogin.getProfessorRoom());//교수실
+            session.setAttribute("salaryNo", professorLogin.getSalaryNo());
+            session.setAttribute("professorState", professorLogin.getProfessorState());//재직상태
 
 			log.debug(TeamColor.JJY + "professorNo : " + session.getAttribute("No")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorAge : " + session.getAttribute("professorAge")); // 값 출력되는지 확인

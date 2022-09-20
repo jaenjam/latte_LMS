@@ -181,29 +181,6 @@ public class StudentController {
 		return "/student/getStudentOneAfterPass";
 	}
 	
-	
-	
-	// 학생정보 상세보기 FORM (비밀번호입력후)
-	@GetMapping("/getStudentOneAfterPass")
-	public String modifyStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("studentPass") String studentPass) {
-		
-		// 이전페이지에서 입력된 비밀번호와 히든으로 넘겨받은 아이디를 입력받아 쿼리 실행시킨 것을 담기
-		List<Map<String, Object>> studentOneAfterPass= studentService.getStudentOneAfterPass(student);
-		
-		// 디버그
-		log.debug(TeamColor.KHW +studentOneAfterPass);
-		
-		// 모델에 담기
-		model.addAttribute("studentOneAfterPass", studentOneAfterPass);
-		
-		// 디버그
-		log.debug(TeamColor.KHW +model);
-		
-		
-		return "student/getStudentOneAfterPass";
-	}
-	
-	
 	// 학생정보 상세보기 수정 ACTION
 	
 }
