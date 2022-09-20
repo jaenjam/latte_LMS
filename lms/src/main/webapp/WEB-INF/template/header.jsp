@@ -200,7 +200,7 @@
                         
                         <!-- 접속한 사람이름 -->
                         <li class="icons dropdown d-none d-md-flex">
-                        <p>접속한 사람의 이름을 적어주세요</p>
+                        <p>${Name}</p>
                         </li>
                         
                         
@@ -210,18 +210,49 @@
                                 <img src="images/user/1.png" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <c:if test="${user eq 'employee'}">
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="app-profile.html"><i class="icon-user"></i>
+                                           <a href="${pageContext.request.contextPath}/getEmployeeOne?No=${No}"><i class="icon-user"></i>
                                             	<span>마이페이지</span>
                                             </a>
                                         </li>
-                                        
                                         <hr class="my-2">
                                         <li><a href="/loginForm"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
+                                </c:if>
+                                
+                                <c:if test="${user eq 'student'}">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                           <a href="${pageContext.request.contextPath}/getStudentOne?No=${No}"><i class="icon-user"></i>
+                                            	<span>마이페이지</span>
+                                            </a>
+                                        </li>
+                                        <hr class="my-2">
+                                        <li><a href="/loginForm"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                                </c:if>
+                                
+                                <c:if test="${user eq 'professor'}">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                           <a href="${pageContext.request.contextPath}/getProfessorOne?No=${No}"><i class="icon-user"></i>
+                                            	<span>마이페이지</span>
+                                            </a>
+                                        </li>
+                                        <hr class="my-2">
+                                        <li><a href="/loginForm"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                                </c:if>
+                                
+                                
                             </div>
                         </li>
                     </ul>
