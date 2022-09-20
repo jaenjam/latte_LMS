@@ -57,8 +57,8 @@ public class StudentController {
 	}
 	
 	
-	// 학생 로그인 form
-	@PostMapping("StudentForm")
+	// 학생 로그인 action
+	@PostMapping("/StudentForm")
 	public String loginstudent(Student studnet, Model model) {
 		
 		// 서비스의 getStudent 실행
@@ -66,10 +66,22 @@ public class StudentController {
 		
 		// model에 저장하기
 		model.addAttribute("StudentId", loginstudent);
+
 		
 		// 디버깅
 		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 model:" +model);
-		return "home";
+		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 loginstudent:" +loginstudent);
+		
+		
+		if (loginstudent == null) {
+			log.debug(TeamColor.KHW +"로그인 실패");
+			return "loginForm";			
+		} else {
+			
+			log.debug(TeamColor.KHW +"로그인 성공");
+			return "home";
+		}
 	}
 	
+
 }
