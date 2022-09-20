@@ -62,13 +62,21 @@ public class ProfessorController {
 		//로그인 액션
 		@PostMapping("ProfessorForm")
 		public String professorLogin(Professor professor, Model model) {
+			 String result = "";
 			
 			Professor professorLogin = professorService.getProfessor(professor);
 			model.addAttribute("ProfessorId", professorLogin);
 			
 			log.debug(TeamColor.JJY +"professorLogin의 model:" +professorLogin);
 			
-			return "home";
+			if(professorLogin==null) {
+				log.debug(TeamColor.JJY + "로그인 값이 null이면 다시 loginForm");
+				result="/loginForm";} 
+				else { 
+					log.debug(TeamColor.JJY + "로그인 값에 값이 들어가면 들어가짐");
+					result = "/home";
+				}	
+			return result;
 			
 		}
 }
