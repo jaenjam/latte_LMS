@@ -85,7 +85,7 @@
 	</select>
 	
 	<!-- 관리자 정보 상세보기 -->
-	<select id="selectEmployeeOne"  parameterType="int" resultType="com.gd.lms.vo.Employee">
+	<select id="selectEmployeeOne"  parameterType="int" resultType="Map">
 		
 		SELECT 
 		e.employee_no employeeNo

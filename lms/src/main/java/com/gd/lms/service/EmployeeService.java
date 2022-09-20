@@ -19,7 +19,8 @@ public class EmployeeService {
 	
 	
 	//관리자 상세보기
-	public Employee getEmployeeOne(int employeeNo) {
+	public List<Map<String,Object>> getEmployeeOne(int employeeNo) {
+		
 		return employeeMapper.selectEmployeeOne(employeeNo);
 	}
 	

@@ -21,6 +21,6 @@ public interface EmployeeMapper {
 	List<Map<String,Object>> selectEmployeeList();
 	
 	//관리자정보 상세보기
-	Employee selectEmployeeOne(int employeeNo);
+	List<Map<String,Object>> selectEmployeeOne(int employeeNo);
 
 }

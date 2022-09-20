@@ -63,7 +63,7 @@
                                     
                                     <!-- Student Form -->
                                     
-                                        <div class="tab-pane fade show active" id="studnet" role="tabpanel">
+                                        <div class="tab-pane fade show active" id="student" role="tabpanel">
                                             <div class="p-t-15">
 	                                            <form class="mt-5 mb-5 login-input" action="${pageContext.request.contextPath}/StudentForm" method="post">
 				                                    <div class="form-group">
