@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.ProfessorMapper">
 
+	<!-- 교수 로그인 (세션 값으로 저장할거라 다 선언해주기)-->
 	<select id="professerLogin" resultType="com.gd.lms.vo.Professor">
 		SELECT
 			professor_no professorNo
@@ -10,10 +11,11 @@
 			, professor_name professorName
 			, professor_age professorAge
 			, professor_gender professorGender
+			, professor_regi_no professorRegiNo
 			, professor_telephone professorTelephone
 			, professor_email professorEmail
 			, professor_address professorAddress
-			, professor_detail_address professorDetail
+			, professor_detail_address professorDetailAddress
 			, professor_room professorRoom
 			, professor_state professorState
 			, salary_no salaryNo
@@ -57,29 +59,30 @@
 		, NOW())
 	</insert>
 	
-	<select id="selectProfessorOne" resultType="com.gd.lms.vo.Professor">
+	<!-- 교수상세보기 -->
+	<select id="selectProfessorOne" parameterType="int" resultType="map">
 		SELECT
-			  p.professor_no
-			, p.professor_pass
-			, p.major_no
-			, m.major_name
-			, p.professor_name
-			, p.professor_regi_no
-			, p.professor_age
-			, p.professor_gender
-			, p.professor_telephone
-			, p.professor_email
-			, p.professor_address
-			, p.professor_detail_address
-			, p.professor_room
-			, p.professor_state
-			, p.create_date
-			, p.update_date
-			, i.content_type
-			, i.filename
-			, i.origin_filename
-			, s.salary_no
-			, s.salary_value
+			  p.professor_no professorNo
+			, p.professor_pass professorPass
+			, p.major_no majorNo
+			, m.major_name majorName
+			, p.professor_name professorName
+			, p.professor_regi_no professorRegiNo
+			, p.professor_age professorAge
+			, p.professor_gender professorGender
+			, p.professor_telephone professorTelephone
+			, p.professor_email professorEmail
+			, p.professor_address professorAddress
+			, p.professor_detail_address professorDetailAddress
+			, p.professor_room professorRoom
+			, p.professor_state professorState
+			, p.create_date createDate
+			, p.update_date updateDate
+			, i.content_type contentType
+			, i.filename filename
+			, i.origin_filename originFilename
+			, s.salary_no salaryNo
+			, s.salary_value salaryValue
 		FROM
 			professor p LEFT JOIN professor_img i
 		ON

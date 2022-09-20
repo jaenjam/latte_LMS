@@ -1,5 +1,8 @@
 package com.gd.lms.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +19,23 @@ public class ProfessorService {
 	
 	//교수로그인
 	public Professor getProfessor(Professor professor) {
+		log.debug(TeamColor.JJY+"getProfessor(로그인) service실행");
 		Professor professorLogin = professorMapper.professerLogin(professor);
 	
 		return professorLogin;
 	}
 	
 	//교수추가(회원가입)
-		public int addProfessor(Professor professor) {
-			log.debug(TeamColor.JJY+"addprofessor service실행");
-			return professorMapper.insertProfessor(professor);
+	public int addProfessor(Professor professor) {
+		log.debug(TeamColor.JJY+"addprofessor(회원가입) service실행");
+		
+		return professorMapper.insertProfessor(professor);
+		}
+		
+	//교수상세보기
+	public List<Map<String,Object>> getProfessorOne(int professorNo){
+		log.debug(TeamColor.JJY+"getProfessorOne(상세보기) service실행");
+		
+		return professorMapper.selectProfessorOne(professorNo);	
 		}
 }

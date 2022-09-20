@@ -1,6 +1,7 @@
 package com.gd.lms.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,5 +17,5 @@ public interface ProfessorMapper {
 	int insertProfessor(Professor professor);
 	
 	// 교수상세보기
-	List<Professor> selectProfessorOne(int professorNo);
+	List<Map<String,Object>> selectProfessorOne(int professorNo);
 }
