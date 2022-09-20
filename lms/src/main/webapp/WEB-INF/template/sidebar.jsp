@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ 
+ 
         <!--**********************************
             Sidebar start
         ***********************************-->
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
-                	
-                	
+                
+                
+                
                 	<!-- 학생용 : 마이페이지 -->
                     
                     <li>
@@ -22,9 +24,10 @@
                     
                     
                     
-                    <!-- 스마트출석부 -->      
-                
-                
+                    
+                    <!-- 스마트출석부 --> 
+                    
+                    
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">스마트출석부</span>
@@ -38,20 +41,19 @@
                     
                     
                     
-               		<!-- 학과소개 -->
+                    <!-- 학과소개 -->
                     
                     
-                    <li>
+                    <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">학과</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="">학과소개</a></li>
+                            <li><a href="./layout-blank.html">학과소개</a></li>
                         </ul>
                     </li>
                     
                     
-                                        
                     
                     <!-- 장학 -->
                     
@@ -113,8 +115,8 @@
                             <i class="icon-grid menu-icon"></i><span class="nav-text">QnA</span>
                         </a>
                     </li>
-
-
+                    
+                    
                 </ul>
             </div>
         </div>
