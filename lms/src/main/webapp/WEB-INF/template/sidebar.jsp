@@ -49,7 +49,7 @@
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">학과</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./layout-blank.html">학과소개</a></li>
+                            <li><a href="${pageContext.request.contextPath}/major/majorList">학과소개</a></li>
                         </ul>
                     </li>
                     

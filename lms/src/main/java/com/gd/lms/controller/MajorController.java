@@ -21,7 +21,7 @@ public class MajorController {
 	@Autowired MajorService majorService;
 	
 	//전공목록
-	@GetMapping("/majorList")
+	@GetMapping("/major/majorList")
 	public String majorList(Model model) {
 		
 		log.debug(TeamColor.CSJ +"MajorController.majorList실행");
@@ -32,7 +32,7 @@ public class MajorController {
 		log.debug(TeamColor.CSJ +("majorController majorList값 : " + majorList));
 		
 		
-		return "majorList";
+		return "/major/majorList"; // major폴더안에 majorList보여주기
 	}
 	
 }

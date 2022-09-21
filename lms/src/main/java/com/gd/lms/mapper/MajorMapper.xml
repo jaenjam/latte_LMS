@@ -7,6 +7,9 @@
 	SELECT
 		 major_no majorNo
 		,major_name majorName
+		,major_subject majorSubject
+		,major_introduce_Header majorIntroduceHeader
+		,major_introduce majorIntroduce
 		,major_room majorRoom
 	FROM major
 	
