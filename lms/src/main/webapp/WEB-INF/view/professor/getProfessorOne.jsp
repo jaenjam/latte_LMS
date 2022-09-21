@@ -54,7 +54,6 @@ body {
 
 	<!-- header.jsp -->
 	<%@include file="/WEB-INF/template/header.jsp"%>
-
 	<!-- sidebar.jsp -->
 	<%@include file="/WEB-INF/template/sidebar.jsp"%>
 	<!--**********************************
@@ -79,13 +78,10 @@ body {
 					<div class="card">
 						<div class="card-body">
 							<div class="media align-items-center mb-4">
-								<img class="mr-2" src="images/avatar/11.png" width="80"
+								<img class="mr-2" src="${filename}" width="80"
 									height="80" alt="">
 
-
 							</div>
-
-
 							<div class="row mb-8">
 								<div class="col-12 text-center">
 									<form action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
@@ -93,7 +89,6 @@ body {
 									</form>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -116,26 +111,27 @@ body {
 												</div>
 
 												<div class="form-group">
-													<label> 전공: </label> 
+													<label> 전공: </label>
 													<c:forEach var="M" items="${professorOne}">
-													<input type="text"
-														class="form-control" name="professorMajor"
-														id="professorMajor" value="${M.majorName}" readonly="readonly">
+														<input type="text" class="form-control"
+															name="professorMajor" id="professorMajor"
+															value="${M.majorName}" readonly="readonly">
 													</c:forEach>
 												</div>
 
 												<div class="form-group">
 													<label> 주민번호: </label> <input type="text"
 														class="form-control" name="professorRegiNo"
-														id="professorRegiNo" value="${professorRegiNo}" readonly="readonly">
+														id="professorRegiNo" value="${professorRegiNo}"
+														readonly="readonly">
 												</div>
-												
+
 												<div class="form-group">
-													<label> 연봉: </label> 
+													<label> 연봉: </label>
 													<c:forEach var="M" items="${professorOne}">
-													<input type="text"
-														class="form-control" name="salaryValue"
-														id="salaryValue" value="${M.salaryValue}(만원)" readonly="readonly">
+														<input type="text" class="form-control" name="salaryValue"
+															id="salaryValue" value="${M.salaryValue}(만원)"
+															readonly="readonly">
 													</c:forEach>
 												</div>
 
@@ -148,25 +144,29 @@ body {
 												<div class="form-group">
 													<label> 성별: </label> <input type="text"
 														class="form-control" name="professorGender"
-														id="professorGender" value="${professorGender}" readonly="readonly">
+														id="professorGender" value="${professorGender}"
+														readonly="readonly">
 												</div>
 
 												<div class="form-group">
 													<label> 핸드폰: </label> <input type="text"
 														class="form-control" name="professorTelephone"
-														id="professorTelephone" value="${professorTelephone}" readonly="readonly">
+														id="professorTelephone" value="${professorTelephone}"
+														readonly="readonly">
 												</div>
 
 												<div class="form-group">
 													<label> 이메일: </label> <input type="text"
 														class="form-control" name="professorEmail"
-														id="professorEmail" value="${professorEmail}" readonly="readonly">
+														id="professorEmail" value="${professorEmail}"
+														readonly="readonly">
 												</div>
 
 												<div class="form-group">
 													<label> 주소: </label> <input type="text"
 														class="form-control" name="professorAddress"
-														id="professorAddress" value="${professorAddress}" readonly="readonly">
+														id="professorAddress" value="${professorAddress}"
+														readonly="readonly">
 												</div>
 
 												<div class="form-group">
@@ -179,7 +179,8 @@ body {
 												<div class="form-group">
 													<label> 학적상태: </label> <input type="text"
 														class="form-control" name="professorState"
-														id="professorState" value="${professorState}" readonly="readonly">
+														id="professorState" value="${professorState}"
+														readonly="readonly">
 												</div>
 											</div>
 										</div>

@@ -127,7 +127,7 @@ public class ProfessorController {
 		@GetMapping("/professor/addProfessorImgForm")
 		public String addProfessorImg(Model model) {
 			log.debug(TeamColor.JJY + "[Controller] addProfessorImg get실행");
-
+			System.out.print("[Controller] addProfessorImg get실행");
 			return "/professor/addProfessorImgForm";
 		}
 		
@@ -136,9 +136,10 @@ public class ProfessorController {
 		public String addProfessorImg(ProfessorImg professorImg, Model model,MultipartFile[] uploadFile) {
 		
 		log.debug(TeamColor.JJY + "[Controller] addProfessorImg post실행");
+		System.out.print("[Controller] addProfessorImg Post실행");
 		
 		
-		return "getProfessorOne";
+		return "/professor/getProfessorOne";
 				
 		}
 
