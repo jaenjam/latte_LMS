@@ -14699,4 +14699,67 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     [data-theme-version="dark"] .footer .copyright p {
       color: #fff; }
 
+
+[validstudentNo_re1]
+.studentNo_re1 {
+	display: none;
+}
+.studentNo_re2 {
+	display: none;
+}
+.studentNo_re3{
+	display: none;
+}
+
+.studentPass_re1{
+	display: none;
+}
+
+
+.majorNo_re1{
+	display: none;
+}
+
+.studentName_re1{
+	display: none;
+}
+
+.studentRegiNo_re1{
+	display: none;
+}
+
+.studentAge_re1{
+	display: none;
+}
+
+.studentGender_re1{
+	display: none;
+}
+
+.studentTelephone_re1{
+	display: none;
+}
+
+.studentEmail_re1{
+	display: none;
+}
+
+.studentEmail_re2{
+	display: none;
+}
+
+.studentEmail_re3{
+	display: none;
+}
+
+.studentAddress_re1{
+	display: none;
+}
+
+.studentDetailAddress_re1ate-check-message{
+	display: none;
+}
+
+
+
 /*# sourceMappingURL=style.css.map */

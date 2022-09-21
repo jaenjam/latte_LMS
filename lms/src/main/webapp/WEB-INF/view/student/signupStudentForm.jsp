@@ -55,10 +55,14 @@
                                   
                                                 <input type="text" class="form-control"name="studentNo" id="studentNo"
                                                 placeholder="학번을 입력해주세요">
+                                                	<span class="studentNo_re1"> 학번을 입력하주세요 </span>
+													<span class="studentNo_re2"> 사용가능한 학번입니다 </span>
+													<span class="studentNo_re3"> 해당 학번이 이미 존재합니다 </span>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>비밀번호: </label>
                                                 <input type="password" class="form-control" name="studentPass" id="studentPass" placeholder="Password">
+												<span class="studentPass_re1"> 비밀번호를 입력해주세요 </span>                                           
                                             </div>
                                         </div>                                            
                                         <div class="form-group">
@@ -68,32 +72,41 @@
 		                                          <option value="${M.majorNo}">${M.majorName}</option>
 		                                       </c:forEach>
 		                                    </select>
+		                                    <span class="majorNo_re1"> 전공을 선택해주세요 </span>
 		                                 </div>
 		                         
                                           <div class="form-group">
                                          <label>이름: </label>
                                             <input type="text" class="form-control" name="studentName" id="studentName">
+                                        	<span class="studentName_re1"> 이름을 입력해주세요 </span>
                                         </div>
                                         <div class="form-group">
                                         <label>주민번호: </label>
                                             <input type="text" class="form-control" name="studentRegiNo" id="studentRegiNo">
+                                        	<span class="studentRegiNo_re1"> 주민번호를 입력해주세요 </span>
                                         </div>
                                         <div class="form-group">
                                             <label>나이: </label>
                                             <input type="text" class="form-control" name="studentAge" id="studentAge">
+                                       		<span class="studentAge_re1"> 나이를 입력해주세요 </span>
                                         </div>
 										<div class="form-group">
 												<label>성별</label><br> <input type="radio"
 													name="studentGender" value="남자"> 남자 <input
 													type="radio" name="studentGender" value="여자"> 여자
-											</div>
+												<span class="studentGender_re1"> 성별을 선택해주세요 </span>
+										</div>
                                         <div class="form-group">
                                             <label>핸드폰: </label>
                                             <input type="text" class="form-control" name="studentTelephone" id="studentTelephone">
+                                        	<span class="studentTelephone_re1"> 핸드폰번호를 입력해주세요 </span>
                                         </div>
                                         <div class="form-group">
                                             <label>이메일: </label>
                                             <input type="text" class="form-control" name="studentEmail" id="studentEmail">
+                                       		<span class="studentEmail_re1"> 이메일을 입력해주세요 </span>
+											<span class="studentEmail_re2"> 이메일 형식을 확인해주세요 </span>
+											<span class="studentEmail_re3"> 사용가능한 이메일입니다 </span>
                                         </div>
                                         
                                         
@@ -102,15 +115,20 @@
 												<div class="form-group col-md-6">
 													<label>주소</label> <input type="text" class="form-control"
 														name="studentAddress" id="studentAddress">
+														  <span class="studentAddress_re1"> 주소를 입력해주세요 </span>
 												</div>
 												<div class="form-group col-md-6">
 													<label>상세주소</label> <input type="text" class="form-control"
 														name="studentDetailAddress" id="studentDetailAddress">
+														<span class="studentDetailAddress_re1"> 상세주소를 입력해주세요 </span>
 												</div>
 											</div>
 											<div class="form-group">
 												<button type="button" style="float: right;"
 													id=studentAddrBtn class="btn btn-light">주소검색</button>
+											  <span class="studentAddress_re1"> 주소를 입력해주세요 </span>
+
+											
 											</div>
 											<div class="form-group">
 												<button type="submit" class="btn btn-dark"
@@ -250,35 +268,194 @@
       }
    </script>
   
-  <script>
-   $('#addStudentBtn').click(function() {
-      if ($('#studentNo').val() == '') {
-         alert('아이디를 입력해주세요!');
-      } else if ($('#studentPass').val() == '') {
-         alert('비밀번호를 입력해주세요!');
-      } else if ($('#studentName').val() == '') {
-         alert('이름을 입력해주세요!');
-      } else if ($('#studentRegiNo').val() == '') {
-         alert('주민번호를 입력해주세요!');
-      } else if ($('#studentAge').val() == '') {
-         alert('나이를 입력해주세요!');
-      } else if ($('#studentGender').val() == '') {
-         alert('성별을 입력해주세요!');
-      } else if ($('#studentTelephone').val() == '') {
-         alert('전화번호를 입력해주세요!');
-      } else if ($('#studentEmail').val() == '') {
-         alert('이메일을 입력해주세요!');
-      } else if ($('#studentAddress').val() == '') {
-         alert('주소를 입력해주세요!');
-      } else if ($('#studentDetailAddress').val() == '') {
-         alert('상세주소를 입력해주세요!');
-      } else {
-         signupStudentForm.submit();
-      }
-   });
+<script>
+	// 입력 이메일 유효성검사
+	function mailcheckLt(studentEmail){
+		var emailform = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+			return emailform.test(studentEmail);
+		
+	}
+
 </script>
-    
-    
+
+
+
+
+<script>
+
+// 유효성 검사 통과유무 변수
+	var studentNoCk = false; // 학번
+	var studentPassCk = false; // 비밀번호
+	var studentNameCk = false; // 이름
+	var studentRegiNoCk = false; // 주민
+	var studentGenderCk = false; // 성별
+	var studentTelephoneCk = false; // 핸드폰
+	var studentEmailCk = false; // 이메일
+	var studentAddressCk = false; // 주소
+	var studentDetailAddressCk = false; // 상세주소
+
+
+
+	$(document).ready(fuction(){
+		
+		// 회원가입 버튼(회원가입 기능 작동)
+		$(".addStudentBtn").click(fuction(){
+			
+		// 입력란변수
+		var studentNo = $('.studentNo').val();
+		var studentPass = $('.studentPass').val();
+		var studentName = $('.studentName').val();
+		var studentRegiNo = $('.studentRegiNo').val();
+		var studentGender = $('.studentGender').val();
+		var studentTelephone = $('.studentTelephone').val();
+		var studentEmail = $('.studentEmail').val();
+		var studentAddress = $('.studentAddress').val();
+		var studentDetailAddress = $('.studentDetailAddress').val();
+		
+		
+	});
+		
+		/*
+		// 학번 유효성검사
+		if(studentNo == ""){ // 아무것도 입력안하면
+			$('.studentNo_re1').css('display', 'block');
+			studentNoCk = false;
+		} else{
+			$('.studentNo_re1').css('display', 'none');
+			studentNoCk = true;
+		}
+		*/
+		
+		// 비밀번호 유효성검사
+		if(studentPass == ""){ // 아무것도 입력안하면
+			$('.studentPass_re1').css('display', 'block');
+			studentPassCk = false;
+		} else {
+			$('.studentPass_re1').css('display', 'none');
+			studentPassCk = true;
+		}
+		
+		
+		// 이름 유효성검사
+		if(studentName == ""){ // 아무것도 입력안하면
+			$('.studentName_re1').css('display', 'block');
+			studentNameCk = false;
+		} else {
+			$('.studentName_re1').css('display', 'none');
+			studentNameCk = true;
+		}	
+		
+		
+		// 주민번호 유효성 검사
+		if(studentRegiNo == ""){ // 아무것도 입력안하면
+			$('.studentRegiNo_re1').css('display', 'block');
+			studentRegiNoCk = false;
+		} else {
+			$('.studentRegiNo_re1').css('display', 'none');
+			studentRegiNoCk = true;
+		}	
+		
+		
+		// 성별 유효성검사
+		if(studentGender == ""){ // 아무것도 입력안하면
+			$('.studentGender_re1').css('display', 'block');
+			studentGenderCk = false;
+		} else {
+			$('.studentGender_re1').css('display', 'none');
+			studentGenderCk = true;
+		}	
+		
+		
+		// 핸드폰 유효성검사
+		if(studentTelephone == ""){ // 아무것도 입력안하면
+			$('.studentTelephone_re1').css('display', 'block');
+			studentTelephoneCk = false;
+		} else {
+			$('.studentTelephone_re1').css('display', 'none');
+			studentTelephoneCk = true;
+		}	
+		
+		
+		// 이메일 유효성검사
+		if(studentEmail == ""){ // 아무것도 입력안하면
+			$('.studentEmail_re1').css('display', 'block');
+			studentEmailCk = false;
+		} else {
+			$('.studentEmail_re1').css('display', 'none');
+			studentEmailCk = true;
+		}	
+		
+		
+		// 주소 유효성검사
+		if(studentAddress == ""){ // 아무것도 입력안하면
+			$('.studentAddress_re1').css('display', 'block');
+			studentAddressCk = false;
+		} else {
+			$('.studentAddress_re1').css('display', 'none');
+			studentAddressCk = true;
+		}	
+		
+		
+		// 상세주소 유효성검사
+		if(studentDetailAddress == ""){ // 아무것도 입력안하면
+			$('.studentDetailAddress_re1').css('display', 'block');
+			studentDetailAddressCk = false;
+		} else {
+			$('.studentDetailAddress_re1').css('display', 'none');
+			studentDetailAddressCk = true;
+		}	
+		
+		
+		// 최종유효성검사
+		if(studentNoCk&&studentPassCk&&studentNameCk&&studentRegiNoCk&&studentGenderCk&&studentTelephoneCk&&studentEmailCk&&studentAddressCk&&studentDetailAddressCk){
+			
+			$('#addStudentBtn').attr("action", "/student/signupStudentForm");
+			$('#addStudentBtn').submit();
+		}
+		
+		return false;
+		
+		});
+	});	
+	
+		// 학번 중복검사 유효성검사
+		// studentNoCheck = true >> 학번중복이 없는 경우
+		// studentNoCheck = false; >> 중복된 경우
+
+		
+		// 학번중복검사
+		$('.studentNo').on('propertychange change keyup input', function(){
+			
+			
+			var studentNo = $('.studentNo').val();
+			var data = {studentNo : studentNo}
+			
+			$.ajax({
+				type="poast"
+				url="/student/signupStudentForm",
+				data : data,
+				success : function(result) {
+				// console.log("성공여부" + result);
+				if(result !='fail') {
+					$('.studentNo_re1').css("display", "inline-block");
+					$('.studentNo_re1').css("display", "none");
+					studentNoCheck = true;
+				} else {
+					$('.studentNo_re2').css("display", "inline-block");
+					$('.studentNo_re2').css("display", "none");
+					studentNoCheck = false;
+				}
+			} // success 종료	
+		}); // ajax 종료				
+	}); // function
+		
+		
+		
+		
+		
+</script>
+ 
     
     
     
