@@ -32,7 +32,7 @@
 		#{employeeEmail},
 		#{employeeAddress},
 		#{employeeDetailAddress},
-		
+
 		NOW(),
 		NOW()
 		)
@@ -46,31 +46,39 @@
 		, employee_pass employeePass
 		, employee_name employeeName
 		, employee_regi_no employeeRegiNo
-		, employee_age employeeAge
+		,
+		employee_age employeeAge
 		, employee_gender employeeGender
-		, employee_telephone employeeTelephone
+		,
+		employee_telephone employeeTelephone
 		, employee_email employeeEmail
-		, employee_address employeeAddress
-		, employee_detail_address employeeDetailAddress
+		,
+		employee_address employeeAddress
+		, employee_detail_address
+		employeeDetailAddress
 		, employee_state employeeState
-		, employee_active employeeActive
+		, employee_active
+		employeeActive
 		, salary_no salaryNo
 		FROM
-			employee
-		WHERE 
-			employee_no = #{employeeNo}
+		employee
+		WHERE
+		employee_no =
+		#{employeeNo}
 
-		AND 
-			employee_pass = #{employeePass}
+		AND
+		employee_pass = #{employeePass}
 	</select>
-	
+
 	<!-- 관리자 목록 -->
 	<select id="selectEmployeeList" resultType="map">
-		
+
 		SELECT
-		employee_no employeeNo
+		employee_no
+		employeeNo
 		,employee_pass employeePass
-		,employee_name employeeName
+		,employee_name
+		employeeName
 		,employee_regi_no employeeRegiNo
 		,employee_age employeeAge
 		,employee_gender employeeGender
@@ -78,64 +86,125 @@
 		,employee_email employeeEmail
 		,employee_address employeeAddress
 		,employee_detail_address employeeDetailAddress
-		,employee_state employeeState
+		,employee_state
+		employeeState
 		,employee_active employeeActive
 		,salary_no salaryNo
-		
-		FROM employee
+
+		FROM
+		employee
 
 	</select>
-	
+
 	<!-- 관리자 정보 상세보기 -->
-	<select id="selectEmployeeOne"  parameterType="int" resultType="Map">
-		
-		SELECT 
+	<select id="selectEmployeeOne" parameterType="int"
+		resultType="Map">
+
+		SELECT
 		e.employee_no employeeNo
 		,e.employee_pass employeePass
 		,e.employee_name employeeName
 		,e.employee_regi_no employeeRegiNo
 		,e.employee_age employeeAge
 		,e.employee_gender employeeGender
-		,e.employee_telephone employeeTelephone
+		,e.employee_telephone
+		employeeTelephone
 		,e.employee_email employeeEmail
-		,e.employee_address employeeAddress
-		,e.employee_detail_address employeeDetailAddress
+		,e.employee_address
+		employeeAddress
+		,e.employee_detail_address
+		employeeDetailAddress
 		,e.employee_state employeeState
 		,e.employee_active employeeActive
 		,s.salary_no salaryNo
-		,ei.filename fileName
-		
+		,ei.filename
+		fileName
+
 		FROM employee e LEFT JOIN salary s
 		ON e.salary_no = s.salary_no
-		LEFT JOIN employee_img ei
+		LEFT JOIN
+		employee_img ei
 		ON e.employee_no = ei.employee_no
-		WHERE e.employee_no = #{employeeNo}
+		WHERE
+		e.employee_no =
+		#{employeeNo}
 
 	</select>
-	  
-	<select id="selectEmployeeOneAfterPass"  parameterType="com.gd.lms.vo.Employee" resultType="Map">
-		SELECT 
-		e.employee_no employeeNo
+
+	<!--  관리자 정보수정 전 비밀번호확인-->
+	<select id="selectEmployeeOneAfterPass"
+		parameterType="com.gd.lms.vo.Employee" resultType="map">
+		SELECT
+		e.employee_no
+		employeeNo
 		,e.employee_pass employeePass
 		,e.employee_name employeeName
 		,e.employee_regi_no employeeRegiNo
 		,e.employee_age employeeAge
 		,e.employee_gender employeeGender
-		,e.employee_telephone employeeTelephone
+		,e.employee_telephone
+		employeeTelephone
 		,e.employee_email employeeEmail
-		,e.employee_address employeeAddress
+		,e.employee_address
+		employeeAddress
 		,e.employee_detail_address employeeDetailAddress
 		,e.employee_state employeeState
 		,e.employee_active employeeActive
 		,s.salary_no salaryNo
 		,ei.filename fileName
-		
-		FROM employee e LEFT JOIN salary s
+
+		FROM
+		employee e LEFT JOIN
+		salary s
+		ON
+		e.salary_no = s.salary_no
+		LEFT JOIN
+		employee_img ei
+		ON
+		e.employee_no = ei.employee_no
+		WHERE
+		e.employee_no=#{employeeNo}
+		AND
+		e.employee_pass=#{employeePass}
+	</select>
+
+	<!-- 관리자 정보수정하기 -->
+	<update id="updateEmployee"
+		parameterType="com.gd.lms.vo.Employee">
+
+		UPDATE employee e
+		INNER JOIN salary s
 		ON e.salary_no = s.salary_no
-		LEFT JOIN employee_img ei
+		INNER JOIN employee_img ei
 		ON e.employee_no = ei.employee_no
+		SET
+		e.employee_no = #{employeeNo}
+		,e.employee_pass = #{employeePass}
+		,e.employee_name = #{employeeName}
+		,e.employee_regi_no
+		=#{employeeRegiNo}
+		,e.employee_age = #{employeeAge}
+		,e.employee_gender =
+		#{employeeGender}
+		,e.employee_telephone
+		= #{employeeTelephone}
+		,e.employee_email = #{employeeEmail}
+		,e.employee_address
+		=
+		#{employeeAddress}
+		,e.employee_detail_address =
+		#{employeeDetailAddress}
+		,e.employee_state = #{employeeState}
+		,e.employee_active = #{employeeActive}
+		,s.salary_no = #{salaryNo}
+		,ei.filename = #{fileName}
+		,ei.origin_filename = #{originFilename}
+		,ei.content_type = #{contentType}
+
+
 		WHERE e.employee_no = #{employeeNo}
-		AND e.employee_pass = #{employeePass}
-</select>
+
+	</update>
+
 
 </mapper>

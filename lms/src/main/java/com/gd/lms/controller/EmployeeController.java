@@ -1,6 +1,7 @@
 package com.gd.lms.controller;
 
 import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.vo.Employee;
-import com.gd.lms.vo.Student;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,14 +28,36 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeservice;
 
+	//관리자 정보수정 action
+	@PostMapping("/modifyEmployee") 
+	public String modifyEmployee(Employee employee , Model model) {
+		
+		int row = employeeservice.modifyEmployee(employee);
+		
+		log.debug(TeamColor.CSJ + "EmployeeController.modifyEmployee" + row);
+		
+		if(row==0) {
+			return "redirect:/employee/modifyEmployee";
+		}
+		
+		return "redirect:/employee/getEmployeeOne";
+		
+		
+	}
+	
+	
 	// 관리자 정보수정 form
 	@GetMapping("/modifyEmployee")
-	public String modifyEmployee(Model model, Employee employee) {
-		model.addAttribute("e", employee);
+	public String modifyEmployee(Model model, @RequestParam(value="No") int employeeNo) {
+		
+		List<Map<String, Object>> employee = employeeservice.getEmployeeOne(employeeNo);
+		
+		model.addAttribute("employeeOne", employee);
+		
 
-		log.debug(TeamColor.CSJ + "EmployeeController의 modifyEmployee:" + model);
+		log.debug(TeamColor.CSJ + "EmployeeController의 modifyEmployee:" + employee);
 
-		return "redirect:/employeeList";
+		return "modifyEmployeeAfterPass";
 
 	}
 
@@ -43,14 +65,14 @@ public class EmployeeController {
 	@GetMapping("/modifyEmployeePass")
 	public String pageLock() {
 
-		log.debug(TeamColor.CSJ + "비밀번호확인form으로 이동");
+		log.debug(TeamColor.CSJ + "비밀번호확인 form 으로 이동");
 		return "/employee/modifyEmployeePass";
 	}
 
 	// 관리자 정보 수정 전 비밀번호 확인 Action
 	@PostMapping("/modifyEmployeePass")
 	public String pageLock(Employee employee, Model model, HttpServletRequest request,
-			@RequestParam("employeePass") String employeePass) {
+			@RequestParam(value = "employeePass", required = false) String employeePass) {
 
 		log.debug(TeamColor.CSJ + "비밀번호확인 적용 액션");
 
@@ -141,7 +163,6 @@ public class EmployeeController {
 			session.setAttribute("employeeActive", loginEmployee.getEmployeeActive());
 			session.setAttribute("user", "employee");
 
-			
 			log.debug(TeamColor.CSJ + "EmployeeController.login :" + "로그인 성공");
 
 			return "home";

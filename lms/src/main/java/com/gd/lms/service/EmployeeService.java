@@ -18,6 +18,11 @@ public class EmployeeService {
 
 	@Autowired
 	private EmployeeMapper employeeMapper;
+	
+	// 관리자 정보 수정
+	public int modifyEmployee(Employee employee) {
+		return employeeMapper.updateEmployee(employee);
+	}
 
 	// 관리자정보 상세보기(비밀번호 입력 후)
 	public List<Map<String, Object>> getEmployeeOneAfterPass(Employee employee) {

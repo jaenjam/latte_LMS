@@ -10,6 +10,9 @@ import com.gd.lms.vo.Employee;
 
 @Mapper
 public interface EmployeeMapper {
+	
+	//관리자 정보수정
+	int updateEmployee(Employee employee);
 
 	//관리자 정보 상세보기 (비밀번호 입력 후)
 	List<Map<String, Object>>selectEmployeeOneAfterPass(Employee employee);
