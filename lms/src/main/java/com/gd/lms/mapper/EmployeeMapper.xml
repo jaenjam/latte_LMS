@@ -113,8 +113,29 @@
 
 	</select>
 	  
-	
-
-
+	<select id="selectEmployeeOneAfterPass"  parameterType="com.gd.lms.vo.Employee" resultType="Map">
+		SELECT 
+		e.employee_no employeeNo
+		,e.employee_pass employeePass
+		,e.employee_name employeeName
+		,e.employee_regi_no employeeRegiNo
+		,e.employee_age employeeAge
+		,e.employee_gender employeeGender
+		,e.employee_telephone employeeTelephone
+		,e.employee_email employeeEmail
+		,e.employee_address employeeAddress
+		,e.employee_detail_address employeeDetailAddress
+		,e.employee_state employeeState
+		,e.employee_active employeeActive
+		,s.salary_no salaryNo
+		,ei.filename fileName
+		
+		FROM employee e LEFT JOIN salary s
+		ON e.salary_no = s.salary_no
+		LEFT JOIN employee_img ei
+		ON e.employee_no = ei.employee_no
+		WHERE e.employee_no = #{employeeNo}
+		AND e.employee_pass = #{employeePass}
+</select>
 
 </mapper>

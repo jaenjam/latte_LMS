@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.vo.Employee;
+import com.gd.lms.vo.Student;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +28,6 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeservice;
 
-	
 	// 관리자 정보수정 form
 	@GetMapping("/modifyEmployee")
 	public String modifyEmployee(Model model, Employee employee) {
@@ -36,6 +36,48 @@ public class EmployeeController {
 		log.debug(TeamColor.CSJ + "EmployeeController의 modifyEmployee:" + model);
 
 		return "redirect:/employeeList";
+
+	}
+
+	// 관리자 정보 수정 전 비밀번호 확인 form
+	@GetMapping("/modifyEmployeePass")
+	public String pageLock() {
+
+		log.debug(TeamColor.CSJ + "비밀번호확인form으로 이동");
+		return "/employee/modifyEmployeePass";
+	}
+
+	// 관리자 정보 수정 전 비밀번호 확인 Action
+	@PostMapping("/modifyEmployeePass")
+	public String pageLock(Employee employee, Model model, HttpServletRequest request,
+			@RequestParam("employeePass") String employeePass) {
+
+		log.debug(TeamColor.CSJ + "비밀번호확인 적용 액션");
+
+		// 이전페이지에서 입력된 비밀번호와 히든으로 넘겨받은 아이디를 입력받아 쿼리 실행시킨 것을 담기
+		List<Map<String, Object>> employeeOneAfterPass = employeeservice.getEmployeeOneAfterPass(employee);
+
+		// 디버그
+		log.debug(TeamColor.CSJ + employeeOneAfterPass);
+
+		// 모델에 담기
+		model.addAttribute("studentOneAfterPass", employeeOneAfterPass);
+
+		// 디버그
+		log.debug(TeamColor.CSJ + model);
+
+		return "/employee/getEmployeeOneAfterPass";
+	}
+
+	// 관리자 정보 상세보기(수정 전)
+	@GetMapping("/getEmployeeOne")
+	public String getEmployeeOne(HttpServletRequest request, @RequestParam("No") int employeeNo, Model model) {
+
+		List<Map<String, Object>> employeeOne = employeeservice.getEmployeeOne(employeeNo);
+
+		log.debug(TeamColor.CSJ + "EmployeeController의 employeeOne" + employeeOne);
+
+		return "/employee/getEmployeeOne";
 
 	}
 
@@ -67,60 +109,44 @@ public class EmployeeController {
 
 	// 관리자로그인 action
 	@PostMapping("/EmployeeForm")
-		public String loginEmployee(Employee employee, Model model , HttpServletRequest request) {
-			
-			// 세션 사용하기위해 선언
-			HttpSession session =  request.getSession();
-			
-			Employee loginEmployee = employeeservice.loginEmployee(employee);
-			
-			model.addAttribute("employeeId", loginEmployee);
-			
-			log.debug(TeamColor.CSJ+"EmployeeController의 loginEmployee model:" +model);
-			log.debug(TeamColor.CSJ+"EmployeeController의 loginEmployee loginEmployee:" +loginEmployee);
-			
-			//계정 정보가 없으면 로그인 실패
-			if(loginEmployee == null) {
-				log.debug(TeamColor.CSJ+"EmployeeController.login : "+"로그인 실패");
-				
-				return "/loginForm";
-			
-			
+	public String loginEmployee(Employee employee, Model model, HttpServletRequest request) {
+
+		// 세션 사용하기위해 선언
+		HttpSession session = request.getSession();
+
+		Employee loginEmployee = employeeservice.loginEmployee(employee);
+
+		model.addAttribute("employeeId", loginEmployee);
+
+		log.debug(TeamColor.CSJ + "EmployeeController의 loginEmployee model:" + model);
+		log.debug(TeamColor.CSJ + "EmployeeController의 loginEmployee loginEmployee:" + loginEmployee);
+
+		// 계정 정보가 없으면 로그인 실패
+		if (loginEmployee == null) {
+			log.debug(TeamColor.CSJ + "EmployeeController.login : " + "로그인 실패");
+
+			return "/loginForm";
+
 		} else {
-	         session.setAttribute("No", loginEmployee.getEmployeeNo());
-	         session.setAttribute("employeePass", loginEmployee.getEmployeePass());
-	         session.setAttribute("Name", loginEmployee.getEmployeeName());
-	         session.setAttribute("employeeRegiNo", loginEmployee.getEmployeeRegiNo());
-	         session.setAttribute("employeeAge", loginEmployee.getEmployeeAge());
-	         session.setAttribute("employeeGender", loginEmployee.getEmployeeGender());
-	         session.setAttribute("employeeTelephone", loginEmployee.getEmployeeTelephone());
-	         session.setAttribute("employeeEmail", loginEmployee.getEmployeeEmail());
-	         session.setAttribute("employeeAddress", loginEmployee.getEmployeeAddress());
-	         session.setAttribute("employeeDetailAddress", loginEmployee.getEmployeeDetailAddress());
-	         session.setAttribute("employeeActive", loginEmployee.getEmployeeActive());
-	         session.setAttribute("user", "employee");
+			session.setAttribute("No", loginEmployee.getEmployeeNo());
+			session.setAttribute("employeePass", loginEmployee.getEmployeePass());
+			session.setAttribute("Name", loginEmployee.getEmployeeName());
+			session.setAttribute("employeeRegiNo", loginEmployee.getEmployeeRegiNo());
+			session.setAttribute("employeeAge", loginEmployee.getEmployeeAge());
+			session.setAttribute("employeeGender", loginEmployee.getEmployeeGender());
+			session.setAttribute("employeeTelephone", loginEmployee.getEmployeeTelephone());
+			session.setAttribute("employeeEmail", loginEmployee.getEmployeeEmail());
+			session.setAttribute("employeeAddress", loginEmployee.getEmployeeAddress());
+			session.setAttribute("employeeDetailAddress", loginEmployee.getEmployeeDetailAddress());
+			session.setAttribute("employeeActive", loginEmployee.getEmployeeActive());
+			session.setAttribute("user", "employee");
 
-	         
-			 log.debug(TeamColor.CSJ +"EmployeeController.login :" + "로그인 성공");
-			 
 			
+			log.debug(TeamColor.CSJ + "EmployeeController.login :" + "로그인 성공");
+
 			return "home";
-			
-		}
-}
-	
-	
-		// 관리자 상세보기
-		@GetMapping("/getEmployeeOne")
-		public String getEmployeeOne(HttpServletRequest request, @RequestParam("No") int employeeNo, Model model) {
-
-			List<Map<String, Object>> employeeOne = employeeservice.getEmployeeOne(employeeNo);
-
-			
-			log.debug(TeamColor.CSJ+ "EmployeeController의 employeeOne" + employeeOne);
-
-			return "/employee/getEmployeeOne";
 
 		}
+	}
 
 }

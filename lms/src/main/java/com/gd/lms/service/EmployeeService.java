@@ -10,38 +10,43 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.mapper.EmployeeMapper;
 import com.gd.lms.vo.Employee;
+import com.gd.lms.vo.Student;
 
 @Service
 @Transactional
 public class EmployeeService {
-	
-	@Autowired private EmployeeMapper employeeMapper;
-	
-	
-	//관리자 상세보기
-	public List<Map<String,Object>> getEmployeeOne(int employeeNo) {
-		
-		return employeeMapper.selectEmployeeOne(employeeNo);
+
+	@Autowired
+	private EmployeeMapper employeeMapper;
+
+	// 관리자정보 상세보기(비밀번호 입력 후)
+	public List<Map<String, Object>> getEmployeeOneAfterPass(Employee employee) {
+		return employeeMapper.selectEmployeeOneAfterPass(employee);
 	}
-	
-	//관리자 회원가입
+
+	// 관리자 상세보기(수정 전)
+	public List<Map<String, Object>> getEmployeeOne(int employeeNo) {
+		return employeeMapper.selectEmployeeOne(employeeNo); 
+	}
+
+	// 관리자 회원가입
 	public int addEmployee(Employee employee) {
 		System.out.println("addEmployee service");
 		return employeeMapper.insertEmployee(employee);
 	}
-	
-	//관리자 로그인
+
+	// 관리자 로그인
 	public Employee loginEmployee(Employee employee) {
 		System.out.println("loginEmployee service");
 		return employeeMapper.getEmployee(employee);
 	}
-	
-	//관리자 목록
-		public List<Map<String,Object>> getEmployeeList(){
-			
-			System.out.println("getEmployee service");
-			
-			return employeeMapper.selectEmployeeList();
-		}
+
+	// 관리자 목록
+	public List<Map<String, Object>> getEmployeeList() {
+
+		System.out.println("getEmployee service");
+
+		return employeeMapper.selectEmployeeList();
+	}
 
 }

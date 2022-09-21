@@ -3,7 +3,12 @@
 
 
 <!DOCTYPE html>
+
+
 <html>
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -93,79 +98,91 @@ body {font-family: Arial;}
                     <div class="col-lg-8 col-xl-9">
                         <div class="card">
                             <div class="card-body">
-                                <form action="${pageContext.request.contextPath}/modifyEmployeePass" method ="post" class="form-profile">
+                                <form action="${pageContext.request.contextPath}/modifyEmployeePass" method="post" class="form-profile">
                                     <div class="form-group">
-                                      
-                                     <h4 class="card-title"> 내 정보 </h4>
+                                    
+                                    <h4 class="card-title"> 정보 수정하기 </h4>
                                   <div class="basic-form">
-		             					<div class="form-row">
+                                      
+                                     <div class="form-row">
 				             				<div class="form-group col-md-8">	
 				             				<div class="form-group">
 												<label> 등급 </label>
 													<input type="text" class="form-control" name="employeeActive" id="employeeActive"
-			                                           value="${employeeActive}" readonly>	
+			                                           value="${employeeActive}">	
 				                                 </div>     
 				             					<div class="form-group">
 				       							<label> 사번 </label>
 												<input type="text" class="form-control" name="employeeNo" id="employeeNo"
-		                                           value="${No}" readonly>
+		                                           value="${No}">
 												</div>
 												<div class="form-group">
 												<label> 이름 </label>
 												<input type="text" class="form-control" name="employeeName" id="employeeName"
-		                                           value="${Name}" readonly>
+		                                           value="${Name}">
 												</div>
 
 												<div class="form-group">
 												<label> 주민번호 </label>
 													<input type="text" class="form-control" name="employeeRegiNo" id="employeeRegiNo"
-			                                           value="${employeeRegiNo}" readonly>
+			                                           value="${employeeRegiNo}">
 												</div>
 												
 												<div class="form-group">		
 												<label> 나이 </label>
 													<input type="text" class="form-control" name="employeeAge" id="employeeAge"
-			                                           value="${employeeAge}" readonly>
+			                                           value="${employeeAge}">
 			                                           </div>
 			                                           
 			                                    <div class="form-group">       
 												<label> 성별 </label>
 													<input type="text" class="form-control" name="employeeGender" id="employeeGender"
-			                                           value="${employeeGender}" readonly>
+			                                           value="${employeeGender}">
 			                                    </div>      
 												
 												<div class="form-group">
 												<label> 핸드폰 </label>
 													<input type="text" class="form-control" name="employeeTelephone" id="employeeTelephone"
-			                                           value="${employeeTelephone}" readonly>
+			                                           value="${employeeTelephone}">
 												</div>
 												
 												<div class="form-group">
 												<label> 이메일 </label>
 													<input type="text" class="form-control" name="employeeEmail" id="employeeEmail"
-			                                           value="${employeeEmail}" readonly>
+			                                           value="${employeeEmail}">
 												</div>
 												
 												<div class="form-group">
 												<label> 주소 </label>
 													<input type="text" class="form-control" name="employeeAddress" id="employeeAddress"
-			                                           value="${employeeAddress}" readonly>
+			                                           value="${employeeAddress}">
 												</div>
 												
 												<div class="form-group">
 												<label> 상세주소 </label>
 													<input type="text" class="form-control" name="employeeDetailAddress" id="employeeDetailAddress"
-			                                           value="${employeeDetailAddress}" readonly>
+			                                           value="${employeeDetailAddress}">
 												</div>
-												
+												<div class="form-group">
+												<button type="button" style="float: right;"
+													id="employeeAddrBtn" class="btn btn-light">주소검색</button>
+											</div>
+											
+											<div id="layer"
+		style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
+		<img src="//t1.daumcdn.net/postcode/resource/images/close.png"
+			id="btnCloseLayer"
+			style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"
+			onclick="closeDaumPostcode()" alt="닫기 버튼">
+	</div>
 												     							
 											</div>
 										</div>
 										    
                                     </div>
-                                     <button class="btn btn-primary px-3 ml-4"> 이전화면으로 </button>   
-                                     <button type = "submit" class="btn btn-primary px-3 ml-4"> 정보수정하기 </button>                                                                   
+                                      <button type="submit" class="btn btn-primary px-3 ml-4"> 정보수정완료 </button>                                                                   
                                 </form>
+                                	  <button class="btn btn-primary px-3 ml-4" type="button" id="backStudentOnePage" name="backStudentOnePage"> 이전화면으로 </button>   
                             </div>
                         </div>
 
@@ -187,6 +204,20 @@ body {font-family: Arial;}
     <!--**********************************
         Scripts
     ***********************************-->
+<script>
+    
+    $('#backStudentOnePage').click(function() {
+    	alert('이전화면으로 돌아갑니다!');
+    	history.back();
+    });
+    
+    
+    
+</script> 
+    
+    
+    
+    
     <script src="plugins/common/common.min.js"></script>
     <script src="js/custom.min.js"></script>
     <script src="js/settings.js"></script>
