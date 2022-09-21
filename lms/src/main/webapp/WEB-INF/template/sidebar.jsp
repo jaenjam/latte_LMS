@@ -41,6 +41,39 @@
                     
                     
                     
+                    <!--  나의 강의실 >>>교수의 경우 수강승인된 강의중 본인이 맡은 강의 / 학생은 본인이 수강하는 -->
+                    
+                      <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-graph menu-icon"></i> <span class="nav-text">나의 강의실</span>
+                        </a>
+                       <!--  교수의 경우  -->
+                        <c:if test="${user eq 'professor'}">
+                         <ul aria-expanded="false">
+                            <li><a href="./chart-flot.html">시간표</a></li>
+                            <li><a href="./chart-morris.html">강의출결</a></li>
+                            <li><a href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의자료교수</a></li>
+                            <li><a href="./chart-chartjs.html">시험</a></li>
+                        </ul>
+                       </c:if> 
+                       
+                        
+                       <!--  학생의경우 -->
+                        <c:if test="${user eq 'student'}">
+                         <ul aria-expanded="false">
+                            <li><a href="./chart-flot.html">시간표</a></li>
+                            <li><a href="./chart-morris.html">강의출결</a></li>
+                            <li><a href="./chart-chartjs.html">강의자료</a></li>
+                            <li><a href="./chart-chartjs.html">시험</a></li>
+                        </ul>
+                       </c:if> 
+                       
+                    </li>
+                    
+                    
+                    
+                    
+                    
                     <!-- 학과소개 -->
                     
                     

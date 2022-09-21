@@ -22,8 +22,8 @@ public class LectureController {
 		
 		
 		// 강의자료 목록 (교수가)
-		@GetMapping("/lecture/lectureList")
-		public String lectureList(Model model, @RequestParam("professorNo") int professorNo) {
+		@GetMapping("/lecture/getLectureList")
+		public String lectureList(Model model, @RequestParam("No") int professorNo) {
 			log.debug(TeamColor.KHW +"LectureController의 lectureList 진입");
 			
 			// 교수사번 입력되어 얻은 쿼리문을 lectureList에 담기
@@ -32,7 +32,10 @@ public class LectureController {
 			// 해당 값을 모델에 저장(view에서 띄우기 위함)
 			model.addAttribute("lectureList", lectureList);
 			
-			return "/lecture/lectureList";
+			// 디버그
+			log.debug(TeamColor.KHW+lectureList);
+			
+			return "/lecture/getLectureList";
 		}
 		
 }

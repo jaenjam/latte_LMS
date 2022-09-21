@@ -5,7 +5,7 @@
 	<select id="selectLectureListPro" parameterType="int" resultType="map">
 	<!-- 강의 자료 리스트 가져오기 교수	-->
 	SELECT
-		sa.subject_approve_no subjectApprove
+		sa.subject_approve_no subjectApproveNo
 		, sa.major_no majorNo
 		, sa.subject_no subjectNo
 		, sa.professor_no professorNo
@@ -23,11 +23,12 @@
 		, p.major_no majorNo
 		, p.professor_name professorName
 		, m.major_name majorName
-		, l.lecture_no
-		, l.subject_approve_no
-		, l.lecture_title
-		, l.lecture_content
-		, l.create_date
+		, l.lecture_no lectureNo
+		, l.subject_approve_no subjectApproveNoL
+		, l.lecture_title lectureTitle
+		, l.lecture_content lectureContent
+		, l.create_date createDateL
+		, l.update_date updateDateL
 	FROM
 		subject_approve sa 
 	INNER JOIN 
@@ -43,7 +44,7 @@
 	ON	
 		sa.subject_approve_no = l.subject_approve_no
 	WHERE	
-		sa.professor_no = 100003;		 
+		sa.professor_no = #{No};		 
 
 </select>
 
