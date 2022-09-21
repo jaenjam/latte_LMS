@@ -139,8 +139,6 @@ public class ProfessorController {
 		System.out.print("[Controller] addProfessorImg Post실행");
 		
 		
-		return "/professor/getProfessorOne";
-				
+		return "/professor/getProfessorOne";				
 		}
-
 }
