@@ -52,6 +52,8 @@
 		, employee_email employeeEmail
 		, employee_address employeeAddress
 		, employee_detail_address employeeDetailAddress
+		, employee_state employeeState
+		, employee_active employeeActive
 		, salary_no salaryNo
 		FROM
 			employee
