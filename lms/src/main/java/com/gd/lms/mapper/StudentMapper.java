@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Student;
+import com.gd.lms.vo.StudentImg;
 
 @Mapper
 public interface StudentMapper {
@@ -21,4 +22,7 @@ public interface StudentMapper {
 	
 	// 학생정보 상세보기(비밀번호 입력 후)
 	List<Map<String, Object>>selectStudentOneAfterPass(Student student);
+	
+	// 학생사진 등록하기
+	int insertStudentImg(StudentImg studentImg);
 }

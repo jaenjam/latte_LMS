@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.LectureMapper">
+	
+	<select id="selectLectureListPro" parameterType="int" resultType="map">
+	<!-- 강의 자료 리스트 가져오기 교수	-->
+	SELECT
+		sa.subject_approve_no subjectApprove
+		, sa.major_no majorNo
+		, sa.subject_no subjectNo
+		, sa.professor_no professorNo
+		, sa.year year
+		, sa.semester semester
+		, sa.start_date startDate
+		, sa.end_date endDate
+		, sa.total_date totalDate
+		, sa.approve_active approveActive
+		, sa.subject_room subjectRoom
+		, sa.day day
+		, sa.start_time startTime
+		, sa.end_date endDate
+		, p.professor_no professorNo
+		, p.major_no majorNo
+		, p.professor_name professorName
+		, m.major_name majorName
+		, l.lecture_no
+		, l.subject_approve_no
+		, l.lecture_title
+		, l.lecture_content
+		, l.create_date
+	FROM
+		subject_approve sa 
+	INNER JOIN 
+		professor p
+	ON
+		sa.professor_no = p.professor_no
+	INNER JOIN
+		major m	
+	ON
+		sa.major_no = m.major_no
+	INNER JOIN
+		lecture l
+	ON	
+		sa.subject_approve_no = l.subject_approve_no
+	WHERE	
+		sa.professor_no = 100003;		 
+
+</select>
+
+
+
+</mapper>

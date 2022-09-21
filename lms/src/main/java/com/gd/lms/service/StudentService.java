@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.StudentMapper;
 import com.gd.lms.vo.Student;
+import com.gd.lms.vo.StudentImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,5 +43,12 @@ public class StudentService {
 	 public List<Map<String, Object>> getStudentOneAfterPass(Student student){
 		 return studentMapper.selectStudentOneAfterPass(student);
 	 };
+	 
+	 // 학생사진 등록하기
+	 public int addStudentImg(StudentImg studentImg) {
+		 log.debug(TeamColor.KHW+"addStudentImg(사진추가) service실행");
+		 
+		 return studentMapper.insertStudentImg(studentImg);
+	 }
 	 
 }

@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Student;
+import com.gd.lms.vo.StudentImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -183,4 +185,27 @@ public class StudentController {
 	
 	// 학생정보 상세보기 수정 ACTION
 	
+	
+	
+	// 학생사진 등록하기 FORM
+	@GetMapping("/student/addStduentImgForm")
+	public String addStudentImg() {
+		log.debug(TeamColor.KHW + "FORM");
+		
+		return "/student/assStudentImgForm";
+	}
+	
+	
+	// 교수사진 등록 Action
+	@PostMapping("/student/addStduentImgForm")
+	public String addStudentImg(StudentImg studentImg, Model model, MultipartFile[] uploadFile ) {
+		
+		// 파일저장할 위치 설정 >> 임시로 로컬설정
+		String dir = "/upload";
+		
+		
+		
+		
+		return "/student/getStudentOne";
+	}
 }

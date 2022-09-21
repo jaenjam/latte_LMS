@@ -134,4 +134,23 @@
 		s.student_pass=#{studentPass}		
 	</select>
 	
+	
+	<!--  학생사진 등록하기  -->
+	<insert id="insertStudentImg" parameterType="com.gd.lms.vo.StudentImg">
+		INSERT INTO student_img ( 
+			 student_no studentNo
+			,filename filename
+			,origin_filename originFilename
+			,content_type contentType
+			,create_date createDate
+			,update_date updateDate)
+		VALUES (
+			 #{studentNo}
+			,#{filename}
+			,#{originFilename}
+			,#{contentType}
+			,now()
+			,now()
+		)
+	</insert>
 </mapper>
