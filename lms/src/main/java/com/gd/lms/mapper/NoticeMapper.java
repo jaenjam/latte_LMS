@@ -10,6 +10,9 @@ import com.gd.lms.vo.Notice;
 @Mapper
 public interface NoticeMapper {
 
+	//공지상세보기
+	Map<String, Object> selectNoticeOne(int noticeNo);
+	
 	//공지추가
 	int insertNotice(Notice notice);
 	

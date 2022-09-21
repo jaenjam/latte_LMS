@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.NoticeMapper">
+	
+	
+	<!-- 공지상세보기 -->
+	<select id="selectNoticeOne" resultType="map">
+	
+		SELECT
+			  notice_no noticeNo
+			, notice_title noticeTitle
+			, notice_content noticeContent
+			, notice_writer noticeWriter
+			, count
+			, create_date createDate
+			, update_date updateDate
+		FROM notice
+		
+		WHERE notice_no = #{noticeNo}
+	</select>
+	
+	
 	<!-- 공지추가 -->
 	<insert id="insertNotice" parameterType="com.gd.lms.vo.Notice">
 		INSERT INTO notice

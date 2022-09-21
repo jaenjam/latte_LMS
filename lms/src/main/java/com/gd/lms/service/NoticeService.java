@@ -20,6 +20,13 @@ public class NoticeService {
 
 	@Autowired private NoticeMapper noticeMapper;
 	
+	//공지상세보기
+	public Map<String, Object> getNoticeOne(int noticeNo){
+		log.debug(TeamColor.LJE + "NoticeService getNoticeOne");
+		
+		return noticeMapper.selectNoticeOne(noticeNo);
+	}
+	
 	//공지추가
 	public int addNotice(Notice notice) {
 		log.debug(TeamColor.LJE + "NoticeService addNotice");
