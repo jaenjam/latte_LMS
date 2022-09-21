@@ -3,14 +3,20 @@
 
 <!-- header.jsp -->
 
-<%@include file = "/WEB-INF/template/header.jsp"%>
+<c:import url="/WEB-INF/template/header.jsp"></c:import>
 
 <!-- sidebar.jsp -->
 
-<%@include file = "/WEB-INF/template/sidebar.jsp"%>
+<c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<style>
+	.btn {
+		float:right;
+		line-height: 18px;
+	}
+</style>
 
-        <!--**********************************
+ <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
@@ -18,8 +24,8 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Notice</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">NoticeList</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">공지</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">공지사항</a></li>
                     </ol>
                 </div>
             </div>
@@ -30,10 +36,19 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">NoticeList</h4>
+                            <div class="row">
+                            	<div class="col-sm-9">
+                               		<h4 class="card-title">공지사항</h4>
+                                </div>
+                                <div class="col-sm-3">
+                                	<a href="${pageContext.request.contextPath}/notice/addNoticeForm">
+                                		<button type="button" class="btn btn-primary">공지추가</button>
+                                	</a>
+                            	</div>
+                            </div>
                                 <br>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered zero-configuration">
+                                    <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>번호</th>
@@ -48,7 +63,11 @@
                                         <c:forEach var="N" items="${noticeList}">
                                             <tr>
                                                 <td>${N.noticeNo}</td>
-                                                <td>${N.noticeTitle}</td>
+                                                <td>
+                                                	<a href="${pageContext.request.contextPath}/notice/noticeOne?noticeNo=${N.noticeNo}">
+                                                		${N.noticeTitle}
+                                                	</a>
+                                                </td>
                                                 <td>${N.noticeWriter}</td>
                                                 <td>${N.createDate}</td>
                                                 <td>${N.updateDate}</td>
@@ -78,7 +97,10 @@
         <!--**********************************
             Content body end
         ***********************************-->
+ 
+
+ 
         
 <!-- footer -->
 
-<%@include file = "/WEB-INF/template/footer.jsp"%> 
+<c:import url="/WEB-INF/template/footer.jsp"></c:import>

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.NoticeMapper;
+import com.gd.lms.vo.Notice;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 public class NoticeService {
 
 	@Autowired private NoticeMapper noticeMapper;
+	
+	//공지추가
+	public int addNotice(Notice notice) {
+		log.debug(TeamColor.LJE + "NoticeService addNotice");
+		
+		return noticeMapper.insertNotice(notice);
+	}	
 	
 	//공지목록
 	public List<Map<String,Object>> getNoticeList(){
