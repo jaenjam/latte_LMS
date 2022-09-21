@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.ProfessorMapper;
 import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.ProfessorImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,5 +38,14 @@ public class ProfessorService {
 		log.debug(TeamColor.JJY+"getProfessorOne(상세보기) service실행");
 		
 		return professorMapper.selectProfessorOne(professorNo);	
+	}
+	
+	//교수사진등록하기
+		public int addProfessorImg(ProfessorImg professorImg) {
+			log.debug(TeamColor.JJY+"addProfessorImg(사진추가) service실행");
+			System.out.println("addProfessorImg(사진추가) service 실행");
+			
+			return professorMapper.insertProfessorImg(professorImg);
+			
 		}
 }

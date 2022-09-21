@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.ProfessorImg;
 
 @Mapper
 public interface ProfessorMapper {
@@ -18,4 +19,10 @@ public interface ProfessorMapper {
 	
 	// 교수상세보기
 	List<Map<String,Object>> selectProfessorOne(int professorNo);
+
+	// 교수사진보기
+	ProfessorImg selectProfessorImg(int professorNo);
+		
+	// 교수사진등록하기(수정폼에서)
+	int insertProfessorImg(ProfessorImg professorImg);
 }

@@ -96,5 +96,28 @@
 		WHERE 
 			p.professor_no = #{professorNo}
 	</select>
+	
+	<!-- 교수사진등록하기 -->
+	<insert id="insertProfessorImg" parameterType="com.gd.lms.vo.ProfessorImg">
+	
+	INSERT INTO professor_img ( 
+		 professor_no professorNo
+		,filename filename
+		,origin_filename originFilename
+		,content_type contentType
+		,create_date createDate
+		,update_date updateDate)
+	VALUES (
+		 #{professorNo}
+		,#{filename}
+		,#{originFilename}
+		,#{contentType}
+		,now()
+		,now()
+	)
+	
+	</insert>
+	
+	<!-- 교수사진보기 -->
 
 </mapper>

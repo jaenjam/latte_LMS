@@ -13,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.ProfessorImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -58,7 +60,7 @@ public class ProfessorController {
 		} else {
 			log.debug(TeamColor.JJY + "로그인성공");
 			// 세션에 로그인시 받은값 저장
-			 //로그인 성공시 세션에 로그인시 받은값 저장           
+			//로그인 성공시 세션에 로그인시 받은값 저장           
             session.setAttribute("user", "professor"); //user에 넣어주기
 			session.setAttribute("No", professorLogin.getProfessorNo()); //사번
             session.setAttribute("Name",professorLogin.getProfessorName()); //이름
@@ -76,9 +78,7 @@ public class ProfessorController {
 
 			log.debug(TeamColor.JJY + "professorNo : " + session.getAttribute("No")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorAge : " + session.getAttribute("professorAge")); // 값 출력되는지 확인
-			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값
-																														// 출력되는지
-																														// 확인
+			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값 출력되는지 확인																									// 확인
 			log.debug(TeamColor.JJY + "professorRegiNo : " + session.getAttribute("professorRegiNo")); // 값 출력되는지 확인
 
 			result = "/home";
@@ -112,7 +112,7 @@ public class ProfessorController {
 	}
 
 	// 교수상세보기
-	@GetMapping("/professorOne")
+	@GetMapping("/getProfessorOne")
 	public String ProfessorOne(Professor professor, Model model, HttpServletRequest request,@RequestParam("No") int professorNo) {
 
 		log.debug(TeamColor.JJY + "[Controller] ProfessorOne Get실행");
@@ -120,7 +120,26 @@ public class ProfessorController {
 		List<Map<String, Object>> professorOne = professorService.getProfessorOne(professorNo);
 		model.addAttribute("professorOne", professorOne);
 
-		return "/professor/professorOne";
+		return "/professor/getProfessorOne";
 	}
+	
+	//교수사진등록하기 (Form)
+		@GetMapping("/professor/addProfessorImgForm")
+		public String addProfessorImg(Model model) {
+			log.debug(TeamColor.JJY + "[Controller] addProfessorImg get실행");
+
+			return "/professor/addProfessorImgForm";
+		}
+		
+		//교수사진등록하기 (Action) 첨부파일 업로드
+		@PostMapping("/addProfessorImg")
+		public String addProfessorImg(ProfessorImg professorImg, Model model,MultipartFile[] uploadFile) {
+		
+		log.debug(TeamColor.JJY + "[Controller] addProfessorImg post실행");
+		
+		
+		return "getProfessorOne";
+				
+		}
 
 }
