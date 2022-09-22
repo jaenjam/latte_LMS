@@ -85,7 +85,7 @@
 											<td>${C.professorAddress}</td>
 											<td>${C.professorDetailAddress}</td>		
 											<c:if test="${C.professorRoom eq null}"><td>미정</td></c:if>
-											<c:if test="${C.professorRoom ne null}"><<td>${C.professorRoom}</td></c:if>
+											<c:if test="${C.professorRoom ne null}"><td>${C.professorRoom}</td></c:if>
 											<td>${C.professorState}</td>
 											<td>${C.salaryNo}</td>
 											<td>${C.createDate}</td>
