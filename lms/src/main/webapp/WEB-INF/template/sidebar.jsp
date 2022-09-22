@@ -26,7 +26,7 @@
                     </li>
                     </c:if>
                     
-                    <!-- 관리자페이지  -->
+                    <!-- 관리자페이지 (총관리자) -->
                     
                     
                     <c:if test="${user eq 'employee'}">
@@ -39,7 +39,7 @@
                     
                    
                    
-                    <!-- 나의 강의실 --> 
+                    <!-- 스마트출석부 --> 
                     
                     
                     <li>
@@ -50,8 +50,22 @@
                             <li><a href="./chart-flot.html">시간표</a></li>
                             <li><a href="./chart-morris.html">강의출결</a></li>
                             <!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
-                            <!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의자료교수 -->
-                            <li><a href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의공지</a></li>
+                            <li>
+                            	<c:if test="${user eq 'student'}">
+                            		<c:forEach var="sl" items="${subjectName}">
+                            		<!--  승인된과목의 페이지는... 본의아니게 숫자로 해야할듯 ㅠㅠ -->
+                            			<a href="">${sl}</a>
+                            		</c:forEach>
+                            	</c:if>
+                            </li>
+                            
+                            <!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의과제제출교수 -->
+                            <li>
+                            	<c:if test="${user eq 'professor'}">
+                            		
+                            	</c:if>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의과제</a></li>
                         </ul>
                     </li>
                     

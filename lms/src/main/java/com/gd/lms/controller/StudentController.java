@@ -1,5 +1,6 @@
 package com.gd.lms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Student;
 import com.gd.lms.vo.StudentImg;
@@ -27,9 +30,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@Transactional
 public class StudentController {
 	@Autowired StudentService studentService;
 	@Autowired MajorService majorService;
+	@Autowired RegisterService registerService;
 	
 	
 	// 학생 회원가입 form
@@ -81,7 +86,6 @@ public class StudentController {
 		model.addAttribute("StudentId", loginstudent);
 
 		
-		
 		// 디버깅
 		//${StudentId.studentNo}
 		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 model:" +model);
@@ -94,22 +98,22 @@ public class StudentController {
 			
 		} else {// 로그인시 null값이 아니라면 >>> 쿼리에서 맞는 값을 찾았다면
 			
-			// 세션에 저장하기
+			// 로그인정보 세션에 저장하기
 					session.setAttribute("No", loginstudent.getStudentNo() );
 			
 					session.setAttribute("Name", loginstudent.getStudentName() );
 					
 					session.setAttribute("studentMajor", loginstudent.getMajorNo() );
 					
-					 session.setAttribute("studentRegiNo", loginstudent.getStudentRegiNo() );
+					session.setAttribute("studentRegiNo", loginstudent.getStudentRegiNo() );
 					 
-					 session.setAttribute("studentAge", loginstudent.getStudentAge() );
+					session.setAttribute("studentAge", loginstudent.getStudentAge() );
 					   
-					 session.setAttribute("studentGender", loginstudent.getStudentGender() );
+					session.setAttribute("studentGender", loginstudent.getStudentGender() );
 					  
-					 session.setAttribute("studentTelephone", loginstudent.getStudentTelephone());
+					session.setAttribute("studentTelephone", loginstudent.getStudentTelephone());
 					 
-					 session.setAttribute("studentEmail", loginstudent.getStudentEmail() );
+					session.setAttribute("studentEmail", loginstudent.getStudentEmail() );
 					 
 					session.setAttribute("studentAddress", loginstudent.getStudentAddress() );
 					  
@@ -119,17 +123,54 @@ public class StudentController {
 					session.setAttribute("studentState", loginstudent.getStudentState() );
 	
 					session.setAttribute("user", "student");
-				
-			// 디버깅
-			log.debug(TeamColor.KHW+session.getAttribute("studentMajor")); // 세션에 값 저장되는지 확인용으로 랜덤 하나	
-			log.debug(TeamColor.KHW +session.getAttribute("studentNo"));
 			
-			log.debug(TeamColor.KHW +session.getAttribute("studentRegiNo"));
-			log.debug(TeamColor.KHW +session.getAttribute("studentAddress"));
-			log.debug(TeamColor.KHW +session.getAttribute("studentState"));
-			log.debug(TeamColor.KHW +session.getAttribute("user"));
-			log.debug(TeamColor.KHW +"로그인 성공");
-			return "home"; // 성공시 main이동
+					
+					
+					// 학생의 나의강의실 리스트 get을 위한 서비스 실행 ( 로그인 주체에 따른 사이드바 구분을 위함)					
+				
+					List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList(loginstudent.getStudentNo());
+					
+					// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
+					model.addAttribute("myRegisterListStu", myRegisterListStu);
+					
+					// 리스트용
+					List<String> subjectName = new ArrayList<String>();
+						for(Map<String, Object> data : myRegisterListStu) {
+							subjectName.add((String) data.get("subjectName"));
+						}
+					
+						/* 진행중
+					// 리스트 클릭하면 넘어갈 주소얻기위한 숫자용
+					ArrayList<String> subjectNo = new ArrayList<String>();
+						for(Map<String, Object> data : myRegisterListStu) {
+							subjectNo.add((String) data.get("subjectNo"));
+						}
+					*/	
+					// 해당 수강강의리스트는 사이드바에 넣으므로 세션에 저장 & 디버깅으로 확인
+					session.setAttribute("subjectName", (subjectName));					
+					log.debug(TeamColor.KHW + subjectName);
+					
+					/* 진행중
+					// 사이드바에서 타고 넘어갈 주소를 얻어야 하므로 subjectNo역시 세션에 저장 & 디버깅으로 확인
+					session.setAttribute("subjectNo", (subjectNo));
+					// 세션에 저장된 값을 int로 바꿔서 재정의
+					int subjectNoo = ((Integer)(session.getAttribute("subjectNo")));
+					// 다시 세션 ㄱㄱ
+					session.setAttribute("subjectNoo", subjectNoo);
+					log.debug(TeamColor.KHW + subjectNoo);
+					*/
+					
+					// 디버깅
+					log.debug(TeamColor.KHW + myRegisterListStu);
+					log.debug(TeamColor.KHW + session.getAttribute("studentMajor")); // 세션에 값 저장되는지 확인용으로 랜덤 하나	
+					log.debug(TeamColor.KHW + session.getAttribute("studentNo"));
+					
+					log.debug(TeamColor.KHW + session.getAttribute("studentRegiNo"));
+					log.debug(TeamColor.KHW + session.getAttribute("studentAddress"));
+					log.debug(TeamColor.KHW + session.getAttribute("studentState"));
+					log.debug(TeamColor.KHW + session.getAttribute("user"));
+					log.debug(TeamColor.KHW +"로그인 성공");
+					return "home"; // 성공시 main이동
 		}
 	}
 	
