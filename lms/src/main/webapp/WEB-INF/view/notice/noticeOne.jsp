@@ -54,12 +54,14 @@
                             		</div>
                             			<br>
 	                              	<div style="float:right">
-										<a href="${pageContext.request.contextPath}/notice/updateNotice?noticeNo=${noticeOne.noticeNo}">
-											<button type="button" class="btn btn-primary">공지수정</button>
-										</a>
-										<a href="${pageContext.request.contextPath}/deleteNotice?noticeNo=${noticeOne.noticeNo}">
-	                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn">공지삭제</button>
-	                                    </a>
+		                              	<c:if test="${user eq 'employee'}">
+											<a href="${pageContext.request.contextPath}/notice/updateNotice?noticeNo=${noticeOne.noticeNo}">
+												<button type="button" class="btn btn-primary">공지수정</button>
+											</a>
+											<a href="${pageContext.request.contextPath}/deleteNotice?noticeNo=${noticeOne.noticeNo}">
+		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn">공지삭제</button>
+		                                    </a>
+		                                </c:if>
 									</div>
 	                            </div>
 	                        </div>

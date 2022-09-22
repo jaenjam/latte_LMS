@@ -41,11 +41,11 @@
                                		<h4 class="card-title">공지사항</h4>
                                 </div>
                                 <div class="col-sm-3">
-                                <c:if test="${user eq 'employee'}">
-                                	<a href="${pageContext.request.contextPath}/notice/addNoticeForm">
-                                		<button type="button" class="btn btn-primary">공지추가</button>
-                                	</a>
-                                	</c:if>
+	                                <c:if test="${user eq 'employee'}">
+	                                	<a href="${pageContext.request.contextPath}/notice/addNoticeForm">
+	                                		<button type="button" class="btn btn-primary">공지추가</button>
+	                                	</a>
+	                                </c:if>
                             	</div>
                             </div>
                                 <br>
