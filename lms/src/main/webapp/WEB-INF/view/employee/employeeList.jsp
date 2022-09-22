@@ -42,7 +42,7 @@
 								<h4 class="card-title">직원 목록</h4>
 							</div>
 							<div class="col-sm-3">
-								<c:if test="${Name eq '총관리자'}">
+								<c:if test="${employeeActive eq '총관리자'}">
 									<a href="/employee/modifyEmployeeList">
 										<button type="button" class="btn btn-primary">수정하기</button>
 									</a>
@@ -51,7 +51,7 @@
 						</div>
 						<br>
 						<div class="table-responsive">
-							<c:if test="${Name eq '총관리자'}">
+							<c:if test="${employeeActive eq '총관리자'}">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -91,7 +91,7 @@
 							</c:if>
 						</div>
 						<div class="table-responsive">
-							<c:if test="${Name ne '총관리자'}">
+							<c:if test="${employeeActive ne '총관리자'}">
 								<table class="table table-hover">
 									<thead>
 										<tr>
