@@ -119,7 +119,7 @@
 													id="professorAddrBtn" class="btn btn-light">주소검색</button>
 											</div>
 											<div class="form-group">
-												<button type="submit" class="btn btn-dark"
+												<button type="button" class="btn btn-dark"
 													id="addProfessorBtn">회원가입</button>
 											</div>
 										</form>
@@ -281,7 +281,7 @@
 			} else {
 				addProfessor.submit();
 			}
-		});
+		})
 	</script>
 
 	<script src="plugins/common/common.min.js"></script>

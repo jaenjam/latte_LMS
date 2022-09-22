@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- header.jsp -->
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
 
@@ -108,9 +108,25 @@
 <!--**********************************
             Content body end
         ***********************************-->
-
-
-
+<script type="text/javascript"> <
+	//공백 확인
+	$('#addMajor').click(function() {
+		if ($('#majorNo').val() == '') {
+			alert('학과코드를 입력해주세요.');
+		} else if ($('#majorName').val() == '') {
+			alert('학과명을 입력해주세요.');
+		} else if ($('#majorRoom').val() == '') {
+			alert('학과방을 입력해주세요.');
+		} else if ($('#majorIntroduceHeader').val() == '') {
+			alert('학과슬로건을 입력해주세요.');
+		} else if ($('#majorIntroduce').val() == '') {
+			alert('학과소개을 입력해주세요.');
+		} else if ($('#majorSubject').val() == '') {
+			alert('학과목을 입력해주세요.');
+		} else {
+			addMajor.submit();
+		}
+	})
+</script>
 <!-- footer -->
-
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>

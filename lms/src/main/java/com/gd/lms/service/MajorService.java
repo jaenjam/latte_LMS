@@ -22,7 +22,7 @@ public class MajorService {
 	
 	// 전공목록
 	public List<Map<String,Object>> getMajorList(){
-		log.debug(TeamColor.CSJ +"MajorService안에있는 getMajorList실행");
+		log.debug(TeamColor.JJY +"MajorService안에있는 getMajorList실행");
 	
 		return majorMapper.selectMajorList();
 	}
