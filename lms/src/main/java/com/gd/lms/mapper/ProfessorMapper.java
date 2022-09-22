@@ -17,6 +17,9 @@ public interface ProfessorMapper {
 	// 교수추가 (회원가입)
 	int insertProfessor(Professor professor);
 	
+	// 교수목록 (관리지가 관리하기위해보여주기)
+	List<Map<String,Object>> selectProfessorList();
+	
 	// 교수상세보기
 	List<Map<String,Object>> selectProfessorOne(int professorNo);
 

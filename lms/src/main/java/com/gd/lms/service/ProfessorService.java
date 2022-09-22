@@ -40,6 +40,13 @@ public class ProfessorService {
 		return professorMapper.selectProfessorOne(professorNo);	
 	}
 	
+	//교수목록보기
+	public List<Map<String,Object>> getProfessorList(){
+		log.debug(TeamColor.JJY+"getProfessorList(목록보기) service실행");
+		
+		return professorMapper.selectProfessorList();
+	}
+	
 	//교수사진등록하기
 		public int addProfessorImg(ProfessorImg professorImg) {
 			log.debug(TeamColor.JJY+"addProfessorImg(사진추가) service실행");

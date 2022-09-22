@@ -78,13 +78,14 @@ body {
 					<div class="card">
 						<div class="card-body">
 							<div class="media align-items-center mb-4">
-								<img class="mr-2" src="${filename}" width="80"
-									height="80" alt="">
+								<img class="mr-2" src="${filename}" width="80" height="80"
+									alt="">
 
 							</div>
 							<div class="row mb-8">
 								<div class="col-12 text-center">
-									<form action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
+									<form
+										action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
 										<button class="btn btn-danger px-5">사진첨부하기</button>
 									</form>
 								</div>
@@ -117,8 +118,20 @@ body {
 															name="professorMajor" id="professorMajor"
 															value="${M.majorName}" readonly="readonly">
 													</c:forEach>
+												</div>				
+												<div class="form-group">
+													<label> 교수실: </label>
+													<c:if test="${professorRoom eq null}">
+														<input type="text" class="form-control"
+															name="professorRoom" id="professorRoom" value="미정"
+															readonly="readonly">
+													</c:if><!-- 교수실이 null값이라면 미정출력 -->
+													<c:if test="${professorRoom ne null}">
+														<input type="text" class="form-control"
+															name="professorRoom" id="professorRoom" value="${professorRoom}"
+															readonly="readonly">
+													</c:if><!-- 교수실이 정해져있으면 교수실출력 -->
 												</div>
-
 												<div class="form-group">
 													<label> 주민번호: </label> <input type="text"
 														class="form-control" name="professorRegiNo"
@@ -201,8 +214,6 @@ body {
 	<!--**********************************
             Content body end
         ***********************************-->
-
-
 	<!--**********************************
         Scripts
     ***********************************-->
@@ -212,7 +223,5 @@ body {
 	<script src="js/gleek.js"></script>
 	<script src="js/styleSwitcher.js"></script>
 
-
 </body>
-
 </html>

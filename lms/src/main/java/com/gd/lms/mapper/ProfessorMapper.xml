@@ -97,6 +97,35 @@
 			p.professor_no = #{professorNo}
 	</select>
 	
+	<!-- 교수목록 -->
+	<select id="selectProfessorList" resultType="map">
+	SELECT
+		 p.professor_no professorNo
+		,m.major_no majorNo
+		,m.major_name majorName
+		,p.professor_name professorName
+		,p.professor_regi_no professorRegiNo
+		,p.professor_age professorAge
+		,p.professor_gender professorGender
+		,p.professor_telephone professorTelephone
+		,p.professor_email professorEmail
+		,p.professor_address professorAddress
+		,p.professor_detail_address professorDetailAddress
+		,p.professor_room professorRoom
+		,p.professor_state professorState
+		,p.create_date createDate
+		,p.update_date updateDate
+		,s.salary_no salaryNo
+		,s.salary_value salaryValue
+	FROM
+		professor p LEFT JOIN major m
+	ON
+		p.major_no = m.major_no
+	INNER JOIN salary s	
+		ON 
+			p.salary_no = s.salary_no	
+	</select>
+	
 	<!-- 교수사진등록하기 -->
 	<insert id="insertProfessorImg" parameterType="com.gd.lms.vo.ProfessorImg">
 	
