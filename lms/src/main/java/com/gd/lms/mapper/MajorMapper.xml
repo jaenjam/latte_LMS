@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.MajorMapper">
 
+	<!-- 전공목록받아주기 -->
 	<select id="selectMajorList" resultType="map">
 	
 	SELECT
@@ -14,5 +15,29 @@
 	FROM major
 	
 	</select>
+	
+	<!-- 전공추가해주기 -->
+	<insert id="insertMajor" parameterType="com.gd.lms.vo.Major">
+	
+	INSERT INTO major(
+		 major_no
+		,major_name
+		,major_introduce_header
+		,major_introduce
+		,major_subject
+		,major_room
+		,create_date
+		,update_date)
+	values (
+		 #{majorNo}
+		,#{majorName}
+		,#{majorIntroduceHeader}
+		,#{majorIntroduce}
+		,#{majorSubject}
+		,#{majorRoom}
+		,now()
+		,now()
+	)
+	</insert>
 
 </mapper>

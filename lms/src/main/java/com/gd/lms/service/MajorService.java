@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.MajorMapper;
+import com.gd.lms.vo.Major;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +25,14 @@ public class MajorService {
 		log.debug(TeamColor.CSJ +"MajorService안에있는 getMajorList실행");
 	
 		return majorMapper.selectMajorList();
+	}
+	
+	// 전공추가
+	public int addMajor(Major major) {
+		log.debug(TeamColor.JJY +"MajorService안에있는 addMajor실행");
+		
+		return majorMapper.insertMajor(major);
+		
 	}
 
 }

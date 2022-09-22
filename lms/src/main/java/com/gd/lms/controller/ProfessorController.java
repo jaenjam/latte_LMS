@@ -92,7 +92,7 @@ public class ProfessorController {
 		log.debug(TeamColor.JJY + "[Controller] addProfessor get실행");
 
 		List<Map<String, Object>> majorList = majorService.getMajorList();
-		model.addAttribute("majorList", majorList);
+		model.addAttribute("majorList", majorList); //회원가입할때 학과추가 select로
 
 		log.debug(TeamColor.JJY + "[Controller] addProfessor의 model:" + majorList);
 
