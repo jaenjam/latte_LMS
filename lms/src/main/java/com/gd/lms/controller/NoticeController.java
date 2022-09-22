@@ -66,6 +66,27 @@ public class NoticeController {
 		
 	}
 	
+	//공지 수정하기 Action
+	@PostMapping("/updateNotice")
+	public String updateNotice(Notice notice, Model model) {
+		
+		//디버깅
+		log.debug(TeamColor.LJE + "NoticeController.updateNotice Action");
+		
+		//noticeService addNotice 실행해서 값 insertNotice에 넣기
+		int updateNotice = noticeService.updateNotice(notice);
+		
+		log.debug(TeamColor.LJE + "noticeService updateNotice 실행결과 1이면 성공, 0이면 실패 : " + updateNotice);
+		
+		//add Notice
+		model.addAttribute("updateNotice", updateNotice);
+		
+		//model에 넣은 값 확인하기
+		log.debug(TeamColor.LJE + "NoticeController의 addNotice model : " + model);
+		
+		//notice/noticeList 페이지로
+		return "redirect:/notice/noticeList";
+	}
 	
 	//공지 추가 form
 	@GetMapping("/notice/addNoticeForm")

@@ -76,7 +76,7 @@
                                         <div style="float:right">
                                         	<div>
                                         		<button type="reset" class="btn btn-primary">되돌리기</button>
-												<button type="button" class="btn btn-primary">수정완료</button>
+												<button type="submit" class="btn btn-primary">수정완료</button>
 											</div>
 										</div>
                                     </form>

@@ -50,14 +50,16 @@
                             <li><a href="./chart-flot.html">시간표</a></li>
                             <li><a href="./chart-morris.html">강의출결</a></li>
                             <!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
-                            <li>
+                            
                             	<c:if test="${user eq 'student'}">
                             		<c:forEach var="sl" items="${subjectName}">
                             		<!--  승인된과목의 페이지는... 본의아니게 숫자로 해야할듯 ㅠㅠ -->
-                            			<a href="">${sl}</a>
+                            			<li>
+                            				<a style="background: #white;" href="${sl}">${sl}</a>
+                            			<li>
                             		</c:forEach>
                             	</c:if>
-                            </li>
+                           
                             
                             <!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의과제제출교수 -->
                             <li>
