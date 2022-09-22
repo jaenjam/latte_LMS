@@ -54,7 +54,7 @@
 								<div class="card-body">
 									<div class="basic-form">
 										<form action="${pageContext.request.contextPath}/addEmployee"
-											method="post">
+											method="post" id="addEmployee">
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<label>사번</label> <input type="text" class="form-control"
@@ -265,7 +265,7 @@
 			} else if ($('#employeeDetailAddress').val() == '') {
 				alert('상세주소를 입력해주세요!');
 			} else {
-				addEmployee.submit();
+				$('#addEmployee').submit();
 			}
 		})
 	</script>
