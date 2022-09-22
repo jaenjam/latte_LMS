@@ -2,52 +2,77 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.LectureMapper">
 	
-	<select id="selectLectureListPro" parameterType="int" resultType="map">
 	<!-- 강의 자료 리스트 가져오기 교수	-->
+	<select id="selectLectureListPro" parameterType="int" resultType="map">
+
+		SELECT
+			sa.subject_approve_no subjectApproveNo
+			, sa.major_no majorNo
+			, sa.subject_no subjectNo
+			, sa.professor_no professorNo
+			, sa.year year
+			, sa.semester semester
+			, sa.start_date startDate
+			, sa.end_date endDate
+			, sa.total_date totalDate
+			, sa.approve_active approveActive
+			, sa.subject_room subjectRoom
+			, sa.day day
+			, sa.start_time startTime
+			, sa.end_date endDate
+			, p.professor_no professorNo
+			, p.major_no majorNo
+			, p.professor_name professorName
+			, m.major_name majorName
+			, l.lecture_no lectureNo
+			, l.subject_approve_no subjectApproveNoL
+			, l.lecture_title lectureTitle
+			, l.lecture_content lectureContent
+			, l.create_date createDateL
+			, l.update_date updateDateL
+			, l.count countL
+		FROM
+			subject_approve sa 
+		INNER JOIN 
+			professor p
+		ON
+			sa.professor_no = p.professor_no
+		INNER JOIN
+			major m	
+		ON
+			sa.major_no = m.major_no
+		INNER JOIN
+			lecture l
+		ON	
+			sa.subject_approve_no = l.subject_approve_no
+		WHERE	
+			sa.professor_no = #{No};	
+</select>		
+		
+	<!--  강의자료 조회수 -->
+	<update id="lectureHit" parameterType="int">
+		 UPDATE 
+		 	lecture		 	
+		 SET
+		 	count=count+1
+		 WHERE
+		 	lecture_no= #{lectureNo}		 			
+	</update>
+
+
+	<!--  강의자료 상세보기 -->
+	<select id="selectLectureOnePro" parameterType="com.gd.lms.vo.Lecture" resultType="com.gd.lms.vo.Lecture">
 	SELECT
-		sa.subject_approve_no subjectApproveNo
-		, sa.major_no majorNo
-		, sa.subject_no subjectNo
-		, sa.professor_no professorNo
-		, sa.year year
-		, sa.semester semester
-		, sa.start_date startDate
-		, sa.end_date endDate
-		, sa.total_date totalDate
-		, sa.approve_active approveActive
-		, sa.subject_room subjectRoom
-		, sa.day day
-		, sa.start_time startTime
-		, sa.end_date endDate
-		, p.professor_no professorNo
-		, p.major_no majorNo
-		, p.professor_name professorName
-		, m.major_name majorName
-		, l.lecture_no lectureNo
-		, l.subject_approve_no subjectApproveNoL
-		, l.lecture_title lectureTitle
-		, l.lecture_content lectureContent
-		, l.create_date createDateL
-		, l.update_date updateDateL
+		lecture_no lectureNo
+		, lecture_title lectureTitle
+		, lecture_content lectureContent
+		, create_date createDate
+		, update_date updateDate
+		, count 
 	FROM
-		subject_approve sa 
-	INNER JOIN 
-		professor p
-	ON
-		sa.professor_no = p.professor_no
-	INNER JOIN
-		major m	
-	ON
-		sa.major_no = m.major_no
-	INNER JOIN
-		lecture l
-	ON	
-		sa.subject_approve_no = l.subject_approve_no
-	WHERE	
-		sa.professor_no = #{No};		 
-
-</select>
-
-
+		lecture	
+	WHERE
+		lecture_no = #{lectureNo}	
+	</select>
 
 </mapper>

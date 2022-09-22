@@ -39,7 +39,7 @@
                             <div class="card-body">
                             <div class="row">
                             	<div class="col-sm-9">
-                               		<h4 class="card-title">성공했다면 여기로</h4>
+                               		<h4 class="card-title"> 성공했다면 여기로? </h4>
                                 </div>
                                 <div class="col-sm-3">
                                 	<a href="${pageContext.request.contextPath}/notice/addNoticeForm">
@@ -57,7 +57,7 @@
                                                 <th>작성자</th>
                                                 <th>작성일</th>
                                                 <th>수정일</th>
-                                                
+                                                <th>조회수</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,16 +65,14 @@
                                             <tr>
                                                 <td>${L.lectureNo}</td>
                                                 <td>
-                                                	<a href="${pageContext.request.contextPath}/lecture/LectureOne?lectureNo=${L.lectureNo}">
+                                                	<a href="${pageContext.request.contextPath}/lecture/getLectureOne?lectureNo=${L.lectureNo}">
                                                 		${L.lectureTitle}
                                                 	</a>
                                                 </td>
-                                                <td>${L.professorName}</td>
-                                                <c:set var="createD" value ="${L.createDateL}" />
-                                                <td> ${fn:substring(createD,0,10) } </td>
-                                                <c:set var="updateD" value ="${L.updateDateL}" />
-                                                <td>${fn:substring(updateD,0,10)}</td>
-                                                
+                                                <td> ${L.professorName} </td>                                          
+                                                <td> ${L.createDateL} </td>                                                
+                                                <td> ${L.updateDateL} </td>
+                                                <td> ${L.countL} </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

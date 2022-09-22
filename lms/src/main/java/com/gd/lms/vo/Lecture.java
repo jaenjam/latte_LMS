@@ -10,4 +10,5 @@ public class Lecture {
 	private String lectureContent; // 강의자료 내용
 	private String createDate; // 작성일
 	private String updateDate; // 수정일
+	private int count; // 조회수
 }
