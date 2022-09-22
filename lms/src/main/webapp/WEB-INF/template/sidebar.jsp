@@ -103,8 +103,7 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">장학</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./form-basic.html">장학소개</a></li>
-                            <li><a href="./form-validation.html">장학FAQ</a></li>
+                            <li><a href="${pageContext.request.contextPath}/scholar/scholarList">장학소개</a></li>                          
                         </ul>
                     </li>
                     

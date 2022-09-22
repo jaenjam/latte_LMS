@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.ScholarMapper">
+
+	<!-- 장학목록받아주기 -->
+	<select id="selectScholarList" resultType="map">
+	
+	SELECT
+		 scholar_no scholarNo
+		,scholar_name scholarName
+		,scholar_content scholarContent
+		,scholar_price scholarPrice
+		
+	FROM scholar
+	
+	</select>
+	
+	<!-- 장학추가해주기 -->
+	<insert id="insertScholar" parameterType="com.gd.lms.vo.Scholar">
+	
+	INSERT INTO scholar(
+		 scholar_no
+		,scholar_name
+		,scholar_content
+		,scholar_price
+		,create_date
+		,update_date)
+	values (
+		 #{scholarNo}
+		,#{scholarName}
+		,#{scholarContent}
+		,#{scholarPrice}
+		,now()
+		,now()
+	)
+	</insert>
+
+</mapper>
