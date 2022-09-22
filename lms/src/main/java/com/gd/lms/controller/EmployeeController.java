@@ -14,10 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.vo.Employee;
+import com.gd.lms.vo.EmployeeImg;
+import com.gd.lms.vo.ProfessorImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,49 +31,60 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeservice;
 
-	
-	//관리자 목록 (총관리자)
-		@GetMapping("/employee/employeeList")
-		public String employeeList(Model model) {
-			
-			log.debug(TeamColor.CSJ +"employeeController.employeeList실행");
-			
-			List<Map<String,Object>> employeeList = employeeservice.getEmployeeList();
-			
-			model.addAttribute("employeeList",employeeList);
-			log.debug(TeamColor.CSJ +("employeeController.employeeList : " + employeeList));
-			
-			
-			return "/employee/employeeList";
-		}
-	
-	
-	//관리자 정보수정 action
-	@PostMapping("/modifyEmployee") 
-	public String modifyEmployee(Employee employee , Model model) {
+	// 교수사진등록하기 (Form)
+	@GetMapping("/employee/addEmployeeImgForm")
+	public String addEmployeeImg(Model model) {
+		log.debug(TeamColor.CSJ + "employeeController.addEmployeeImg form");
 		
+		return "/employee/addEmployeeImgForm";
+	}
+
+	// 교수사진등록하기 (Action) 첨부파일 업로드
+	@PostMapping("/addEmployeeImg")
+	public String addEmployeeImg(EmployeeImg employeeImg, Model model, MultipartFile[] uploadFile) {
+
+		log.debug(TeamColor.JJY + "employeeController.addEmployeeImg action");
+
+		return "/employee/getEmployeeOne";
+	}
+
+	// 관리자 목록보기 (총관리자)
+	@GetMapping("/employee/employeeList")
+	public String employeeList(Model model) {
+
+		log.debug(TeamColor.CSJ + "employeeController.employeeList실행");
+
+		List<Map<String, Object>> employeeList = employeeservice.getEmployeeList();
+
+		model.addAttribute("employeeList", employeeList);
+		log.debug(TeamColor.CSJ + ("employeeController.employeeList : " + employeeList));
+
+		return "/employee/employeeList";
+	}
+
+	// 관리자 정보수정 action
+	@PostMapping("/modifyEmployee")
+	public String modifyEmployee(Employee employee, Model model) {
+
 		int row = employeeservice.modifyEmployee(employee);
-		
+
 		log.debug(TeamColor.CSJ + "EmployeeController.modifyEmployee" + row);
-		
-		if(row==0) {
+
+		if (row == 0) {
 			return "redirect:/employee/modifyEmployee";
 		}
-		
+
 		return "redirect:/employee/getEmployeeOne";
-		
-		
+
 	}
-	
-	
+
 	// 관리자 정보수정 form
 	@GetMapping("/modifyEmployee")
-	public String modifyEmployee(Model model, @RequestParam(value="No") int employeeNo) {
-		
+	public String modifyEmployee(Model model, @RequestParam(value = "No") int employeeNo) {
+
 		List<Map<String, Object>> employee = employeeservice.getEmployeeOne(employeeNo);
-		
+
 		model.addAttribute("employeeOne", employee);
-		
 
 		log.debug(TeamColor.CSJ + "EmployeeController의 modifyEmployee:" + employee);
 

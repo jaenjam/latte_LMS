@@ -2,14 +2,22 @@ package com.gd.lms.mapper;
 
 import java.util.List;
 
+
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Employee;
+import com.gd.lms.vo.EmployeeImg;
 
 @Mapper
 public interface EmployeeMapper {
+	
+	//관리자 사진 보기
+	EmployeeImg selectEmployeeImg(int employeeNo);
+	
+	//관리자 정보수정에서 사진등록
+	int insertEmployeeImg(EmployeeImg employeeImg);
 	
 	//관리자 정보수정
 	int updateEmployee(Employee employee);

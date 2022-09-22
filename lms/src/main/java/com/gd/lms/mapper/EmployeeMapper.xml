@@ -131,7 +131,7 @@
 
 	</select>
 
-	<!--  관리자 정보수정 전 비밀번호확인-->
+	<!-- 관리자 정보수정 전 비밀번호확인 -->
 	<select id="selectEmployeeOneAfterPass"
 		parameterType="com.gd.lms.vo.Employee" resultType="map">
 		SELECT
@@ -174,7 +174,8 @@
 
 		UPDATE employee e
 		INNER JOIN salary s
-		ON e.salary_no = s.salary_no
+		ON e.salary_no =
+		s.salary_no
 		INNER JOIN employee_img ei
 		ON e.employee_no = ei.employee_no
 		SET
@@ -206,5 +207,26 @@
 
 	</update>
 
+	<!-- 관리자 정보수정 사진등록 -->
+	<insert id="insertEmployeeImg"
+		parameterType="com.gd.lms.vo.EmployeeImg">
+
+		INSERT INTO employee_img (
+		employee_no employeeNo
+		,filename filename
+		,origin_filename originFilename
+		,content_type contentType
+		,create_date createDate
+		,update_date
+		updateDate)
+		VALUES (
+		#{employeeNo}
+		,#{filename}
+		,#{originFilename}
+		,#{contentType}
+		,now()
+		,now()
+		)
+	</insert>
 
 </mapper>
