@@ -28,6 +28,23 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeservice;
 
+	
+	//관리자 목록 (총관리자)
+		@GetMapping("/employee/employeeList")
+		public String employeeList(Model model) {
+			
+			log.debug(TeamColor.CSJ +"employeeController.employeeList실행");
+			
+			List<Map<String,Object>> employeeList = employeeservice.getEmployeeList();
+			
+			model.addAttribute("employeeList",employeeList);
+			log.debug(TeamColor.CSJ +("employeeController.employeeList : " + employeeList));
+			
+			
+			return "/employee/employeeList";
+		}
+	
+	
 	//관리자 정보수정 action
 	@PostMapping("/modifyEmployee") 
 	public String modifyEmployee(Employee employee , Model model) {

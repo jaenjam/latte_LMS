@@ -1,4 +1,5 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
  
         <!--**********************************
@@ -11,7 +12,9 @@
                 
                 
                 	<!-- 학생용 : 마이페이지 -->
-                    
+                	
+                	
+                    <c:if test="${user eq 'student'}">
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">마이페이지</span>
@@ -21,10 +24,21 @@
                             <li><a href="./page-register.html">전체출결현황</a></li>
                         </ul>
                     </li>
+                    </c:if>
+                    
+                    <!-- 관리자페이지 (총관리자) -->
                     
                     
+                    <c:if test="${user eq 'employee'}">
+                    <li>
+                        <a href="/employee/employeeList" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">관리자페이지</span>
+                        </a>
+                    </li>
+                    </c:if>
                     
-                    
+                   
+                   
                     <!-- 스마트출석부 --> 
                     
                     
