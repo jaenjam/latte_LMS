@@ -22,6 +22,20 @@ public class NoticeController {
 	
 	@Autowired NoticeService noticeService;
 	
+	//공지 삭제하기 action
+	@GetMapping("/deleteNotice")
+	public String removeNotice(int noticeNo) {
+		
+		//디버깅
+		log.debug(TeamColor.LJE + "NoticeController removeNotice action");
+		
+		//deleteNotice페이지에 noticeNo값을 넣어준다.
+		noticeService.deleteNotice(noticeNo);
+		
+		//notice/noticeList 페이지로
+		return "redirect:/notice/noticeList";
+	}
+	
 	//공지 상세보기 form
 	@GetMapping("/notice/noticeOne")
 	public String getNoticeOne(Model model, int noticeNo) {

@@ -57,13 +57,15 @@
 										<a href="${pageContext.request.contextPath}/notice/updateNotice?noticeNo=${noticeOne.noticeNo}">
 											<button type="button" class="btn btn-primary">공지수정</button>
 										</a>
-										<button type="button" class="btn btn-primary">공지삭제</button>
+										<a href="${pageContext.request.contextPath}/deleteNotice?noticeNo=${noticeOne.noticeNo}">
+	                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn">공지삭제</button>
+	                                    </a>
 									</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
             <!-- #/ container -->
         </div>
         <!--**********************************

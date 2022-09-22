@@ -20,6 +20,13 @@ public class NoticeService {
 
 	@Autowired private NoticeMapper noticeMapper;
 	
+	//공지삭제
+	public int deleteNotice(int noticeNo) {
+		log.debug(TeamColor.LJE + "NoticeService deleteNotice");
+		
+		return noticeMapper.deleteNotice(noticeNo);
+	}
+	
 	//공지수정
 	public int updateNotice(Notice notice) {
 		log.debug(TeamColor.LJE + "NoticeService updateNotice");
