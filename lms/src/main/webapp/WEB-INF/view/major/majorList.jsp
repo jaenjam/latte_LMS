@@ -34,10 +34,11 @@
 	</div>
 
 	<div class="addmajor">
-
+		<c:if test="${user eq 'employee'}">
 		<a href="${pageContext.request.contextPath}/major/addMajor">
 			<button type="submit" class="btn btn-primary" style="float: right;">학과추가</button>
 		</a><!-- 관리자만 보이게 설정 -->
+	</c:if>
 	</div>
 	<br /><br/>
 
