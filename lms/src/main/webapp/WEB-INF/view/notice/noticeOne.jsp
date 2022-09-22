@@ -35,52 +35,30 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-body">
-                                <div class="form-validation">
-                                    <form class="form-valide" action="${pageContext.request.contextPath}/noticeOne" method="post">
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="noticeNo">번호<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="noticeNo" name="noticeNo" value="${noticeOne.noticeNo}" readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="noticeTitle">제목<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="noticeTitle" name="noticeTitle" value="${noticeOne.noticeTitle}" placeholder="제목을 입력해주세요">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="noticeContent">내용<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <textarea class="form-control" id="noticeContent" name="noticeContent" rows="5" placeholder="내용을 입력해주세요">${noticeOne.noticeContent}</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="createDate">작성일<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="createDate" name="createDate" value="${noticeOne.createDate}" readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="updateDate">수정일<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="updateDate" name="updateDate" value="${noticeOne.updateDate}" readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div style="float:right">
-                                        	<div>
-												<button type="button" class="btn btn-primary">수정</button>
-												<button type="button" class="btn btn-primary">삭제</button>
-											</div>
-										</div>
-                                    </form>
-                                </div>
+                            <div class="card-body" style="color:black">
+                            	<br>
+                            		<div class="row">
+                            			<div class="col-sm-10">
+	                            			<h4>${noticeOne.noticeTitle}</h4>
+	                            		</div>
+	                            		<div class="col-sm-2" >
+	                            			<p style="float:right;">${noticeOne.createDate}</p>
+	                            		</div>
+                            		</div>
+                            			<hr>
+                            			<br>
+                            		<div>
+                            			 <p style="white-space:pre-line;">
+                            			 	${noticeOne.noticeContent}
+                            			 </p>
+                            		</div>
+                            			<br>
+	                              	<div style="float:right">
+										<a href="${pageContext.request.contextPath}/notice/updateNotice?noticeNo=${noticeOne.noticeNo}">
+											<button type="button" class="btn btn-primary">공지수정</button>
+										</a>
+										<button type="button" class="btn btn-primary">공지삭제</button>
+									</div>
                             </div>
                         </div>
                     </div>

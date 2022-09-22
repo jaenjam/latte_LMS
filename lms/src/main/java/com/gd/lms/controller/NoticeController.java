@@ -44,6 +44,29 @@ public class NoticeController {
 	}
 	
 	
+	//공지 수정하기 form
+	@GetMapping("/notice/updateNotice")
+	public String updateNotice(Model model, int noticeNo) {
+		
+		//디버깅
+		log.debug(TeamColor.LJE + "NoticeController getNoticeOne");
+			
+		//noticeNo에 해당하는 상세정보를 Map에 넣어준다.
+		Map<String, Object> notice = noticeService.getNoticeOne(noticeNo);
+		
+		//Map<String, Object> notice을 model에 넣어준다.
+		model.addAttribute("notice",notice);
+		
+		log.debug(TeamColor.LJE + "NoticeControler updateNotice에 있는 model의 값 : " + model);
+		
+		log.debug(TeamColor.LJE + "NoticeControler updateNotice에 있는 noticeNo의 값 : " + noticeNo);
+		
+		//notice/updateNotice에 넣어준다.
+		return "/notice/updateNotice";
+		
+	}
+	
+	
 	//공지 추가 form
 	@GetMapping("/notice/addNoticeForm")
 	public String addNotice() {

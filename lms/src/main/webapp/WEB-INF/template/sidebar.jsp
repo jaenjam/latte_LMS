@@ -13,7 +13,7 @@
                 	<!-- 학생용 : 마이페이지 -->
                     
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">마이페이지</span>
                         </a>
                         <ul aria-expanded="false">
@@ -29,46 +29,18 @@
                     
                     
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i> <span class="nav-text">스마트출석부</span>
+                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
+                            <i class="icon-graph menu-icon"></i> <span class="nav-text">나의강의실</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./chart-flot.html">시간표</a></li>
                             <li><a href="./chart-morris.html">강의출결</a></li>
-                            <li><a href="./chart-chartjs.html">강의공지</a></li>
+                            <!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
+                            <!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의자료교수 -->
+                            <li><a href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의공지</a></li>
                         </ul>
                     </li>
                     
-                    
-                    
-                    <!--  나의 강의실 >>>교수의 경우 수강승인된 강의중 본인이 맡은 강의 / 학생은 본인이 수강하는 -->
-                    
-                      <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i> <span class="nav-text">나의 강의실</span>
-                        </a>
-                       <!--  교수의 경우  -->
-                        <c:if test="${user eq 'professor'}">
-                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">시간표</a></li>
-                            <li><a href="./chart-morris.html">강의출결</a></li>
-                            <li><a href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의자료교수</a></li>
-                            <li><a href="./chart-chartjs.html">시험</a></li>
-                        </ul>
-                       </c:if> 
-                       
-                        
-                       <!--  학생의경우 -->
-                        <c:if test="${user eq 'student'}">
-                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">시간표</a></li>
-                            <li><a href="./chart-morris.html">강의출결</a></li>
-                            <li><a href="./chart-chartjs.html">강의자료</a></li>
-                            <li><a href="./chart-chartjs.html">시험</a></li>
-                        </ul>
-                       </c:if> 
-                       
-                    </li>
                     
                     
                     
@@ -78,7 +50,7 @@
                     
                     
                     <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow" href="javascript:void(2)" aria-expanded="false">
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">학과</span>
                         </a>
                         <ul aria-expanded="false">
@@ -92,7 +64,7 @@
                     
                     
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow" href="javascript:void(3)" aria-expanded="false">
                             <i class="icon-badge menu-icon"></i><span class="nav-text">장학</span>
                         </a>
                         <ul aria-expanded="false">
@@ -107,7 +79,7 @@
                     
                     
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow" href="javascript:void(4)" aria-expanded="false">
                             <i class="icon-menu menu-icon"></i><span class="nav-text">공지</span>
                         </a>
                         <ul aria-expanded="false">
@@ -121,7 +93,7 @@
                     
                     
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow" href="javascript:void(5)" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">소통</span>
                         </a>
                         <ul aria-expanded="false">

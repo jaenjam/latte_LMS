@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- header.jsp -->
@@ -9,6 +8,7 @@
 <!-- sidebar.jsp -->
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
+
 <style>
 .majorheader {
 
@@ -18,15 +18,17 @@
 }
 </style>
 
+
 <!--**********************************
-            Content body start
-        ***********************************-->
+     Content body start
+***********************************-->
+
 <div class="content-body">
 
 	<div class="row page-titles mx-0">
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="javascript:void(0)">학과</a></li>
+				<li class="breadcrumb-item"><a href="javascript:void(3)">학과</a></li>
 				<li class="breadcrumb-item active"><a href="javascript:void(0)">학과소개</a></li>
 			</ol>
 		</div>
@@ -54,9 +56,10 @@
 
 <!-- #/ container -->
 
+
 <!--**********************************
-            Content body end
-        ***********************************-->
+      Content body end
+***********************************-->
 
 
 <!-- footer -->
