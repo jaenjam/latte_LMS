@@ -132,33 +132,51 @@ public class StudentController {
 					
 					// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 					model.addAttribute("myRegisterListStu", myRegisterListStu);
+					log.debug(TeamColor.KHW + myRegisterListStu);
 					
-					// 리스트용
+	
+					/*
+					// 으음..
+					// 사이드바 리스트용
+					List<String> subjectPlusName = new ArrayList<String>();
+						for(Map<String, Object> data : myRegisterListStu) {
+							for(int k=0; k<=subjectPlusName.size(); k++) {
+								
+							subjectName.add((String) data.get("subjectName"));
+							}
+						}
+					*/
+					
+					
+					
+					
+					// 사이드바 리스트용
 					List<String> subjectName = new ArrayList<String>();
 						for(Map<String, Object> data : myRegisterListStu) {
 							subjectName.add((String) data.get("subjectName"));
 						}
 					
-						/* 진행중
-					// 리스트 클릭하면 넘어갈 주소얻기위한 숫자용
-					ArrayList<String> subjectNo = new ArrayList<String>();
-						for(Map<String, Object> data : myRegisterListStu) {
-							subjectNo.add((String) data.get("subjectNo"));
-						}
-					*/	
+						
 					// 해당 수강강의리스트는 사이드바에 넣으므로 세션에 저장 & 디버깅으로 확인
 					session.setAttribute("subjectName", (subjectName));					
 					log.debug(TeamColor.KHW + subjectName);
+						
 					
-					/* 진행중
+					
+					// 리스트 클릭하면 넘어갈 주소얻기위한 숫자용
+					List<String> subjectNo = new ArrayList<String>();
+						for(Map<String, Object> data : myRegisterListStu) {
+							subjectNo.add((String) data.get("subjectNo"));
+						}
+				
+					
 					// 사이드바에서 타고 넘어갈 주소를 얻어야 하므로 subjectNo역시 세션에 저장 & 디버깅으로 확인
 					session.setAttribute("subjectNo", (subjectNo));
-					// 세션에 저장된 값을 int로 바꿔서 재정의
-					int subjectNoo = ((Integer)(session.getAttribute("subjectNo")));
-					// 다시 세션 ㄱㄱ
-					session.setAttribute("subjectNoo", subjectNoo);
-					log.debug(TeamColor.KHW + subjectNoo);
-					*/
+					log.debug(TeamColor.KHW +subjectNo);
+	
+					
+					
+					
 					
 					// 디버깅
 					log.debug(TeamColor.KHW + myRegisterListStu);

@@ -23,4 +23,10 @@ public class RegisterService {
 		return registerMapper.selectStudentMyRegisterList(studentNo);
 	}
 	
+	// 교수의 강의리스트
+	public List<Map<String,Object>> getMyRegisterListProf(int professorNo){
+		log.debug(TeamColor.KHW+"교수의 나의강의실리스트 셀렉서비스 진입");
+		
+		return registerMapper.selectProfessorMyRegisterList(professorNo);
+	}
 }

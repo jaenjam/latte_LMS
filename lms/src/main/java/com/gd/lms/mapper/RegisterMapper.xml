@@ -7,7 +7,7 @@
 	<select id="selectStudentMyRegisterList" parameterType="int" resultType="map">
 	SELECT 
 		r.student_no studentNo
-		, r.subject_approve_no subjectNo
+		, r.subject_approve_no subjectApproveNo
 		, r.create_date createDateR
 		, r.update_date updateDateR
 		, sa.major_no majorNo
@@ -21,7 +21,8 @@
 		, sa.day daySa
 		, sa.start_time startTime
 		, sa.end_time eneTime
-		, s.subject_name subjectName
+		, s.subject_no subjectNo
+		, s.subject_name subjectName		
 		, m.major_name majorName
 	FROM 
 		register r
@@ -41,4 +42,36 @@
 		r.student_no = #{No}		
 	</select>
 
+	
+	<!-- 교수의 강의리스트 불러오기 -->
+	<select id="selectProfessorMyRegisterList" parameterType="int" resultType="map">
+	SELECT 
+	sa.major_no majorNo
+	, sa.professor_no professorNo
+	, sa.year yearSa
+	, sa.semester semester
+	, sa.start_date startDate
+	, sa.end_date endDate
+	, sa.total_date totalDate
+	, sa.subject_room subjectRoom
+	, sa.day daySa
+	, sa.start_time startTime
+	, sa.end_time eneTime
+	, s.subject_name subjectName
+	, s.subject_no subjectNo
+	, m.major_name majorName
+	FROM
+		subject_approve sa
+	INNER JOIN
+		subject s	
+	ON
+		sa.subject_no	= 	s.subject_no
+	INNER JOIN
+		major m
+	ON
+		sa.major_no = m.major_no
+	WHERE
+		sa.professor_no = #{No};		
+	</select>	
+					
 </mapper>

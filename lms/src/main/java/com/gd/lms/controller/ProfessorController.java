@@ -1,5 +1,6 @@
 package com.gd.lms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.service.ProfessorService;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.Professor;
 import com.gd.lms.vo.ProfessorImg;
 
@@ -32,6 +34,8 @@ public class ProfessorController {
 	ProfessorService professorService;
 	@Autowired
 	MajorService majorService;
+	@Autowired
+	RegisterService registerService;
 
 	// 로그인폼
 	@GetMapping("loginForm")
@@ -80,13 +84,32 @@ public class ProfessorController {
 
 			log.debug(TeamColor.JJY + "professorNo : " + session.getAttribute("No")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorAge : " + session.getAttribute("professorAge")); // 값 출력되는지 확인
-			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값
-																														// 출력되는지
-																														// 확인
-																														// //
-																														// 확인
+			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값 출력되는지 확인
+																				
 			log.debug(TeamColor.JJY + "professorRegiNo : " + session.getAttribute("professorRegiNo")); // 값 출력되는지 확인
 
+			
+			
+			// 교수의 나의 강의리스트 get을 위한 서비스 실행 ( 로그인 주체에 따른 사이드바 구분을 위함 )
+			
+			List<Map<String,Object>> myRegisterListProf = registerService.getMyRegisterListProf(professorLogin.getProfessorNo());
+			
+			
+			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			// 리스트용
+			List<String> subjectName = new ArrayList<String>();
+				for(Map<String, Object> data : myRegisterListProf) {
+					subjectName.add((String) data.get("subjectName"));
+				}
+				
+			// 해당 나의 강의리스트는 사이드바에 넣으므로 세션에 저장 & 디버깅으로 확인
+			session.setAttribute("subjectName", (subjectName));					
+			log.debug(TeamColor.KHW + subjectName);
+			
+			
+			
 			result = "/home";
 		}
 		return result;

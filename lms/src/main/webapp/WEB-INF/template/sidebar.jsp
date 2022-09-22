@@ -51,14 +51,19 @@
                             <li><a href="./chart-morris.html">강의출결</a></li>
                             <!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
                             
-                            	<c:if test="${user eq 'student'}">
+                            
                             		<c:forEach var="sl" items="${subjectName}">
                             		<!--  승인된과목의 페이지는... 본의아니게 숫자로 해야할듯 ㅠㅠ -->
                             			<li>
                             				<a style="background: #white;" href="${sl}">${sl}</a>
+                            			<!--  
+                            			<c:forEach var="sn" items="${subjectNo}">
+                            			<a href="${pageContext.request.contextPath}/lecture/"${sn}>${sl}</a>
+                            			</c:forEach>
+                            			-->
                             			<li>
                             		</c:forEach>
-                            	</c:if>
+                            	
                            
                             
                             <!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의과제제출교수 -->
