@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.ClubMapper">
+	
+	<!-- 동아리 삭제하기 -->
+	<delete id="deleteClub" parameterType="com.gd.lms.vo.Club">
+		DELETE 
+			FROM club
+			 
+		WHERE  club_no = #{clubNo}
+	</delete>
+	
+	<!-- 동아리 수정하기 -->
+	<update id="updateClub" parameterType="com.gd.lms.vo.Club">
+		UPDATE
+			club c
+		INNER JOIN 
+			professor p
+		ON 
+			c.professor_no = p.professor_no
+		SET 
+			  c.club_name = #{clubName}
+			  c.club_content = #{clubContent}
+			, c.club_room = #{clubRoom}
+			, c.professor_no = #{professorNo}
+			, c.professor_name = #{professorName}
+			, c.update_date = now()
+			
+		WHERE c.club_no = #{clubNo}
+	</update>
+	
+	<!-- 동아리 상세보기 -->
+	<select id="selectClubOne" resultType="map">
+	SELECT 
+		club_no clubNo
+		,club_name clubName
+		,club_content clubContent
+		,club_room clubRoom
+		,professor_no professorNo
+		
+	FROM
+		club
+	WHERE
+		club_no = #{clubNo}
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 동아리 추가 -->
+	<insert id="insertClub" parameterType="com.gd.lms.vo.Club">
+		INSERT INTO club
+			(
+				  club_no
+				, club_name
+				, club_content
+				, club_room
+				, professor_no
+				, create_date
+				, update_date
+			)
+		VALUES
+			(
+				  #{clubNo}
+				, #{clubName}
+				, #{clubContent}
+				, #{clubRoom}
+				, #{professorNo}
+				, now()
+				, now()
+			)
+	</insert>
+
+	<!-- 동아리 리스트 -->
+	<select id="selectClubList" resultType="map">
+	
+	SELECT
+		  c.club_no clubNo
+		, c.club_name clubName
+		, c.club_content clubContent
+		, c.club_Room clubRoom
+		, c.professor_no professorNo
+		, p.professor_name professorName
+		, c.create_date createDate
+		, c.update_date updateDate
+		
+	FROM 
+		club c 
+		
+	LEFT JOIN 
+		professor p
+	ON 
+		c.professor_no = p.professor_no
+	
+	ORDER BY 
+		club_no desc
+	
+	</select>
+
+</mapper>
