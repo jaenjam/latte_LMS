@@ -25,4 +25,7 @@ public interface StudentMapper {
 	
 	// 학생사진 등록하기
 	int insertStudentImg(StudentImg studentImg);
+	
+	// 학생정보 수정하기
+	int updateStudentOne(Student student);
 }

@@ -153,4 +153,20 @@
 			,now()
 		)
 	</insert>
+	
+	
+	<!--  학생정보 수정하기 -->
+	<update id="updateStudentOnde" parameterType="com.gd.lms.vo.Student">
+		UPDATE student
+			SET
+			 student_pass = #{studentPass}
+			 , student_telephone= #{studentpTelephone}
+			 , student_email = #{studentEmail}
+			 , student_address = #{studentAddress}
+			 , student_detail_address = #{studentDetailAddress}
+			 , update_date = now()
+			 WHERE
+			 	student_no = #{studentNo};	
+	
+	</update>
 </mapper>

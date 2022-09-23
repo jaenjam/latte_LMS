@@ -41,9 +41,8 @@ public class StudentController {
 	@GetMapping("/student/signupStudentForm")
 	public String addStudent(Model model) {
 		
-		// 디버깅
-		System.out.println("addStudent get(form)");
-		log.debug(TeamColor.KHW+ "StudentController의 addStudent get(form)");
+		// 해당 컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW+ "StudentController의 회원가입폼 진입");
 		
 		// major_no용 리스트
 		List<Map<String,Object>> majorList = majorService.getMajorList();
@@ -60,6 +59,8 @@ public class StudentController {
 	// 학생 회원가입 action
 	@PostMapping("/addStudent")
 	public String addStudent(Student student, Model model ) {
+		// 해당 컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW+ "StudentController의 회원가입액션 진입");
 		
 		//  ┌그 값을 담음		 ┌서비스에 메서드를 실행시킴
 		int insertStudent = studentService.addStudent(student);
@@ -75,6 +76,8 @@ public class StudentController {
 	// 학생 로그인 action
 	@PostMapping("/StudentForm")
 	public String loginstudent(Student student, Model model, HttpServletRequest request) {
+		// 해당 컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW+ "StudentController의 학생로그인액션 진입");
 		
 		// 세션 사용하기위해 선언
 		HttpSession session =  request.getSession();	
@@ -197,6 +200,9 @@ public class StudentController {
 	//@RequestMapping(value="/student/getStudentOne", method = {RequestMethod.GET, RequestMethod.POST})
 	@GetMapping("/getStudentOne") 
 	public String getStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("No") int studentNo) {
+		// 해당 컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW+ "StudentController의 학생정보상세보기 폼 진입");
+		
 		
 		List<Map<String, Object>> studentOne = studentService.getStudentOne(studentNo);
 		//디버그
@@ -215,16 +221,21 @@ public class StudentController {
 	// 학생정보 수정전 비밀번호확인 FORM
 	@GetMapping("/modifyStudentPass")
 	public String pageLock() {
+		// 해당 컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"StudentController의 학생정보 수정을 위한 비밀번호 확인 폼 진입");
 		
-		log.debug(TeamColor.KHW +"비밀번호확인폼으로 이동");
 		return "/student/modifyStudentPass";
 	}
+	
 	
 	// 학생정보 수정전 비밀번호확인입력 Action
 	@PostMapping("/modifyStudentPass")
 	public String pageLock(Student student, Model model, HttpServletRequest request, @RequestParam("studentPass") String studentPass) {
+		// 해당 컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"StudentController의 학생정보 수정을 위한 비밀번호 확인 적용 액션");
 		
-		log.debug(TeamColor.KHW +"비밀번호확인 적용 액션");
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();		
 		
 		// 이전페이지에서 입력된 비밀번호와 히든으로 넘겨받은 아이디를 입력받아 쿼리 실행시킨 것을 담기
 		List<Map<String, Object>> studentOneAfterPass= studentService.getStudentOneAfterPass(student);
@@ -236,13 +247,34 @@ public class StudentController {
 		model.addAttribute("studentOneAfterPass", studentOneAfterPass);
 		
 		// 디버그
-		log.debug(TeamColor.KHW +model);
+		log.debug(TeamColor.KHW + "model에 저장된 studentOneAfterPass" + studentOneAfterPass);
+		
+	
+		// 다음 페이지에서 비번 넘기기를 위해 입력한 값중 비밀번호만 model에서 골라내기
+		List<String> studentPasss = new ArrayList<String>();
+		for(Map<String, Object> data : studentOneAfterPass) {
+			studentPasss.add((String) data.get("studentPass"));
+		}
+		
+		// 골라낸 비밀번호를 세션에 저장
+		session.setAttribute("studentPass", (studentPasss));
+		
+		// 디버그
+		log.debug(TeamColor.KHW + "session에 저장된 studentPass " + studentPass);
 		
 		
 		return "/student/getStudentOneAfterPass";
 	}
 	
-	// 학생정보 상세보기 수정 ACTION
+	
+	// 학생정보 상세보기 수정 FORM(비밀번호 입력 후 폼)
+	@PostMapping("/student/getStudentOneAfterPass")
+	public String modifyStudentOne(Student student, Model model) {
+		// 해당 컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"StudentController의 학생정보 수정 액션 진입");
+		
+		return "home"; // 성공시 main 이동
+	}
 	
 	
 	
@@ -261,10 +293,8 @@ public class StudentController {
 		
 		// 파일저장할 위치 설정 >> 임시로 로컬설정
 		String dir = "/upload";
-		
-		
-		
-		
 		return "/student/getStudentOne";
 	}
+	
+	
 }

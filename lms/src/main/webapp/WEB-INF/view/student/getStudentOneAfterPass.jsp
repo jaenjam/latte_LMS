@@ -109,37 +109,49 @@ body {font-family: Arial;}
 				             					<div class="form-group">
 												<label> 이름: </label>
 												<input type="text" class="form-control" name="studentName" id="studentName"
-		                                           value="${Name}">
+		                                           value="${Name}" readonly="readonly">
 												</div>
 												
 												<div class="form-group">
 												<label> 학번: </label>
 												<input type="text" class="form-control" name="studentNo" id="studentNo"
-		                                           value="${No}">
+		                                           value="${No}" readonly="readonly">
 												</div>
+												
+												<!--  조건에 따라 비밀번호 전송값이 달라짐 -->
+												<div class="form-group">
+												<label> 비밀번호: </label>
+												
+												<input type="text" class="form-control" name="studentPassF" id="studentPassF">												
+												<input type="hidden" class="form-control" name="studentPass" id="studentPass"
+		                                           value="${studentPass}">
+												</div>
+												
+												
 												
 												<div class="form-group">
 												<label> 전공: </label>
 													<input type="text" class="form-control" name="studentMajor" id="studentMajo"
-			                                           value="${studentMajor}">
+			                                           value="${studentMajor}" readonly="readonly">
 												</div>
 												
 												<div class="form-group">
 												<label> 주민번호: </label>
 													<input type="text" class="form-control" name="studentRegiNo" id="studentRegiNo"
-			                                           value="${studentRegiNo}">
+			                                           value="${studentRegiNo}" readonly="readonly">
 												</div>
 												
 												<div class="form-group">		
 												<label> 나이: </label>
 													<input type="text" class="form-control" name="studentAge" id="studentAge"
-			                                           value="${studentAge}">
+			                                           value="${studentAge}" readonly="readonly">
 			                                           </div>
 			                                           
 			                                    <div class="form-group">       
 												<label> 성별: </label>
 													<input type="text" class="form-control" name="studentGender" id="studentGender"
-			                                           value="${studentGender}">
+			                                           value="${studentGender}" readonly="readonly">
+			                                           <span> ※ 변경을 원한다면 행정실로 문의주세요! </span>
 			                                    </div>      
 												
 												<div class="form-group">
@@ -169,7 +181,7 @@ body {font-family: Arial;}
 												<div class="form-group">
 												<label> 학적상태: </label>
 													<input type="text" class="form-control" name="studentState" id="studentState"
-			                                           value="${studentState}">	
+			                                           value="${studentState}" readonly="readonly">	
 				                                 </div>          							
 											</div>
 										</div>
@@ -199,13 +211,21 @@ body {font-family: Arial;}
     <!--**********************************
         Scripts
     ***********************************-->
+<!--  비밀번호 입력 비교 함수 -->    
+<script>
+$.
+
+
+
+</script>    
+    
+    
 <script>
     
     $('#backStudentOnePage').click(function() {
     	alert('이전화면으로 돌아갑니다!');
     	history.back();
     });
-    
     
     
 </script> 
