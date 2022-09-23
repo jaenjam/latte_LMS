@@ -26,9 +26,8 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">공지</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">공지사항</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">공지사항추가</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">(FAQ)자주묻는질문</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">FAQ 추가</a></li>
                     </ol>
                 </div>
             </div>
@@ -40,19 +39,19 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="${pageContext.request.contextPath}/addNotice" method="post">
+                                    <form class="form-valide" action="${pageContext.request.contextPath}/addFaq" method="post">
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="noticeTitle">제목<span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="faqTitle">자주묻는질문<span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
-                                                <input type="text" class="form-control" id="noticeTitle" name="noticeTitle" placeholder="제목을 입력해주세요">
+                                                <input type="text" class="form-control" id="faqTitle" name="faqTitle" placeholder="자주묻는질문을 입력해주세요">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="noticeContent">내용<span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="faqContent">자주묻는질문답변<span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
-                                                <textarea class="form-control" id="noticeContent" name="noticeContent" rows="5" placeholder="내용을 입력해주세요"></textarea>
+                                                <textarea class="form-control" id="faqContent" name="faqContent" rows="5" placeholder="자주묻는질문답변을 입력해주세요"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">

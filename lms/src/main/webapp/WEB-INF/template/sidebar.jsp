@@ -20,8 +20,12 @@
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">마이페이지</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./page-login.html">나의정보</a></li>
-                            <li><a href="./page-register.html">전체출결현황</a></li>
+                            <li>
+                            	<a href="./page-login.html">나의정보</a>
+                            </li>
+                            <li>
+                            	<a href="./page-register.html">전체출결현황</a>
+                            </li>
                         </ul>
                     </li>
                     </c:if>
@@ -35,9 +39,15 @@
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">관리자 페이지</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/employee/employeeList">직원 관리</a></li>
-                            <li><a href="/student/studentList">학생 관리</a></li>
-                            <li><a href="/professor/professorList">교수 관리</a></li>
+                            <li>
+                            	<a href="/employee/employeeList">직원 관리</a>
+                            </li>
+                            <li>
+                            	<a href="/student/studentList">학생 관리</a>
+                            </li>
+	                        <li>
+	                           	<a href="/professor/professorList">교수 관리</a>
+	                        </li>
                             </ul>
                     </li>
                     </c:if>
@@ -77,7 +87,9 @@
                             		
                             	</c:if>
                             </li>
-                            <li><a href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의과제</a></li>
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의과제</a>
+                            </li>
                         </ul>
                     </li>
                     
@@ -94,7 +106,9 @@
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">학과</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="${pageContext.request.contextPath}/major/majorList">학과소개</a></li>
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/major/majorList">학과소개</a>
+                            </li>
                         </ul>
                     </li>
                     
@@ -108,7 +122,9 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">장학</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="${pageContext.request.contextPath}/scholar/scholarList">장학소개</a></li>                          
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/scholar/scholarList">장학소개</a>
+                            </li>                          
                         </ul>
                     </li>
                     
@@ -122,7 +138,9 @@
                             <i class="icon-menu menu-icon"></i><span class="nav-text">공지</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="${pageContext.request.contextPath}/notice/noticeList" aria-expanded="false">공지사항</a></li>
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/notice/noticeList" aria-expanded="false">공지사항</a>
+                            </li>
                         </ul>
                     </li>
 
@@ -136,7 +154,9 @@
                             <i class="icon-note menu-icon"></i><span class="nav-text">소통</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./form-basic.html">커뮤니티</a></li>
+                            <li>
+                            	<a href="./form-basic.html">커뮤니티</a>
+                            </li>
                         </ul>
                     </li>
                     
@@ -145,8 +165,9 @@
                     
                     
                      <li class="mega-menu mega-menu-sm">
-                        <a href="/FAQ" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">FAQ</span>
+                        <a href="${pageContext.request.contextPath}/faq/faqList" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i>
+                            <span class="nav-text">FAQ</span>
                         </a>
                     </li>
 
@@ -155,8 +176,9 @@
 
 
                      <li class="mega-menu mega-menu-sm">
-                        <a href="/QnA" aria-expanded="false">
-                            <i class="icon-grid menu-icon"></i><span class="nav-text">QnA</span>
+                        <a href="${pageContext.request.contextPath}/qna/qna" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="nav-text">QnA</span>
                         </a>
                     </li>
                     
