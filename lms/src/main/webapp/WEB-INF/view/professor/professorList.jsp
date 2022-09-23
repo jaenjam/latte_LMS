@@ -31,8 +31,8 @@
 	<div class="row page-titles mx-0">
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="javascript:void(0)">마이페이지</a></li>
-				<li class="breadcrumb-item active"><a href="javascript:void(0)">교수목록</a></li>
+				<li class="breadcrumb-item"><a href="javascript:void(0)">관리자 페이지</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">교수 관리</a></li>
 			</ol>
 		</div>
 	</div>
@@ -44,12 +44,14 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-sm-9">
-								<h4 class="professorList">교수 목록</h4>
+								<h4 class="card-title">교수 관리</h4>
 							</div>
 							<div class="col-sm-3">
-								<a href="">
+							<c:if test="${employeeActive eq '총관리자'}">
+								<a href="/professor/modifyProfessorList">
 									<button type="button" class="btn btn-primary">수정하기</button>
 								</a>
+								</c:if>
 							</div>
 						</div>
 						<br>
@@ -69,7 +71,7 @@
 										<th>교수실</th>
 										<th>재직상태</th>
 										<th>연봉등급</th>
-										<th>가입일</th>
+										<th>입사일</th>
 									</tr>
 								</thead>
 								<tbody>

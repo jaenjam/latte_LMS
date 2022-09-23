@@ -42,10 +42,11 @@
 								<h4 class="card-title">학생 관리</h4>
 							</div>
 							<div class="col-sm-3">
+							<c:if test="${user eq 'employee'}">
 								<a href="/student/modifystudentList">
 									<button type="button" class="btn btn-primary">수정하기</button>
 								</a>
-
+							</c:if>
 							</div>
 						</div>
 						<br>
