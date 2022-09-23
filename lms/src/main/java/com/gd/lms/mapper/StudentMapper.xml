@@ -69,6 +69,41 @@
 			)
 	</insert>
 	
+	<!-- 학생목록 출력 -->
+	<select id="selectStudentList" resultType="map">
+	
+	SELECT 
+		s.student_no studentNo
+		, s.student_pass studentPass
+		, m.major_no majorNo
+		, m.major_name majorName
+		, s.student_name studentName
+		, s.student_regi_no studentRegiNo
+		, s.student_age studentAge
+		, s.student_gender studentGender
+		, s.student_telephone studentTelephone
+		, s.student_email studentEmail
+		, s.student_address studentAddress
+		, s.student_detail_address studentDetailAddress
+		, s.student_state studentState
+		, s.student_top studentTop
+		, s.student_active studentActive
+		, s.create_date createDate
+		, s.update_date updateDate
+		, sh.scholar_name scholarName
+			
+	FROM 
+		student s LEFT JOIN scholar sh
+	ON 
+		s.scholar_no = sh.scholar_no
+		
+	INNER JOIN major m
+	
+	ON 
+		s.major_no = m.major_no
+		
+	</select>
+	
 	
 	<!-- 학생정보 상세보기 비밀번호 입력전 -->
 	<select id="selectStudentOne" parameterType="int" resultType="map">

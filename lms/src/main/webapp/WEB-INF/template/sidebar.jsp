@@ -15,7 +15,7 @@
                 	
                 	
                     <c:if test="${user eq 'student'}">
-                    <li>
+                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">마이페이지</span>
                         </a>
@@ -30,10 +30,15 @@
                     
                     
                     <c:if test="${user eq 'employee'}">
-                    <li>
-                        <a href="/employee/employeeList" aria-expanded="false">
-                            <i class="icon-notebook menu-icon"></i><span class="nav-text">관리자페이지</span>
+                     <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">관리자 페이지</span>
                         </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/employee/employeeList">직원 관리</a></li>
+                            <li><a href="/student/studentList">학생 관리</a></li>
+                            <li><a href="/professor/professorList">교수 관리</a></li>
+                            </ul>
                     </li>
                     </c:if>
                     
@@ -42,7 +47,7 @@
                     <!-- 스마트출석부 --> 
                     
                     
-                    <li>
+                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">나의강의실</span>
                         </a>
@@ -67,7 +72,7 @@
                            
                             
                             <!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의과제제출교수 -->
-                            <li>
+                             <li class="mega-menu mega-menu-sm">
                             	<c:if test="${user eq 'professor'}">
                             		
                             	</c:if>
@@ -98,7 +103,7 @@
                     <!-- 장학 -->
                     
                     
-                    <li>
+                    <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void(3)" aria-expanded="false">
                             <i class="icon-badge menu-icon"></i><span class="nav-text">장학</span>
                         </a>
@@ -112,7 +117,7 @@
                     <!-- 공지 -->
                     
                     
-                    <li>
+                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void(4)" aria-expanded="false">
                             <i class="icon-menu menu-icon"></i><span class="nav-text">공지</span>
                         </a>
@@ -126,7 +131,7 @@
                     <!-- 커뮤니티 -->
                     
                     
-                    <li>
+                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void(5)" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">소통</span>
                         </a>
@@ -139,7 +144,7 @@
                     <!-- FAQ -->
                     
                     
-                    <li>
+                     <li class="mega-menu mega-menu-sm">
                         <a href="/FAQ" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">FAQ</span>
                         </a>
@@ -149,7 +154,7 @@
 					<!-- QnA -->
 
 
-                    <li>
+                     <li class="mega-menu mega-menu-sm">
                         <a href="/QnA" aria-expanded="false">
                             <i class="icon-grid menu-icon"></i><span class="nav-text">QnA</span>
                         </a>

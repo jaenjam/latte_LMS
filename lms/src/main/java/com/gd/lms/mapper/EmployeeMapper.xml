@@ -90,6 +90,8 @@
 		employeeState
 		,employee_active employeeActive
 		,salary_no salaryNo
+		,create_date createDate
+		,update_date updateDate
 
 		FROM
 		employee

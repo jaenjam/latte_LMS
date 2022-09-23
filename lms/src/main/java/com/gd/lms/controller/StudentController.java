@@ -195,6 +195,22 @@ public class StudentController {
 		}
 	}
 	
+	// 학생 목록보기 (관리자)
+			@GetMapping("/student/studentList")
+			public String studentList(Model model) {
+
+				log.debug(TeamColor.CSJ + "studentController.studentList실행");
+
+				List<Map<String, Object>> studentList = studentService.getStudentList();
+
+				model.addAttribute("studentList", studentList);
+				log.debug(TeamColor.CSJ + ("studentController.studentList : " + studentList));
+
+				return "/student/studentList";
+			}
+		
+	
+	
 	
 	// 학생정보 상세보기 FORM (비밀번호입력전)
 	//@RequestMapping(value="/student/getStudentOne", method = {RequestMethod.GET, RequestMethod.POST})
