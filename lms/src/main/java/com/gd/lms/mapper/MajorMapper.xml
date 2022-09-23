@@ -40,6 +40,22 @@
 	)
 	</insert>
 	
+	<!-- 전공상세보기 -->
+	<select id="selectMajorOne" resultType="map">
+	SELECT 
+		 major_no majorNo
+		,major_name majorName
+		,major_introduce_header majorIntroduceHeader
+		,major_introduce majorIntroduce
+		,major_subject majorSubject
+		,major_room majorRoom
+	FROM
+		major
+	WHERE
+		major_no = #{majorNo}
+	</select>
+	
+	<!-- 전공수정하기 -->
 	<update id="updateMajor" parameterType="com.gd.lms.vo.Major">
 		
 		UPDATE 

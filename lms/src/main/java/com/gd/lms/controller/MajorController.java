@@ -53,6 +53,22 @@ public class MajorController {
 		return "redirect:/major/majorList"; // addMajor실행해서 추가시켜주기
 	}
 	
+	// 전공상세보기
+	@GetMapping("/major/majorOne")
+	public String getMajorOne(Model model,int majorNo) {
+		
+		log.debug(TeamColor.JJY +"getMajorOne실행");
+		
+		List<Map<String,Object>> majorOne = majorService.getMajorOne(majorNo);
+		
+		//majorOne의 값을 model에 넣어주기
+		model.addAttribute("majorOne",majorOne); 
+		
+		log.debug(TeamColor.JJY + "majorOne의값 : " + majorOne);
+		
+		return "/major/majorOne";
+	}
+	
 	// 전공수정
 	@GetMapping("/major/modifyMajor")
 	public String modifyMajor(Model model,Major major) {

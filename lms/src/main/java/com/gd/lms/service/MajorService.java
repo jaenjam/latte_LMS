@@ -35,6 +35,13 @@ public class MajorService {
 		
 	}
 	
+	// 전공상세보기
+	public List<Map<String,Object>> getMajorOne(int majorNo){
+		log.debug(TeamColor.JJY+"MajorService안에있는 getMajorOne실행");
+		
+		return majorMapper.selectMajorOne(majorNo);
+	}
+	
 	// 전공수정
 	public int modifyMajor(Major major) {
 		

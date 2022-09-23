@@ -16,6 +16,9 @@ public interface MajorMapper {
 	//전공추가
 	int insertMajor(Major major);
 	
+	//전공상세보기
+	List<Map<String,Object>> selectMajorOne(int majorNo);
+	
 	//전공수정(관리자권한)
 	int updateMajor(Major major);
 

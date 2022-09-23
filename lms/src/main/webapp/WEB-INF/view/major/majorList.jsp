@@ -46,20 +46,12 @@
 		<c:forEach var="C" items="${majorList}">
 			<div class="card">
 				<div class="card-body">
-				<div class="row">
-				<div class="col-sm-11">
-					<h4 class="card-title">${C.majorName}</h4>
-				</div>
-				<div class="col-sm-1"><!-- 학과명 옆에 수정하기 링크 주기 -->
-					<span><a href="${pageContext.request.contextPath}/major/modifyMajor?majorNo=${C.majorNo}" data-toggle="tooltip" data-placement="top"
-						title="" data-original-title="Edit"><i
-							class="fa fa-pencil color-muted m-r-5" style="float: right;"></i> </a></span></div>
-					</div>
-					<br />
+					<h4 class="card-title" style="font-size: 2.0em;"><a href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorName}</a></h4>
+					<br/>
 					<div class="table-responsive">
-						<div class="majorheader">${C.majorIntroduceHeader}</div>
+						<div class="majorheader"><a href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorIntroduceHeader}</a></div>
 						<br />
-						<p style="white-space: pre-line;">${C.majorIntroduce}</p>
+						<p style="white-space: pre-line;"><a href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorIntroduce}</a></p>
 						<br />
 						<p style="color: darkred;">${C.majorSubject}</p>
 					</div>
