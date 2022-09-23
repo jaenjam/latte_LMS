@@ -16,7 +16,7 @@ public interface MajorMapper {
 	//전공추가
 	int insertMajor(Major major);
 	
-	//전공수정
-	//전공삭제
+	//전공수정(관리자권한)
+	int updateMajor(Major major);
 
 }

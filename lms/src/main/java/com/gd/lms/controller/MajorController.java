@@ -53,4 +53,24 @@ public class MajorController {
 		return "redirect:/major/majorList"; // addMajor실행해서 추가시켜주기
 	}
 	
+	// 전공수정
+	@GetMapping("/major/modifyMajor")
+	public String modifyMajor(Model model,Major major) {
+		
+		model.addAttribute("major",major);
+		log.debug(TeamColor.JJY + "model major : " + major);
+		return "/major/modifyMajor";
+				
+	}
+		
+	// 전공수정 Action
+	@PostMapping("/modifyRegion")
+	public String modifyMajor(Major major) {
+		
+		int row = majorService.modifyMajor(major);
+		log.debug(TeamColor.JJY + "row : " + row); //row가 0이면 실패
+		
+		return "/major/majorList";
+		}
+	
 }

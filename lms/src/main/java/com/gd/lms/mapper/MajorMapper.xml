@@ -39,5 +39,21 @@
 		,now()
 	)
 	</insert>
+	
+	<update id="updateMajor" parameterType="com.gd.lms.vo.Major">
+		
+		UPDATE 
+				major
+		SET 
+				 major_name=#{majorName}
+				,major_introduce_header=#{majorIntroduceHeader}
+				,major_introduce=#{majorIntroduce}
+				,major_subject=#{majorSubject}
+				,major_room=#{majorRoom}
+				,update_date=now()
+		WHERE
+				major_no=#{majorNo}
+				
+	</update>
 
 </mapper>

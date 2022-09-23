@@ -12,7 +12,7 @@
 	font-family: 궁서체;
 	font-weight: 400;
 	font-size: 1.5em;
-	color:black;
+	color: black;
 }
 
 .addmajor {
@@ -27,26 +27,34 @@
 	<div class="row page-titles mx-0">
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="javascript:void(0)">학과</a></li>
-				<li class="breadcrumb-item active"><a href="javascript:void(0)">학과소개</a></li>
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
 			</ol>
 		</div>
 	</div>
 
 	<div class="addmajor">
-		<c:if test="${user eq 'employee'}">
+
 		<a href="${pageContext.request.contextPath}/major/addMajor">
 			<button type="submit" class="btn btn-primary" style="float: right;">학과추가</button>
-		</a><!-- 관리자만 보이게 설정 -->
-	</c:if>
+		</a>
+		<!-- 관리자만 보이게 설정 -->
 	</div>
-	<br /><br/>
+	<br /> <br />
 
 	<div class="container-fluid">
 		<c:forEach var="C" items="${majorList}">
 			<div class="card">
 				<div class="card-body">
+				<div class="row">
+				<div class="col-sm-11">
 					<h4 class="card-title">${C.majorName}</h4>
+				</div>
+				<div class="col-sm-1"><!-- 학과명 옆에 수정하기 링크 주기 -->
+					<span><a href="${pageContext.request.contextPath}/major/modifyMajor?majorNo=${C.majorNo}" data-toggle="tooltip" data-placement="top"
+						title="" data-original-title="Edit"><i
+							class="fa fa-pencil color-muted m-r-5" style="float: right;"></i> </a></span></div>
+					</div>
 					<br />
 					<div class="table-responsive">
 						<div class="majorheader">${C.majorIntroduceHeader}</div>

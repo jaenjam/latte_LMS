@@ -34,5 +34,13 @@ public class MajorService {
 		return majorMapper.insertMajor(major);
 		
 	}
+	
+	// 전공수정
+	public int modifyMajor(Major major) {
+		
+		log.debug(TeamColor.JJY +"majorService modifyMajor실행");
+		log.debug(TeamColor.JJY +"Major확인 : " + major);
+		return majorMapper.updateMajor(major);
+	}
 
 }
