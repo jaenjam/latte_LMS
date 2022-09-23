@@ -69,24 +69,37 @@ public class MajorController {
 		return "/major/majorOne";
 	}
 	
-	// 전공수정
-	@GetMapping("/major/modifyMajor")
-	public String modifyMajor(Model model,Major major) {
-		
-		model.addAttribute("major",major);
-		log.debug(TeamColor.JJY + "model major : " + major);
-		return "/major/modifyMajor";
-				
-	}
-		
-	// 전공수정 Action
-	@PostMapping("/modifyRegion")
-	public String modifyMajor(Major major) {
-		
-		int row = majorService.modifyMajor(major);
-		log.debug(TeamColor.JJY + "row : " + row); //row가 0이면 실패
-		
-		return "/major/majorList";
+	// 전공수정 Form
+		@GetMapping("/major/modifyMajor")
+		public String modifyMajor(Model model,int majorNo) {
+			
+			log.debug(TeamColor.JJY +"modifyMajor Get실행");
+			
+			List<Map<String,Object>> major = majorService.getMajorOne(majorNo);
+			
+			// Service.MajorOne에서 사용된 값을 model에 넣어줌
+			model.addAttribute("major",major);
+			log.debug(TeamColor.JJY+"model>major값 확인 : " + major);
+			
+			return "/major/modifyMajor";			
 		}
-	
+			
+		// 전공수정 Action
+		@PostMapping("/modifyMajor")
+		public String modifyMajor(Major major,Model model) {
+			
+			//디버깅
+			log.debug(TeamColor.JJY + "modifyMajor실행");
+			
+			//service실행
+			int updateMajor = majorService.modifyMajor(major);
+			
+			log.debug(TeamColor.JJY + "updateMajor : " + updateMajor);
+			
+			// update값 넣어주기
+			model.addAttribute("updateMajor",updateMajor);
+			
+			return "redirect:/major/majorList";
+			
+			}
 }
