@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- header.jsp -->
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
@@ -53,7 +54,8 @@
 					<div class="table-responsive">
 						<div class="scholarheader">${s.scholarContent}</div>
 						<br />
-						<p style="color: darkred;">${s.scholarPrice}원</p>
+						<c:set var="price" value="${s.scholarPrice}"/>						
+						<p style="color: darkred;">${fn:substring(price,0,3)}만원</p>
 					</div>
 				</div>
 			</div>
