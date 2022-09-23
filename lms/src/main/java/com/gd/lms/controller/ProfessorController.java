@@ -100,18 +100,10 @@ public class ProfessorController {
 			
 			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
-			
-			// 리스트용
-			List<String> subjectName = new ArrayList<String>();
-				for(Map<String, Object> data : myRegisterListProf) {
-					subjectName.add((String) data.get("subjectName"));
-				}
-				
-			// 해당 나의 강의리스트는 사이드바에 넣으므로 세션에 저장 & 디버깅으로 확인
-			session.setAttribute("subjectName", (subjectName));					
-			log.debug(TeamColor.KHW + subjectName);
+			log.debug(TeamColor.KHW + myRegisterListProf);
 			
 			
+
 			
 			result = "/home";
 		}

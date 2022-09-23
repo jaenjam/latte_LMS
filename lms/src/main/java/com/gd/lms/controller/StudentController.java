@@ -135,8 +135,9 @@ public class StudentController {
 					
 					// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 					model.addAttribute("myRegisterListStu", myRegisterListStu);
-					log.debug(TeamColor.KHW + myRegisterListStu);
+					//log.debug(TeamColor.KHW + myRegisterListStu);
 					
+					/*
 	
 					/*
 					// 으음..
@@ -148,7 +149,7 @@ public class StudentController {
 							subjectName.add((String) data.get("subjectName"));
 							}
 						}
-					*/
+					
 					
 					
 					
@@ -176,7 +177,7 @@ public class StudentController {
 					// 사이드바에서 타고 넘어갈 주소를 얻어야 하므로 subjectNo역시 세션에 저장 & 디버깅으로 확인
 					session.setAttribute("subjectNo", (subjectNo));
 					log.debug(TeamColor.KHW +subjectNo);
-	
+	*/
 					
 					
 					
@@ -194,22 +195,6 @@ public class StudentController {
 					return "home"; // 성공시 main이동
 		}
 	}
-	
-	// 학생 목록보기 (관리자)
-			@GetMapping("/student/studentList")
-			public String studentList(Model model) {
-
-				log.debug(TeamColor.CSJ + "studentController.studentList실행");
-
-				List<Map<String, Object>> studentList = studentService.getStudentList();
-
-				model.addAttribute("studentList", studentList);
-				log.debug(TeamColor.CSJ + ("studentController.studentList : " + studentList));
-
-				return "/student/studentList";
-			}
-		
-	
 	
 	
 	// 학생정보 상세보기 FORM (비밀번호입력전)
