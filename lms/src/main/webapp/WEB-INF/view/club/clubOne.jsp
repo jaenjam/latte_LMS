@@ -18,8 +18,8 @@
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="javascript:void(0)">동아리</a></li>
-				<li class="breadcrumb-item active"><a href="javascript:void(0)">동아리소개</a></li>
-				<li class="breadcrumb-item active"><a href="javascript:void(0)">동아리상세보기</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">동아리 소개</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">동아리 상세보기</a></li>
 			</ol>
 		</div>
 	</div>
@@ -32,7 +32,7 @@
 					<div class="card">
 						<div class="card-body" style="color: black">
 							<br>
-							<h4 style="font-size:2.0em;">동아리상세보기</h4>
+							<h4 style="font-size:2.0em;">동아리 상세보기</h4>
 							<hr>
 							<div class="form-group row">
 								<label class="col-lg-2 col-form-label" for="clubNo">동아리코드
@@ -45,7 +45,7 @@
 							<!-- End 동아리코드 -->
 
 							<div class="form-group row">
-								<label class="col-lg-2 col-form-label" for="clubName">학과명
+								<label class="col-lg-2 col-form-label" for="clubName">동아리명
 								</label>
 								<div class="col-lg-10">
 									<input type="text" class="form-control" id="clubName"
@@ -55,14 +55,14 @@
 							<!-- End 동아리명 -->
 
 							<div class="form-group row">
-								<label class="col-lg-2 col-form-label" for="clubContent">학과내용
+								<label class="col-lg-2 col-form-label" for="clubContent">동아리설명
 								</label>
 								<div class="col-lg-10">
 									<textarea class="form-control" id="clubContent"
 										name="clubContent" rows="15" readonly="readonly">${c.clubContent}</textarea>
 								</div>
 							</div>
-							<!-- End 동아리내용 -->
+							<!-- End 동아리설명 -->
 
 							<div class="form-group row">
 								<label class="col-lg-2 col-form-label" for="professorNo">담당교수

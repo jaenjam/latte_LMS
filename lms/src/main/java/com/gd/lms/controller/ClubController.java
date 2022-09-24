@@ -2,7 +2,11 @@ package com.gd.lms.controller;
 
 import java.util.List;
 
+
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +18,6 @@ import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.ClubService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.vo.Club;
-import com.gd.lms.vo.Major;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,15 +32,16 @@ public class ClubController {
 
 	// 동아리 수정 Form
 	@GetMapping("/club/modifyClub")
-	public String modifyClub(Model model, int clubNo) {
+	public String modifyClub(Model model, String clubNo) {
 
 		log.debug(TeamColor.CSJ + "ClubController.modifyClub");
 
 		List<Map<String, Object>> club = clubService.getClubOne(clubNo);
-
+		List<Map<String, Object>> professorList = professorService.getProfessorList();
 		
+		model.addAttribute("professorList", professorList); // 동아리수정할때 교수목록불러오기
 		model.addAttribute("club", club);
-		log.debug(TeamColor.CSJ + "ClubController.getClubOne majorOne" + club);
+		log.debug(TeamColor.CSJ + "ClubController.getClubOne clubOne" + club);
 
 		return "/club/modifyClub";
 	}
@@ -49,7 +53,6 @@ public class ClubController {
 		// 디버깅
 		log.debug(TeamColor.CSJ + "ClubController.modifyClub 실행");
 
-		
 		int updateClub = clubService.modifyClub(club);
 
 		log.debug(TeamColor.CSJ + "ClubController.modifyClub updateClub" + updateClub);
@@ -63,8 +66,10 @@ public class ClubController {
 
 	// 동아리 상세보기
 	@GetMapping("/club/clubOne")
-	public String getClubOne(Model model, int clubNo) {
-
+	public String getClubOne(Model model, String clubNo ,HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
 		log.debug(TeamColor.CSJ + "ClubController.getClubOne");
 
 		List<Map<String, Object>> clubOne = clubService.getClubOne(clubNo);
@@ -72,9 +77,15 @@ public class ClubController {
 		model.addAttribute("clubOne", clubOne);
 
 		log.debug(TeamColor.CSJ + "ClubController.getClubOne clubOne 확인" + clubOne);
+		
+		
+		
+			
+	
 
 		return "/club/clubOne";
 	}
+	
 
 	// 동아리 목록
 	@GetMapping("/club/clubList")

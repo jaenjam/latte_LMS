@@ -49,7 +49,9 @@
 		<c:forEach var="s" items="${scholarList}">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title">${s.scholarName}</h4>
+					<h4 class="card-title">
+					<a href="${pageContext.request.contextPath}/scholar/scholarOne?scholarNo=${s.scholarNo}">${s.scholarName}</a>
+					</h4>
 					<br />
 					<div class="table-responsive">
 						<div class="scholarheader">${s.scholarContent}</div>

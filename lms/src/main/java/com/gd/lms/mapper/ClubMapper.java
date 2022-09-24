@@ -16,7 +16,7 @@ public interface ClubMapper {
 	List<Map<String, Object>> selectClubList();
 	
 	//동아리상세보기
-	List<Map<String,Object>> selectClubOne(int clubNo);
+	List<Map<String,Object>> selectClubOne(String clubNo);
 
 	// 동아리 추가
 	int insertClub(Club club);

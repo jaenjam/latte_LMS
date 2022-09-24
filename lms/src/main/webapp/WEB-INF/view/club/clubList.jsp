@@ -49,7 +49,9 @@
 		<c:forEach var="c" items="${clubList}">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title" style="font-size: 2.0em;"><a href="${pageContext.request.contextPath}/club/clubOne?clubNo=${clubNo}">${c.clubName}</a></h4>
+					<h4 class="card-title">
+					<a href="${pageContext.request.contextPath}/club/clubOne?clubNo=${c.clubNo}">${c.clubName}</a>
+					</h4>
 					<br />
 					<div class="table-responsive">
 						<div class="clubheader">${c.clubContent}</div>
