@@ -87,24 +87,21 @@ public class ProfessorController {
 
 			log.debug(TeamColor.JJY + "professorNo : " + session.getAttribute("No")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorAge : " + session.getAttribute("professorAge")); // 값 출력되는지 확인
-			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값 출력되는지 확인
-																				
+			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값
+																														// 출력되는지
+																														// 확인
+
 			log.debug(TeamColor.JJY + "professorRegiNo : " + session.getAttribute("professorRegiNo")); // 값 출력되는지 확인
 
-			
-			
 			// 교수의 나의 강의리스트 get을 위한 서비스 실행 ( 로그인 주체에 따른 사이드바 구분을 위함 )
-			
-			List<Map<String,Object>> myRegisterListProf = registerService.getMyRegisterListProf(professorLogin.getProfessorNo());
-			
-			
+
+			List<Map<String, Object>> myRegisterListProf = registerService
+					.getMyRegisterListProf(professorLogin.getProfessorNo());
+
 			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
 			log.debug(TeamColor.KHW + myRegisterListProf);
-			
-			
 
-			
 			result = "/home";
 		}
 		return result;
@@ -145,54 +142,82 @@ public class ProfessorController {
 		List<Map<String, Object>> professorOne = professorService.getProfessorOne(professorNo);
 		model.addAttribute("professorOne", professorOne);
 		log.debug(TeamColor.JJY + "professorOne : " + professorOne);
-		
+
 		return "/professor/getProfessorOne";
 	}
 
+	// 교수정보수정 Form
+	@GetMapping("/professor/modifyProfessor")
+	public String modifyProfessor(Model model, int professorNo) {
+
+		log.debug(TeamColor.JJY + "modifyProfessor Get실행");
+
+		// 수정할때 폼에 띄워줄거기때문에 상세보기 내역 불러오기
+		List<Map<String, Object>> professor = professorService.getProfessorOne(professorNo);
+
+		model.addAttribute("professor", professor);
+		log.debug(TeamColor.JJY + "model professor값 확인 : " + professor);
+
+		return "/professor/modifyProfessor";
+	}
+
+	// 교수정보수정 Action
+	@PostMapping("/modifyProfessor")
+	public String modifyProfessor(Professor professor, Model model) {
+
+		// 디버깅
+		log.debug(TeamColor.JJY + "modifyProfessor 실행");
+
+		// service실행
+		professorService.modifyProfessor(professor);
+
+		return "redirect:/professor/professorOne";
+	}
+
 	// 교수사진등록하기 (Form)
-		@GetMapping("/professor/addProfessorImgForm")
-		public String addProfessorImg(Model model) {
-			log.debug(TeamColor.JJY + "[Controller] addProfessorImg get실행");
-			
-			return "/professor/addProfessorImgForm";
+	@GetMapping("/professor/addProfessorImgForm")
+	public String addProfessorImg(Model model) {
+		log.debug(TeamColor.JJY + "[Controller] addProfessorImg get실행");
+
+		return "/professor/addProfessorImgForm";
+	}
+
+	// 교수사진등록하기 (Action) 첨부파일 업로드
+	@PostMapping("/addProfessorImg")
+	public String addProfessorImg(@RequestParam("file") MultipartFile file) {
+
+		log.debug(TeamColor.JJY + "[Controller] addProfessorImg post실행");
+
+		String fileRealName = file.getOriginalFilename(); // 파일명을 나타내줌
+		long size = file.getSize(); // 파일사이즈
+
+		System.out.println("파일명 : " + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+		String uploadFolder = "C:\\test\\upload";
+
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+
+		String uniqueName = uuids[0];
+		System.out.println("생성된 고유문자열" + uniqueName);
+		System.out.println("확장자명" + fileExtension);
+
+		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
+
+		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
+		try {
+			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-		// 교수사진등록하기 (Action) 첨부파일 업로드
-		@PostMapping("/addProfessorImg")
-		public String addProfessorImg(@RequestParam("file") MultipartFile file) {
-
-			log.debug(TeamColor.JJY + "[Controller] addProfessorImg post실행");
-			
-			String fileRealName = file.getOriginalFilename(); //파일명을 나타내줌
-			long size = file.getSize(); //파일사이즈
-			
-			System.out.println("파일명 : "  + fileRealName);
-			System.out.println("용량크기(byte) : " + size);
-			
-			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-			String uploadFolder = "C:\\test\\upload";
-			
-			UUID uuid = UUID.randomUUID();
-			System.out.println(uuid.toString());
-			String[] uuids = uuid.toString().split("-");
-			
-			String uniqueName = uuids[0];
-			System.out.println("생성된 고유문자열" + uniqueName);
-			System.out.println("확장자명" + fileExtension);
-			
-			// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
-			
-			File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
-			try {
-				file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return "/professor/getProfessorOne";
-		}
+		return "/professor/getProfessorOne";
+	}
 
 	// 교수목록
 	@GetMapping("/professor/professorList")

@@ -23,6 +23,9 @@ public interface ProfessorMapper {
 	// 교수상세보기
 	List<Map<String,Object>> selectProfessorOne(int professorNo);
 
+	// 교수정보수정하기
+	int updateProfessor(Professor professor);
+	
 	// 교수사진보기
 	ProfessorImg selectProfessorImg(int professorNo);
 		

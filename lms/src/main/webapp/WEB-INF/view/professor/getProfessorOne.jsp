@@ -64,9 +64,9 @@ body {
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+					<li class="breadcrumb-item"><a href="javascript:void(0)">마이페이지</a></li>
 					<li class="breadcrumb-item active"><a
-						href="javascript:void(0)">Home</a></li>
+						href="javascript:void(0)">정보보기</a></li>
 				</ol>
 			</div>
 		</div>
@@ -98,12 +98,11 @@ body {
 						<div class="card-body">
 							<form action="${pageContext.request.contextPath}/modifyProfessor"
 								method="post" class="form-profile">
-								<div class="form-group">
+								<h4 class="card-title">정보보기</h4>
+								<div class="basic-form">
 
-									<h4 class="card-title">정보보기</h4>
-									<div class="basic-form">
-
-										<div class="form-row">
+									<div class="form-row">
+										<c:forEach var="M" items="${professorOne}">
 											<div class="form-group col-md-8">
 												<div class="form-group">
 													<label> 이름: </label> <input type="text"
@@ -112,25 +111,25 @@ body {
 												</div>
 
 												<div class="form-group">
-													<label> 전공: </label>
-													<c:forEach var="M" items="${professorOne}">
-														<input type="text" class="form-control"
-															name="professorMajor" id="professorMajor"
-															value="${M.majorName}" readonly="readonly">
-													</c:forEach>
-												</div>				
+													<label> 전공: </label> <input type="text"
+														class="form-control" name="professorMajor"
+														id="professorMajor" value="${M.majorName}"
+														readonly="readonly">
+												</div>
 												<div class="form-group">
 													<label> 교수실: </label>
 													<c:if test="${professorRoom eq null}">
 														<input type="text" class="form-control"
 															name="professorRoom" id="professorRoom" value="미정"
 															readonly="readonly">
-													</c:if><!-- 교수실이 null값이라면 미정출력 -->
+													</c:if>
+													<!-- 교수실이 null값이라면 미정출력 -->
 													<c:if test="${professorRoom ne null}">
 														<input type="text" class="form-control"
-															name="professorRoom" id="professorRoom" value="${professorRoom}"
-															readonly="readonly">
-													</c:if><!-- 교수실이 정해져있으면 교수실출력 -->
+															name="professorRoom" id="professorRoom"
+															value="${professorRoom}" readonly="readonly">
+													</c:if>
+													<!-- 교수실이 정해져있으면 교수실출력 -->
 												</div>
 												<div class="form-group">
 													<label> 주민번호: </label> <input type="text"
@@ -140,12 +139,10 @@ body {
 												</div>
 
 												<div class="form-group">
-													<label> 연봉: </label>
-													<c:forEach var="M" items="${professorOne}">
-														<input type="text" class="form-control" name="salaryValue"
-															id="salaryValue" value="${M.salaryValue}(만원)"
-															readonly="readonly">
-													</c:forEach>
+													<label> 연봉: </label> <input type="text"
+														class="form-control" name="salaryValue" id="salaryValue"
+														value="${M.salaryValue}(만원)" readonly="readonly">
+
 												</div>
 
 												<div class="form-group">
@@ -190,17 +187,30 @@ body {
 												</div>
 
 												<div class="form-group">
-													<label> 학적상태: </label> <input type="text"
-														class="form-control" name="professorState"
-														id="professorState" value="${professorState}"
-														readonly="readonly">
+													<label> 학적상태: </label>
+													<c:if test="${M.professorState eq 'Y'}">
+														<input type="text" class="form-control"
+															name="professorState" id="professorState" value="재직중"
+															readonly="readonly">
+													</c:if>
+													<c:if test="${M.professorState ne 'Y'}">
+														<input type="text" class="form-control"
+															name="professorState" id="professorState" value="휴직중"
+															readonly="readonly">
+													</c:if>
+												</div>
+												<div style="float: right">
+													<a
+														href="${pageContext.request.contextPath}/professor/modifyProfessor?professorNo=${M.professorNo}">
+														<button type="button" class="btn btn-primary">정보수정</button>
+													</a>
 												</div>
 											</div>
-										</div>
-
+										</c:forEach>
 									</div>
-									<button class="btn btn-primary px-3 ml-4">이전화면으로</button>
-									<button class="btn btn-primary px-3 ml-4">정보수정하기</button>
+
+								</div>
+
 							</form>
 						</div>
 					</div>

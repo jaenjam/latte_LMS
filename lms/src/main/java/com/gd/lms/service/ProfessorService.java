@@ -40,6 +40,14 @@ public class ProfessorService {
 		return professorMapper.selectProfessorOne(professorNo);	
 	}
 	
+	//교수수정하기
+	public int modifyProfessor(Professor professor) {
+		
+		log.debug(TeamColor.JJY+"Professor Service안에 modifyProfessor실행");
+		
+		return professorMapper.updateProfessor(professor);
+	}
+	
 	//교수목록보기
 	public List<Map<String,Object>> getProfessorList(){
 		log.debug(TeamColor.JJY+"getProfessorList(목록보기) service실행");

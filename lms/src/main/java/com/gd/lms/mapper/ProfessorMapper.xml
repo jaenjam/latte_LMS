@@ -97,6 +97,26 @@
 			p.professor_no = #{professorNo}
 	</select>
 	
+	<!-- 교수정보수정하기 -->
+	<update id="updateProfessor" parameterType="com.gd.lms.vo.Professor">
+		
+		UPDATE 
+			professor
+		SET
+			 professor_no=#{professorNo}
+			,major_no=#{majorNo}
+			,professor_name=#{professorName}
+			,professor_age=#{professorAge}
+			,professor_gender=#{professorGender}
+			,professor_telephone=#{professorTelephone}
+			,professor_email=#{professorEmail}
+			,professor_address=#{professorAddress}
+			,professor_detail_address=#{professorDetailAddress}
+		WHERE
+			professor_no = #{professorNo}
+
+	</update>
+	
 	<!-- 교수목록 -->
 	<select id="selectProfessorList" resultType="map">
 	SELECT
