@@ -14,7 +14,8 @@
 <link rel="icon" type="image/png" sizes="16x16"
 	href="../../assets/images/favicon.png">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -62,16 +63,19 @@
 												</div>
 												<div class="form-group col-md-6">
 													<label>비밀번호</label> <input type="password"
-														class="form-control" name="employeePass" id="employeePass" placeholder="비밀번호를 입력해주세요">
+														class="form-control" name="employeePass" id="employeePass"
+														placeholder="비밀번호를 입력해주세요">
 												</div>
 											</div>
 											<div class="form-group">
 												<label>이름</label> <input type="text" class="form-control"
-													name="employeeName" id="employeeName" placeholder="이름을 입력해주세요">
+													name="employeeName" id="employeeName"
+													placeholder="이름을 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>나이</label> <input type="text" class="form-control"
-													name="employeeAge" id="employeeAge" placeholder="나이을 입력해주세요">
+													name="employeeAge" id="employeeAge"
+													placeholder="나이을 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>성별</label><br> <input type="radio"
@@ -80,31 +84,42 @@
 											</div>
 											<div class="form-group">
 												<label>주민번호</label> <input type="text" class="form-control"
-													name="employeeRegiNo" id="employeeRegiNo" placeholder="주민번호을 입력해주세요">
+													name="employeeRegiNo" id="employeeRegiNo"
+													placeholder="주민번호을 입력해주세요">
 											</div>
 
 											<div class="form-group">
 												<label>전화번호</label> <input type="text" class="form-control"
-													name="employeeTelephone" id="employeeTelephone" placeholder="전화번호을 입력해주세요">
+													name="employeeTelephone" id="employeeTelephone"
+													placeholder="전화번호을 입력해주세요">
 											</div>
 
 											<div class="form-group">
 												<label>이메일</label> <input type="text" class="form-control"
-													name="employeeEmail" id="employeeEmail" placeholder="이메일을 입력해주세요">
-											</div>
-											<div class="form-row">
-												<div class="form-group col-md-6">
-													<label>주소</label> <input type="text" class="form-control"
-														name="employeeAddress" id="employeeAddress" placeholder="주소를 입력해주세요">
-												</div>
-												<div class="form-group col-md-6">
-													<label>상세주소</label> <input type="text" class="form-control"
-														name="employeeDetailAddress" id="employeeDetailAddress" placeholder="상세주소를 입력해주세요">
-												</div>
+													name="employeeEmail" id="employeeEmail"
+													placeholder="이메일을 입력해주세요">
 											</div>
 											<div class="form-group">
-												<button type="button" style="float: right;"
-													id="employeeAddrBtn" class="btn btn-light">주소검색</button>
+												<label>주소</label> <input type="text" class="form-control"
+													name="employeeAddress" id="employeeAddress"
+													placeholder="주소를 입력해주세요">
+											</div>
+											<div class="row">
+												<div class="col-sm-9">
+													<div class="form-group">
+														<label>상세주소</label> <input type="text"
+															class="form-control" name="employeeDetailAddress"
+															id="employeeDetailAddress" placeholder="상세주소를 입력해주세요">
+													</div>
+												</div>
+
+												<div class="col-sm-2">
+													<div class="form-group">
+														<button type="button"
+															style="margin-top: 33px;"
+															id="employeeAddrBtn" class="btn btn-light">주소검색</button>
+													</div>
+												</div>
 											</div>
 											<div class="form-group">
 												<button type="button" class="btn btn-dark"

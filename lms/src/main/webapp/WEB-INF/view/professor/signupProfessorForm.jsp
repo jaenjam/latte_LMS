@@ -14,7 +14,8 @@
 <link rel="icon" type="image/png" sizes="16x16"
 	href="../../assets/images/favicon.png">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -57,7 +58,8 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<label>사번</label> <input type="text" name="professorNo"
-														id="professorNo" class="form-control" placeholder="사번을 입력해주세요">
+														id="professorNo" class="form-control"
+														placeholder="사번을 입력해주세요">
 												</div>
 												<div class="form-group col-md-6">
 													<label>비밀번호</label> <input type="password"
@@ -68,7 +70,7 @@
 											<div class="form-group">
 												<label>전공</label> <select name="majorNo"
 													class="form-control">
-														<option>==선택해주세요==</option>
+													<option>==선택해주세요==</option>
 													<c:forEach items="${majorList}" var="M">
 														<option value="${M.majorNo}">${M.majorName}</option>
 													</c:forEach>
@@ -76,11 +78,13 @@
 											</div>
 											<div class="form-group">
 												<label>이름</label> <input type="text" name="professorName"
-													class="form-control" id="professorName" placeholder="이름을 입력해주세요">
+													class="form-control" id="professorName"
+													placeholder="이름을 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>나이</label> <input type="text" name="professorAge"
-													class="form-control" id="professorAge" placeholder="나이를 입력해주세요">
+													class="form-control" id="professorAge"
+													placeholder="나이를 입력해주세요">
 											</div>
 											<div class="form-group">
 												<label>성별</label><br> <input type="radio"
@@ -101,23 +105,33 @@
 
 											<div class="form-group">
 												<label>이메일</label> <input type="text" name="professorEmail"
-													class="form-control" id="professorEmail" placeholder="이메일을 입력해주세요">
+													class="form-control" id="professorEmail"
+													placeholder="이메일을 입력해주세요">
 											</div>
-											<div class="form-row">
-												<div class="form-group col-md-6">
-													<label>주소</label> <input type="text"
-														name="professorAddress" class="form-control"
-														id="professorAddress" placeholder="주소를 입력해주세요">
-												</div>
-												<div class="form-group col-md-6">
-													<label>상세주소</label> <input type="text" class="form-control"
-														name="professorDetailAddress" id="professorDetailAddress" placeholder="상세주소를 입력해주세요">
-												</div>
-											</div>
+
 											<div class="form-group">
-												<button type="button" style="float: right;"
-													id="professorAddrBtn" class="btn btn-light">주소검색</button>
+												<label>주소</label> <input type="text" name="professorAddress"
+													class="form-control" id="professorAddress"
+													placeholder="주소를 입력해주세요">
 											</div>
+											<div class="row">
+												<div class="col-sm-9">
+													<div class="form-group">
+														<label>상세주소</label> <input type="text"
+															class="form-control" name="professorDetailAddress"
+															id="professorDetailAddress" placeholder="상세주소를 입력해주세요">
+													</div>
+												</div>
+
+												<div class="col-sm-2">
+													<div class="form-group">
+														<button type="button"
+															style="margin-top: 33px;"
+															id="professorAddrBtn" class="btn btn-light">주소검색</button>
+													</div>
+												</div>
+											</div>
+
 											<div class="form-group">
 												<button type="button" class="btn btn-dark"
 													id="addProfessorBtn">회원가입</button>

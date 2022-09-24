@@ -108,9 +108,6 @@
 											<span class="studentEmail_re2"> 이메일 형식을 확인해주세요 </span>
 											<span class="studentEmail_re3"> 사용가능한 이메일입니다 </span>
                                         </div>
-                                        
-                                        
-                                        
                                         <div class="form-row">
 												<div class="form-group col-md-6">
 													<label>주소</label> <input type="text" class="form-control"
