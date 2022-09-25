@@ -18,10 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
-import com.gd.lms.service.ProfessorService;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.EmployeeImg;
-import com.gd.lms.vo.ProfessorImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,49 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmployeeController {
 
 	@Autowired EmployeeService employeeService;
-	@Autowired ProfessorService professerService;
-	
-	
-	//상세관리 - 교수리스트 보여주기
-	@GetMapping("/employee/detail/professorList")
-	public String professorList(Model model) {
-		
-		//디버깅코드 출력
-		log.debug(TeamColor.LJE + "EmployeeController professorList 실행");
-				
-		//professorServcie에 있는 getProfessorList 가져오기
-		List<Map<String,Object>> professorList = professerService.getProfessorList();
-		
-		//professorList에 넣어준다.
-		model.addAttribute("professorList" ,professorList);
-		
-		log.debug(TeamColor.LJE + "EmployeeController subEmployeeList 실행한 값 : " + professorList);
-		
-		//employee/detail/professorList 페이지로
-		return "employee/detail/professorList";
-	}
-	
-	
-	//상세관리 - 서브관리자리스트 보여주기
-	@GetMapping("/employee/detail/subEmployeeList")
-	public String subEmployeeList(Model model) {
-		
-		//디버깅코드 출력
-		log.debug(TeamColor.LJE + "EmployeeController subEmployeeList 실행");
-		
-		//map에 넣어주고 list에 넣어 출력하기 위해서
-		List<Map<String, Object>> subEmployeeList = employeeService.getsubEmployeeList();
-		
-		//subEmployeeList에 넣어주기
-		model.addAttribute("subEmployeeList",subEmployeeList);
-		
-		log.debug(TeamColor.LJE + "EmployeeController subEmployeeList 실행한 값 : " + subEmployeeList);
-		
-		//employee/detail/subEmployeeList 페이지로
-		return "employee/detail/subEmployeeList";
-	}
-	
-	
+
 	
 	// 교수사진등록하기 (Form)
 	@GetMapping("/employee/addEmployeeImgForm")

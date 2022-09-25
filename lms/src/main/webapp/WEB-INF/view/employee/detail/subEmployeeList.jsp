@@ -90,24 +90,6 @@
                                             </tr>
                                         </c:forEach>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>사번</th>
-                                                <th>이름</th>
-                                                <th>주민번호</th>
-                                                <th>나이</th>
-                                                <th>성별</th>
-                                                <th>전화번호</th>
-                                                <th>이메일</th>
-                                                <th>주소</th>
-                                                <th>상세주소</th>
-                                                <th>재직상태</th>
-                                                <th>총관리자/서브관리자</th>
-                                                <th>생성일</th>
-                                                <th>수정일</th>
-                                                <th>연봉등급</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                             </div>

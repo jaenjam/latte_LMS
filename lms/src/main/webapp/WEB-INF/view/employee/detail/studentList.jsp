@@ -29,7 +29,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(4)">상세관리</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">교수</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">학생</a></li>
                     </ol>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                             <div class="card-body">
                             <div class="row">
                             	<div class="col-sm-9">
-                               		<h4 class="card-title">교수 리스트</h4>
+                               		<h4 class="card-title">학생 리스트</h4>
                                 </div>
                             </div>
                                 <br>
@@ -63,32 +63,34 @@
                                                 <th>상세주소</th>
                                                 <th>교수실</th>
                                                 <th>재직상태</th>
+                                                <th>과대표</th>
                                                 <th>생성일</th>
                                                 <th>수정일</th>
-                                                <th>연봉등급</th>
-                                                <th>연봉</th>
+                                                <th>장학코드</th>
+                                                <th>장학이름</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="p" items="${professorList}">
+                                        <c:forEach var="s" items="${studentList}">
                                             <tr>
-                                                <td>${p.professorNo}</td>
-                                                <td>${p.majorNo}</td>
-                                                <td>${p.majorName}</td>
-                                                <td>${p.professorName}</td>
-                                                <td>${p.professorRegiNo}</td>
-                                                <td>${p.professorAge}</td>
-                                                <td>${p.professorGender}</td>
-                                                <td>${p.professorTelephone}</td>
-                                                <td>${p.professorEmail}</td>
-                                                <td>${p.professorAddress}</td>
-                                                <td>${p.professorDetailAddress}</td>
-                                                <td>${p.professorRoom}</td>
-                                                <td>${p.professorState}</td>
-                                                <td>${p.createDate}</td>
-                                                <td>${p.updateDate}</td>
-                                                <td>${p.salaryNo}</td>
-                                                <td>${p.salaryValue}</td>
+                                                <td>${s.studentNo}</td>
+                                                <td>${s.majorNo}</td>
+                                                <td>${s.majorName}</td>
+                                                <td>${s.studentName}</td>
+                                                <td>${s.studentRegiNo}</td>
+                                                <td>${s.studentAge}</td>
+                                                <td>${s.studentGender}</td>
+                                                <td>${s.studentTelephone}</td>
+                                                <td>${s.studentEmail}</td>
+                                                <td>${s.studentAddress}</td>
+                                                <td>${s.studentDetailAddress}</td>
+                                                <td>${s.studentState}</td>
+                                                <td>${s.studentTop}</td>
+                                                <td>${s.studentActive}</td>
+                                                <td>${s.createDate}</td>
+                                                <td>${s.updateDate}</td>
+                                                <td>${s.scholarNo}</td>
+                                                <td>${s.scholarName}</td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

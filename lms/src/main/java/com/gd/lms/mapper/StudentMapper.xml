@@ -102,6 +102,7 @@
 	ON 
 		s.major_no = m.major_no
 		
+	ORDER BY student_no
 	</select>
 	
 	
