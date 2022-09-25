@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.EmployeeMapper">
 
+	<!-- 서브관리자 리스트 -->
+	<select id="subEmployeeList" resultType="map">
+		SELECT
+			  employee_no 				employeeNo
+			, employee_pass 			employeePass
+			, employee_name 			employeeName
+			, employee_regi_no 			employeeRegiNo
+			, employee_age 				employeeAge
+			, employee_gender 			employeeGender
+			, employee_telephone 		employeeTelephone
+			, employee_email 			employeeEmail
+			, employee_address 			employeeAddress
+			, employee_detail_address 	employeeDetailAddress
+			, employee_state 			employeeState
+			, employee_active 			employeeActive
+			, create_date 				createDate
+			, update_date 				updateDate
+			, salary_no 				salaryNo
+		
+		FROM employee
+		
+		WHERE employee_active = '서브관리자'
+	</select>
+
 	<!-- 관리자 회원가입 -->
 	<insert id="insertEmployee"
 		parameterType="com.gd.lms.vo.Employee">

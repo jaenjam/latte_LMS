@@ -14,7 +14,7 @@
                 	<!-- 학생용 : 마이페이지 -->
                 	
                 	
-                    <c:if test="${user ne 'student'}">
+                    <c:if test="${user eq 'student'}">
                     
 	                    <li class="mega-menu mega-menu-sm">
 	                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
@@ -40,23 +40,115 @@
                     
                     <c:if test="${user eq 'employee'}">
                     
+                    
+                    
+	                    <!-- 상세관리 : 교수, 학생, 과목, 승인과목 -->
+                    	
+                    	<li class="nav-label">총관리자</li>
+                    	
 	                    <li class="mega-menu mega-menu-sm">
 	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
 	                            <i class="icon-notebook menu-icon"></i>
-	                            <span class="nav-text">기능관리</span>
+	                            <span class="nav-text">상세관리</span>
 	                        </a>
 	                        <ul aria-expanded="false">
 	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/function/employeeFunction">서브관리자 기능</a>
+	                            	<a href="${pageContext.request.contextPath}/employee/detail/subEmployeeList">서브관리자</a>
 	                            </li>
 	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/function/studentFunction">학생 기능</a>
+	                            	<a href="${pageContext.request.contextPath}/employee/detail/professorList">교수</a>
+	                            </li>
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/detail/studentList">학생</a>
 	                            </li>
 		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/function/professorFunction">교수 기능</a>
+		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectList">과목</a>
+		                        </li>
+		                        <li>
+		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">승인과목</a>
 		                        </li>
 	                         </ul>
 	                    </li>
+	                    
+	                    
+	                    
+	                    
+	                    <!-- 승인관리 : 서브관리자, 교수, 학생, 과목  -->
+                    	
+                    	
+	                    <li class="mega-menu mega-menu-sm">
+	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
+	                            <i class="icon-notebook menu-icon"></i>
+	                            <span class="nav-text">승인관리</span>
+	                        </a>
+	                        <ul aria-expanded="false">
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/approval/subEmployeeApproval">서브관리자</a>
+	                            </li>
+		                        <li>
+		                           	<a href="${pageContext.request.contextPath}/employee/approval/professorApproval">교수</a>
+		                        </li>
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/approval/studentApproval">학생</a>
+	                            </li>
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/approval/subjectApproval">과목</a>
+	                            </li>
+	                         </ul>
+	                    </li>
+	                    
+	                    
+	                    
+	               
+	               
+	                    <!-- 계정상태변경 : 서브관리자, 교수, 학생  -->
+                    	
+                    	
+	                    <li class="mega-menu mega-menu-sm">
+	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
+	                            <i class="icon-notebook menu-icon"></i>
+	                            <span class="nav-text">계정상태</span>
+	                        </a>
+	                        <ul aria-expanded="false">
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/state/subEmployeeState">서브관리자</a>
+	                            </li>
+		                        <li>
+		                           	<a href="${pageContext.request.contextPath}/employee/state/professorState">교수</a>
+		                        </li>
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/state/studentState">학생</a>
+	                            </li>
+	                         </ul>
+	                    </li>
+	               
+	               
+	                    
+	                    
+                    
+                    	<!-- 비밀번호초기화 : 서브관리자, 교수, 학생 -->
+                    	
+                    	
+	                    <li class="mega-menu mega-menu-sm">
+	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
+	                            <i class="icon-notebook menu-icon"></i>
+	                            <span class="nav-text">비밀번호초기화</span>
+	                        </a>
+	                        <ul aria-expanded="false">
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/reset/subEmployeeReset">서브관리자</a>
+	                            </li>
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/reset/professorReset">교수</a>
+	                            </li>
+		                        <li>
+		                           	<a href="${pageContext.request.contextPath}/employee/reset/studentReset">학생</a>
+		                        </li>
+	                         </ul>
+	                    </li>
+	                    
+	                    
+	                    
                     </c:if>
                     
                    

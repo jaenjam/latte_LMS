@@ -13,6 +13,9 @@ import com.gd.lms.vo.EmployeeImg;
 @Mapper
 public interface EmployeeMapper {
 	
+	//상세관리 - 서브관리자리스트
+	List<Map<String, Object>> subEmployeeList();
+	
 	//관리자 사진 보기
 	EmployeeImg selectEmployeeImg(int employeeNo);
 	

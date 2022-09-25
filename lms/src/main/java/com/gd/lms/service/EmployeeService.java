@@ -24,6 +24,13 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
+	//상세관리 - 서브관리자리스트 보여주기
+	public List<Map<String, Object>> getsubEmployeeList(){
+		log.debug(TeamColor.LJE + "EmployeeService getsubEmployeeList");
+
+		return employeeMapper.subEmployeeList();
+	}
+	
 	// 관리자 정보 수정 사진등록
 	public int addEmployeeImg(EmployeeImg employeeImg) {
 		log.debug(TeamColor.CSJ + "addEmployeeImg.service");

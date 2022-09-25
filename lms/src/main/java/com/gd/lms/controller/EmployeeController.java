@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
+import com.gd.lms.service.ProfessorService;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.EmployeeImg;
 import com.gd.lms.vo.ProfessorImg;
@@ -28,9 +29,51 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class EmployeeController {
 
-	@Autowired
-	EmployeeService employeeservice;
-
+	@Autowired EmployeeService employeeService;
+	@Autowired ProfessorService professerService;
+	
+	
+	//상세관리 - 교수리스트 보여주기
+	@GetMapping("/employee/detail/professorList")
+	public String professorList(Model model) {
+		
+		//디버깅코드 출력
+		log.debug(TeamColor.LJE + "EmployeeController professorList 실행");
+				
+		//professorServcie에 있는 getProfessorList 가져오기
+		List<Map<String,Object>> professorList = professerService.getProfessorList();
+		
+		//professorList에 넣어준다.
+		model.addAttribute("professorList" ,professorList);
+		
+		log.debug(TeamColor.LJE + "EmployeeController subEmployeeList 실행한 값 : " + professorList);
+		
+		//employee/detail/professorList 페이지로
+		return "employee/detail/professorList";
+	}
+	
+	
+	//상세관리 - 서브관리자리스트 보여주기
+	@GetMapping("/employee/detail/subEmployeeList")
+	public String subEmployeeList(Model model) {
+		
+		//디버깅코드 출력
+		log.debug(TeamColor.LJE + "EmployeeController subEmployeeList 실행");
+		
+		//map에 넣어주고 list에 넣어 출력하기 위해서
+		List<Map<String, Object>> subEmployeeList = employeeService.getsubEmployeeList();
+		
+		//subEmployeeList에 넣어주기
+		model.addAttribute("subEmployeeList",subEmployeeList);
+		
+		log.debug(TeamColor.LJE + "EmployeeController subEmployeeList 실행한 값 : " + subEmployeeList);
+		
+		//employee/detail/subEmployeeList 페이지로
+		return "employee/detail/subEmployeeList";
+	}
+	
+	
+	
 	// 교수사진등록하기 (Form)
 	@GetMapping("/employee/addEmployeeImgForm")
 	public String addEmployeeImg(Model model) {
@@ -54,7 +97,7 @@ public class EmployeeController {
 
 		log.debug(TeamColor.CSJ + "employeeController.employeeList실행");
 
-		List<Map<String, Object>> employeeList = employeeservice.getEmployeeList();
+		List<Map<String, Object>> employeeList = employeeService.getEmployeeList();
 
 		model.addAttribute("employeeList", employeeList);
 		log.debug(TeamColor.CSJ + ("employeeController.employeeList : " + employeeList));
@@ -66,7 +109,7 @@ public class EmployeeController {
 	@PostMapping("/modifyEmployee")
 	public String modifyEmployee(Employee employee, Model model) {
 
-		int row = employeeservice.modifyEmployee(employee);
+		int row = employeeService.modifyEmployee(employee);
 
 		log.debug(TeamColor.CSJ + "EmployeeController.modifyEmployee" + row);
 
@@ -82,7 +125,7 @@ public class EmployeeController {
 	@GetMapping("/modifyEmployee")
 	public String modifyEmployee(Model model, @RequestParam(value = "No") int employeeNo) {
 
-		List<Map<String, Object>> employee = employeeservice.getEmployeeOne(employeeNo);
+		List<Map<String, Object>> employee = employeeService.getEmployeeOne(employeeNo);
 
 		model.addAttribute("employeeOne", employee);
 
@@ -108,7 +151,7 @@ public class EmployeeController {
 		log.debug(TeamColor.CSJ + "비밀번호확인 적용 액션");
 
 		// 이전페이지에서 입력된 비밀번호와 히든으로 넘겨받은 아이디를 입력받아 쿼리 실행시킨 것을 담기
-		List<Map<String, Object>> employeeOneAfterPass = employeeservice.getEmployeeOneAfterPass(employee);
+		List<Map<String, Object>> employeeOneAfterPass = employeeService.getEmployeeOneAfterPass(employee);
 
 		// 디버그
 		log.debug(TeamColor.CSJ + employeeOneAfterPass);
@@ -126,7 +169,7 @@ public class EmployeeController {
 	@GetMapping("/getEmployeeOne")
 	public String getEmployeeOne(HttpServletRequest request, @RequestParam("No") int employeeNo, Model model) {
 
-		List<Map<String, Object>> employeeOne = employeeservice.getEmployeeOne(employeeNo);
+		List<Map<String, Object>> employeeOne = employeeService.getEmployeeOne(employeeNo);
 
 		log.debug(TeamColor.CSJ + "EmployeeController의 employeeOne" + employeeOne);
 
@@ -147,7 +190,7 @@ public class EmployeeController {
 	@PostMapping("/addEmployee")
 	public String addEmployee(Employee employee, Model model) {
 
-		int row = employeeservice.addEmployee(employee);
+		int row = employeeService.addEmployee(employee);
 		model.addAttribute("addemployee", row);
 
 		log.debug(TeamColor.CSJ + "EmployeeController의 addEmployee post:" + model);
@@ -167,7 +210,7 @@ public class EmployeeController {
 		// 세션 사용하기위해 선언
 		HttpSession session = request.getSession();
 
-		Employee loginEmployee = employeeservice.loginEmployee(employee);
+		Employee loginEmployee = employeeService.loginEmployee(employee);
 
 		model.addAttribute("employeeId", loginEmployee);
 
