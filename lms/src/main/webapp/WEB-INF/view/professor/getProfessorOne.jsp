@@ -77,8 +77,10 @@ body {
 					<div class="card">
 						<div class="card-body">
 							<div class="media align-items-center mb-4">
-								<img class="mr-2" src="${filename}" width="80" height="80"
-									alt="">
+								<c:forEach var="M" items="${professorOne}">
+									<img class="mr-2"
+										src="/images/userprofile/${M.filename}${M.contentType}" width="80" height="80" alt="">
+								</c:forEach>
 							</div>
 							<div class="row mb-8">
 								<div class="col-12 text-center">
