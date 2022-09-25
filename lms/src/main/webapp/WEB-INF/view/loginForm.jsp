@@ -133,10 +133,10 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/common/common.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/custom.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/settings.js"></script>
+    <script src="${pageContext.request.contextPath}/js/gleek.js"></script>
+    <script src="${pageContext.request.contextPath}/js/styleSwitcher.js"></script>
 </body>
 </html>

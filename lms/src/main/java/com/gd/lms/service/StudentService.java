@@ -39,6 +39,14 @@ public class StudentService {
 		return studentMapper.insertStudent(student);
 	}
 
+	
+	 // 학생회원가입 (학번중복체크)
+	 public int studentNoCheck(int studentNo) throws Exception {
+		 
+		 return studentMapper.studentNoCheck(studentNo);
+	 }
+	
+	
 	// 학생정보 상세보기
 	public List<Map<String, Object>> getStudentOne(int studentNo) {
 		// 해당 서비스 진입여부 확인

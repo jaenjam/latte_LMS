@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
@@ -57,7 +58,7 @@ public class StudentController {
 	
 	
 	// 학생 회원가입 action
-	@PostMapping("/addStudent")
+	@PostMapping("/student/signupStudentForm")
 	public String addStudent(Student student, Model model ) {
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW+ "StudentController의 회원가입액션 진입");
@@ -72,6 +73,28 @@ public class StudentController {
 		return "loginForm";		
 	}
 	
+	
+	// 아이디 중복검사
+	@RequestMapping(value = "/studentNoChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String studentNoChkPOST(int studentNo) throws Exception{
+		
+		log.debug(TeamColor.KHW+ "studentNoChkPOST() 진입");
+		
+		int result = studentService.studentNoCheck(studentNo);
+		
+		log.debug(TeamColor.KHW+ "studentNoChkPOST() 진입 : " + result);
+		
+		
+		if(result !=0) {
+			return "fail"; // 중복아이디가 존재
+		} else {
+			return "success";
+		}
+		
+	} 
+	
+		
 	
 	// 학생 로그인 action
 	@PostMapping("/StudentForm")

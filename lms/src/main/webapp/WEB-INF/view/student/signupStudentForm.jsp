@@ -41,19 +41,19 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="${pageContext.request.contextPath}/addStudent"> <h4> 학생 회원가입 </h4></a>
+                                <a class="text-center" href="${pageContext.request.contextPath}/student/signupStudentForm"> <h4> 학생 회원가입 </h4></a>
                                 
                                 <div class="card-body">
                                 
                                 <h4 class="card-title"> </h4>
                                 
                                 <div class="basic-form">
-                                    	<form action="${pageContext.request.contextPath}/addStudent" method="post">
+                                    	<form action="${pageContext.request.contextPath}/student/signupStudentForm" method="post" id="addStudentForm">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>아이디: </label>
                                   
-                                                <input type="text" class="form-control"name="studentNo" id="studentNo"
+                                                <input type="text" class="form-control" name="studentNo" id="studentNo"
                                                 placeholder="학번을 입력해주세요">
                                                 	<span class="studentNo_re1"> 학번을 입력하주세요 </span>
 													<span class="studentNo_re2"> 사용가능한 학번입니다 </span>
@@ -91,9 +91,10 @@
                                        		<span class="studentAge_re1"> 나이를 입력해주세요 </span>
                                         </div>
 										<div class="form-group">
-												<label>성별</label><br> <input type="radio"
-													name="studentGender" value="남자"> 남자 <input
-													type="radio" name="studentGender" value="여자"> 여자
+												<label>성별</label><br> 
+												<input type="radio"
+													name="studentGender" value="남자" id="studentGender_m"> 남자 
+												<input type="radio" name="studentGender" value="여자" id="studentGender_f"> 여자
 												<span class="studentGender_re1"> 성별을 선택해주세요 </span>
 										</div>
                                         <div class="form-group">
@@ -108,6 +109,9 @@
 											<span class="studentEmail_re2"> 이메일 형식을 확인해주세요 </span>
 											<span class="studentEmail_re3"> 사용가능한 이메일입니다 </span>
                                         </div>
+                                        
+                                        
+                                        
                                         <div class="form-row">
 												<div class="form-group col-md-6">
 													<label>주소</label> <input type="text" class="form-control"
@@ -128,7 +132,7 @@
 											
 											</div>
 											<div class="form-group">
-												<button type="submit" class="btn btn-dark"
+												<button type="button" class="btn btn-dark"
 													id="addStudentBtn">회원가입</button>
 											</div>
 										</form>
@@ -274,16 +278,11 @@
 		
 	}
 
-</script>
-
-
-
-
-<script>
 
 // 유효성 검사 통과유무 변수
 	var studentNoCk = false; // 학번
 	var studentPassCk = false; // 비밀번호
+	var majorNoCk = false;
 	var studentNameCk = false; // 이름
 	var studentRegiNoCk = false; // 주민
 	var studentGenderCk = false; // 성별
@@ -294,40 +293,61 @@
 
 
 
-	$(document).ready(fuction(){
+	$(document).ready(function(){
 		
 		// 회원가입 버튼(회원가입 기능 작동)
-		$(".addStudentBtn").click(fuction(){
+		$("#addStudentBtn").click(function(){
 			
 		// 입력란변수
-		var studentNo = $('.studentNo').val();
-		var studentPass = $('.studentPass').val();
-		var studentName = $('.studentName').val();
-		var studentRegiNo = $('.studentRegiNo').val();
-		var studentGender = $('.studentGender').val();
-		var studentTelephone = $('.studentTelephone').val();
-		var studentEmail = $('.studentEmail').val();
-		var studentAddress = $('.studentAddress').val();
-		var studentDetailAddress = $('.studentDetailAddress').val();
+		var studentNo = $('#studentNo').val();
+		var studentPass = $('#studentPass').val();
+		var majorNo = $('#majorNo').val();
+		var studentName = $('#studentName').val();
+		var studentRegiNo = $('#studentRegiNo').val();
+		var studentAge = $('#studentAge').val();
+		var studentGender = $("input[name='studentGender']:checked").val();
+
+		var studentTelephone = $('#studentTelephone').val();
+		var studentEmail = $('#studentEmail').val();
+		var studentAddress = $('#studentAddress').val();
+		var studentDetailAddress = $('#studentDetailAddress').val();
 		
 		
-	});
+	
 		
-		/*
+		
 		// 학번 유효성검사
 		if(studentNo == ""){ // 아무것도 입력안하면
 			$('.studentNo_re1').css('display', 'block');
+			$('#studentNo').focus();
 			studentNoCk = false;
+			return;
 		} else{
 			$('.studentNo_re1').css('display', 'none');
 			studentNoCk = true;
 		}
-		*/
+		
 		
 		// 비밀번호 유효성검사
 		if(studentPass == ""){ // 아무것도 입력안하면
 			$('.studentPass_re1').css('display', 'block');
+			$('#studentPass').focus();
+			console.log("$('#studentPass').val();")
 			studentPassCk = false;
+			return;
+		} else {
+			$('.studentPass_re1').css('display', 'none');
+			studentPassCk = true;
+		}
+		
+		
+		
+		// 전공 유효성검사
+		if(majorNo == ""){ // 아무것도 입력안하면
+			$('#majorNo').focus();
+			console.log("$('#majorNo').val();")
+			majorNoCk = false;
+			return;
 		} else {
 			$('.studentPass_re1').css('display', 'none');
 			studentPassCk = true;
@@ -335,41 +355,50 @@
 		
 		
 		// 이름 유효성검사
+		console.log(studentName)
 		if(studentName == ""){ // 아무것도 입력안하면
-			$('.studentName_re1').css('display', 'block');
+			$('#studentName_re1').css('display', 'block');
+			$('#studentPass').focus();
 			studentNameCk = false;
+			return;
 		} else {
-			$('.studentName_re1').css('display', 'none');
+			$('#studentName_re1').css('display', 'none');
 			studentNameCk = true;
 		}	
 		
 		
 		// 주민번호 유효성 검사
 		if(studentRegiNo == ""){ // 아무것도 입력안하면
-			$('.studentRegiNo_re1').css('display', 'block');
+			$('#studentRegiNo_re1').css('display', 'block');
+			$('#studentRegiNo').focus();	
 			studentRegiNoCk = false;
+			return;
 		} else {
-			$('.studentRegiNo_re1').css('display', 'none');
+			$('#studentRegiNo_re1').css('display', 'none');
 			studentRegiNoCk = true;
 		}	
 		
 		
 		// 성별 유효성검사
 		if(studentGender == ""){ // 아무것도 입력안하면
-			$('.studentGender_re1').css('display', 'block');
+			$('#studentGender_re1').css('display', 'block');
+			$('#studentGender').focus();
 			studentGenderCk = false;
+			return;
 		} else {
-			$('.studentGender_re1').css('display', 'none');
+			$('#studentGender_re1').css('display', 'none');
 			studentGenderCk = true;
 		}	
 		
 		
 		// 핸드폰 유효성검사
 		if(studentTelephone == ""){ // 아무것도 입력안하면
-			$('.studentTelephone_re1').css('display', 'block');
+			$('#studentTelephone_re1').css('display', 'block');
+			$('#studentTelephone').focus();
 			studentTelephoneCk = false;
+			return;
 		} else {
-			$('.studentTelephone_re1').css('display', 'none');
+			$('#studentTelephone_re1').css('display', 'none');
 			studentTelephoneCk = true;
 		}	
 		
@@ -377,29 +406,46 @@
 		// 이메일 유효성검사
 		if(studentEmail == ""){ // 아무것도 입력안하면
 			$('.studentEmail_re1').css('display', 'block');
+			$('.studentEmail_re2').css('display', 'none');
+			$('.studentEmail_re3').css('display', 'none');
+		
+			$('#studentEmail').focus();
 			studentEmailCk = false;
-		} else {
+			return;
+		} else if(!mailcheckLt(studentEmail)){
 			$('.studentEmail_re1').css('display', 'none');
+			$('.studentEmail_re2').css('display', 'block');
+			$('.studentEmail_re3').css('display', 'none');
+			return;
+	
+		}else{
+			$('.studentEmail_re1').css('display', 'none');
+			$('.studentEmail_re2').css('display', 'none');
+			$('.studentEmail_re3').css('display', 'block');
 			studentEmailCk = true;
 		}	
 		
 		
 		// 주소 유효성검사
 		if(studentAddress == ""){ // 아무것도 입력안하면
-			$('.studentAddress_re1').css('display', 'block');
+			$('#studentAddress_re1').css('display', 'block');
+			$('#studentAddress').focus();
 			studentAddressCk = false;
+			return;
 		} else {
-			$('.studentAddress_re1').css('display', 'none');
+			$('#studentAddress_re1').css('display', 'none');
 			studentAddressCk = true;
 		}	
 		
 		
 		// 상세주소 유효성검사
 		if(studentDetailAddress == ""){ // 아무것도 입력안하면
-			$('.studentDetailAddress_re1').css('display', 'block');
+			$('#studentDetailAddress_re1').css('display', 'block');
+			$('#studentDetailAddress').focus();
 			studentDetailAddressCk = false;
+			return;
 		} else {
-			$('.studentDetailAddress_re1').css('display', 'none');
+			$('#studentDetailAddress_re1').css('display', 'none');
 			studentDetailAddressCk = true;
 		}	
 		
@@ -407,61 +453,90 @@
 		// 최종유효성검사
 		if(studentNoCk&&studentPassCk&&studentNameCk&&studentRegiNoCk&&studentGenderCk&&studentTelephoneCk&&studentEmailCk&&studentAddressCk&&studentDetailAddressCk){
 			
-			$('#addStudentBtn').attr("action", "/student/signupStudentForm");
-			$('#addStudentBtn').submit();
+			console.log("1")
+			$('#addStudentForm').submit();
+		}else{
+			
+			console.log("2")
 		}
 		
 		return false;
 		
 		});
-	});	
+		
+		
 	
-		// 학번 중복검사 유효성검사
-		// studentNoCheck = true >> 학번중복이 없는 경우
-		// studentNoCheck = false; >> 중복된 경우
+	});
+	
+	// 도큐먼트 끝
 
+	
+	// 아이디 중복검사
+	$('#studentNo').on("propertychange change keyup paste input", function(){
+
+		console.log("keyup 테스트");	
+
+		var studentNo = $('#studentNo').val();
+		var data = {studentNo : studentNo}
 		
-		// 학번중복검사
-		$('.studentNo').on('propertychange change keyup input', function(){
-			
-			
-			var studentNo = $('.studentNo').val();
-			var data = {studentNo : studentNo}
-			
-			$.ajax({
-				type="poast"
-				url="/student/signupStudentForm",
-				data : data,
-				success : function(result) {
-				// console.log("성공여부" + result);
-				if(result !='fail') {
-					$('.studentNo_re1').css("display", "inline-block");
-					$('.studentNo_re1').css("display", "none");
-					studentNoCheck = true;
-				} else {
-					$('.studentNo_re2').css("display", "inline-block");
-					$('.studentNo_re2').css("display", "none");
-					studentNoCheck = false;
+		$.ajax({
+			type : "post",
+			url : "/studentNoChk",
+			data : data,
+			success : function(result) {
+				if(result=="fail"){
+					$('.studentNo_re1').css('display', 'none');
+					$('.studentNo_re2').css('display', 'none');
+					$('.studentNo_re3').css('display', 'block');
+				}else{
+					$('.studentNo_re1').css('display', 'none');
+					$('.studentNo_re2').css('display', 'block');
+					$('.studentNo_re3').css('display', 'none');
 				}
-			} // success 종료	
-		}); // ajax 종료				
-	}); // function
+				console.log("성공 여부" + result);
+				} // success 종료
+				
+		}); // ajax 종료	
+		
+	});
+	
+	
+	// 나이 게산
+	$('#studentRegiNo').on("focusout", function(){
+		console.log("keyup 나이 테스트");
 		
 		
+		const today = new Date();
 		
+		var birthDate = $("#studentRegiNo").val().substring(0,2);
+		console.log(birthDate)
 		
+		//02
+		if(birthDate.substring(0,1) == 0){
+			birthDate = "20"+birthDate;
+		} else {
+			// 9*
+			birthDate = "19"+birthDate;
+		}
+		birthDate = new Date(birthDate);
+
+		let age = today.getFullYear()
+		          - birthDate.getFullYear()
+		          + 1;
+
+		console.log(age)
+		$("#studentAge").val(age)
+	});
 		
-</script>
- 
+ </script>
     
     
     
-    
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/common/common.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/custom.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/settings.js"></script>
+    <script src="${pageContext.request.contextPath}/js/gleek.js"></script>
+    <script src="${pageContext.request.contextPath}/js/styleSwitcher.js"></script>
 
 
 

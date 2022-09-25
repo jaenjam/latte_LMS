@@ -17,6 +17,9 @@ public interface StudentMapper {
 	// 학생추가 (회원가입)
 	int insertStudent(Student student);
 
+	// 학번중복검사
+	int studentNoCheck(int studentNo) throws Exception;
+	
 	// 학생정보 상세보기
 	List<Map<String, Object>> selectStudentOne(int studentNo);
 

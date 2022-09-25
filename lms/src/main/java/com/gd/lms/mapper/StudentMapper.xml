@@ -69,6 +69,21 @@
 			)
 	</insert>
 	
+	
+	<!--  학번중복검사용 -->
+	<select id="studentNoCheck" resultType="int">
+		SELECT
+			count(*) 
+		FROM 
+			student
+		WHERE 
+			student_no =#{studentNo}	
+	</select>
+	
+	
+	
+	
+	
 	<!-- 학생목록 출력 -->
 	<select id="selectStudentList" resultType="map">
 	
