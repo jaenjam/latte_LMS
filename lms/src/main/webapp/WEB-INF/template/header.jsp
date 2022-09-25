@@ -242,7 +242,7 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                           <a href="${pageContext.request.contextPath}/getProfessorOne?No=${No}"><i class="icon-user"></i>
+                                           <a href="${pageContext.request.contextPath}/getProfessorOne?professorNo=${No}"><i class="icon-user"></i>
                                             	<span>마이페이지</span>
                                             </a>
                                         </li>

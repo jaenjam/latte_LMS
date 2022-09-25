@@ -107,7 +107,7 @@ body {
 												<div class="form-group">
 													<label> 이름: </label> <input type="text"
 														class="form-control" name="professorName"
-														id="professorName" value="${Name}" readonly="readonly">
+														id="professorName" value="${M.professorName}" readonly="readonly">
 												</div>
 
 												<div class="form-group">

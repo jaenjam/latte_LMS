@@ -2,7 +2,6 @@ package com.gd.lms.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -22,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.Professor;
-import com.gd.lms.vo.ProfessorImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,7 +42,7 @@ public class ProfessorController {
 	@GetMapping("loginForm")
 	public String professorLogin() {
 
-		log.debug(TeamColor.JJY + "[Controller] loginForm Get실행");
+		log.debug(TeamColor.JJY + "ProfessorController loginForm Get실행");
 		return "loginForm";
 	}
 
@@ -52,22 +50,24 @@ public class ProfessorController {
 	@PostMapping("/ProfessorForm")
 	public String professorLogin(Professor professor, Model model, HttpServletRequest request) {
 
-		log.debug(TeamColor.JJY + "[Controller] loginForm Post실행");
+		log.debug(TeamColor.JJY + "ProfessorController loginForm Post실행");
 
 		String result = "";
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(); //세션 사용
 
-		Professor professorLogin = professorService.getProfessor(professor);
-		model.addAttribute("ProfessorId", professorLogin);
+		Professor professorLogin = professorService.getProfessor(professor); //professor값 다 select
+		model.addAttribute("ProfessorId", professorLogin); //model에 ProfessorId라는 값으로 select한 값 다 들어가있음
 
-		log.debug(TeamColor.JJY + "[Controller] professorLogin의 model:" + professorLogin);
+		log.debug(TeamColor.JJY + "ProfessorController professorLogin 값 :" + professorLogin); // professorLogin안에 들어가있는 값 확인
+		log.debug(TeamColor.JJY+"ProfessorController professorLogin의 model :" + model); //model값 출력
 
 		if (professorLogin == null) {
 			log.debug(TeamColor.JJY + "로그인실패 ! professorLogin값이 null");
 			result = "/loginForm";
 		} else {
 			log.debug(TeamColor.JJY + "로그인성공");
+			
 			// 세션에 로그인시 받은값 저장
 			// 로그인 성공시 세션에 로그인시 받은값 저장
 			session.setAttribute("user", "professor"); // user에 넣어주기
@@ -87,16 +87,11 @@ public class ProfessorController {
 
 			log.debug(TeamColor.JJY + "professorNo : " + session.getAttribute("No")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorAge : " + session.getAttribute("professorAge")); // 값 출력되는지 확인
-			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값
-																														// 출력되는지
-																														// 확인
-
+			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값 출력되는지 확인																
 			log.debug(TeamColor.JJY + "professorRegiNo : " + session.getAttribute("professorRegiNo")); // 값 출력되는지 확인
 
 			// 교수의 나의 강의리스트 get을 위한 서비스 실행 ( 로그인 주체에 따른 사이드바 구분을 위함 )
-
-			List<Map<String, Object>> myRegisterListProf = registerService
-					.getMyRegisterListProf(professorLogin.getProfessorNo());
+			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf(professorLogin.getProfessorNo());
 
 			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
@@ -110,12 +105,12 @@ public class ProfessorController {
 	// 교수회원가입 form
 	@GetMapping("/professor/signupProfessorForm")
 	public String addProfessor(Model model) {
-		log.debug(TeamColor.JJY + "[Controller] addProfessor get실행");
+		log.debug(TeamColor.JJY + "ProfessorController addProfessor get실행");
 
 		List<Map<String, Object>> majorList = majorService.getMajorList();
 		model.addAttribute("majorList", majorList); // 회원가입할때 학과추가 select로
 
-		log.debug(TeamColor.JJY + "[Controller] addProfessor의 model:" + majorList);
+		log.debug(TeamColor.JJY + "ProfessorController addProfessor의 model:" + majorList);
 
 		return "/professor/signupProfessorForm";
 	}
@@ -127,7 +122,7 @@ public class ProfessorController {
 		int insertProfessor = professorService.addProfessor(professor);
 		model.addAttribute("addProfessor", insertProfessor);
 
-		log.debug(TeamColor.JJY + "[Controller] addProfessor post실행");
+		log.debug(TeamColor.JJY + "ProfessorController addProfessor post실행");
 
 		return "loginForm";
 	}
@@ -135,9 +130,9 @@ public class ProfessorController {
 	// 교수상세보기
 	@GetMapping("/getProfessorOne")
 	public String ProfessorOne(Professor professor, Model model, HttpServletRequest request,
-			@RequestParam("No") int professorNo) {
+			@RequestParam("professorNo") int professorNo) {
 
-		log.debug(TeamColor.JJY + "[Controller] ProfessorOne Get실행");
+		log.debug(TeamColor.JJY + "ProfessorController ProfessorOne Get실행");
 
 		List<Map<String, Object>> professorOne = professorService.getProfessorOne(professorNo);
 		model.addAttribute("professorOne", professorOne);
@@ -163,15 +158,18 @@ public class ProfessorController {
 
 	// 교수정보수정 Action
 	@PostMapping("/modifyProfessor")
-	public String modifyProfessor(Professor professor, Model model) {
+	public String modifyProfessor(HttpServletRequest request,Professor professor, Model model) {
 
 		// 디버깅
 		log.debug(TeamColor.JJY + "modifyProfessor 실행");
+		
+		HttpSession session = request.getSession();
 
 		// service실행
 		professorService.modifyProfessor(professor);
-
-		return "redirect:/professor/professorOne";
+		session.setAttribute("Name", professor.getProfessorName());
+		String redirectUrl = "redirect:/getProfessorOne?professorNo="+professor.getProfessorNo();
+		return redirectUrl;
 	}
 
 	// 교수사진등록하기 (Form)
@@ -186,7 +184,7 @@ public class ProfessorController {
 	@PostMapping("/addProfessorImg")
 	public String addProfessorImg(@RequestParam("file") MultipartFile file) {
 
-		log.debug(TeamColor.JJY + "[Controller] addProfessorImg post실행");
+		log.debug(TeamColor.JJY + "ProfessorController addProfessorImg post실행");
 
 		String fileRealName = file.getOriginalFilename(); // 파일명을 나타내줌
 		long size = file.getSize(); // 파일사이즈
@@ -223,7 +221,7 @@ public class ProfessorController {
 	@GetMapping("/professor/professorList")
 	public String professorList(Model model) {
 
-		log.debug(TeamColor.JJY + "[Controller] professorList실행");
+		log.debug(TeamColor.JJY + "ProfessorController professorList실행");
 
 		List<Map<String, Object>> professorList = professorService.getProfessorList();
 

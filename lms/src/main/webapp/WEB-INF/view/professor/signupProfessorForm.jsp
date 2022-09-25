@@ -123,10 +123,9 @@
 													</div>
 												</div>
 
-												<div class="col-sm-2">
+											<div class="col-sm-2">
 													<div class="form-group">
-														<button type="button"
-															style="margin-top: 33px;"
+														<button type="button" style="margin-top: 33px;"
 															id="professorAddrBtn" class="btn btn-light">주소검색</button>
 													</div>
 												</div>
