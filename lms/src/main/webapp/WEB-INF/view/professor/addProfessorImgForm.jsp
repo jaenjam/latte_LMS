@@ -14,8 +14,10 @@
 	<div class="row page-titles mx-0">
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">내정보</a></li>
-				<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/professor/addProfessorImgForm">사진파일추가</a></li>
+				<li class="breadcrumb-item"><a
+					href="${pageContext.request.contextPath}/">내정보</a></li>
+				<li class="breadcrumb-item active"><a
+					href="${pageContext.request.contextPath}/professor/addProfessorImgForm">사진파일추가</a></li>
 			</ol>
 		</div>
 	</div>
@@ -33,35 +35,36 @@
 
 						</div>
 						<br>
-						<div class="table-responsive">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>교수사번</th>
-										<td><input type="text" class="form-control"
-											name="professorNo" id="professorNo" readonly="readonly"
-											value="${No}"></td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>이미지파일</td>
-										<td><input type="file" name="imgFile"></td>
-									</tr>
-								</tbody>
-							</table>
-							
-								<form action="${pageContext.request.contextPath}/addProfessorImg" method="post" enctype="multipart/form-data">
-									<button type="submit" class="btn btn-primary" style="float: right;">파일추가</button>
-								</form>
-							
-						</div>
+						<form action="${pageContext.request.contextPath}/addProfessorImg"
+							method="post" enctype="multipart/form-data">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>교수사번</th>
+											<td><input type="text" class="form-control"
+												name="professorNo" id="professorNo" readonly="readonly"
+												value="${No}"></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>이미지파일</td> <!-- 이미지파일만 추가할수있도록 accept지정해주기 -->
+											<td><input type="file" name="imgFile" accept="image/*"></td>
+										</tr>
+									</tbody>
+								</table>
+								<button type="submit" class="btn btn-primary"
+									style="float: right;">파일추가</button>
+						</form>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- #/ container -->
+</div>
+<!-- #/ container -->
 </div>
 
 <form action="${pageContext.request.contextPath}/addProfessorImg"

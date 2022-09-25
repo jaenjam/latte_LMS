@@ -150,16 +150,16 @@
 	<insert id="insertProfessorImg" parameterType="com.gd.lms.vo.ProfessorImg">
 	
 	INSERT INTO professor_img ( 
-		 professor_no professorNo
-		,filename filename
-		,origin_filename originFilename
-		,content_type contentType
-		,create_date createDate
-		,update_date updateDate)
+		 professor_no
+		,filename
+		,origin_filename
+		,content_type
+		,create_date
+		,update_date)
 	VALUES (
 		 #{professorNo}
-		,#{filename}
-		,#{originFilename}
+		,#{fileName}
+		,#{originFileName}
 		,#{contentType}
 		,now()
 		,now()

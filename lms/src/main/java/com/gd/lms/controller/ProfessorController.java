@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.ProfessorImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,20 +55,21 @@ public class ProfessorController {
 
 		String result = "";
 
-		HttpSession session = request.getSession(); //세션 사용
+		HttpSession session = request.getSession(); // 세션 사용
 
-		Professor professorLogin = professorService.getProfessor(professor); //professor값 다 select
-		model.addAttribute("ProfessorId", professorLogin); //model에 ProfessorId라는 값으로 select한 값 다 들어가있음
+		Professor professorLogin = professorService.getProfessor(professor); // professor값 다 select
+		model.addAttribute("ProfessorId", professorLogin); // model에 ProfessorId라는 값으로 select한 값 다 들어가있음
 
-		log.debug(TeamColor.JJY + "ProfessorController professorLogin 값 :" + professorLogin); // professorLogin안에 들어가있는 값 확인
-		log.debug(TeamColor.JJY+"ProfessorController professorLogin의 model :" + model); //model값 출력
+		log.debug(TeamColor.JJY + "ProfessorController professorLogin 값 :" + professorLogin); // professorLogin안에 들어가있는
+																								// 값 확인
+		log.debug(TeamColor.JJY + "ProfessorController professorLogin의 model :" + model); // model값 출력
 
 		if (professorLogin == null) {
 			log.debug(TeamColor.JJY + "로그인실패 ! professorLogin값이 null");
 			result = "/loginForm";
 		} else {
 			log.debug(TeamColor.JJY + "로그인성공");
-			
+
 			// 세션에 로그인시 받은값 저장
 			// 로그인 성공시 세션에 로그인시 받은값 저장
 			session.setAttribute("user", "professor"); // user에 넣어주기
@@ -87,11 +89,14 @@ public class ProfessorController {
 
 			log.debug(TeamColor.JJY + "professorNo : " + session.getAttribute("No")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorAge : " + session.getAttribute("professorAge")); // 값 출력되는지 확인
-			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값 출력되는지 확인																
+			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값
+																														// 출력되는지
+																														// 확인
 			log.debug(TeamColor.JJY + "professorRegiNo : " + session.getAttribute("professorRegiNo")); // 값 출력되는지 확인
 
 			// 교수의 나의 강의리스트 get을 위한 서비스 실행 ( 로그인 주체에 따른 사이드바 구분을 위함 )
-			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf(professorLogin.getProfessorNo());
+			List<Map<String, Object>> myRegisterListProf = registerService
+					.getMyRegisterListProf(professorLogin.getProfessorNo());
 
 			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
@@ -158,17 +163,17 @@ public class ProfessorController {
 
 	// 교수정보수정 Action
 	@PostMapping("/modifyProfessor")
-	public String modifyProfessor(HttpServletRequest request,Professor professor, Model model) {
+	public String modifyProfessor(HttpServletRequest request, Professor professor, Model model) {
 
 		// 디버깅
 		log.debug(TeamColor.JJY + "modifyProfessor 실행");
-		
+
 		HttpSession session = request.getSession();
 
 		// service실행
 		professorService.modifyProfessor(professor);
 		session.setAttribute("Name", professor.getProfessorName());
-		String redirectUrl = "redirect:/getProfessorOne?professorNo="+professor.getProfessorNo();
+		String redirectUrl = "redirect:/getProfessorOne?professorNo=" + professor.getProfessorNo();
 		return redirectUrl;
 	}
 
@@ -182,39 +187,52 @@ public class ProfessorController {
 
 	// 교수사진등록하기 (Action) 첨부파일 업로드
 	@PostMapping("/addProfessorImg")
-	public String addProfessorImg(@RequestParam("file") MultipartFile file) {
+	public String addProfessorImg(MultipartFile imgFile, HttpServletRequest request, Professor professor) {
 
-		log.debug(TeamColor.JJY + "ProfessorController addProfessorImg post실행");
+		// log.debug(TeamColor.JJY + "ProfessorController addProfessorImg post실행");
 
-		String fileRealName = file.getOriginalFilename(); // 파일명을 나타내줌
-		long size = file.getSize(); // 파일사이즈
+		HttpSession session = request.getSession();
+
+		String fileRealName = imgFile.getOriginalFilename(); // 파일명을 나타내줌
+		long size = imgFile.getSize(); // 파일사이즈
 
 		System.out.println("파일명 : " + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
 
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\test\\upload";
+
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/images/userprofile/");
+		System.out.print(uploadFolder);
 
 		UUID uuid = UUID.randomUUID();
 		System.out.println(uuid.toString());
 		String[] uuids = uuid.toString().split("-");
 
 		String uniqueName = uuids[0];
-		System.out.println("생성된 고유문자열" + uniqueName);
-		System.out.println("확장자명" + fileExtension);
+		System.out.println("생성된 고유문자열 : " + uniqueName);
+		System.out.println("확장자명 : " + fileExtension);
 
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
 
+		ProfessorImg professorImg = new ProfessorImg();
+
+		professorImg.setProfessorNo((int) session.getAttribute("No"));
+		professorImg.setContentType(fileExtension); // 확장자
+		professorImg.setFileName(uniqueName);
+		professorImg.setOriginFileName(fileRealName);
+
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
 		try {
-			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			imgFile.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			professorService.addProfessorImg(professorImg);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return "/professor/getProfessorOne";
+		System.out.print(professor.getProfessorNo());
+		String redirectUrl = "redirect:/getProfessorOne?professorNo=" + professor.getProfessorNo();
+		return redirectUrl;
 	}
 
 	// 교수목록
