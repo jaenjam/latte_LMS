@@ -33,32 +33,64 @@
 		</div>
 	</div>
 
-	<div class="addmajor">
-
-		<a href="${pageContext.request.contextPath}/major/addMajor">
-			<button type="submit" class="btn btn-primary" style="float: right;">학과추가</button>
-		</a>
-		<!-- 관리자만 보이게 설정 -->
-	</div>
-	<br /> <br />
-
-	<div class="container-fluid">
-		<c:forEach var="C" items="${majorList}">
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title" style="font-size: 2.0em;"><a href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorName}</a></h4>
-					<br/>
-					<div class="table-responsive">
-						<div class="majorheader"><a href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorIntroduceHeader}</a></div>
+	<c:if test="${user eq 'employee'}">
+		<div class="addmajor">
+			<a href="${pageContext.request.contextPath}/major/addMajor">
+				<button type="submit" class="btn btn-primary" style="float: right;">학과추가</button>
+			</a>
+			<!-- 관리자만 보이게 설정 -->
+		</div>
+		<br />
+		<br />
+		<div class="container-fluid">
+			<c:forEach var="C" items="${majorList}">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title" style="font-size: 2.0em;">
+							<a
+								href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorName}</a>
+						</h4>
 						<br />
-						<p style="white-space: pre-line;"><a href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorIntroduce}</a></p>
-						<br />
-						<p style="color: darkred;">${C.majorSubject}</p>
+						<div class="table-responsive">
+							<div class="majorheader">
+								<a
+									href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorIntroduceHeader}</a>
+							</div>
+							<br />
+							<p style="white-space: pre-line;">
+								<a
+									href="${pageContext.request.contextPath}/major/majorOne?majorNo=${C.majorNo}">${C.majorIntroduce}</a>
+							</p>
+							<br />
+							<p style="color: darkred;">${C.majorSubject}</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
+			</c:forEach>
+		</div>
+	</c:if>
+
+	<c:if test="${user ne 'employee'}">
+		<div class="container-fluid">
+			<c:forEach var="C" items="${majorList}">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title" style="font-size: 2.0em;">
+							${C.majorName}</h4>
+						<br />
+						<div class="table-responsive">
+							<div class="majorheader">${C.majorIntroduceHeader}</div>
+							<br />
+							<p style="white-space: pre-line;">${C.majorIntroduce}</p>
+							<br />
+							<p style="color: darkred;">${C.majorSubject}</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</c:if>
+
 </div>
 
 <!-- #/ container -->

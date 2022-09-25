@@ -71,7 +71,6 @@ body {
 			</div>
 		</div>
 		<!-- row -->
-
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-4 col-xl-3">
@@ -80,7 +79,6 @@ body {
 							<div class="media align-items-center mb-4">
 								<img class="mr-2" src="${filename}" width="80" height="80"
 									alt="">
-
 							</div>
 							<div class="row mb-8">
 								<div class="col-12 text-center">
