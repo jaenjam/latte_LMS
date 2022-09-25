@@ -24,6 +24,8 @@
 		FROM employee
 		
 		WHERE employee_active = '서브관리자'
+		
+		ORDER BY employee_no
 	</select>
 
 	<!-- 관리자 회원가입 -->

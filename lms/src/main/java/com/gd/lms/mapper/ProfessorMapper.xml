@@ -143,7 +143,9 @@
 		p.major_no = m.major_no
 	INNER JOIN salary s	
 		ON 
-			p.salary_no = s.salary_no	
+			p.salary_no = s.salary_no
+			
+	ORDER BY professor_no
 	</select>
 	
 	<!-- 교수사진등록하기 -->
