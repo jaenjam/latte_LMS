@@ -51,8 +51,7 @@
                                         <thead>
                                             <tr>
                                                 <th>사번</th>
-                                                <th>학과번호</th>
-                                                <th>학과이름</th>
+                                                <th>학과번호(학과이름)</th>
                                                 <th>이름</th>
                                                 <th>주민번호</th>
                                                 <th>나이</th>
@@ -73,8 +72,7 @@
                                         <c:forEach var="p" items="${professorList}">
                                             <tr>
                                                 <td>${p.professorNo}</td>
-                                                <td>${p.majorNo}</td>
-                                                <td>${p.majorName}</td>
+                                                <td>${p.majorNo}(${p.majorName})</td>
                                                 <td>${p.professorName}</td>
                                                 <td>${p.professorRegiNo}</td>
                                                 <td>${p.professorAge}</td>

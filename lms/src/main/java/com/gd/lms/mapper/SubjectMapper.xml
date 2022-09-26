@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.SubjectMapper">
+
+	<!-- 과목리스트 -->
+	<select id="selectSubjectList" resultType="map">
+		SELECT
+			  subject_no 		subjectNo
+			, subject_name 		subjectName
+			, subject_state 	subjectState
+			, subject_credit 	subjectCredit
+			, subject_major 	subjectMajor
+			, create_date 		createDate
+			, end_date 			endDate
+		FROM subject
+		
+		ORDER BY subject_no
+	</select>
+
+</mapper>

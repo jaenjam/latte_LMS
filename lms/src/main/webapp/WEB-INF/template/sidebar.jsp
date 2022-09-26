@@ -65,7 +65,7 @@
 		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectList">과목</a>
 		                        </li>
 		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">승인과목</a>
+		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">과목승인</a>
 		                        </li>
 	                         </ul>
 	                    </li>

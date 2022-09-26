@@ -12,6 +12,8 @@ import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.StudentService;
+import com.gd.lms.service.SubjectApproveService;
+import com.gd.lms.service.SubjectService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +23,50 @@ public class EmployeeDetailController {
 	@Autowired EmployeeService employeeService;
 	@Autowired ProfessorService professerService;
 	@Autowired StudentService studentService;
+	@Autowired SubjectService 	subjectService;
+	@Autowired SubjectApproveService subjectApproveService;
+
 	
+	//상세관리 - 승인과목리스트 보여주기
+	@GetMapping("/employee/detail/subjectApproveList")
+	public String subjectApproveList(Model model) {
+		
+		//디버깅코드출력
+		log.debug(TeamColor.LJE + "EmployeeDetailController subjectApproveList 실행");
+		
+		//list<String>에 넣어주기
+		List<Map<String, Object>> subjectApproveList = subjectApproveService.selectSubjectApproveList();
+		
+		//subjectApproveList 저장
+		model.addAttribute("subjectApproveList",subjectApproveList);
+		
+		//subjectApproveList 에 담긴 값 확인
+		log.debug(TeamColor.LJE + "EmployeeDetailController subjectApproveList값 :" + subjectApproveList);
+				
+		//employee/detail/subjectApproveList 페이지로
+		return "/employee/detail/subjectApproveList";
+	}
+	
+	
+	//상세관리 - 과목리스트 보여주기
+	@GetMapping("/employee/detail/subjectList")
+	public String subjectList(Model model) {
+		
+		//디버깅코드출력
+		log.debug(TeamColor.LJE + "EmployeeDetailController.subjectList 실행");
+		
+		//map으로 뽑아와서 list에 넣어주기
+		List<Map<String, Object>> subjectList = subjectService.getSubjectList();
+		
+		//studentList에 넣어준다.
+		model.addAttribute("subjectList" ,subjectList);
+		
+		//subjectList에 넣어주기
+		log.debug(TeamColor.LJE + "EmployeeDetailController subjectList값 :" + subjectList);
+		
+		//employee/detail/subjectList 페이지로
+		return "/employee/detail/subjectList";
+	}	
 	
 	//상세관리 - 학생리스트 보여주기
 	@GetMapping("/employee/detail/studentList")
