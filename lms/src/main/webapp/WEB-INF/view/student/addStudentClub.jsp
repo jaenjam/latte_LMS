@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<!-- row -->
-
+ <c:forEach var="c" items="${clubOne}">
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-lg-12">
@@ -33,45 +33,43 @@
 					<div class="card-body">
 						<div class="form-validation">
 							<form class="form-valide"
-								action="${pageContext.request.contextPath}/addStudentClub
-								method="post">
+								action="${pageContext.request.contextPath}/addStudentClub"
+								method= "post" >
 								<div class="form-group row">
 									<div class="col-lg-6">
-										<select name="professorNo" class="form-control">
-											<option selected="selected">::담당교수를 선택해주세요::</option>
-											<c:forEach items="${professorList}" var="p">
-
-												<option value="${p.professorNo}">${p.professorName}</option>
+										<select name="clubNo" class="form-control">
+											<option selected="selected">::동아리를 선택해주세요::</option>
+											<c:forEach items="${clubList}" var="c">
+												<option value="${c.clubNo}">${c.clubName}</option>
 											</c:forEach>
 										</select>
 									</div>
 								</div>
+								<!-- 동아리 선택하면 동아리 설명, 담당교수 뜨게 구현 -->
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="clubContent">동아리
 										설명<span class="text-danger">*</span>
 									</label>
-									<div class="col-lg-6">
-										<textarea class="form-control" id="clubContent"
-											name="clubContent" rows="5" placeholder="동아리설명을 입력해주세요"></textarea>
-									</div>
+									<div class="col-lg-10">
+									<textarea class="form-control" id="clubContent"
+										name="clubContent" rows="15" readonly="readonly">${c.clubContent}</textarea>
+								</div>
+								
 								</div>
 								<div class="form-group row">
-									<label class="col-lg-4 col-form-label" for="professorNo">담당교수
-									</label>
-
-									<div class="col-lg-6">
-										<select name="professorNo" class="form-control">
-											<option selected="selected">::담당교수를 선택해주세요::</option>
-											<c:forEach items="${professorList}" var="p">
-
-												<option value="${p.professorNo}">${p.professorName}</option>
-											</c:forEach>
-										</select>
-									</div>
+								<label class="col-lg-2 col-form-label" for="professorNo">담당교수
+								</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" id="professorNo"
+										name="professorNo" value="${c.professorName}"
+										readonly="readonly">
 								</div>
+							</div>
+							<!-- End 담당교수 -->
+							
 								<div class="form-group row">
 									<div class="col-lg-8 ml-auto">
-										<button type="submit" class="btn btn-primary">추가</button>
+										<button type="submit" class="btn btn-primary">가입하기</button>
 									</div>
 								</div>
 
@@ -82,6 +80,7 @@
 			</div>
 		</div>
 	</div>
+	</c:forEach>
 	<!-- #/ container -->
 </div>
 <!--**********************************
@@ -91,17 +90,9 @@
 	//공백 확인
 	$('#addStudentClub').click(function() {
 		if ($('#clubNo').val() == '') {
-			alert('동아리코드를 입력해주세요.');
-		} else if ($('#clubName').val() == '') {
-			alert('동아리명을 입력해주세요.');
-		}	else if ($('#clubContent').val() == '') {
-			alert('동아리내용을 입력해주세요.');
-		} else if ($('#clubRoom').val() == '') {
-			alert('동아리방명을 입력해주세요.');
-		} else if ($('#professorNo').val() == '') {
-			alert('담당교수를 입력해주세요.');
-		} else {
-			addClub.submit();
+			alert('동아리를 선택해주세요.');
+			
+			addStudentClub.submit();
 		}
 	})
 </script>
