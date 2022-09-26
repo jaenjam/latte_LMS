@@ -65,7 +65,7 @@
 		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectList">과목</a>
 		                        </li>
 		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">승인과목</a>
+		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">과목승인</a>
 		                        </li>
 	                         </ul>
 	                    </li>
@@ -73,27 +73,24 @@
 	                    
 	                    
 	                    
-	                    <!-- 승인관리 : 서브관리자, 교수, 학생, 과목  -->
+	                    <!-- 연봉관리 : 관리자, 서브관리자, 교수  -->
                     	
                     	
 	                    <li class="mega-menu mega-menu-sm">
 	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
 	                            <i class="icon-notebook menu-icon"></i>
-	                            <span class="nav-text">승인관리</span>
+	                            <span class="nav-text">연봉관리</span>
 	                        </a>
 	                        <ul aria-expanded="false">
 	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/approval/subEmployeeApproval">서브관리자</a>
+	                            	<a href="${pageContext.request.contextPath}/employee/salary/employeeSalary">관리자</a>
 	                            </li>
 		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/approval/professorApproval">교수</a>
+		                           	<a href="${pageContext.request.contextPath}/employee/salary/subEmployeeSalary">서브관리자</a>
 		                        </li>
-	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/approval/studentApproval">학생</a>
-	                            </li>
-	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/approval/subjectApproval">과목</a>
-	                            </li>
+		                        <li>
+		                           	<a href="${pageContext.request.contextPath}/employee/salary/professorSalary">교수</a>
+		                        </li>
 	                         </ul>
 	                    </li>
 	                    
