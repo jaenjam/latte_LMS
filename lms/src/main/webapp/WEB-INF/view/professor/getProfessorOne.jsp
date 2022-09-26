@@ -1,19 +1,71 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!-- header.jsp -->
-
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
-
 <!-- sidebar.jsp -->
-
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
 
-<!--**********************************
-            Content body start
-***********************************-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial;
+}
 
+/* Style the tab */
+.tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.mr-2{
+margin-left:50px;
+}
+</style>
+</head>
+<body>
+
+
+	<!--**********************************
+            Content body start
+        ***********************************-->
 	<div class="content-body">
 
 		<div class="row page-titles mx-0">
@@ -28,26 +80,44 @@
 		<!-- row -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-4 col-xl-3">
-					<div class="card">
-						<div class="card-body">
-							<div class="media align-items-center mb-4">
-								<c:forEach var="M" items="${professorOne}">
+				<c:forEach var="M" items="${professorOne}">
+				<c:if test="${M.filename eq null}">
+					<div class="col-lg-4 col-xl-3">
+						<div class="card">
+							<div class="card-body">
+								<div class="media align-items-center mb-4">
 									<img class="mr-2"
-										src="/images/userprofile/${M.filename}${M.contentType}" width="80" height="80" alt="">
-								</c:forEach>
-							</div>
-							<div class="row mb-8">
-								<div class="col-12 text-center">
-									<form
-										action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
-										<button class="btn btn-danger px-5">사진첨부하기</button>
-									</form>
+										src="/images/userprofile/image.jpg"
+										width="200" height="200" alt="">
+								</div>
+								<div class="row mb-8">
+									<div class="col-12 text-center">
+										<form
+											action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
+											<button class="btn btn-danger px-5">사진첨부하기</button>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					</c:if>
+					
+					<c:if test="${M.filename ne null}">
+					<div class="col-lg-4 col-xl-3">
+						<div class="card">
+							<div class="card-body">
+								<div class="media align-items-center mb-4">
+									<img class="mr-2"
+										src="/images/userprofile/${M.filename}${M.contentType}"
+										width="200" height="200" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+					</c:if>
+				</c:forEach>
+
 				<div class="col-lg-8 col-xl-9">
 					<div class="card">
 						<div class="card-body">
@@ -62,7 +132,8 @@
 												<div class="form-group">
 													<label> 이름: </label> <input type="text"
 														class="form-control" name="professorName"
-														id="professorName" value="${M.professorName}" readonly="readonly">
+														id="professorName" value="${M.professorName}"
+														readonly="readonly">
 												</div>
 
 												<div class="form-group">

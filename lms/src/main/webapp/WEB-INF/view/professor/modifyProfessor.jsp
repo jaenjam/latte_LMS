@@ -1,19 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- header.jsp -->
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
 
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
-
+<style>
+.mr-2 {
+	margin-left: 50px;
+}
+</style>
 
 <!--**********************************
             Content body start
-***********************************-->
-
+        ***********************************-->
 <div class="content-body">
 
 	<div class="row page-titles mx-0">
@@ -34,7 +37,17 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="media align-items-center mb-4">
-							<img class="mr-2" src="${filename}" width="80" height="80" alt="">
+							<c:forEach var="M" items="${professor}">
+								<c:if test="${M.filename eq null}"><!-- 파일 없을때 경로 설정해줘야함 -->
+									<img class="mr-2" src="/images/userprofile/image.jpg"
+										width="200" height="200" alt="">
+								</c:if>
+								<c:if test="${M.filename ne null}">
+									<img class="mr-2"
+										src="/images/userprofile/${M.filename}${M.contentType}"
+										width="200" height="200" alt="">
+								</c:if>
+							</c:forEach>
 
 						</div>
 						<div class="row mb-8">
@@ -289,7 +302,6 @@
 				+ 'px';
 	}
 </script>
-
 
 <!-- footer -->
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>
