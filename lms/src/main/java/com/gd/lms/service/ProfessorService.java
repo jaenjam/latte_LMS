@@ -79,4 +79,12 @@ public class ProfessorService {
 		
 		return professorMapper.selectProfessorImg(professorNo);	
 	}
+	
+	//교수사진수정하기
+	public int modifyProfessorImg(ProfessorImg professorImg) {
+		log.debug(TeamColor.JJY+"Service modifyProfessorImg실행");
+		System.out.print("service modifyProfessorImg실행");
+		
+		return professorMapper.updateProfessorImg(professorImg);
+	}
 }

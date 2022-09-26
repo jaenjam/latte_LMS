@@ -192,5 +192,20 @@
 	WHERE
 		professor_no = #{professorNo}
 	</select>
+	
+	<!-- 교수사진수정하기 -->
+	<update id="updateProfessorImg" parameterType="com.gd.lms.vo.ProfessorImg">
+	
+		UPDATE 
+				professor_img
+		SET
+				 professor_no=#{professorNo}
+				,content_type=#{contentType}
+				,filename=#{fileName}
+				,origin_filename=#{originFileName}
+				,update_date=now()
+		WHERE
+				professor_no = #{professorNo}
+	</update>
 
 </mapper>

@@ -34,5 +34,8 @@ public interface ProfessorMapper {
 
 	// 교수사진등록하기(수정폼에서)
 	int insertProfessorImg(ProfessorImg professorImg);
+	
+	// 사진수정하기
+	int updateProfessorImg(ProfessorImg professorImg);
 
 }

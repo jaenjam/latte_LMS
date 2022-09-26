@@ -272,4 +272,62 @@ public class ProfessorController {
 
 		return "/professor/professorList";
 	}
+	
+	 // 교수사진수정하기 (Form)
+	@GetMapping("/professor/modifyProfessorImg")
+	public String modifyProfessorImg(Model model) {
+		System.out.println("modifyProfessorImgForm실행");
+		
+		return "/professor/modifyProfessorImg";
+	}
+
+	// 교수사진수정하기 (Action) 첨부파일 업로드
+	@PostMapping("/modifyProfessorImg")
+	public String modifyProfessorImg(MultipartFile imgFile, HttpServletRequest request, Professor professor) {
+
+		 log.debug(TeamColor.JJY + "ProfessorController modifyProfessorImg post실행");
+
+		HttpSession session = request.getSession();
+
+		String fileRealName = imgFile.getOriginalFilename(); // 파일명을 나타내줌
+		long size = imgFile.getSize(); // 파일사이즈
+
+		System.out.println("파일명 : " + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/images/userprofile/");
+		System.out.print(uploadFolder);
+
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+
+		String uniqueName = uuids[0];
+		System.out.println("생성된 고유문자열 : " + uniqueName);
+		System.out.println("확장자명 : " + fileExtension);
+
+		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
+
+		ProfessorImg professorImg = new ProfessorImg();
+
+		professorImg.setProfessorNo((int) session.getAttribute("No"));
+		professorImg.setContentType(fileExtension); // 확장자
+		professorImg.setFileName(uniqueName);
+		professorImg.setOriginFileName(fileRealName);
+
+		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
+		try {
+			imgFile.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			professorService.modifyProfessorImg(professorImg);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.print(professor.getProfessorNo());
+		String redirectUrl = "redirect:/getProfessorOne?professorNo=" + professor.getProfessorNo();
+		return redirectUrl;
+	}
 }

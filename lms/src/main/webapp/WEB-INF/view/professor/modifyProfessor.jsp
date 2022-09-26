@@ -56,7 +56,7 @@
 								<c:if test="${M.filename eq null}">
 									<form
 										action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
-										<button class="btn btn-danger px-5">사진수정하기</button>
+										<button class="btn btn-danger px-5">사진추가하기</button>
 									</form>
 									</c:if>
 									<c:if test="${M.filename ne null}">
