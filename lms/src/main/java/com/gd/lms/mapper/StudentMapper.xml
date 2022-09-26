@@ -16,7 +16,7 @@
 			, student_telephone studentTelephone
 			, student_email studentEmail
 			, student_address studentAddress
-			, student_detail_address studentDatailAddress
+			, student_detail_address studentDetailAddress
 			, student_state studentState
 			, student_top studentTop
 			, student_active studentActive

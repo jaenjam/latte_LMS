@@ -176,7 +176,7 @@
 	                            		<c:forEach var="sl" items="${myRegisterListStu}">
 	                            		<!--  승인된과목의 페이지는... 본의아니게 숫자로 해야할듯 ㅠㅠ -->
 	                            			<li>
-	                            				<a style="background: #white;" href="${pageContext.request.contextPath}/subjectApprove/subjectApproveMain">${sl.subjectName}</a>
+	                            					<a style="background: #white;" href="${pageContext.request.contextPath}/subjectApprove/subjectApproveMain?subjectApproveNo=${sl.subjectApproveNo}">${sl.subjectName}</a>
 	                            	
 	                            			<li>
 	                            		</c:forEach>

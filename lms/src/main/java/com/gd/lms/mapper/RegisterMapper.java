@@ -13,4 +13,7 @@ public interface RegisterMapper {
 
 	// 교수의 강의리스트 >>> sidebar용
 	List<Map<String,Object>> selectProfessorMyRegisterList(int professorNo);
+
+	// 넘겨받은 approveNo 기준으로 강의정보 셀렉하기 & 학생 교수 상관없이 (특정 수강강의 메인용)
+	Map<String,Object> selectRegisteInfo(int subjectApproveNo);
 }

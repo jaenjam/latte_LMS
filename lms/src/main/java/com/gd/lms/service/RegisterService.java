@@ -29,4 +29,14 @@ public class RegisterService {
 		
 		return registerMapper.selectProfessorMyRegisterList(professorNo);
 	}
+	
+	
+	// 넘겨받은 approveNo 기준으로 강의정보 셀렉하기 & 학생 교수 상관없이 (특정 수강강의 메인용)
+	public Map<String,Object> getRegisterInfo(int subjectApproveNo) {
+		log.debug(TeamColor.KHW+ "사이드바에서 나의강의실리스트 클릭후 강의메인서비스 진입");
+		
+		return registerMapper.selectRegisteInfo(subjectApproveNo);
+	}
+
+	
 }
