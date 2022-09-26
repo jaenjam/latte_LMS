@@ -25,8 +25,8 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">공지</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">공지사항</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제</a></li>
                     </ol>
                 </div>
             </div>
@@ -39,12 +39,16 @@
                             <div class="card-body">
                             <div class="row">
                             	<div class="col-sm-9">
-                               		<h4 class="card-title"> 성공했다면 여기로? </h4>
+                            	
+                               		<h4 class="card-title"> 과제 </h4>
                                 </div>
                                 <div class="col-sm-3">
+                                    <!--  교수만 과제추가버튼 보이게  --> 
+                                    <c:if test="${user eq 'professor'}"> 
                                 	<a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
                                 		<button type="button" class="btn btn-primary">과제추가</button>
                                 	</a>
+                                	</c:if>
                             	</div>
                             </div>
                                 <br>
