@@ -217,10 +217,10 @@
 	                            <!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
 	            
 	                  
-	                            		<c:forEach var="sl" items="${myRegisterListStu}">
+	                            		<c:forEach var="sl" items="${myRegisterListProf}">
 	                            		<!--  승인된과목의 페이지는... 본의아니게 숫자로 해야할듯 ㅠㅠ -->
 	                            			<li>
-	                            				<a style="background: #white;" href="${pageContext.request.contextPath}/${sl}">${sl.professorNo}</a>
+	                            				<a style="background: #white;" href="${pageContext.request.contextPath}/subjectApprove/subjectApproveMain?subjectApproveNo=${sl.subjectApproveNo}">${sl.subjectName}</a>
 	                                 		<li>
 	                            		</c:forEach>
 	                           

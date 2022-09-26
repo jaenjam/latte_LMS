@@ -93,10 +93,11 @@
 
 
 	
-	<!-- 교수의 강의리스트 불러오기 -->
+<!-- 교수의 강의리스트 불러오기 -->
 	<select id="selectProfessorMyRegisterList" parameterType="int" resultType="map">
 	SELECT 
 	sa.major_no majorNo
+	, sa.subject_approve_no subjectApproveNo
 	, sa.professor_no professorNo
 	, sa.year yearSa
 	, sa.semester semester

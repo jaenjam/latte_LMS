@@ -20,22 +20,29 @@ public class LectureService {
 	@Autowired
 	private LectureMapper lectureMapper;
 	
-	// 강의자료 리스트 긁어오기
-	public List<Map<String, Object>> getLectureListProf(int professorNo) {
+	
+	// 강의하는 과목의 과제 리스트 긁어오기
+	public List<Map<String, Object>> getLectureListProf(int subjectApproveNo) {
 		log.debug(TeamColor.KHW +"강의리스트셀렉 진입");	
-		return lectureMapper.selectLectureListPro(professorNo);
+		return lectureMapper.selectLectureListPro(subjectApproveNo);
 	}
 
 	
-	// 클릭시 조회수증가
+	// 강의하는 과목의 과제 조회수증가
 	public int updatelectureHit(int lectureNo) {
 		log.debug(TeamColor.KHW +"조회수카운트서비스 진입");		
 		return lectureMapper.lectureHit(lectureNo);
 	}
 	
-	// 강의자료 상세보기
+	// 강의하는 과목의 과제 상세보기
 	public Lecture getLectureOne(int lectureNo) {
 		log.debug(TeamColor.KHW +"강의자료상세보기 서비스 진입");
 		return lectureMapper.selectLectureOnePro(lectureNo); 
+	}
+	
+	// 강의하는 과목의 과제 작성하기
+	public int addLecture(Lecture lecture) {
+		log.debug(TeamColor.KHW +"강의하는 과목의 과제 작성하기 서비스 진입");
+		return lectureMapper.insertLectureOne(lecture);
 	}
 }
