@@ -24,7 +24,21 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
-	// 상세관리 - 서브관리자리스트 보여주기
+	//연봉관리 - 서브관리자 연봉리스트 출력(EmployeeSalayController로)
+	public List<Map<String, Object>> getsubEmployeeSalaryList(){
+		log.debug(TeamColor.LJE + "EmployeeService getsubEmployeeSalary");
+		
+		return employeeMapper.subEmployeeSalaryList();
+	}
+	
+	//연봉관리 - 관리자 연봉리스트 출력(EmployeeSalayController로)
+	public List<Map<String, Object>> getEmployeeSalaryList(){
+		log.debug(TeamColor.LJE + "EmployeeService getEmployeeSalary");
+		
+		return employeeMapper.employeeSalaryList();
+	}
+	
+	//상세관리 - 서브관리자리스트 보여주기(EmployeeDetailController로)
 	public List<Map<String, Object>> getsubEmployeeList() {
 		log.debug(TeamColor.LJE + "EmployeeService getsubEmployeeList");
 

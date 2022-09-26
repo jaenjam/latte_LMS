@@ -11,7 +11,13 @@ import com.gd.lms.vo.EmployeeImg;
 
 @Mapper
 public interface EmployeeMapper {
-
+	
+	//연봉관리 - 서브관리자 연봉 수정폼
+	List<Map<String, Object>> subEmployeeSalaryList();
+	
+	//연봉관리 - 관리자 연봉 수정폼
+	List<Map<String, Object>> employeeSalaryList();
+	
 	// 상세관리 - 서브관리자리스트
 	List<Map<String, Object>> subEmployeeList();
 

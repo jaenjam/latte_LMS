@@ -51,7 +51,7 @@
                                         <thead>
                                             <tr>
                                                 <th>사번</th>
-                                                <th>학과번호(학과이름)</th>
+                                                <th>학과번호 (학과이름)</th>
                                                 <th>이름</th>
                                                 <th>주민번호</th>
                                                 <th>나이</th>
@@ -73,7 +73,7 @@
                                         <c:forEach var="s" items="${studentList}">
                                             <tr>
                                                 <td>${s.studentNo}</td>
-                                                <td>${s.majorNo}(${s.majorName})</td>
+                                                <td>${s.majorNo} (${s.majorName})</td>
                                                 <td>${s.studentName}</td>
                                                 <td>${s.studentRegiNo}</td>
                                                 <td>${s.studentAge}</td>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.ProfessorMapper;
@@ -15,8 +16,16 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Transactional
 public class ProfessorService {
 	@Autowired ProfessorMapper professorMapper;
+	
+	//연봉관리 - 교수 연봉리스트 출력(EmployeeSalaryController로)
+	public List<Map<String, Object>> getProfessorSalaryList(){
+		log.debug(TeamColor.LJE + "ProfessorService getProfessorSalary");
+		
+		return professorMapper.professorSalaryList();
+	}
 	
 	//교수로그인
 	public Professor getProfessor(Professor professor) {

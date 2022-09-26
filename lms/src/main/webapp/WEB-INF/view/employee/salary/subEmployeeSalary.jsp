@@ -28,7 +28,7 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(4)">상세관리</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(4)">연봉관리</a></li>
                         <li class="breadcrumb-item active"><a href="javascript:void(0)">서브관리자</a></li>
                     </ol>
                 </div>
@@ -42,7 +42,7 @@
                             <div class="card-body">
                             <div class="row">
                             	<div class="col-sm-9">
-                               		<h4 class="card-title">서브관리자 리스트</h4>
+                               		<h4 class="card-title">서브관리자 연봉변경</h4>
                                 </div>
                             </div>
                                 <br>
@@ -52,41 +52,17 @@
                                             <tr>
                                                 <th>사번</th>
                                                 <th>이름</th>
-                                                <th>주민번호</th>
-                                                <th>나이</th>
-                                                <th>성별</th>
-                                                <th>전화번호</th>
-                                                <th>이메일</th>
-                                                <th>주소</th>
-                                                <th>상세주소</th>
-                                                <th>재직상태</th>
-                                                <th>총관리자/서브관리자</th>
-                                                <th>생성일</th>
-                                                <th>수정일</th>
-                                                <th>연봉등급</th>
+                                                <th>관리자</th>
+                                                <th>연봉등급 (연봉)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="s" items="${subEmployeeList}">
+                                        <c:forEach var="es" items="${subEmployeeSalaryList}">
                                             <tr>
-                                                <td>${s.employeeNo}</td>
-                                                <td>
-                                                	<a href="${pageContext.request.contextPath}/notice/noticeOne?noticeNo=${s.employeeNo}">
-                                                		${s.employeeName}
-                                                	</a>
-                                                </td>
-                                                <td>${s.employeeRegiNo}</td>
-                                                <td>${s.employeeAge}</td>
-                                                <td>${s.employeeGender}</td>
-                                                <td>${s.employeeTelephone}</td>
-                                                <td>${s.employeeEmail}</td>
-                                                <td>${s.employeeAddress}</td>
-                                                <td>${s.employeeDetailAddress}</td>
-                                                <td>${s.employeeState}</td>
-                                                <td>${s.employeeActive}</td>
-                                                <td>${s.createDate}</td>
-                                                <td>${s.updateDate}</td>
-                                                <td>${s.salaryNo}(${s.salaryValue}만원)</td>
+                                                <td>${es.employeeNo}</td>
+                                                <td>${es.employeeName}</td>
+                                                <td>${es.employeeActive}</td>
+                                                <td>${es.salaryNo} (${es.salaryValue})</td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

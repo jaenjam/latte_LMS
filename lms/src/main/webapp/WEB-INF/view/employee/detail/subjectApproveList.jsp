@@ -51,9 +51,9 @@
                                         <thead>
                                             <tr>
                                                 <th>승인번호</th>
-                                                <th>학과번호(학과명)</th>
-                                                <th>과목번호(과목명)</th>
-                                                <th>담당교수사번(교수이름)</th>
+                                                <th>학과번호 (학과명)</th>
+                                                <th>과목번호 (과목명)</th>
+                                                <th>담당교수사번 (교수이름)</th>
                                                 <th>년도</th>
                                                 <th>학기</th>
                                                 <th>개강일</th>
@@ -70,9 +70,9 @@
                                         <c:forEach var="a" items="${subjectApproveList}">
                                             <tr>
                                             	<td>${a.subjectApproveNo}</td>
-                                            	<td>${a.majorNo}(${a.majorName})</td>
-                                                <td>${a.subjectNo}(${a.subjectName})</td>
-                                                <td>${a.professorNo}(${a.professorName})</td>
+                                            	<td>${a.majorNo} (${a.majorName})</td>
+                                                <td>${a.subjectNo} (${a.subjectName})</td>
+                                                <td>${a.professorNo} (${a.professorName})</td>
                                                 <td>${a.year}</td>
                                                 <td>${a.semester}</td>
                                                 <td>${a.startDate}</td>
