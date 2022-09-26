@@ -72,6 +72,29 @@
 	</insert>
 	
 	
+	<!--  강의하는 과목의 과제 파일 첨부하기 -->
+	<insert id="insertLecturefile" parameterType="com.gd.lms.vo.LectureFile">
+	INSERT INTO
+		lecture_file
+		(
+		lecture_no
+		, lecture_file_name
+		, lecture_origin_name
+		, lecture_type
+		, create_date
+		, update_date)
+		VALUES
+		(
+		#{lectureNo}
+		, #{lectureFileName}
+		, #{lectureOriginName}
+		, #{lectureType}
+		, now()
+		, now())
+	
+	</insert>
+	
+	
 	<!-- 강의하는 과목의 과제 수정하기 -->
 	<update id="updateLectureOne" parameterType="int">
 	UPDATE

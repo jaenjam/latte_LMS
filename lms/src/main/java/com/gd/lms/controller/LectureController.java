@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gd.lms.commons.TeamColor;
@@ -77,7 +78,8 @@ public class LectureController {
 		
 		// 강의하는 과목의 과제 작성하기 Action
 		@PostMapping("/lecture/addLectureForm")
-		public String addLecture(Lecture lecture, Model model, RedirectAttributes rttr) {
+		public String addLecture(Lecture lecture, Model model, RedirectAttributes rttr
+				, MultipartFile[] multipartfile) {
 			
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 작성하기 Action 컨트롤러 진입");

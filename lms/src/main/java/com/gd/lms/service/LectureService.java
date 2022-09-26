@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.LectureMapper;
 import com.gd.lms.vo.Lecture;
+import com.gd.lms.vo.LectureFile;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +47,12 @@ public class LectureService {
 		return lectureMapper.insertLectureOne(lecture);
 	}
 	
+	// 강의하는 과목의 과제 파일첨부 추가하기
+	public int addLectureFile(LectureFile lecturefile) {
+		log.debug(TeamColor.KHW +"강의하는 과목의 과제 파일첨부하기 서비스 진입");
+		return lectureMapper.insertLecturefile(lecturefile);
+	}
+		
 	// 강의하는 과목의 과제 수정하기
 	public int modifyLecture(int lectureNo) {
 		log.debug(TeamColor.KHW+"강의하는 과목의 과제 수정하기 서비스 진입");

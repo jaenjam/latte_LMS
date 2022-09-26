@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Lecture;
+import com.gd.lms.vo.LectureFile;
 
 @Mapper
 public interface LectureMapper {
@@ -21,6 +22,9 @@ public interface LectureMapper {
 	
 	// 강의하는 과목의 과제 작성
 	int insertLectureOne(Lecture lecture);
+	
+	// 강의하는 과목의 과제 파일첨부
+	int insertLecturefile(LectureFile lecturefile);
 	
 	// 강의하는 과목의 과제 수정
 	int updateLectureOne(int lectureNo);
