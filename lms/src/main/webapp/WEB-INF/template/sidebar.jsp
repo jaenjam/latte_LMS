@@ -65,7 +65,7 @@
 		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectList">과목</a>
 		                        </li>
 		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">과목승인</a>
+		                           	<a href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">승인과목</a>
 		                        </li>
 	                         </ul>
 	                    </li>
@@ -73,24 +73,27 @@
 	                    
 	                    
 	                    
-	                    <!-- 연봉관리 : 관리자, 서브관리자, 교수  -->
+	                    <!-- 승인관리 : 서브관리자, 교수, 학생, 과목  -->
                     	
                     	
 	                    <li class="mega-menu mega-menu-sm">
 	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
 	                            <i class="icon-notebook menu-icon"></i>
-	                            <span class="nav-text">연봉관리</span>
+	                            <span class="nav-text">승인관리</span>
 	                        </a>
 	                        <ul aria-expanded="false">
 	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/salary/employeeSalary">관리자</a>
+	                            	<a href="${pageContext.request.contextPath}/employee/approval/subEmployeeApproval">서브관리자</a>
 	                            </li>
 		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/salary/subEmployeeSalary">서브관리자</a>
+		                           	<a href="${pageContext.request.contextPath}/employee/approval/professorApproval">교수</a>
 		                        </li>
-		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/salary/professorSalary">교수</a>
-		                        </li>
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/approval/studentApproval">학생</a>
+	                            </li>
+	                            <li>
+	                            	<a href="${pageContext.request.contextPath}/employee/approval/subjectApproval">과목</a>
+	                            </li>
 	                         </ul>
 	                    </li>
 	                    
@@ -214,10 +217,10 @@
 	                            <!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
 	            
 	                  
-	                            		<c:forEach var="sl" items="${myRegisterListProf}">
+	                            		<c:forEach var="sl" items="${myRegisterListStu}">
 	                            		<!--  승인된과목의 페이지는... 본의아니게 숫자로 해야할듯 ㅠㅠ -->
 	                            			<li>
-	                            				<a style="background: #white;" href="${pageContext.request.contextPath}/subjectApprove/subjectApproveMain?subjectApproveNo=${sl.subjectApproveNo}">${sl.subjectName}</a>
+	                            				<a style="background: #white;" href="${pageContext.request.contextPath}/${sl}">${sl.professorNo}</a>
 	                                 		<li>
 	                            		</c:forEach>
 	                           
@@ -246,7 +249,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                            	<a href="${pageContext.request.contextPath}/major/majorList">학과소개</a>
+                            	<a href="${pageContext.request.contextPath}/major/majorList">학과 소개</a>
                             </li>
                         </ul>
                     </li>
@@ -264,12 +267,42 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                            	<a href="${pageContext.request.contextPath}/scholar/scholarList">장학소개</a>
-                            </li>                          
+                            	<a href="${pageContext.request.contextPath}/scholar/scholarList">장학 소개</a>
+                            </li> 
+                           <c:if test="${user eq 'employee'}"><!-- 관리자권한 -->
+                           <li>
+                            	<a href="${pageContext.request.contextPath}/scholar/addScholar">장학 추가</a>
+                            </li>  
+                          </c:if>                           
                         </ul>
                     </li>
                     
-                    
+                   
+                   <!-- 동아리 -->
+                   
+                   <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void(3)" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="nav-text">동아리</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/club/clubList">동아리 소개</a>
+                            </li>                 
+                            
+                            <c:if test="${user eq 'employee'}"><!-- 관리자권한 -->
+                           <li>
+                            	<a href="${pageContext.request.contextPath}/club/addClub">동아리 추가</a>
+                            </li>  
+                          </c:if>
+                            
+                            <c:if test="${user eq 'student'}"><!-- 학생 권한 -->
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/club/addStudentClub">동아리 가입</a>
+                            </li>  
+                            </c:if>                                    
+                        </ul>
+                    </li>
                     
                     
                     <!-- 공지 -->
@@ -287,6 +320,11 @@
                         </ul>
                     </li>
 
+                    
+                    
+                    
+                    
+                    
                     
                     
                     

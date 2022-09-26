@@ -79,7 +79,7 @@
 						<div class="scholarheader">${s.scholarContent}</div>
 						<br />
 						<c:set var="price" value="${s.scholarPrice}"/>						
-						<p style="color: darkred;"></p>
+						<p style="color: darkred;"><fmt:formatNumber value="${price}" type="currency" />원</p>
 					</div>
 				</div>
 			</div>
