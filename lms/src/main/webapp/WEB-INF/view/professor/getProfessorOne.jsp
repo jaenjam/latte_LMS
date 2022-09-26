@@ -92,10 +92,7 @@ margin-left:50px;
 								</div>
 								<div class="row mb-8">
 									<div class="col-12 text-center">
-										<form
-											action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
-											<button class="btn btn-danger px-5">사진첨부하기</button>
-										</form>
+										<p>정보수정에서 이미지를 추가해주세요</p>
 									</div>
 								</div>
 							</div>

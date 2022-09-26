@@ -33,12 +33,13 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-lg-4 col-xl-3">
-				<div class="card">
-					<div class="card-body">
-						<div class="media align-items-center mb-4">
-							<c:forEach var="M" items="${professor}">
-								<c:if test="${M.filename eq null}"><!-- 파일 없을때 경로 설정해줘야함 -->
+			<c:forEach var="M" items="${professor}">
+				<div class="col-lg-4 col-xl-3">
+					<div class="card">
+						<div class="card-body">
+							<div class="media align-items-center mb-4">
+								<c:if test="${M.filename eq null}">
+									<!-- 파일 없을때 경로 설정해줘야함 -->
 									<img class="mr-2" src="/images/userprofile/image.jpg"
 										width="200" height="200" alt="">
 								</c:if>
@@ -47,20 +48,29 @@
 										src="/images/userprofile/${M.filename}${M.contentType}"
 										width="200" height="200" alt="">
 								</c:if>
-							</c:forEach>
-
-						</div>
-						<div class="row mb-8">
-							<div class="col-12 text-center">
-								<form
-									action="${pageContext.request.contextPath}/professor/modifyProfessorImg">
-									<button class="btn btn-danger px-5">사진수정하기</button>
-								</form>
+							</div>
+							
+							
+							<div class="row mb-8">
+								<div class="col-12 text-center">
+								<c:if test="${M.filename eq null}">
+									<form
+										action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
+										<button class="btn btn-danger px-5">사진수정하기</button>
+									</form>
+									</c:if>
+									<c:if test="${M.filename ne null}">
+									<form
+										action="${pageContext.request.contextPath}/professor/modifyProfessorImg">
+										<button class="btn btn-danger px-5">사진수정하기</button>
+									</form>
+									</c:if>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 			<!-- 사진부분 -->
 
 			<div class="col-lg-8 col-xl-9">
