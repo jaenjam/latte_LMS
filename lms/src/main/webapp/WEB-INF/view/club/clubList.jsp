@@ -35,7 +35,7 @@
 			</ol>
 		</div>
 	</div>
-	
+
 	<c:if test="${user eq 'student'}">
 		<div class="addStudentClub">
 			<a href="${pageContext.request.contextPath}/student/addStudentClub">
@@ -44,7 +44,7 @@
 			</a>
 			<!--학생만 보이게 설정 -->
 		</div>
-		</c:if>
+	</c:if>
 
 	<c:if test="${user eq 'employee'}">
 		<div class="addClub">
@@ -78,17 +78,7 @@
 		</div>
 	</c:if>
 
-	<c:if test="${user eq 'student'}">
-		<div class="addStudentClub">
-			<a href="${pageContext.request.contextPath}/student/addStudentClub">
-				<button type="submit" class="btn btn-primary" style="float: right;">동아리
-					가입</button>
-			</a>
-			<!--학생만 보이게 설정 -->
-		</div>
-		</c:if>
-		<br />
-		<br />
+	<c:if test="${user ne 'employee'}">
 		<div class="container-fluid">
 			<c:forEach var="c" items="${clubList}">
 				<div class="card">
@@ -106,8 +96,9 @@
 				</div>
 			</c:forEach>
 		</div>
-
+	</c:if>
 </div>
+
 
 <!-- #/ container -->
 
