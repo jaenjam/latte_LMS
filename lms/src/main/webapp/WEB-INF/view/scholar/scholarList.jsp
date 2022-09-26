@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -8,6 +7,8 @@
 
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
+
+
 <style>
 .majorheader {
 	font-family: 궁서체;
@@ -23,7 +24,7 @@
 
 <!--**********************************
             Content body start
-        ***********************************-->
+***********************************-->
 <div class="content-body">
 	<div class="row page-titles mx-0">
 		<div class="col p-md-0">
@@ -69,7 +70,9 @@
 
 <!--**********************************
             Content body end
-        ***********************************-->
+***********************************-->
+
+
 <!-- footer -->
 
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>

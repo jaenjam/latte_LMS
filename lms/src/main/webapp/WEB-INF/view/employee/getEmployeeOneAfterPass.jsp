@@ -1,67 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<!DOCTYPE html>
+<!-- header.jsp -->
 
+<c:import url="/WEB-INF/template/header.jsp"></c:import>
 
-<html>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- sidebar.jsp -->
 
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-	font-family: Arial;
-}
+<c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
-/* Style the tab */
-.tab {
-	overflow: hidden;
-	border: 1px solid #ccc;
-	background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-	background-color: inherit;
-	float: left;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 14px 16px;
-	transition: 0.3s;
-	font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-	background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-	background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-	display: none;
-	padding: 6px 12px;
-	border: 1px solid #ccc;
-	border-top: none;
-}
-</style>
-</head>
-<body>
-
-	<!-- header.jsp -->
-	<%@include file="/WEB-INF/template/header.jsp"%>
-
-	<!-- sidebar.jsp -->
-	<%@include file="/WEB-INF/template/sidebar.jsp"%>
 	<!--**********************************
             Content body start
         ***********************************-->
@@ -204,6 +152,7 @@ body {
 	<!--**********************************
             Content body end
         ***********************************-->
+        
 	<!--**********************************
         Scripts
     ***********************************-->
