@@ -24,13 +24,13 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
-	//상세관리 - 서브관리자리스트 보여주기
-	public List<Map<String, Object>> getsubEmployeeList(){
+	// 상세관리 - 서브관리자리스트 보여주기
+	public List<Map<String, Object>> getsubEmployeeList() {
 		log.debug(TeamColor.LJE + "EmployeeService getsubEmployeeList");
 
 		return employeeMapper.subEmployeeList();
 	}
-	
+
 	// 관리자 정보 수정 사진등록
 	public int addEmployeeImg(EmployeeImg employeeImg) {
 		log.debug(TeamColor.CSJ + "addEmployeeImg.service");
@@ -54,6 +54,12 @@ public class EmployeeService {
 	public List<Map<String, Object>> getEmployeeOne(int employeeNo) {
 		log.debug(TeamColor.CSJ + "getEmployeeOne.service");
 		return employeeMapper.selectEmployeeOne(employeeNo);
+	}
+
+	// 관리자 회원가입 (사번중복체크)
+	public int employeeNoCheck(int employeeNo) throws Exception {
+		log.debug(TeamColor.CSJ + "employeeNoCheck.service");
+		return employeeMapper.employeeNoCheck(employeeNo);
 	}
 
 	// 관리자 회원가입

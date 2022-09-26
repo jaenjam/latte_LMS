@@ -48,75 +48,96 @@
 					<div class="form-input-content">
 						<div class="card login-form mb-0">
 							<div class="card-body pt-5">
-								<a class="text-center" href="/addEmployee">
+								<a class="text-center"
+									href="${pageContext.request.contextPath}/employee/signupEmployeeForm">
 									<h4>관리자 회원가입</h4>
 								</a>
 
 								<div class="card-body">
 									<div class="basic-form">
-										<form action="${pageContext.request.contextPath}/addEmployee"
+										<form
+											action="${pageContext.request.contextPath}/employee/signupEmployeeForm"
 											method="post" id="addEmployee">
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<label>사번</label> <input type="text" class="form-control"
-														name="employeeNo" id="employeeNo" placeholder="사번을 입력해주세요">
+														name="employeeNo" id="employeeNo"> <span
+														class="employeeNo_re1"> 사번을 입력해주세요 </span> <span
+														class="employeeNo_re2"> 사용가능한 사번입니다 </span> <span
+														class="employeeNo_re3"> 해당 사번이 이미 존재합니다 </span>
+
 												</div>
 												<div class="form-group col-md-6">
 													<label>비밀번호</label> <input type="password"
-														class="form-control" name="employeePass" id="employeePass"
-														placeholder="비밀번호를 입력해주세요">
+														class="form-control" name="employeePass" id="employeePass">
+													<span class="employeePass_re1"> 비밀번호를 입력해주세요 </span>
 												</div>
 											</div>
 											<div class="form-group">
 												<label>이름</label> <input type="text" class="form-control"
-													name="employeeName" id="employeeName"
-													placeholder="이름을 입력해주세요">
+													name="employeeName" id="employeeName"> <span
+													class="employeeName_re1"> 이름을 입력해주세요 </span>
+
 											</div>
+
+
+
+											<div class="form-group">
+												<label>주민번호</label> <input type="text" class="form-control"
+													name="employeeRegiNo" id="employeeRegiNo">
+													<span
+													class="employeeRegiNo_re1"> 주민번호를 입력해주세요 </span>
+											</div>
+
 											<div class="form-group">
 												<label>나이</label> <input type="text" class="form-control"
-													name="employeeAge" id="employeeAge"
-													placeholder="나이을 입력해주세요">
+													name="employeeAge" id="employeeAge">
 											</div>
+
 											<div class="form-group">
 												<label>성별</label><br> <input type="radio"
 													name="employeeGender" value="남자"> 남자 <input
-													type="radio" name="employeeGender" value="여자"> 여자
-											</div>
-											<div class="form-group">
-												<label>주민번호</label> <input type="text" class="form-control"
-													name="employeeRegiNo" id="employeeRegiNo"
-													placeholder="주민번호을 입력해주세요">
+													type="radio" name="employeeGender" value="여자"> 여자 <span
+													class="employeeGender_re1"> 성별을 선택해주세요 </span>
+
 											</div>
 
 											<div class="form-group">
 												<label>전화번호</label> <input type="text" class="form-control"
-													name="employeeTelephone" id="employeeTelephone"
-													placeholder="전화번호을 입력해주세요">
+													name="employeeTelephone" id="employeeTelephone"> <span
+													class="employeeTelephone_re1"> 전화번호를 입력해주세요 </span>
+
 											</div>
 
 											<div class="form-group">
 												<label>이메일</label> <input type="text" class="form-control"
-													name="employeeEmail" id="employeeEmail"
-													placeholder="이메일을 입력해주세요">
+													name="employeeEmail" id="employeeEmail"> <span
+													class="employeeEmail_re1"> 이메일을 입력해주세요 </span> <span
+													class="employeeEmail_re2"> 이메일 형식을 확인해주세요 </span> <span
+													class="employeeEmail_re3"> 사용가능한 이메일입니다 </span>
+
 											</div>
 											<div class="form-group">
 												<label>주소</label> <input type="text" class="form-control"
-													name="employeeAddress" id="employeeAddress"
-													placeholder="주소를 입력해주세요">
+													name="employeeAddress" id="employeeAddress"> <span
+													class="employeeAddress_re1"> 주소를 입력해주세요 </span>
+
 											</div>
 											<div class="row">
 												<div class="col-sm-9">
 													<div class="form-group">
 														<label>상세주소</label> <input type="text"
 															class="form-control" name="employeeDetailAddress"
-															id="employeeDetailAddress" placeholder="상세주소를 입력해주세요">
+															id="employeeDetailAddress">
+															
+															<span
+													class="employeeDetailAddress_re1"> 상세주소를 입력해주세요 </span>
 													</div>
 												</div>
 
 												<div class="col-sm-2">
 													<div class="form-group">
-														<button type="button"
-															style="margin-top: 33px;"
+														<button type="button" style="margin-top: 33px;"
 															id="employeeAddrBtn" class="btn btn-light">주소검색</button>
 													</div>
 												</div>
@@ -257,39 +278,314 @@
 		}
 	</script>
 
+	
 	<script>
-		$('#addEmployeeBtn').click(function() {
-			if ($('#employeeNo').val() == '') {
-				alert('아이디를 입력해주세요!');
-			} else if ($('#employeePass').val() == '') {
-				alert('비밀번호를 입력해주세요!');
-			} else if ($('#employeeName').val() == '') {
-				alert('이름을 입력해주세요!');
-			} else if ($('#employeeRegiNo').val() == '') {
-				alert('주민번호를 입력해주세요!');
-			} else if ($('#employeeAge').val() == '') {
-				alert('나이를 입력해주세요!');
-			} else if ($('#employeeGender').val() == '') {
-				alert('성별을 입력해주세요!');
-			} else if ($('#employeeTelephone').val() == '') {
-				alert('전화번호를 입력해주세요!');
-			} else if ($('#employeeEmail').val() == '') {
-				alert('이메일을 입력해주세요!');
-			} else if ($('#employeeAddress').val() == '') {
-				alert('주소를 입력해주세요!');
-			} else if ($('#employeeDetailAddress').val() == '') {
-				alert('상세주소를 입력해주세요!');
-			} else {
-				$('#addEmployee').submit();
-			}
-		})
-	</script>
+		// 입력 이메일 유효성검사
+		function mailcheckLt(employeeEmail) {
+			var emailform = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
-	<script src="plugins/common/common.min.js"></script>
-	<script src="js/custom.min.js"></script>
-	<script src="js/settings.js"></script>
-	<script src="js/gleek.js"></script>
-	<script src="js/styleSwitcher.js"></script>
+			return emailform.test(employeeEmail);
+
+		}
+
+		// 유효성 검사 통과유무 변수
+		var employeeNoCk = false; // 사번
+		var employeePassCk = false; // 비밀번호
+		var employeeNameCk = false; // 이름
+		var employeeRegiNoCk = false; // 주민
+		var employeeGenderCk = false; // 성별
+		var employeeTelephoneCk = false; // 핸드폰
+		var employeeEmailCk = false; // 이메일
+		var employeeAddressCk = false; // 주소
+		var employeeDetailAddressCk = false; // 상세주소
+
+		$(document)
+				.ready(
+						function() {
+
+							// 회원가입 버튼(회원가입 기능 작동)
+							$("#addEmployeeBtn")
+									.click(
+											function() {
+
+												// 입력란변수
+												var employeeNo = $('#employeeNo')
+														.val();
+												var employeePass = $(
+														'#employeePass').val();
+												var employeeName = $(
+														'#employeeName').val();
+												var employeeRegiNo = $(
+														'#employeeRegiNo').val();
+												var employeeAge = $(
+														'#employeeAge').val();
+												var employeeGender = $(
+														"input[name='employeeGender']:checked")
+														.val();
+
+												var employeeTelephone = $(
+														'#employeeTelephone')
+														.val();
+												var employeeEmail = $(
+														'#employeeEmail').val();
+												var employeeAddress = $(
+														'#employeeAddress')
+														.val();
+												var employeeDetailAddress = $(
+														'#employeeDetailAddress')
+														.val();
+
+												// 사번 유효성검사
+												if (employeeNo == "") { // 아무것도 입력안하면
+													$('.employeeNo_re1').css(
+															'display', 'block');
+													$('#employeeNo').focus();
+													employeeNoCk = false;
+													return;
+												} else {
+													$('.employeeNo_re1').css(
+															'display', 'none');
+													employeeNoCk = true;
+												}
+
+												// 비밀번호 유효성검사
+												if (employeePass == "") { // 아무것도 입력안하면
+													$('.employeePass_re1').css(
+															'display', 'block');
+													$('#employeePass').focus();
+													console
+															.log("$('#employeePass').val();")
+													employeePassCk = false;
+													return;
+												} else {
+													$('.employeePass_re1').css(
+															'display', 'none');
+													employeePassCk = true;
+												}
+												
+
+												// 이름 유효성검사
+												console.log(employeeName)
+												if (employeeName == "") { // 아무것도 입력안하면
+													$('#employeeName_re1').css(
+															'display', 'block');
+													$('#employeePass').focus();
+													employeeNameCk = false;
+													return;
+												} else {
+													$('#employeeName_re1').css(
+															'display', 'none');
+													employeeNameCk = true;
+												}
+
+												// 주민번호 유효성 검사
+												if (employeeRegiNo == "") { // 아무것도 입력안하면
+													$('#employeeRegiNo_re1')
+															.css('display',
+																	'block');
+													$('#employeeRegiNo').focus();
+													employeeRegiNoCk = false;
+													return;
+												} else {
+													$('#employeeRegiNo_re1')
+															.css('display',
+																	'none');
+													employeeRegiNoCk = true;
+												}
+
+												// 성별 유효성검사
+												if (employeeGender == "") { // 아무것도 입력안하면
+													$('#employeeGender_re1')
+															.css('display',
+																	'block');
+													$('#employeeGender').focus();
+													employeeGenderCk = false;
+													return;
+												} else {
+													$('#employeeGender_re1')
+															.css('display',
+																	'none');
+													employeeGenderCk = true;
+												}
+
+												// 핸드폰 유효성검사
+												if (employeeTelephone == "") { // 아무것도 입력안하면
+													$('#employeeTelephone_re1')
+															.css('display',
+																	'block');
+													$('#employeeTelephone')
+															.focus();
+													employeeTelephoneCk = false;
+													return;
+												} else {
+													$('#employeeTelephone_re1')
+															.css('display',
+																	'none');
+													employeeTelephoneCk = true;
+												}
+
+												// 이메일 유효성검사
+												if (employeeEmail == "") { // 아무것도 입력안하면
+													$('.employeeEmail_re1').css(
+															'display', 'block');
+													$('.employeeEmail_re2').css(
+															'display', 'none');
+													$('.employeeEmail_re3').css(
+															'display', 'none');
+
+													$('#employeeEmail').focus();
+													employeeEmailCk = false;
+													return;
+												} else if (!mailcheckLt(employeeEmail)) {
+													$('.employeeEmail_re1').css(
+															'display', 'none');
+													$('.employeeEmail_re2').css(
+															'display', 'block');
+													$('.employeeEmail_re3').css(
+															'display', 'none');
+													return;
+
+												} else {
+													$('.employeeEmail_re1').css(
+															'display', 'none');
+													$('.employeeEmail_re2').css(
+															'display', 'none');
+													$('.employeeEmail_re3').css(
+															'display', 'block');
+													employeeEmailCk = true;
+												}
+
+												// 주소 유효성검사
+												if (employeeAddress == "") { // 아무것도 입력안하면
+													$('#employeeAddress_re1')
+															.css('display',
+																	'block');
+													$('#employeeAddress')
+															.focus();
+													employeeAddressCk = false;
+													return;
+												} else {
+													$('#employeeAddress_re1')
+															.css('display',
+																	'none');
+													employeeAddressCk = true;
+												}
+
+												// 상세주소 유효성검사
+												if (employeeDetailAddress == "") { // 아무것도 입력안하면
+													$(
+															'#employeeDetailAddress_re1')
+															.css('display',
+																	'block');
+													$('#employeeDetailAddress')
+															.focus();
+													employeeDetailAddressCk = false;
+													return;
+												} else {
+													$(
+															'#employeeDetailAddress_re1')
+															.css('display',
+																	'none');
+													employeeDetailAddressCk = true;
+												}
+
+												// 최종유효성검사
+												if (employeeNoCk
+														&& employeePassCk
+														&& employeeNameCk
+														&& employeeRegiNoCk
+														&& employeeGenderCk
+														&& employeeTelephoneCk
+														&& employeeEmailCk
+														&& employeeAddressCk
+														&& employeeDetailAddressCk) {
+
+													console.log("1")
+													$('#addEmployee')
+															.submit();
+												} else {
+
+													console.log("2")
+												}
+
+												return false;
+
+											});
+
+						});
+
+		// 도큐먼트 끝
+
+		// 아이디 중복검사
+		$('#employeeNo').on("propertychange change keyup paste input",
+				function() {
+
+					console.log("keyup 테스트");
+
+					var employeeNo = $('#employeeNo').val();
+					var data = {
+							employeeNo : employeeNo
+					}
+
+					$.ajax({
+						type : "post",
+						url : "/employeeNoChk",
+						data : data,
+						success : function(result) {
+							if (result == "fail") {
+								$('.employeeNo_re1').css('display', 'none');
+								$('.employeeNo_re2').css('display', 'none');
+								$('.employeeNo_re3').css('display', 'block');
+							} else {
+								$('.employeeNo_re1').css('display', 'none');
+								$('.employeeNo_re2').css('display', 'block');
+								$('.employeeNo_re3').css('display', 'none');
+							}
+							console.log("성공 여부" + result);
+						} // success 종료
+
+					}); // ajax 종료	
+
+				});
+
+		// 나이 게산
+		$('#employeeRegiNo').on("focusout", function() {
+			console.log("keyup 나이 테스트");
+
+			const today = new Date();
+
+			var birthDate = $("#employeeRegiNo").val().substring(0, 2);
+			console.log(birthDate)
+
+			//02
+			if (birthDate.substring(0, 1) == 0) {
+				birthDate = "20" + birthDate;
+			} else {
+				// 9*
+				birthDate = "19" + birthDate;
+			}
+			birthDate = new Date(birthDate);
+
+			let age = today.getFullYear() - birthDate.getFullYear() + 1;
+
+			console.log(age)
+			$("#employeeAge").val(age)
+		});
+	</script>
+	
+	
+	
+	
+	
+	
+
+	<script
+		src="${pageContext.request.contextPath}/plugins/common/common.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/settings.js"></script>
+	<script src="${pageContext.request.contextPath}/js/gleek.js"></script>
+	<script src="${pageContext.request.contextPath}/js/styleSwitcher.js"></script>
+
 
 </body>
 </html>

@@ -59,6 +59,17 @@
 		, NOW())
 	</insert>
 	
+	<!--  사번중복검사용 -->
+	<select id="professorNoCheck" resultType="int">
+		SELECT
+			count(*) 
+		FROM 
+			professor
+		WHERE 
+			professor_no =#{professorNo}	
+	</select>
+	
+	
 	<!-- 교수상세보기 -->
 	<select id="selectProfessorOne" parameterType="int" resultType="map">
 		SELECT

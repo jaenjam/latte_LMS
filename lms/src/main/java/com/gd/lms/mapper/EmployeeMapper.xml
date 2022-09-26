@@ -63,6 +63,20 @@
 		NOW()
 		)
 	</insert>
+	
+	<!--  사번중복검사용 -->
+	<select id="employeeNoCheck" resultType="int">
+		SELECT
+			count(*) 
+		FROM 
+			employee
+		WHERE 
+			employee_no =#{employeeNo}	
+	</select>
+	
+	
+	
+	
 
 	<!-- 관리자 로그인 -->
 	<select id="getEmployee" resultType="com.gd.lms.vo.Employee"

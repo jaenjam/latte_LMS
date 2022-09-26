@@ -48,23 +48,32 @@
 					<div class="form-input-content">
 						<div class="card login-form mb-0">
 							<div class="card-body pt-5">
-								<a class="text-center" href="/addEmployee">
+								<a class="text-center"
+									href="${pageContext.request.contextPath}/professor/signupProfessorForm">
 									<h4>교수 회원가입</h4>
 								</a>
 								<div class="card-body">
 									<div class="basic-form">
-										<form action="${pageContext.request.contextPath}/addProfessor"
+										<form
+											action="${pageContext.request.contextPath}/professor/signupProfessorForm"
 											method="post" id="addProfessor">
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<label>사번</label> <input type="text" name="professorNo"
-														id="professorNo" class="form-control"
-														placeholder="사번을 입력해주세요">
+														id="professorNo" class="form-control"> <span
+														class="professorNo_re1"> 사번을 입력해주세요 </span> <span
+														class="professorNo_re2"> 사용가능한 사번입니다 </span> <span
+														class="professorNo_re3"> 해당 사번이 이미 존재합니다 </span>
+
+
+
 												</div>
 												<div class="form-group col-md-6">
 													<label>비밀번호</label> <input type="password"
 														name="professorPass" id="professorPass"
-														class="form-control" placeholder="비밀번호를 입력해주세요">
+														class="form-control"> <span
+														class="professorPass_re1"> 비밀번호를 입력해주세요 </span>
+
 												</div>
 											</div>
 											<div class="form-group">
@@ -74,56 +83,76 @@
 													<c:forEach items="${majorList}" var="M">
 														<option value="${M.majorNo}">${M.majorName}</option>
 													</c:forEach>
-												</select>
+												</select> <span class="majorNo_re1"> 전공을 선택해주세요 </span>
+
 											</div>
 											<div class="form-group">
 												<label>이름</label> <input type="text" name="professorName"
-													class="form-control" id="professorName"
-													placeholder="이름을 입력해주세요">
+													class="form-control" id="professorName"> <span
+													class="professorName_re1"> 이름을 입력해주세요 </span>
+
 											</div>
+
+
+											<div class="form-group">
+												<label>주민번호</label> <input type="text"
+													name="professorRegiNo" id="professorRegiNo"
+													class="form-control"> <span
+													class="professorRegiNo_re1"> 주민번호를 입력해주세요 </span>
+											</div>
+
 											<div class="form-group">
 												<label>나이</label> <input type="text" name="professorAge"
-													class="form-control" id="professorAge"
-													placeholder="나이를 입력해주세요">
+													class="form-control" id="professorAge">
+
 											</div>
+
 											<div class="form-group">
 												<label>성별</label><br> <input type="radio"
 													name="professorGender" value="남자"> 남자 <input
 													type="radio" name="professorGender" value="여자"> 여자
-											</div>
-											<div class="form-group">
-												<label>주민번호</label> <input type="text"
-													name="professorRegiNo" id="professorRegiNo"
-													class="form-control" placeholder="주민번호를 입력해주세요">
+												<span class="professorGender_re1"> 성별을 선택해주세요 </span>
 											</div>
 
 											<div class="form-group">
 												<label>전화번호</label> <input type="text"
 													name="professorTelephone" class="form-control"
-													id="professorTelephone" placeholder="비밀번호를 입력해주세요">
+													id="professorTelephone"> <span
+													class="professorTelephone_re1"> 전화번호를 입력해주세요 </span>
 											</div>
 
 											<div class="form-group">
 												<label>이메일</label> <input type="text" name="professorEmail"
-													class="form-control" id="professorEmail"
-													placeholder="이메일을 입력해주세요">
+													class="form-control" id="professorEmail"> <span
+													class="professorEmail_re1"> 이메일을 입력해주세요 </span>
+													<span
+													class="professorEmail_re2"> 이메일 형식을 확인해주세요 </span> <span
+													class="professorEmail_re3"> 사용가능한 이메일입니다 </span>
+
+
 											</div>
 
 											<div class="form-group">
 												<label>주소</label> <input type="text" name="professorAddress"
-													class="form-control" id="professorAddress"
-													placeholder="주소를 입력해주세요">
+													class="form-control" id="professorAddress">
+													 <span
+													class="professorAddress_re1"> 주소를 입력해주세요 </span>
+
 											</div>
 											<div class="row">
 												<div class="col-sm-9">
 													<div class="form-group">
 														<label>상세주소</label> <input type="text"
 															class="form-control" name="professorDetailAddress"
-															id="professorDetailAddress" placeholder="상세주소를 입력해주세요">
+															id="professorDetailAddress">
+															 <span
+													class="professorDetailAddress_re1"> 상세주소를 입력해주세요 </span>
+															
+															
 													</div>
 												</div>
 
-											<div class="col-sm-2">
+												<div class="col-sm-2">
 													<div class="form-group">
 														<button type="button" style="margin-top: 33px;"
 															id="professorAddrBtn" class="btn btn-light">주소검색</button>
@@ -268,40 +297,324 @@
 	</script>
 
 	<script>
-		$('#addProfessorBtn').click(function() {
-			if ($('#professorNo').val() == '') {
-				alert('아이디를 입력해주세요.');
-			} else if ($('#professorPass').val() == '') {
-				alert('비밀번호를 입력해주세요.');
-			} else if ($('#majorNo').val() == '') {
-				alert('전공을 입력해주세요.');
-			} else if ($('#professorName').val() == '') {
-				alert('이름을 입력해주세요.');
-			} else if ($('#professorRegiNo').val() == '') {
-				alert('주민번호를 입력해주세요.');
-			} else if ($('#professorAge').val() == '') {
-				alert('나이를 입력해주세요.');
-			} else if ($('#professorGender').val() == '') {
-				alert('성별을 입력해주세요.');
-			} else if ($('#professorTelephone').val() == '') {
-				alert('전화번호를 입력해주세요.');
-			} else if ($('#professorEmail').val() == '') {
-				alert('이메일을 입력해주세요.');
-			} else if ($('#professorAddress').val() == '') {
-				alert('주소를 입력해주세요.');
-			} else if ($('#professorDetailAddress').val() == '') {
-				alert('상세주소를 입력해주세요.');
+		// 입력 이메일 유효성검사
+		function mailcheckLt(professorEmail) {
+			var emailform = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+			return emailform.test(professorEmail);
+
+		}
+
+		// 유효성 검사 통과유무 변수
+		var professorNoCk = false; // 학번
+		var professorPassCk = false; // 비밀번호
+		var majorNoCk = false;
+		var professorNameCk = false; // 이름
+		var professorRegiNoCk = false; // 주민
+		var professorGenderCk = false; // 성별
+		var professorTelephoneCk = false; // 핸드폰
+		var professorEmailCk = false; // 이메일
+		var professorAddressCk = false; // 주소
+		var professorDetailAddressCk = false; // 상세주소
+
+		$(document)
+				.ready(
+						function() {
+
+							// 회원가입 버튼(회원가입 기능 작동)
+							$("#addProfessorBtn")
+									.click(
+											function() {
+
+												// 입력란변수
+												var professorNo = $('#professorNo')
+														.val();
+												var professorPass = $(
+														'#professorPass').val();
+												var majorNo = $('#majorNo')
+														.val();
+												var professorName = $(
+														'#professorName').val();
+												var professorRegiNo = $(
+														'#professorRegiNo').val();
+												var professorAge = $(
+														'#professorAge').val();
+												var professorGender = $(
+														"input[name='professorGender']:checked")
+														.val();
+
+												var professorTelephone = $(
+														'#professorTelephone')
+														.val();
+												var professorEmail = $(
+														'#professorEmail').val();
+												var professorAddress = $(
+														'#professorAddress')
+														.val();
+												var professorDetailAddress = $(
+														'#professorDetailAddress')
+														.val();
+
+												// 사번 유효성검사
+												if (professorNo == "") { // 아무것도 입력안하면
+													$('.professorNo_re1').css(
+															'display', 'block');
+													$('#professorNo').focus();
+													professorNoCk = false;
+													return;
+												} else {
+													$('.professorNo_re1').css(
+															'display', 'none');
+													professorNoCk = true;
+												}
+
+												// 비밀번호 유효성검사
+												if (professorPass == "") { // 아무것도 입력안하면
+													$('.professorPass_re1').css(
+															'display', 'block');
+													$('#professorPass').focus();
+													console
+															.log("$('#professorPass').val();")
+													professorPassCk = false;
+													return;
+												} else {
+													$('.professorPass_re1').css(
+															'display', 'none');
+													professorPassCk = true;
+												}
+
+												// 전공 유효성검사
+												if (majorNo == "") { // 아무것도 입력안하면
+													$('#majorNo').focus();
+													console
+															.log("$('#majorNo').val();")
+													majorNoCk = false;
+													return;
+												} else {
+													$('.professorPass_re1').css(
+															'display', 'none');
+													professorPassCk = true;
+												}
+
+												// 이름 유효성검사
+												console.log(professorName)
+												if (professorName == "") { // 아무것도 입력안하면
+													$('#professorName_re1').css(
+															'display', 'block');
+													$('#professorPass').focus();
+													professorNameCk = false;
+													return;
+												} else {
+													$('#professorName_re1').css(
+															'display', 'none');
+													professorNameCk = true;
+												}
+
+												// 주민번호 유효성 검사
+												if (professorRegiNo == "") { // 아무것도 입력안하면
+													$('#professorRegiNo_re1')
+															.css('display',
+																	'block');
+													$('#professorRegiNo').focus();
+													professorRegiNoCk = false;
+													return;
+												} else {
+													$('#professorRegiNo_re1')
+															.css('display',
+																	'none');
+													professorRegiNoCk = true;
+												}
+
+												// 성별 유효성검사
+												if (professorGender == "") { // 아무것도 입력안하면
+													$('#professorGender_re1')
+															.css('display',
+																	'block');
+													$('#professorGender').focus();
+													professorGenderCk = false;
+													return;
+												} else {
+													$('#professorGender_re1')
+															.css('display',
+																	'none');
+													professorGenderCk = true;
+												}
+
+												// 핸드폰 유효성검사
+												if (professorTelephone == "") { // 아무것도 입력안하면
+													$('#professorTelephone_re1')
+															.css('display',
+																	'block');
+													$('#professorTelephone')
+															.focus();
+													professorTelephoneCk = false;
+													return;
+												} else {
+													$('#professorTelephone_re1')
+															.css('display',
+																	'none');
+													professorTelephoneCk = true;
+												}
+
+												// 이메일 유효성검사
+												if (professorEmail == "") { // 아무것도 입력안하면
+													$('.professorEmail_re1').css(
+															'display', 'block');
+													$('.professorEmail_re2').css(
+															'display', 'none');
+													$('.professorEmail_re3').css(
+															'display', 'none');
+
+													$('#studentEmail').focus();
+													professorEmailCk = false;
+													return;
+												} else if (!mailcheckLt(professorEmail)) {
+													$('.professorEmail_re1').css(
+															'display', 'none');
+													$('.professorEmail_re2').css(
+															'display', 'block');
+													$('.professorEmail_re3').css(
+															'display', 'none');
+													return;
+
+												} else {
+													$('.professorEmail_re1').css(
+															'display', 'none');
+													$('.professorEmail_re2').css(
+															'display', 'none');
+													$('.professorEmail_re3').css(
+															'display', 'block');
+													professorEmailCk = true;
+												}
+
+												// 주소 유효성검사
+												if (professorAddress == "") { // 아무것도 입력안하면
+													$('#professorAddress_re1')
+															.css('display',
+																	'block');
+													$('#professorAddress')
+															.focus();
+													professorAddressCk = false;
+													return;
+												} else {
+													$('#professorAddress_re1')
+															.css('display',
+																	'none');
+													professorAddressCk = true;
+												}
+
+												// 상세주소 유효성검사
+												if (professorDetailAddress == "") { // 아무것도 입력안하면
+													$(
+															'#professorDetailAddress_re1')
+															.css('display',
+																	'block');
+													$('#professorDetailAddress')
+															.focus();
+													professorDetailAddressCk = false;
+													return;
+												} else {
+													$(
+															'#professorDetailAddress_re1')
+															.css('display',
+																	'none');
+													professorDetailAddressCk = true;
+												}
+
+												// 최종유효성검사
+												if (professorNoCk
+														&& professorPassCk
+														&& professorNameCk
+														&& professorRegiNoCk
+														&& professorGenderCk
+														&& professorTelephoneCk
+														&& professorEmailCk
+														&& professorAddressCk
+														&& professorDetailAddressCk) {
+
+													console.log("1")
+													$('#addProfessor')
+															.submit();
+												} else {
+
+													console.log("2")
+												}
+
+												return false;
+
+											});
+
+						});
+
+		// 도큐먼트 끝
+
+		// 아이디 중복검사
+		$('#professorNo').on("propertychange change keyup paste input",
+				function() {
+
+					console.log("keyup 테스트");
+
+					var professorNo = $('#professorNo').val();
+					var data = {
+							professorNo : professorNo
+					}
+
+					$.ajax({
+						type : "post",
+						url : "/professorNoChk",
+						data : data,
+						success : function(result) {
+							if (result == "fail") {
+								$('.professorNo_re1').css('display', 'none');
+								$('.professorNo_re2').css('display', 'none');
+								$('.professorNo_re3').css('display', 'block');
+							} else {
+								$('.professorNo_re1').css('display', 'none');
+								$('.professorNo_re2').css('display', 'block');
+								$('.professorNo_re3').css('display', 'none');
+							}
+							console.log("성공 여부" + result);
+						} // success 종료
+
+					}); // ajax 종료	
+
+				});
+
+		// 나이 계산
+		$('#professorRegiNo').on("focusout", function() {
+			console.log("keyup 나이 테스트");
+
+			const today = new Date();
+
+			var birthDate = $("#professorRegiNo").val().substring(0, 2);
+			console.log(birthDate)
+
+			//02
+			if (birthDate.substring(0, 1) == 0) {
+				birthDate = "20" + birthDate;
 			} else {
-				$('#addProfessor').submit();
+				// 9*
+				birthDate = "19" + birthDate;
 			}
-		})
+			birthDate = new Date(birthDate);
+
+			let age = today.getFullYear() - birthDate.getFullYear() + 1;
+
+			console.log(age)
+			$("#professorAge").val(age)
+		});
 	</script>
 
-	<script src="plugins/common/common.min.js"></script>
-	<script src="js/custom.min.js"></script>
-	<script src="js/settings.js"></script>
-	<script src="js/gleek.js"></script>
-	<script src="js/styleSwitcher.js"></script>
+
+
+	<script
+		src="${pageContext.request.contextPath}/plugins/common/common.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/settings.js"></script>
+	<script src="${pageContext.request.contextPath}/js/gleek.js"></script>
+	<script src="${pageContext.request.contextPath}/js/styleSwitcher.js"></script>
+
+
 
 </body>
 </html>

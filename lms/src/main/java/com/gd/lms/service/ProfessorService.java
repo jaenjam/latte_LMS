@@ -32,6 +32,15 @@ public class ProfessorService {
 		
 		return professorMapper.insertProfessor(professor);
 		}
+	
+
+	// 교수 회원가입 (사번중복체크)
+		public int professorNoCheck(int professorNo) throws Exception {
+			log.debug(TeamColor.CSJ + "professorNoCheck.service");
+			return professorMapper.professorNoCheck(professorNo);
+		}
+	
+	
 		
 	//교수상세보기
 	public List<Map<String,Object>> getProfessorOne(int professorNo){

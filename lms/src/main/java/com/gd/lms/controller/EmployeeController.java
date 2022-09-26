@@ -13,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
@@ -27,14 +30,14 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class EmployeeController {
 
-	@Autowired EmployeeService employeeService;
+	@Autowired
+	EmployeeService employeeService;
 
-	
 	// 교수사진등록하기 (Form)
 	@GetMapping("/employee/addEmployeeImgForm")
 	public String addEmployeeImg(Model model) {
 		log.debug(TeamColor.CSJ + "employeeController.addEmployeeImg form");
-		
+
 		return "/employee/addEmployeeImgForm";
 	}
 
@@ -133,6 +136,25 @@ public class EmployeeController {
 
 	}
 
+	// 아이디 중복검사
+	@RequestMapping(value = "/employeeNoChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String employeeNoChkPOST(int employeeNo) throws Exception {
+
+		log.debug(TeamColor.CSJ + "employeeNoChkPOST() 진입");
+
+		int result = employeeService.employeeNoCheck(employeeNo);
+
+		log.debug(TeamColor.CSJ + "employeeNoChkPOST() 진입 : " + result);
+
+		if (result != 0) {
+			return "fail"; // 중복아이디가 존재
+		} else {
+			return "success";
+		}
+
+	}
+
 	// 관리자회원가입 form
 	@GetMapping("/employee/signupEmployeeForm")
 	public String addEmployee() {
@@ -143,7 +165,7 @@ public class EmployeeController {
 	}
 
 	// 관리자회원가입 action
-	@PostMapping("/addEmployee")
+	@PostMapping("/employee/signupEmployeeForm")
 	public String addEmployee(Employee employee, Model model) {
 
 		int row = employeeService.addEmployee(employee);

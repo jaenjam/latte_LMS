@@ -14760,6 +14760,117 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 	display: none;
 }
 
+[validemployeeNo_re1]
+.employeeNo_re1 {
+	display: none;
+}
+.employeeNo_re2 {
+	display: none;
+}
+.employeeNo_re3{
+	display: none;
+}
+
+.employeePass_re1{
+	display: none;
+}
+
+.employeeName_re1{
+	display: none;
+}
+
+.employeeRegiNo_re1{
+	display: none;
+}
+
+.employeeAge_re1{
+	display: none;
+}
+
+.employeeGender_re1{
+	display: none;
+}
+
+.employeeTelephone_re1{
+	display: none;
+}
+
+.employeeEmail_re1{
+	display: none;
+}
+
+.employeeEmail_re2{
+	display: none;
+}
+
+.employeeEmail_re3{
+	display: none;
+}
+
+.employeeAddress_re1{
+	display: none;
+}
+
+.employeeDetailAddress_re1ate-check-message{
+	display: none;
+}
+
+
+[validProfessorNo_re1]
+.professorNo_re1 {
+	display: none;
+}
+.professorNo_re2 {
+	display: none;
+}
+.professorNo_re3{
+	display: none;
+}
+
+.professorPass_re1{
+	display: none;
+}
+
+.professorName_re1{
+	display: none;
+}
+
+.professorRegiNo_re1{
+	display: none;
+}
+
+.professorAge_re1{
+	display: none;
+}
+
+.professorGender_re1{
+	display: none;
+}
+
+.professorTelephone_re1{
+	display: none;
+}
+
+.professorEmail_re1{
+	display: none;
+}
+
+.professorEmail_re2{
+	display: none;
+}
+
+.professorEmail_re3{
+	display: none;
+}
+
+.professorAddress_re1{
+	display: none;
+}
+
+.professorDetailAddress_re1ate-check-message{
+	display: none;
+}
+
 
 
 /*# sourceMappingURL=style.css.map */

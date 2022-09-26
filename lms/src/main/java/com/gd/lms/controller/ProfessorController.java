@@ -15,7 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.service.ProfessorService;
@@ -108,6 +111,25 @@ public class ProfessorController {
 		}
 		return result;
 	}
+	
+	// 아이디 중복검사
+			@RequestMapping(value = "/professorNoChk", method = RequestMethod.POST)
+			@ResponseBody
+			public String professorNoChkPOST(int professorNo) throws Exception {
+
+				log.debug(TeamColor.CSJ + "professorNoChkPOST() 진입");
+
+				int result = professorService.professorNoCheck(professorNo);
+
+				log.debug(TeamColor.CSJ + "professorNoChkPOST() 진입 : " + result);
+
+				if (result != 0) {
+					return "fail"; // 중복아이디가 존재
+				} else {
+					return "success";
+				}
+
+			}
 
 	// 교수회원가입 form
 	@GetMapping("/professor/signupProfessorForm")
