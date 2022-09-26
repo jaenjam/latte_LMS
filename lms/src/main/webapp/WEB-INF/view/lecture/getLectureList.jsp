@@ -42,7 +42,7 @@
                                		<h4 class="card-title"> 성공했다면 여기로? </h4>
                                 </div>
                                 <div class="col-sm-3">
-                                	<a href="${pageContext.request.contextPath}/notice/addNoticeForm">
+                                	<a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
                                 		<button type="button" class="btn btn-primary">과제추가</button>
                                 	</a>
                             	</div>

@@ -39,24 +39,24 @@
                                 <div class="form-validation">
                                     <form class="form-valide" action="${pageContext.request.contextPath}/noticeOne" method="post">
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="noticeNo">번호<span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="lectureNo">번호<span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="noticeNo" name="noticeNo" value="${lectureOne.lectureNo}" readonly="readonly">
+                                                <input type="text" class="form-control" id="lectureNo" name="lectureNo" value="${lectureOne.lectureNo}" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="noticeTitle">제목<span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="lectureTitle">제목<span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="noticeTitle" name="noticeTitle" value="${lectureOne.lectureTitle}" placeholder="제목을 입력해주세요">
+                                                <input type="text" class="form-control" id="lectureTitle" name="lectureTitle" value="${lectureOne.lectureTitle}" placeholder="제목을 입력해주세요">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="noticeContent">내용<span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="lectureContent">내용<span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <textarea class="form-control" id="noticeContent" name="noticeContent" rows="5" placeholder="내용을 입력해주세요">${lectureOne.lectureContent}</textarea>
+                                                <textarea class="form-control" id="lectureContent" name="lectureContent" rows="5" placeholder="내용을 입력해주세요">${lectureOne.lectureContent}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -75,8 +75,12 @@
                                         </div>
                                         <div style="float:right">
                                         	<div>
+												<a href="${pageContext.request.contextPath}/lecture/modifyLecture?lectureNo=${lectureOne.lectureNo}">
 												<button type="button" class="btn btn-primary">수정</button>
-												<button type="button" class="btn btn-primary">삭제</button>
+												</a>
+													<a href="${pageContext.request.contextPath}/lecture/removeLecture?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}">
+		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn">삭제</button>
+		                                    </a>
 											</div>
 										</div>
                                     </form>

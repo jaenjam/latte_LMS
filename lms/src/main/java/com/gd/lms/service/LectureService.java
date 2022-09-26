@@ -45,4 +45,18 @@ public class LectureService {
 		log.debug(TeamColor.KHW +"강의하는 과목의 과제 작성하기 서비스 진입");
 		return lectureMapper.insertLectureOne(lecture);
 	}
+	
+	// 강의하는 과목의 과제 수정하기
+	public int modifyLecture(int lectureNo) {
+		log.debug(TeamColor.KHW+"강의하는 과목의 과제 수정하기 서비스 진입");
+		return lectureMapper.updateLectureOne(lectureNo);
+	}
+	
+	// 강의하는 과목의 과제 삭제하기
+	public int removeLectureOne(int lectureNo) {
+		log.debug(TeamColor.KHW+"강의하는 과목의 과제 삭제하기 서비스 진입");
+		return lectureMapper.deleteLectureOne(lectureNo);
+	}
+	
+	
 }

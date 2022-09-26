@@ -22,4 +22,10 @@ public interface LectureMapper {
 	// 강의하는 과목의 과제 작성
 	int insertLectureOne(Lecture lecture);
 	
+	// 강의하는 과목의 과제 수정
+	int updateLectureOne(int lectureNo);
+	
+	// 강의하는 과목의 과제 삭제
+	int deleteLectureOne(int lectureNo);
+	
 }

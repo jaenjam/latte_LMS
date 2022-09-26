@@ -38,6 +38,7 @@
 	<select id="selectLectureOnePro" parameterType="com.gd.lms.vo.Lecture" resultType="com.gd.lms.vo.Lecture">
 	SELECT
 		lecture_no lectureNo
+		, subject_Approve_No subjectApproveNo 
 		, lecture_title lectureTitle
 		, lecture_content lectureContent
 		, create_date createDate
@@ -72,17 +73,24 @@
 	
 	
 	<!-- 강의하는 과목의 과제 수정하기 -->
-	<update id="updateLectureOnePro">
-	
-	
-	</update>
-	
-	
-	<!-- 강의하는 과목의 과제 삭제하기 -->
-	<update id="deleteLectureOne" parameterType="com.gd.lms.vo.Lecture">
-	DELETE FROM
+	<update id="updateLectureOne" parameterType="int">
+	UPDATE
 		lecture
-			
+	SET
+		lecture_title = #{lectureTitle}
+		, lecture_content = #{lectureContent}
+		, update_date = now()		
+	WHERE
+		lecture_no = #{lectureNo}	
 	</update>
+	
+	<!-- 강의하는 과목의 과제 삭제하기 -->	
+	<delete id="deleteLectureOne" parameterType="int">
+	DELETE 
+	FROM
+		lecture
+	WHERE
+		lecture_no = #{lectureNo}		
+	</delete>
 	
 </mapper>

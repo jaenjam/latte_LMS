@@ -102,16 +102,78 @@ public class LectureController {
 			} else {
 				log.debug(TeamColor.KHW +"과제작성 실패!");
 				rttr.addFlashAttribute("result", "과제 등록에 실패했습니다!");
-				return "redirect:/lecture/getLectureList?subjectApproveNo=\"+lecture.getSubjectApproveNo();";
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+lecture.getSubjectApproveNo();
 			}			
 		}
 		
 		
 		// 강의하는 과목의 과제 수정하기 Form
+		@GetMapping("/lecture/modifyLecture")
+		public String modifyLecture(Model model,@RequestParam("lectureNo") int lectureNo) {
+			// 해당 컨트롤러 진입여부 확인
+			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 수정하기 Form 컨트롤러 진입");
+			
+			// 게시판 상세보기 긁어오기 및 lectureOne에 저장
+			Lecture lectureOne = lectureService.getLectureOne(lectureNo);
+			
+			// model에 넣어주기 (view로 보여주기 위함)
+			model.addAttribute("lectureOne", lectureOne);
+			log.debug(TeamColor.KHW +"lectureService.getLectureOne 실행결과 : " + lectureOne);
+			
+			return "/lecture/modifyLecture";
+		}
 		
 		
 		// 강의하는 과목의 과제 수정하기 Action
+		@PostMapping("/lecture/modifyLecture")
+		public String modifyLecture(Lecture lecture, Model model
+				,@RequestParam("lectureNo") int lectureNo
+				,@RequestParam("subjectApproveNo") int subjectApproveNo ) {
+			// 해당 컨트롤러 진입여부 확인
+			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 수정하기 Action 컨트롤러 진입");
+			
+			// 과제 서비스 수정 서비스 실행
+			int result = lectureService.modifyLecture(lectureNo);
+			if(result != 0) { // 수정성공!
+				log.debug(TeamColor.KHW+ "과제 수정성공!");
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
+			} else {
+			return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
+			}
+		}
 		
 		
 		// 강의하는 과목의 과제 삭제하기 Action
+		@GetMapping("/lecture/removeLecture")
+		public String removeLectureForm(@RequestParam("lectureNo") int lectureNo, 
+				@RequestParam("subjectApproveNo") int subjectApproveNo
+				,Lecture lecture, RedirectAttributes rttr) {
+			
+			// 해당 컨트롤러 진입여부 확인
+			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 삭제하기 Action 컨트롤러 진입");
+			
+			log.debug(TeamColor.KHW +"강의하는 과목의 과제 삭제하기 Action 컨트롤러 진입시 전달받은 lectureNo : " + lectureNo);
+			log.debug(TeamColor.KHW +"강의하는 과목의 과제 삭제하기 Action 컨트롤러 진입시 전달받은 subjectApproveNo : " + subjectApproveNo);
+			// lectureService를 실행하여 form에서 입력받은 sql의 값 insert
+			int result =lectureService.removeLectureOne(lectureNo);
+			
+			
+			
+			// 디버깅
+			log.debug(TeamColor.KHW +"lectureService.removeLectureOne 실행결과 " + result);
+			if (result !=0) { // 1일시 과제작성 성공
+				
+				log.debug(TeamColor.KHW +"과제삭제 성공!");
+				
+				rttr.addFlashAttribute("result", "과제 삭제에 성공했습니다!");
+				log.debug(TeamColor.KHW+"? :" +subjectApproveNo);
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
+			} else {
+				log.debug(TeamColor.KHW +"과제삭제 실패!");
+				rttr.addFlashAttribute("result", "과제 삭제에 실패했습니다!");
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
+			}			
+		}
+			
+			
 }
