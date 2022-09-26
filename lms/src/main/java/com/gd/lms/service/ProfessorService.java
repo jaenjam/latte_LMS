@@ -56,11 +56,18 @@ public class ProfessorService {
 	}
 	
 	//교수사진등록하기
-		public int addProfessorImg(ProfessorImg professorImg) {
-			log.debug(TeamColor.JJY+"addProfessorImg(사진추가) service실행");
-			System.out.println("addProfessorImg(사진추가) service 실행");
-			
-			return professorMapper.insertProfessorImg(professorImg);
-			
-		}
+	public int addProfessorImg(ProfessorImg professorImg) {
+		log.debug(TeamColor.JJY+"addProfessorImg(사진추가) service실행");
+		System.out.println("addProfessorImg(사진추가) service 실행");
+		
+		return professorMapper.insertProfessorImg(professorImg);
+		
+	}
+		
+	//교수사진여부유무
+	public List<Map<String,Object>> getProfessorImg(int professorNo){
+		log.debug(TeamColor.JJY+"Service getProfessorImg실행");
+		
+		return professorMapper.selectProfessorImg(professorNo);	
+	}
 }

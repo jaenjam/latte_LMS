@@ -49,7 +49,7 @@ public class ProfessorController {
 
 	// 로그인 액션
 	@PostMapping("/ProfessorForm")
-	public String professorLogin(Professor professor, Model model, HttpServletRequest request) {
+	public String professorLogin(Professor professor, Model model, HttpServletRequest request,@RequestParam("professorNo") int professorNo) {
 
 		log.debug(TeamColor.JJY + "ProfessorController loginForm Post실행");
 
@@ -60,8 +60,7 @@ public class ProfessorController {
 		Professor professorLogin = professorService.getProfessor(professor); // professor값 다 select
 		model.addAttribute("ProfessorId", professorLogin); // model에 ProfessorId라는 값으로 select한 값 다 들어가있음
 
-		log.debug(TeamColor.JJY + "ProfessorController professorLogin 값 :" + professorLogin); // professorLogin안에 들어가있는
-																								// 값 확인
+		log.debug(TeamColor.JJY + "ProfessorController professorLogin 값 :" + professorLogin); // professorLogin안에 들어가있는																							
 		log.debug(TeamColor.JJY + "ProfessorController professorLogin의 model :" + model); // model값 출력
 
 		if (professorLogin == null) {
@@ -89,14 +88,17 @@ public class ProfessorController {
 
 			log.debug(TeamColor.JJY + "professorNo : " + session.getAttribute("No")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorAge : " + session.getAttribute("professorAge")); // 값 출력되는지 확인
-			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값
-																														// 출력되는지
-																														// 확인
+			log.debug(TeamColor.JJY + "professorDetailAddress : " + session.getAttribute("professorDetailAddress")); // 값 출력되는지 확인
 			log.debug(TeamColor.JJY + "professorRegiNo : " + session.getAttribute("professorRegiNo")); // 값 출력되는지 확인
+			
+			// Header사진셀렉
+			List<Map<String, Object>> professorImg = professorService.getProfessorImg(professorNo);
+			log.debug(TeamColor.JJY +"professorImg값 : "+professorImg);
+			model.addAttribute("professorImg",professorImg);
+			log.debug(TeamColor.JJY +"professorImgModel : " + model);
 
 			// 교수의 나의 강의리스트 get을 위한 서비스 실행 ( 로그인 주체에 따른 사이드바 구분을 위함 )
-			List<Map<String, Object>> myRegisterListProf = registerService
-					.getMyRegisterListProf(professorLogin.getProfessorNo());
+			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf(professorLogin.getProfessorNo());
 
 			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 			model.addAttribute("myRegisterListProf", myRegisterListProf);

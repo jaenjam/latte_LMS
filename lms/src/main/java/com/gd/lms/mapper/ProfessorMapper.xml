@@ -169,6 +169,17 @@
 	
 	</insert>
 	
-	<!-- 교수사진보기 -->
+	<!-- header부분 사진 null값 셀렉 -->
+	<select id="selectProfessorImg" parameterType="int" resultType="map">
+	SELECT
+		 professor_no
+		,content_type
+		,filename
+		,origin_filename
+	FROM
+		professor_img
+	WHERE
+		professor_no = #{professorNo}
+	</select>
 
 </mapper>
