@@ -1,19 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- header.jsp -->
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
 
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
-
 <!--**********************************
             Content body start
-***********************************-->
-
+        ***********************************-->
 <div class="content-body">
 
 	<div class="row page-titles mx-0">
@@ -29,7 +27,7 @@
 	</div>
 	<!-- row -->
 
-	<c:forEach var="c" items="${scholarOne}">
+	<c:forEach var="s" items="${scholarOne}">
 		<div class="container-fluid">
 			<div class="row justify-content-center">
 				<div class="col-lg-12">
@@ -39,7 +37,7 @@
 							<h4 style="font-size: 2.0em;">장학 상세보기</h4>
 							<hr>
 							<div class="form-group row">
-								<label class="col-lg-2 col-form-label" for="clubNo">장학코드
+								<label class="col-lg-2 col-form-label" for="scholarNo">장학코드
 								</label>
 								<div class="col-lg-10">
 									<input type="text" class="form-control" id="scholarNo"
@@ -49,7 +47,7 @@
 							<!-- End 장학코드 -->
 
 							<div class="form-group row">
-								<label class="col-lg-2 col-form-label" for="clubName">장학명
+								<label class="col-lg-2 col-form-label" for="scholarName">장학명
 								</label>
 								<div class="col-lg-10">
 									<input type="text" class="form-control" id="scholarName"
@@ -100,8 +98,7 @@
 </div>
 <!--**********************************
             Content body end
-***********************************-->
-
+        ***********************************-->
 
 <!-- footer -->
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>

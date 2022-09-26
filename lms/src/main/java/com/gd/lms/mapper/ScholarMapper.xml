@@ -2,6 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.ScholarMapper">
 
+	<!-- 장학상세보기 -->
+	<select id="selectScholarOne" resultType="map">
+	SELECT 
+		 scholar_no scholarNo
+		,scholar_name scholarName
+		,scholar_Content scholarContent
+		,scholar_price scholarPrice
+		
+	FROM
+		scholar
+	WHERE
+		scholar_no = #{scholarNo}
+	</select>
+	
+	<!-- 전공수정하기 -->
+	<update id="updateScholar" parameterType="com.gd.lms.vo.Scholar">
+		
+		UPDATE 
+				scholar
+		SET 
+				
+				scholar_name=#{scholarName}
+				,scholar_content=#{scholarContent}
+				,scholar_price=#{scholarPrice}
+				,update_date=now()
+		WHERE
+				scholar_no=#{scholarNo}
+				
+	</update>
+	
+
+
+
+
 	<!-- 장학목록받아주기 -->
 	<select id="selectScholarList" resultType="map">
 	
