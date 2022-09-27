@@ -1,11 +1,19 @@
 package com.gd.lms.service;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.LectureMapper;
@@ -42,17 +50,78 @@ public class LectureService {
 	}
 	
 	// 강의하는 과목의 과제 작성하기
-	public int addLecture(Lecture lecture) {
+	public int addLecture(Lecture lecture, MultipartFile[] lectureFile
+			, HttpServletRequest request) {
 		log.debug(TeamColor.KHW +"강의하는 과목의 과제 작성하기 서비스 진입");
-		return lectureMapper.insertLectureOne(lecture);
-	}
-	
-	// 강의하는 과목의 과제 파일첨부 추가하기
-	public int addLectureFile(LectureFile lecturefile) {
-		log.debug(TeamColor.KHW +"강의하는 과목의 과제 파일첨부하기 서비스 진입");
-		return lectureMapper.insertLecturefile(lecturefile);
-	}
+		int result = lectureMapper.insertLectureOne(lecture);
 		
+		log.debug(TeamColor.KHW +"result :" + result);
+		log.debug(TeamColor.KHW +"lectureFile :" + lectureFile);		
+		
+		
+		if(result != 0 && lectureFile!=null ) {
+			log.debug(TeamColor.KHW +"lectureFil이 not null입니다");
+			
+			String dir = request.getSession().getServletContext().getRealPath("/WEB-INF/view/lecture/uploadFile");
+			log.debug(TeamColor.KHW +"dir 경로 확인 : " + dir);
+			String lectureFilename = ""; //  강의자료파일에서 저장된 이름
+			String lectureOriginname = ""; // 기존파일이름
+			String lectureType= ""; // 파일형식
+			
+			/*
+			 	//파일 이름
+				private String fileName;			
+				//파일 원본 이름
+				private String fileOriginname;
+			 */
+			
+			List<LectureFile> list = new ArrayList<>();
+			
+			for(MultipartFile file : lectureFile) {
+				// 
+				if(!file.isEmpty()) {
+					lectureOriginname = file.getOriginalFilename();
+					lectureType=file.getContentType();
+					
+					// 업로드한 파일을 vo내 존재하는 파일객체에 넣어주기
+					LectureFile LectureFile = new LectureFile();
+					
+					
+					LectureFile.setLectureOriginname(lectureOriginname);
+					LectureFile.setLectureFilename(UUID.randomUUID() + "_" + lectureOriginname);
+					LectureFile.setLectureType(lectureType);
+					LectureFile.setLectureNo(lecture.getLectureNo());
+										
+					log.debug(TeamColor.KHW + "LectureFile : " + LectureFile);
+					
+					
+					list.add(LectureFile);
+					
+					String saveFileName = dir + File.separator + LectureFile.getLectureFilename();
+					
+					Path savedir = Paths.get(saveFileName);
+					
+					try {
+						// 전송
+						file.transferTo(savedir);
+						
+						result =+ lectureMapper.insertLecturefile(LectureFile);
+						
+						// 파일 추가
+						log.debug(TeamColor.KHW + " 성공 result : " + result);
+					} catch(Exception e) {
+						log.debug(TeamColor.KHW + " 실패 result : " + result);
+						e.printStackTrace();
+					
+					}
+				}
+		
+			}
+		}
+		
+		
+		return result;
+	}
 	// 강의하는 과목의 과제 수정하기
 	public int modifyLecture(int lectureNo) {
 		log.debug(TeamColor.KHW+"강의하는 과목의 과제 수정하기 서비스 진입");

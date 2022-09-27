@@ -39,7 +39,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="${pageContext.request.contextPath}/lecture/addLectureForm" method="post">
+                                    <form class="form-valide" action="${pageContext.request.contextPath}/lecture/addLectureForm" method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="lectureTitle">제목<span class="text-danger">*</span>
                                             </label>
@@ -55,11 +55,24 @@
                                                 <textarea class="form-control" id="lectureContent" name="lectureContent" rows="5" placeholder="내용을 입력해주세요"></textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-lg-8 ml-auto">
-                                                <button type="submit" class="btn btn-primary">추가</button>
-                                            </div>
-                                        </div>
+                                        
+                                        
+                                        <!--  이미지 파일 업로드  -->
+                                        <div class="container">
+								
+											<label class="col-lg-4 col-form-label" for="lectureTitle"> 첨부파일 </label>
+												<span style="font-size:11px; color: gray;">※첨부파일은 최대 10개까지 등록이 가능합니다.</span>
+											  	<input type="file" name="file" id="file"style="border: 1px solid #ddd; outline: none;" class="btn btn-primary">파일 추가</button>
+											
+										</div>
+											                                        
+                                        
+                                        <!--  버튼  -->
+                                        <div style="float:right">
+											  					
+                                                <button type="submit" class="btn btn-primary" id='addLecture' name='addLecture'>추가</button>
+                                      	</div>
+										
                                     </form>
                                 </div>
                             </div>
@@ -78,3 +91,8 @@
 <!-- footer -->
 
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>
+
+<script>
+
+</script>
+   

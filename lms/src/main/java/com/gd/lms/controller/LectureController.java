@@ -1,7 +1,10 @@
 package com.gd.lms.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,13 +82,17 @@ public class LectureController {
 		// 강의하는 과목의 과제 작성하기 Action
 		@PostMapping("/lecture/addLectureForm")
 		public String addLecture(Lecture lecture, Model model, RedirectAttributes rttr
-				, MultipartFile[] multipartfile) {
+				, HttpServletRequest request
+				, @RequestParam("file") MultipartFile[] lectureFile ) throws UnsupportedEncodingException {
 			
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 작성하기 Action 컨트롤러 진입");
 			
+			log.debug(TeamColor.KHW+ "lectureFile :" +lectureFile);
+			//log.debug(TeamColor.KHW+ "File :" +file);
+			
 			// lectureService를 실행하여 form에서 입력받은 sql의 값 insert
-			int result = lectureService.addLecture(lecture);
+			int result = lectureService.addLecture(lecture, lectureFile, request);
 			
 			
 			
