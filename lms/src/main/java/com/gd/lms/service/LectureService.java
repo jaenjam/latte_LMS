@@ -11,12 +11,16 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.LectureMapper;
+import com.gd.lms.repository.LectureRepository;
 import com.gd.lms.vo.Lecture;
 import com.gd.lms.vo.LectureFile;
 
@@ -28,6 +32,19 @@ import lombok.extern.slf4j.Slf4j;
 public class LectureService {
 	@Autowired
 	private LectureMapper lectureMapper;
+	@Autowired 
+	private LectureRepository repository;
+	
+	// 페이징
+	public Page<Lecture> findLectureList(Pageable pageable, String contains){
+		pageable = PageRequest.of(
+				pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber()-1,
+				pageable.getPageSize());
+
+		//return 	repository.findAllByLectureContentContains(contains, pageable);
+		return repository.findAllByLectureContentContains(contains, pageable);
+	}
+	
 	
 	
 	// 강의하는 과목의 과제 리스트 긁어오기
@@ -45,7 +62,7 @@ public class LectureService {
 	
 	
 	// 강의하는 과목의 과제 상세보기
-	public Lecture getLectureOne(int lectureNo) {
+	public Map<String,Object> getLectureOne(int lectureNo) {
 		log.debug(TeamColor.KHW +"강의자료상세보기 서비스 진입");
 		return lectureMapper.selectLectureOnePro(lectureNo); 
 	}

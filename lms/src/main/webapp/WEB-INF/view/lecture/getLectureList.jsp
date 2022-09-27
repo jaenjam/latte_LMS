@@ -65,7 +65,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="L" items="${lectureList}">
+                                        <c:forEach var="L" items="${lectureList.content}">
                                             <tr>
                                                 <td>${L.lectureNo}</td>
                                                 <td>

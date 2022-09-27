@@ -18,7 +18,7 @@ public interface LectureMapper {
 	int lectureHit(int lectureNo);
 	
 	// 강의하는 과목의 과제 상세보기
-	Lecture selectLectureOnePro(int lectureNo);
+	Map<String, Object> selectLectureOnePro(int lectureNo);
 	
 	// 강의하는 과목의 과제 작성
 	int insertLectureOne(Lecture lecture);

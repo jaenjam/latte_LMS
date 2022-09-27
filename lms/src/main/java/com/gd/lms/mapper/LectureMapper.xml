@@ -35,25 +35,26 @@
 
 
 	<!-- 강의하는 과목의 과제 상세보기 -->
-	<select id="selectLectureOnePro" parameterType="com.gd.lms.vo.Lecture" resultType="com.gd.lms.vo.Lecture">
+	<select id="selectLectureOnePro" parameterType="int" resultType="map">
 	SELECT
-		l.lecture_no lectureNo
-		, l.subject_Approve_No subjectApproveNo 
+		 l.subject_approve_no subjectApproveNo 
 		, l.lecture_title lectureTitle
 		, l.lecture_content lectureContent
 		, l.create_date createDate
 		, l.update_date updateDate
 		, l.count 
-		, lf.lecturefile_no
-		, lf.lecture_filename
-		, lf.lecture_originname
-		, lf.lecture_type
+		, lf.lecturefile_no lecturefileNo
+		, lf.lecture_filename lectureFilename
+		, lf.lecture_originname lectureOriginname
+		, lf.lecture_type lectureType
 	FROM
-		lecture	l INNER JOIN lecture_file lf
+		lecture	l 
+	INNER JOIN 
+		lecture_file lf
 	ON
-		l.lecture_no = 
+		l.lecture_no = lf.lecture_no
 	WHERE
-		lecture_no = #{lectureNo}	
+		l.lecture_no = #{lectureNo}
 	</select>
 	
 	

@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,11 @@ public class LectureController {
 		
 		// 강의하는 과목의 과제 목록 (교수가)
 		@GetMapping("/lecture/getLectureList")
-		public String getlectureList(Model model, @RequestParam("subjectApproveNo") int subjectApproveNo) {
+		public String getlectureList(Model model
+				, @RequestParam("subjectApproveNo") int subjectApproveNo
+				, String search
+				,  @PageableDefault Pageable pageable
+				){
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW +"LectureController의 lectureList 진입");
 			
@@ -38,21 +44,24 @@ public class LectureController {
 			//lectureService.lectureHit(lecturerNo);
 			
 			// 리스트 긁어오는 service 실행 >>> 교수사번 입력되어 얻은 쿼리문을 lectureList에 담기
-			List<Map<String,Object>> lectureList = lectureService.getLectureListProf(subjectApproveNo);
+			List<Map<String,Object>> lectureList; 
+			//List<Map<String,Object>> lectureList = lectureService.getLectureListProf(subjectApproveNo);
 			log.debug(TeamColor.KHW +"LectureController로 다시 돌아옴(서비스 끝남)");
 			
 			// 해당 값을 모델에 저장(view에서 띄우기 위함)
-			model.addAttribute("lectureList", lectureList);
+			model.addAttribute("lectureList", lectureService.findLectureList(pageable, search));
 			
 			// 디버그
-			log.debug(TeamColor.KHW+lectureList);
+			//log.debug(TeamColor.KHW+ lectureList);
+			log.debug(TeamColor.KHW+ model);
+			
 			
 			return "/lecture/getLectureList";
 		}
 		
 		// 강의하는 과목의 과제 상세보기
 		@GetMapping("/lecture/getLectureOne")
-		public String getlectureListOne(Model model, Lecture lecture ,@RequestParam("lectureNo") int lectureNo) {
+		public String getlectureListOne(Model model, @RequestParam("lectureNo") int lectureNo) {
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW +"LectureController의 lectureOne 진입");
 			
@@ -60,7 +69,7 @@ public class LectureController {
 			lectureService.updatelectureHit(lectureNo);
 			
 			// 게시판 상세보기 긁어오기 및 lectureOne에 저장
-			Lecture lectureOne = lectureService.getLectureOne(lectureNo);
+			Map<String, Object> lectureOne = lectureService.getLectureOne(lectureNo);
 			
 			// model에 다시 저장
 			model.addAttribute("lectureOne", lectureOne);
@@ -123,7 +132,7 @@ public class LectureController {
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 수정하기 Form 컨트롤러 진입");
 			
 			// 게시판 상세보기 긁어오기 및 lectureOne에 저장
-			Lecture lectureOne = lectureService.getLectureOne(lectureNo);
+			Map<String, Object> lectureOne = lectureService.getLectureOne(lectureNo);
 			
 			// model에 넣어주기 (view로 보여주기 위함)
 			model.addAttribute("lectureOne", lectureOne);
