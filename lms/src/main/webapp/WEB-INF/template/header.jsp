@@ -26,6 +26,17 @@
 	rel="stylesheet">
 </head>
 
+<style>
+
+.nav-header .brand-logo a {
+    padding: 0.8rem 1.7rem;
+    display: block;
+}
+
+
+</style>
+
+
 <body>
 
 	<!--*******************
@@ -54,13 +65,13 @@
         ***********************************-->
 		<div class="nav-header">
 			<div class="brand-logo">
-				<a href="${pageContext.request.contextPath}/home"> <b
+				<a href="${pageContext.request.contextPath}/WEB-INF/view/home"> <b
 					class="logo-abbr"><img
-						src="${pageContext.request.contextPath}/images/logo.png" alt="">
+						src="${pageContext.request.contextPath}/images/logo_cut.png" alt="">
 				</b> <span class="logo-compact"><img
 						src="${pageContext.request.contextPath}/images/logo-compact.png"
 						alt=""></span> <span class="brand-title"> <img
-						src="${pageContext.request.contextPath}/images/logo2.png"
+						src="${pageContext.request.contextPath}/images/logo5.png"
 						alt="">
 				</span>
 				</a>
