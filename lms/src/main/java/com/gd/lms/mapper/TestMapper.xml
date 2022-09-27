@@ -15,6 +15,23 @@
 			,NOW())
 	</insert>
 	
+	<insert id="insertMultiple" parameterType="com.gd.lms.vo.MultipleTest">
+	
+	INSERT INTO multiple_test(
+		 test_no
+		,multiplechoice_question
+		,multiplechoice_answer
+		,multiplechoice_score
+		,create_date,update_date)
+	VALUE(
+		 #{testNo}
+		,#{multiplechoiceQuestion}
+		,#{multiplechoiceAnswer}
+		,#{multiplechoiceScore}
+		,NOW()
+		,NOW())
+	</insert>
+	
 	
 	
 </mapper>

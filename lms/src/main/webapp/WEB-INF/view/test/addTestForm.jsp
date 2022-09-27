@@ -12,7 +12,7 @@
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
+<scriptz
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 .stepper-wrapper {
@@ -30,11 +30,9 @@
 	flex: 1;
 	@media
 	(
-	max-width
-	:
-	768px)
+	max-width:768px)
 {
-	font-size : 12px;
+	font-size:12px;
 }
 
 }
@@ -116,7 +114,7 @@
 		<div class="stepper-wrapper">
 			<div class="stepper-item completed">
 				<div class="step-counter">1</div>
-				<div class="step-name">First</div>
+				<div class="step-name">고사선택</div>
 			</div>
 			<div class="stepper-item active">
 				<div class="step-counter">2</div>
@@ -148,27 +146,23 @@
 						<br>
 						<form action="${pageContext.request.contextPath}/addTest"
 							method="post">
+							<input type="hidden" name="subjectApproveNo"
+								value="${subjectApproveNo}" readonly="readonly"
+								class="form-control">
 
 							<table class="table table-hover">
 								<thead>
+									<!-- session값에 넣어줘서 그냥 빼주면됌 이거 hidden으로 가리고 join값으로 정보빼서 보여주기 -->
 									<tr>
-										<td><input type="text" name="subjectApproveNo"
-											value="${subjectApproveNo}" readonly="readonly"
-											class="form-control"></td>
-										<!-- session값에 넣어줘서 그냥 빼주면됌 이거 hidden으로 가리고 join값으로 정보빼서 보여주기 -->
+										<td><select name="testName" class="form-control">
+												<option>== 고사선택 ==</option>
+												<option value="중간">중간</option>
+												<option value="기말">기말</option>
+										</select></td>
 									</tr>
+
 								</thead>
 							</table>
-							<hr>
-							<div class="row">
-								<div class="col-sm-2">
-									<select name="testName" class="form-control">
-										<option>== 고사선택 ==</option>
-										<option value="중간">중간</option>
-										<option value="기말">기말</option>
-									</select>
-								</div>
-							</div>
 
 							<button type="submit" class="btn btn-primary"
 								style="float: right;">다음</button>
