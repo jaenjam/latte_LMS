@@ -60,7 +60,7 @@
 				</b> <span class="logo-compact"><img
 						src="${pageContext.request.contextPath}/images/logo-compact.png"
 						alt=""></span> <span class="brand-title"> <img
-						src="${pageContext.request.contextPath}/images/logo-text.png"
+						src="${pageContext.request.contextPath}/images/logo8.png"
 						alt="">
 				</span>
 				</a>
