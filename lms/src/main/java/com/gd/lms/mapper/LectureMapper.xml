@@ -37,15 +37,21 @@
 	<!-- 강의하는 과목의 과제 상세보기 -->
 	<select id="selectLectureOnePro" parameterType="com.gd.lms.vo.Lecture" resultType="com.gd.lms.vo.Lecture">
 	SELECT
-		lecture_no lectureNo
-		, subject_Approve_No subjectApproveNo 
-		, lecture_title lectureTitle
-		, lecture_content lectureContent
-		, create_date createDate
-		, update_date updateDate
-		, count 
+		l.lecture_no lectureNo
+		, l.subject_Approve_No subjectApproveNo 
+		, l.lecture_title lectureTitle
+		, l.lecture_content lectureContent
+		, l.create_date createDate
+		, l.update_date updateDate
+		, l.count 
+		, lf.lecturefile_no
+		, lf.lecture_filename
+		, lf.lecture_originname
+		, lf.lecture_type
 	FROM
-		lecture	
+		lecture	l INNER JOIN lecture_file lf
+	ON
+		l.lecture_no = 
 	WHERE
 		lecture_no = #{lectureNo}	
 	</select>
@@ -72,26 +78,41 @@
 	</insert>
 	
 	
+	<!-- 과제 -->
+	<select id="selectLectureNo" parameterType="com.gd.lms.vo.Lecture" resultType="int">
+	SELECT
+		lecture_no lectureNo		
+	FROM
+		lecture
+	WHERE
+		lecture_title = #{lectureTitle}
+	AND
+		lecture_content = #{lectureContent}	
+	AND
+		subject_approve_no = #{subjectApproveNo}
+	</select>
+	
+	
 	<!--  강의하는 과목의 과제 파일 첨부하기 -->
 	<insert id="insertLecturefile" parameterType="com.gd.lms.vo.LectureFile">
 	INSERT INTO
 		lecture_file
 		(
 		lecture_no
-		, lecture_file_name
-		, lecture_origin_name
+		, lecture_filename
+		, lecture_originname
 		, lecture_type
 		, create_date
 		, update_date)
 		VALUES
 		(
 		#{lectureNo}
-		, #{lectureFileName}
-		, #{lectureOriginName}
+		, #{lectureFilename}
+		, #{lectureOriginname}
 		, #{lectureType}
 		, now()
 		, now())
-	
+		
 	</insert>
 	
 	

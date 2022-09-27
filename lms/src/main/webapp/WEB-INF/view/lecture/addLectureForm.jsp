@@ -46,6 +46,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="lectureTitle" name="lectureTitle" placeholder="제목을 입력해주세요">
                                             	<input type="hidden" id="subjectApproveNo" name="subjectApproveNo" value="${subjectApproveNo}">
+                                            	<input type="hidden" id="lectureNo" name="lectureNo" value="${subjectApproveNo}">
                                             </div>
                                         </div>
                                         <div class="form-group row">

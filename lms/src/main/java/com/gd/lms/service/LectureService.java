@@ -43,11 +43,13 @@ public class LectureService {
 		return lectureMapper.lectureHit(lectureNo);
 	}
 	
+	
 	// 강의하는 과목의 과제 상세보기
 	public Lecture getLectureOne(int lectureNo) {
 		log.debug(TeamColor.KHW +"강의자료상세보기 서비스 진입");
 		return lectureMapper.selectLectureOnePro(lectureNo); 
 	}
+	
 	
 	// 강의하는 과목의 과제 작성하기
 	public int addLecture(Lecture lecture, MultipartFile[] lectureFile
@@ -59,29 +61,28 @@ public class LectureService {
 		log.debug(TeamColor.KHW +"lectureFile :" + lectureFile);		
 		
 		
-		if(result != 0 && lectureFile!=null ) {
+		if(result != 0 && lectureFile!= null ) {
+			int lectureNoo = lectureMapper.selectLectureNo(lecture);
+			
+			log.debug(TeamColor.KHW +"셀렉트로 no셀렉 : " + lectureNoo);
+			
 			log.debug(TeamColor.KHW +"lectureFil이 not null입니다");
 			
 			String dir = request.getSession().getServletContext().getRealPath("/WEB-INF/view/lecture/uploadFile");
 			log.debug(TeamColor.KHW +"dir 경로 확인 : " + dir);
+			
 			String lectureFilename = ""; //  강의자료파일에서 저장된 이름
 			String lectureOriginname = ""; // 기존파일이름
 			String lectureType= ""; // 파일형식
 			
-			/*
-			 	//파일 이름
-				private String fileName;			
-				//파일 원본 이름
-				private String fileOriginname;
-			 */
-			
+						
 			List<LectureFile> list = new ArrayList<>();
 			
 			for(MultipartFile file : lectureFile) {
 				// 
 				if(!file.isEmpty()) {
 					lectureOriginname = file.getOriginalFilename();
-					lectureType=file.getContentType();
+					lectureType = file.getContentType();
 					
 					// 업로드한 파일을 vo내 존재하는 파일객체에 넣어주기
 					LectureFile LectureFile = new LectureFile();
@@ -90,9 +91,9 @@ public class LectureService {
 					LectureFile.setLectureOriginname(lectureOriginname);
 					LectureFile.setLectureFilename(UUID.randomUUID() + "_" + lectureOriginname);
 					LectureFile.setLectureType(lectureType);
-					LectureFile.setLectureNo(lecture.getLectureNo());
+					LectureFile.setLectureNo(lectureNoo);
 										
-					log.debug(TeamColor.KHW + "LectureFile : " + LectureFile);
+					log.debug(TeamColor.KHW + "LectureFile에 저장된 것들 : " + LectureFile);
 					
 					
 					list.add(LectureFile);
@@ -122,6 +123,8 @@ public class LectureService {
 		
 		return result;
 	}
+	
+	
 	// 강의하는 과목의 과제 수정하기
 	public int modifyLecture(int lectureNo) {
 		log.debug(TeamColor.KHW+"강의하는 과목의 과제 수정하기 서비스 진입");

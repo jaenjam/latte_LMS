@@ -10,7 +10,6 @@ public class LectureFile {
 	private String lectureFilename; // 강의자료파일에서 저장된이름
 	private String lectureOriginname; // 기존파일이름
 	private String lectureType; // 파일형식
-	private int lectureSize; // 파일사이즈
 	private String createDate; // 등록날짜
 	private String updateDate; // 수정날짜
 }
