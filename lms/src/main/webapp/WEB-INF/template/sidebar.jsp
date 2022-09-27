@@ -122,29 +122,6 @@
 	               
 	                    
 	                    
-                    
-                    	<!-- 비밀번호초기화 : 서브관리자, 교수, 학생 -->
-                    	
-                    	
-	                    <li class="mega-menu mega-menu-sm">
-	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
-	                            <i class="icon-notebook menu-icon"></i>
-	                            <span class="nav-text">비밀번호초기화</span>
-	                        </a>
-	                        <ul aria-expanded="false">
-	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/reset/subEmployeeReset">서브관리자</a>
-	                            </li>
-	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/reset/professorReset">교수</a>
-	                            </li>
-		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/reset/studentReset">학생</a>
-		                        </li>
-	                         </ul>
-	                    </li>
-	                    
-	                    
 	                    
                     </c:if>
                     
