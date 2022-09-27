@@ -96,8 +96,8 @@
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="clubImgNo">
 										이미지파일</label>
-									<div class="col-lg-6">
-										<input type="file" name="imgFile" accept="image/*">
+									<div class="col-lg-6"> 
+										<input type="file" name="file" id="file" accept="image/*">
 									</div>
 								</div>
 								<div class="form-group row">

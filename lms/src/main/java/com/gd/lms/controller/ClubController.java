@@ -1,5 +1,7 @@
 package com.gd.lms.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import java.util.List;
 
 import java.util.Map;
@@ -12,14 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.ClubService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.vo.Club;
-import com.gd.lms.vo.ClubForm;
-import com.gd.lms.vo.ClubImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -103,27 +104,43 @@ public class ClubController {
 
 		List<Map<String, Object>> professorList = professorService.getProfessorList();
 		model.addAttribute("professorList", professorList); // 동아리추가할때 교수목록추가
-
-		log.debug(TeamColor.CSJ + ("clubController.addClub form" + professorList));
+		
+		log.debug(TeamColor.CSJ + "clubController.addClub form");
+		log.debug(TeamColor.CSJ + ("clubController.addClub professorList" + professorList));
 
 		return "/club/addClub";
 	}
 
 	// 동아리 추가 action
 	@PostMapping("/addClub")
-	public String addClub(ClubForm clubForm, HttpServletRequest request, Model model) {
+	public String addClub(Club club, HttpServletRequest request, Model model,
+			@RequestParam("file") MultipartFile[] clubImg) throws UnsupportedEncodingException {
+
 		log.debug(TeamColor.CSJ + ("clubController addClub action"));
 
-		String path = request.getServletContext().getRealPath("/upload/");
-		log.debug(TeamColor.CSJ + "clubController.addClub path : " + path);
-		log.debug(TeamColor.CSJ + "ClubController.addClub clubForm : " + clubForm);
+		log.debug(TeamColor.CSJ + ("clubController clubImg" + clubImg));
 
-		List<MultipartFile> clubImg = clubForm.getClubImgList();
-		model.addAttribute("clubImgList", clubImg);
+		// ClubService를 실행하여 form에서 입력받은 sql의 값 insert
+		int result = clubService.addClub(club, clubImg, request);
 
-		clubService.addClub(clubForm, path);
+		// 디버깅
+		log.debug(TeamColor.CSJ + "clubService.addClub 실행결과 " + result);
 
-		return "redirect:/club/clubList";
+		if (result != 0) { // 1이면 성공
+			
+			String selectClubNo = clubService.getClubNo(club);
+			
+			log.debug(TeamColor.CSJ + "동아리 추가 성공");
+
+			model.addAttribute("clubNo", selectClubNo);
+			
+			return "redirect:/club/clubList?clubNo=" + club.getClubNo();
+		} else {
+			log.debug(TeamColor.CSJ + "동아리 추가 실패");
+			
+			return "redirect:/club/clubList?clubNo=" + club.getClubNo();
+		}
+
 	}
 
 }

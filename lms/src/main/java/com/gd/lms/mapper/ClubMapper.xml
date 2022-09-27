@@ -24,7 +24,25 @@
 		)
 
 	</insert>
-
+	
+	<select id ="selectClubNo"  parameterType="com.gd.lms.vo.Club" resultType="String">
+	
+	select 
+	 club_no 
+	 
+	 FROM club
+	 
+	 WHERE
+	 
+	 club_name = #{clubName}
+	 
+	 AND
+	 
+	 professor_no =#{professorNo}
+	 
+	
+	
+	</select>
 
 
 	<!-- 동아리 삭제하기 -->

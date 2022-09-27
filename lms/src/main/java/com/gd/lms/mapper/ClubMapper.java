@@ -2,6 +2,7 @@ package com.gd.lms.mapper;
 
 import java.util.List;
 
+
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -12,6 +13,12 @@ import com.gd.lms.vo.ClubImg;
 
 @Mapper
 public interface ClubMapper {
+	
+	//사진 해당하는 clubNo가져오기
+	String selectClubNo(Club club);
+	
+	//동아리 사진 첨부
+	int insertClubImg(ClubImg clubimg);
 
 	// 동아리 목록가져오기
 	List<Map<String, Object>> selectClubList();
