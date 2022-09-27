@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Club;
+import com.gd.lms.vo.ClubImg;
 
 
 @Mapper
@@ -26,4 +27,6 @@ public interface ClubMapper {
 
 	// 동아리 수정
 	int updateClub(Club club);
+	
+	
 }

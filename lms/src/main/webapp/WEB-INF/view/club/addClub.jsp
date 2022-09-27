@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 <!-- header.jsp -->
@@ -12,7 +14,7 @@
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
 
-		<!--**********************************
+<!--**********************************
             Content body start
         ***********************************-->
 <div class="content-body">
@@ -36,7 +38,7 @@
 						<div class="form-validation">
 							<form class="form-valide"
 								action="${pageContext.request.contextPath}/addClub"
-								method="post">
+								method="post" enctype="multipart/form-data">
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="clubNo">동아리코드<span
 										class="text-danger">*</span>
@@ -88,6 +90,14 @@
 												<option value="${p.professorNo}">${p.professorName}</option>
 											</c:forEach>
 										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-lg-4 col-form-label" for="clubImgNo">
+										이미지파일</label>
+									<div class="col-lg-6">
+										<input type="file" name="imgFile" accept="image/*">
 									</div>
 								</div>
 								<div class="form-group row">
