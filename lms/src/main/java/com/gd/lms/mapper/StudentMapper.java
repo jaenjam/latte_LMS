@@ -11,6 +11,9 @@ import com.gd.lms.vo.StudentImg;
 @Mapper
 public interface StudentMapper {
 
+	//재직/재학 상태 - 학생 상태 수정폼
+	List<Map<String, Object>> studentStatusList();
+	
 	// 학생로그인
 	Student loginstudent(Student student);
 

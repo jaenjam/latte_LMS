@@ -11,6 +11,9 @@ import com.gd.lms.vo.ProfessorImg;
 @Mapper
 public interface ProfessorMapper {
 
+	//재직/재학 상태 - 교수 상태 수정폼
+	List<Map<String, Object>> professorStatusList();
+	
 	//연봉관리 - 교수 연봉 수정폼
 	List<Map<String, Object>> professorSalaryList();
 	

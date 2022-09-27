@@ -19,6 +19,15 @@ public class StudentService {
 	@Autowired
 	StudentMapper studentMapper;
 
+	
+	//재직/재학 상태 - 학생 리스트 출력(EmployeeStatusController로)
+	public List<Map<String, Object>> getStudentStatusList(){
+		log.debug(TeamColor.LJE + "StudentService getStudentStatusList");
+		
+		return studentMapper.studentStatusList();
+	}
+	
+	
 	// 학생로그인
 	public Student getStudent(Student student) {
 		// 해당 서비스 진입여부 확인

@@ -20,6 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 public class ProfessorService {
 	@Autowired ProfessorMapper professorMapper;
 	
+	//재직/재학 상태 - 교수 계정상태리스트 출력(EmployeeStatusController로)
+	public List<Map<String, Object>> getProfessorStatusList(){
+		log.debug(TeamColor.LJE + "ProfessorService getProfessorStatusList");
+		
+		return professorMapper.professorStatusList();
+	}
+	
 	//연봉관리 - 교수 연봉리스트 출력(EmployeeSalaryController로)
 	public List<Map<String, Object>> getProfessorSalaryList(){
 		log.debug(TeamColor.LJE + "ProfessorService getProfessorSalary");

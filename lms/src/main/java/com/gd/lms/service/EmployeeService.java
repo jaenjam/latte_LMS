@@ -24,6 +24,13 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
+	//재직상태 - 서브관리자 리스트 출력 (EmployeeStatusController로)
+	public List<Map<String, Object>> getEmployeeStatusList(){
+		log.debug(TeamColor.LJE + "EmployeeService getEmployeeStatusList");
+		
+		return employeeMapper.EmployeeStatus();
+	}
+	
 	//연봉관리 - 서브관리자 연봉리스트 출력(EmployeeSalayController로)
 	public List<Map<String, Object>> getsubEmployeeSalaryList(){
 		log.debug(TeamColor.LJE + "EmployeeService getsubEmployeeSalary");

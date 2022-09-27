@@ -9,6 +9,9 @@
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                   
+                  
+                  
+                  
                 	<!-- 학생용 : 마이페이지 -->
                     	
                     <c:if test="${user eq 'student'}">
@@ -95,23 +98,23 @@
 	                    
 	               
 	               
-	                    <!-- 계정상태변경 : 서브관리자, 교수, 학생  -->
+	                    <!-- 재직/재학상태변경 : 서브관리자, 교수, 학생  -->
                     	
                     	
 	                    <li class="mega-menu mega-menu-sm">
 	                        <a class="has-arrow" href="javascript:void(1)" aria-expanded="false">
 	                            <i class="icon-notebook menu-icon"></i>
-	                            <span class="nav-text">계정상태</span>
+	                            <span class="nav-text">재직/재학 상태</span>
 	                        </a>
 	                        <ul aria-expanded="false">
 	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/state/subEmployeeState">서브관리자</a>
+	                            	<a href="${pageContext.request.contextPath}/employee/status/employeeStatus">관리자</a>
 	                            </li>
 		                        <li>
-		                           	<a href="${pageContext.request.contextPath}/employee/state/professorState">교수</a>
+		                           	<a href="${pageContext.request.contextPath}/employee/status/professorStatus">교수</a>
 		                        </li>
 	                            <li>
-	                            	<a href="${pageContext.request.contextPath}/employee/state/studentState">학생</a>
+	                            	<a href="${pageContext.request.contextPath}/employee/status/studentStatus">학생</a>
 	                            </li>
 	                         </ul>
 	                    </li>

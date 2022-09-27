@@ -12,6 +12,9 @@ import com.gd.lms.vo.EmployeeImg;
 @Mapper
 public interface EmployeeMapper {
 	
+	//재직상태 - 관리자 리스트
+	List<Map<String, Object>> EmployeeStatus();
+	
 	//연봉관리 - 서브관리자 연봉 수정폼
 	List<Map<String, Object>> subEmployeeSalaryList();
 	
