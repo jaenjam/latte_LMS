@@ -8,12 +8,9 @@
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
-                
-                
-                
+                  
                 	<!-- 학생용 : 마이페이지 -->
-                	
-                	
+                    	
                     <c:if test="${user eq 'student'}">
                     
 	                    <li class="mega-menu mega-menu-sm">
@@ -206,6 +203,9 @@
 	                        <ul aria-expanded="false">
 	                            <li>
 	                           		<a href="./chart-flot.html">시간표</a>
+	                            </li>
+	                             <li>
+	                            	<a href="${pageContext.request.contextPath}/professor/mylecture?professorNo=${No}">내강의</a>
 	                            </li>
 	                            <li>
 	                            	<a href="./chart-morris.html">강의출결</a>

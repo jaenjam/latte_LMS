@@ -7,4 +7,7 @@ public class Test {
 	private int testNo;
 	private int subjectApproveNo;
 	private String testName;
+	private String createDate;
+	private String updateDate;
+	private String startTime;
 }
