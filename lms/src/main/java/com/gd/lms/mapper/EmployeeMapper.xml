@@ -69,6 +69,7 @@
 			, e.employee_detail_address 	employeeDetailAddress
 			, e.employee_state 				employeeState
 			, e.employee_active 			employeeActive
+			, e.employee_account			employeeAccount
 			, e.create_date 				createDate
 			, e.update_date 				updateDate
 			, e.salary_no 					salaryNo
@@ -154,6 +155,7 @@
 		, employee_state employeeState
 		, employee_active
 		employeeActive
+		, employee_account employeeAccount
 		, salary_no salaryNo
 		FROM
 		employee
@@ -184,6 +186,7 @@
 		,employee_state
 		employeeState
 		,employee_active employeeActive
+		,employee_account employeeAccount
 		,salary_no salaryNo
 		,create_date createDate
 		,update_date updateDate
@@ -213,6 +216,7 @@
 		employeeDetailAddress
 		,e.employee_state employeeState
 		,e.employee_active employeeActive
+		,e.employee_account employeeAccount
 		,s.salary_no salaryNo
 		,ei.filename
 		fileName
@@ -247,6 +251,7 @@
 		,e.employee_detail_address employeeDetailAddress
 		,e.employee_state employeeState
 		,e.employee_active employeeActive
+		,e.employee_account employeeAccount
 		,s.salary_no salaryNo
 		,ei.filename fileName
 
@@ -294,6 +299,7 @@
 		#{employeeDetailAddress}
 		,e.employee_state = #{employeeState}
 		,e.employee_active = #{employeeActive}
+		,e.employee_account = #{employeeAccount}
 		,s.salary_no = #{salaryNo}
 		,ei.filename = #{fileName}
 		,ei.origin_filename = #{originFilename}

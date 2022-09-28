@@ -62,6 +62,7 @@
                                                 <th>상세주소</th>
                                                 <th>교수실</th>
                                                 <th>재직상태</th>
+                                                <th>계정상태</th>
                                                 <th>생성일</th>
                                                 <th>수정일</th>
                                                 <th>연봉등급</th>
@@ -83,6 +84,7 @@
                                                 <td>${p.professorDetailAddress}</td>
                                                 <td>${p.professorRoom}</td>
                                                 <td>${p.professorState}</td>
+                                                <td>${p.professorAccount}</td>
                                                 <td>${p.createDate}</td>
                                                 <td>${p.updateDate}</td>
                                                 <td>${p.salaryNo}</td>

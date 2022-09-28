@@ -58,6 +58,7 @@
 			, professor_detail_address professorDetailAddress
 			, professor_room professorRoom
 			, professor_state professorState
+			, professor_account professorAccount
 			, salary_no salaryNo
 		FROM
 			professor
@@ -127,6 +128,7 @@
 			, p.professor_detail_address professorDetailAddress
 			, p.professor_room professorRoom
 			, p.professor_state professorState
+			, p.professor_account professorAccount
 			, p.create_date createDate
 			, p.update_date updateDate
 			, i.content_type contentType
@@ -184,6 +186,7 @@
 		,p.professor_detail_address professorDetailAddress
 		,p.professor_room professorRoom
 		,p.professor_state professorState
+		,p.professor_account professorAccount
 		,p.create_date createDate
 		,p.update_date updateDate
 		,s.salary_no salaryNo

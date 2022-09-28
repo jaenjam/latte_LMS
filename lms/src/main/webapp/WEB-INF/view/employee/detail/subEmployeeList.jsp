@@ -61,6 +61,7 @@
                                                 <th>상세주소</th>
                                                 <th>재직상태</th>
                                                 <th>총관리자/서브관리자</th>
+                                                <th>계정상태</th>
                                                 <th>생성일</th>
                                                 <th>수정일</th>
                                                 <th>연봉등급</th>
@@ -84,6 +85,7 @@
                                                 <td>${s.employeeDetailAddress}</td>
                                                 <td>${s.employeeState}</td>
                                                 <td>${s.employeeActive}</td>
+                                                <td>${s.employeeAccount}</td>
                                                 <td>${s.createDate}</td>
                                                 <td>${s.updateDate}</td>
                                                 <td>${s.salaryNo} (${s.salaryValue})

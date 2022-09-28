@@ -17,6 +17,7 @@ public class Employee {
 	private String employeeDetailAddress; // 상세주소
 	private String employeeState; // 재직상태
 	private String employeeActive; // 총관리자 / 서브관리자
+	private String employeeAccount; // 계정상태
 	private String createDate; // 생성일
 	private String updateDate; // 수정일
 	private String salaryNo; // 연봉등급

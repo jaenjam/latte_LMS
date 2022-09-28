@@ -60,13 +60,12 @@
                                                 <th>이메일</th>
                                                 <th>주소</th>
                                                 <th>상세주소</th>
-                                                <th>교수실</th>
                                                 <th>재직상태</th>
                                                 <th>과대표</th>
+                                                <th>계정상태</th>
                                                 <th>생성일</th>
                                                 <th>수정일</th>
-                                                <th>장학코드</th>
-                                                <th>장학이름</th>
+                                                <th>장학</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -84,10 +83,9 @@
                                                 <td>${s.studentDetailAddress}</td>
                                                 <td>${s.studentState}</td>
                                                 <td>${s.studentTop}</td>
-                                                <td>${s.studentActive}</td>
+                                                <td>${s.studentAccount}</td>
                                                 <td>${s.createDate}</td>
                                                 <td>${s.updateDate}</td>
-                                                <td>${s.scholarNo}</td>
                                                 <td>${s.scholarName}</td>
                                             </tr>
                                         </c:forEach>

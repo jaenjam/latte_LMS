@@ -37,7 +37,7 @@
 			, student_detail_address studentDetailAddress
 			, student_state studentState
 			, student_top studentTop
-			, student_active studentActive
+			, student_account studentAccount
 			, create_date createDate
 			, update_date updateDate
 			, club_no clubNo
@@ -120,9 +120,10 @@
 		, s.student_detail_address studentDetailAddress
 		, s.student_state studentState
 		, s.student_top studentTop
-		, s.student_active studentActive
+		, s.student_account studentAccount
 		, s.create_date createDate
 		, s.update_date updateDate
+		, s.scholar_no scholarNo
 		, sh.scholar_name scholarName
 			
 	FROM 
