@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.ProfessorService;
-import com.gd.lms.service.SalaryService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.service.SubjectApproveService;
 import com.gd.lms.service.SubjectService;
@@ -26,7 +25,6 @@ public class EmployeeDetailController {
 	@Autowired StudentService studentService;
 	@Autowired SubjectService 	subjectService;
 	@Autowired SubjectApproveService subjectApproveService;
-	@Autowired SalaryService salaryService;
 
 	
 	//상세관리 - 승인과목리스트 보여주기
@@ -119,12 +117,8 @@ public class EmployeeDetailController {
 		//map에 넣어주고 list에 넣어 출력하기 위해서
 		List<Map<String, Object>> subEmployeeList = employeeService.getsubEmployeeList();
 		
-		List<Map<String, Object>> salaryList = salaryService.getSalaryList();
-		
 		//subEmployeeList에 넣어주기
 		model.addAttribute("subEmployeeList",subEmployeeList);
-		
-		model.addAttribute("salaryList",salaryList);
 		
 		log.debug(TeamColor.LJE + "EmployeeDetailController subEmployeeList 실행한 값 : " + subEmployeeList);
 		

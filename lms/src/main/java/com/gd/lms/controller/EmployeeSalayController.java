@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.ProfessorService;
+import com.gd.lms.service.SalaryService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmployeeSalayController {
 	@Autowired EmployeeService employeeService;
 	@Autowired ProfessorService professorService;
+	@Autowired SalaryService salaryService;
 	
 	//연봉관리 - 교수리스트 보여주기
 	@GetMapping("/employee/salary/professorSalary")
@@ -52,8 +54,12 @@ public class EmployeeSalayController {
 		//subEmployeeSalaryList에 저장
 		List<Map<String, Object>> subEmployeeSalaryList = employeeService.getsubEmployeeSalaryList();
 		
+		List<Map<String, Object>> salaryList = salaryService.getSalaryList();
+		
 		//List에 담은 값을 model에 저장
 		model.addAttribute("subEmployeeSalaryList", subEmployeeSalaryList);
+		
+		model.addAttribute("salaryList",salaryList);
 		
 		//subEmployeeSalaryList 에 담긴 값 확인
 		log.debug(TeamColor.LJE + "EmployeeSalaryController subEmployeeSalaryList값 :" + subEmployeeSalaryList);
@@ -80,7 +86,6 @@ public class EmployeeSalayController {
 		//employeeSalaryList 에 담긴 값 확인
 		log.debug(TeamColor.LJE + "EmployeeSalaryController employeeSalaryList값 :" + employeeSalaryList);
 			
-		
 		//employee/salary/employeeSalary 페이지로
 		return "employee/salary/employeeSalary";
 	}

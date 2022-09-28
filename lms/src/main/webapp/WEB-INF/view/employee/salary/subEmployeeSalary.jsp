@@ -62,7 +62,20 @@
                                                 <td>${es.employeeNo}</td>
                                                 <td>${es.employeeName}</td>
                                                 <td>${es.employeeActive}</td>
-                                                <td>${es.salaryNo} (${es.salaryValue})</td>
+                                                <td>
+                                                	<select id="salaryNo" name="salaryNo">
+	                                                	<option value="${es.salaryNo}" selected>
+	                                                			${es.salaryNo} (${es.salaryValue})
+	                                                	</option>
+                                                		<c:forEach var="sa" items="${salaryList}">
+															<c:if test="${es.salaryNo ne sa.salaryNo}">
+																<option value="${sa.salaryNo}">
+																	${sa.salaryNo}(${sa.salaryValue})
+																</option>
+															</c:if>
+                                                		</c:forEach>
+                                                	</select>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
