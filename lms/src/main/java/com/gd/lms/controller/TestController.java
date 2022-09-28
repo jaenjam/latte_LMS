@@ -1,5 +1,8 @@
 package com.gd.lms.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +19,14 @@ public class TestController {
 	
 	@Autowired RegisterService registerService;
 	@Autowired TestService testService; 
-	
+		
 	//시험지출제하기(1)Form
 	@GetMapping("/test/addTestForm")
-	public String addTest(){
+	public String addTest(Model model){
+		
+		Map<String,Object> testNo = testService.getTestNo();
+		model.addAttribute("testNo",testNo);
+		
 		
 	return "/test/addTestForm";	
 	}
@@ -36,8 +43,12 @@ public class TestController {
 	
 	//시험지출제하기(2)Form
 	@GetMapping("/test/multipleTestForm/")
-	public String multipleTestForm(MultipleTest multipleTest) {
+	public String multipleTestForm(MultipleTest multipleTest,Model model) {
+
+		List<Map<String,Object>> testList = testService.getTestList();
+		model.addAttribute("testList",testList);
 		
+		System.out.println("model : " + model);
 		
 		return "/test/multipleTestForm";
 	}

@@ -1,5 +1,8 @@
 package com.gd.lms.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,4 +29,20 @@ public class TestService {
 		return testMapper.insertTest(test);
 	
 	}
+	
+	//시험추가여부확인하기
+		public Map<String,Object> getTestNo(){
+			
+			log.debug(TeamColor.JJY+"TestService getTestNo실행");
+			
+			return testMapper.selectTestNo();
+		}
+		
+	//테스트리스트 빼주기
+		public List<Map<String,Object>> getTestList(){
+			
+			log.debug(TeamColor.JJY+"TestService getTestList실행");
+			
+			return testMapper.selectTestList();
+		}
 }

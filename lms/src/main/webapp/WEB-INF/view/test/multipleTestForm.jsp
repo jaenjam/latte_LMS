@@ -6,14 +6,7 @@
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<scriptz
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 .stepper-wrapper {
 	margin-top: auto;
@@ -30,7 +23,8 @@
 	flex: 1;
 	@media
 	(
-	max-width:768px)
+	max-width
+	:768px)
 {
 	font-size:12px;
 }
@@ -94,6 +88,8 @@
 .stepper-item:last-child::after {
 	content: none;
 }
+
+
 </style>
 
 <div class="row page-titles mx-0">
@@ -146,23 +142,38 @@
 						<br>
 						<form action="${pageContext.request.contextPath}/addMultipleTest"
 							method="post">
+							<c:forEach var="T" items="${testList}">
+								<div class="row">
+									<div class="col-sm-11">
+										<h3>${T.major_name}:
+											${T.subject_name}(${T.year}년${T.semester} ${T.test_name}고사)</h3>
+									</div>
+									<div class="col-sm-1">
+										<h3 style="font-size: 20px;">${T.professor_name}교수</h3>
+									</div>
+								</div>
 
-							<table class="table table-hover">
-								<thead>
-									<!-- session값에 넣어줘서 그냥 빼주면됌 이거 hidden으로 가리고 join값으로 정보빼서 보여주기 -->
-									<tr>
-										<td><select name="testName" class="form-control">
-												<option>== 고사선택 ==</option>
-												<option value="중간">중간</option>
-												<option value="기말">기말</option>
-										</select></td>
-									</tr>
-
-								</thead>
-							</table>
-
-							<button type="submit" class="btn btn-primary"
-								style="float: right;">다음</button>
+								<input type="hidden" name="TestNo" class="form-control">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<td>문제 :</td>
+											<td><input type="text" name="multiplechoiceQuestion"
+												class="form-control"></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>보기번호</td>
+											<td><input type="text" name="" class="form-control"></td>
+											<td>보기내용</td>
+											<td><input type="text" class="form-control"></td>
+										</tr>
+									</tbody>
+								</table>
+								<button type="submit" class="btn btn-primary"
+									style="float: right;">다음</button>
+							</c:forEach>
 						</form>
 
 					</div>
