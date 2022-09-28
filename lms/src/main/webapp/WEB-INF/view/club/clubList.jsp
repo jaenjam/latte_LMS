@@ -9,14 +9,7 @@
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 <style>
-.majorheader {
-	font-family: 궁서체;
-	font-weight: 400;
-	font-size: 1.5em;
-	color: black;
-}
-
-.addmajor {
+.addClub {
 	margin-right: 33px;
 }
 </style>
@@ -71,6 +64,10 @@
 							<p style="color: darkred;">동아리방 : ${c.clubRoom}</p>
 							<br />
 							<p style="color: darkred;">담당교수 : ${c.professorName}</p>
+							<c:forEach var="ci" items="${selectClubNo}">
+								<img class="mr-2" src="${ci.clubNo}" width="200" height="200"
+									alt="">
+							</c:forEach>
 						</div>
 					</div>
 				</div>

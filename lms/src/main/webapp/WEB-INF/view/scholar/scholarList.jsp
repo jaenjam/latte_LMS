@@ -9,14 +9,7 @@
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 <style>
-.majorheader {
-	font-family: 궁서체;
-	font-weight: 400;
-	font-size: 1.5em;
-	color: black;
-}
-
-.addmajor {
+.addScholar {
 	margin-right: 33px;
 }
 </style>
@@ -33,60 +26,65 @@
 			</ol>
 		</div>
 	</div>
-<c:if test="${user eq 'employee'}">
-	<div class="addScholar">
+	<c:if test="${user eq 'employee'}">
+		<div class="addScholar">
 			<a href="${pageContext.request.contextPath}/scholar/addScholar">
 				<button type="submit" class="btn btn-primary" style="float: right;">장학추가</button>
 			</a>
 			<!-- 관리자만 보이게 설정 -->
-		
-	</div>
-	<br />
-	<br />
 
-	<div class="container-fluid">
-		<c:forEach var="s" items="${scholarList}">
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title">
-					<a href="${pageContext.request.contextPath}/scholar/scholarOne?scholarNo=${s.scholarNo}">${s.scholarName}</a>
-					</h4>
-					<br />
-					<div class="table-responsive">
-						<div class="scholarheader">${s.scholarContent}</div>
+		</div>
+		<br />
+		<br />
+
+		<div class="container-fluid">
+			<c:forEach var="s" items="${scholarList}">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">
+							<a
+								href="${pageContext.request.contextPath}/scholar/scholarOne?scholarNo=${s.scholarNo}">${s.scholarName}</a>
+						</h4>
 						<br />
-						<c:set var ="price" value="${s.scholarPrice}"/>
-						<p style="color: darkred;"><fmt:formatNumber value="${price}" type="currency" />원</p>
+						<div class="table-responsive">
+							<div class="scholarheader">${s.scholarContent}</div>
+							<br />
+							<c:set var="price" value="${s.scholarPrice}" />
+							<p style="color: darkred;">
+								<fmt:formatNumber value="${price}" type="currency" />
+								원
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
-		
-	</div>
+			</c:forEach>
+
+		</div>
 	</c:if>
-	
-	
+
+
 	<c:if test="${user ne 'employee'}">
-	<div class="container-fluid">
-		<c:forEach var="s" items="${scholarList}">
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title">
-					${s.scholarName}
-					</h4>
-					<br />
-					<div class="table-responsive">
-						<div class="scholarheader">${s.scholarContent}</div>
+		<div class="container-fluid">
+			<c:forEach var="s" items="${scholarList}">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">${s.scholarName}</h4>
 						<br />
-						<c:set var="price" value="${s.scholarPrice}"/>						
-						<p style="color: darkred;"><fmt:formatNumber value="${price}" type="currency" />원</p>
+						<div class="table-responsive">
+							<div class="scholarheader">${s.scholarContent}</div>
+							<br />
+							<c:set var="price" value="${s.scholarPrice}" />
+							<p style="color: darkred;">
+								<fmt:formatNumber value="${price}" type="currency" />
+								원
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
+			</c:forEach>
+		</div>
 	</c:if>
-	
+
 </div>
 
 <!-- #/ container -->
