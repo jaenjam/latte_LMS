@@ -192,10 +192,10 @@
 		LEFT JOIN
 		club_img ci
 		ON
-		c.clubNo = ci.clubNo
+		c.club_no = ci.club_no
 
 		ORDER BY
-		club_no desc
+		c.club_no desc
 
 	</select>
 

@@ -34,7 +34,7 @@
 						<div class="card-body">
 							<div class="form-validation">
 								<form class="form-valide"
-									action="${pageContext.request.contextPath}/addStudentClub"
+									action="${pageContext.request.contextPath}/club/addStudentClub"
 									method="post">
 									<div class="form-group row">
 										<div class="col-lg-4">

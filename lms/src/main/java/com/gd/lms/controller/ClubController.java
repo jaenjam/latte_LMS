@@ -37,7 +37,7 @@ public class ClubController {
 	StudentService studentService;
 
 	// 학생의 동아리 가입 action
-	@PostMapping("/addClub")
+	@PostMapping("/club/addStudentClub")
 	public String addStudentClub(Club club, HttpServletRequest request, Model model) {
 		log.debug(TeamColor.CSJ + "clubController.addStudentClub post");
 		
@@ -50,7 +50,7 @@ public class ClubController {
 	}
 
 	// 학생의 동아리 가입 form
-	@GetMapping("club/addStudentClub")
+	@GetMapping("/club/addStudentClub")
 	public String addStudentClub(Model model) {
 		log.debug(TeamColor.CSJ + "clubController.addStudentClub get");
 
