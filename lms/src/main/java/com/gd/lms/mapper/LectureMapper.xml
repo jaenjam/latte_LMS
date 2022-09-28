@@ -18,7 +18,7 @@
 		lecture 
 		WHERE	
 			subject_approve_no = #{subjectApproveNo};					
-</select>		
+	</select>		
 		
 		
 		
@@ -50,7 +50,7 @@
 		, lf.lecture_type lectureType
 	FROM
 		lecture	l 
-	INNER JOIN 
+	LEFT JOIN 
 		lecture_file lf
 	ON
 		l.lecture_no = lf.lecture_no
@@ -81,7 +81,8 @@
 	</insert>
 	
 	
-		<!-- 과제 -->
+	
+	<!-- 과제 첨부를 위해 필요한 No 찾기-->
 	<select id="selectLectureNo" parameterType="com.gd.lms.vo.Lecture" resultType="int">
 	SELECT
 		lecture_no lectureNo		
@@ -120,7 +121,9 @@
 		
 	</insert>
 	
-	<!-- 강의하는 과목의 과제 수정하기 -->
+	
+	
+	<!-- 강의하는 과목의 과제 수정하기 >>> 본문만 -->
 	<update id="updateLectureOne" parameterType="int">
 	UPDATE
 		lecture
@@ -131,6 +134,22 @@
 	WHERE
 		lecture_no = #{lectureNo}	
 	</update>
+	
+	
+	
+	<!-- 강의하는 과목의 과제 수정하기 >>> 업로드 파일을 -->
+	<update id="">
+	
+	
+	
+	
+	</update>
+	
+	
+	
+	
+	
+	
 	
 	<!-- 강의하는 과목의 과제 삭제하기 -->	
 	<delete id="deleteLectureOne" parameterType="int">

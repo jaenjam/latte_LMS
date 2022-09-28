@@ -73,6 +73,27 @@
                                                 <input type="text" class="form-control" id="updateDate" name="updateDate" value="${lectureOne.updateDate}" readonly="readonly">
                                             </div>
                                         </div>
+                                        
+                                        
+                                         <!--  파일 업로드  -->										
+                                         <div class="form-group row"> 
+											<label class="col-lg-4 col-form-label" for="lectureContent">기존 파일: ${lectureOne.lectureOriginname}"
+								
+								
+                                            </label>	                                        
+	                                        <span style="font-size:11px; color: gray;">※첨부파일은 최대 10개까지 등록이 가능합니다.</span>
+	                                        <div class="input-group mb-3">
+		                                            <div class="custom-file">
+		                                                <input type="file" class="custom-file-input" value="파일첨부하기" name="file" id="file">
+		                                                <label class="custom-file-label"> 파일을 첨부해주세요 </label>
+		                                            </div>
+		                                           
+	                                        </div>
+                                  		</div>
+                                  
+                                      
+                                        
+                                        <!--  수정 버튼  -->
                                         <div style="float:right">
                                         	<div>
 												
@@ -82,6 +103,7 @@
 												</a>
 											</div>
 										</div>
+										
                                     </form>
                                 </div>
                             </div>
