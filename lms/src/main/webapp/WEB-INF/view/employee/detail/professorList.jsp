@@ -65,7 +65,6 @@
                                                 <th>계정상태</th>
                                                 <th>생성일</th>
                                                 <th>수정일</th>
-                                                <th>연봉등급</th>
                                                 <th>연봉</th>
                                             </tr>
                                         </thead>
@@ -87,8 +86,7 @@
                                                 <td>${p.professorAccount}</td>
                                                 <td>${p.createDate}</td>
                                                 <td>${p.updateDate}</td>
-                                                <td>${p.salaryNo}</td>
-                                                <td>${p.salaryValue}</td>
+                                                <td>${p.salaryNo} (${p.salaryValue})</td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

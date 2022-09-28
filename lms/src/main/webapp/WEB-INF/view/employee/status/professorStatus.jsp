@@ -62,7 +62,19 @@
                                                 <td>${p.professorNo}</td>
                                                 <td>${p.majorNo} (${p.majorName})</td>
                                                 <td>${p.professorName}</td>
-                                                <td>${p.professorState}</td>
+                                                <td>
+                                                	<select id="professorState" name="professorState">
+                                                		<option value="${p.professorState}" selected>
+                                                			${p.professorState}
+                                                		</option>
+                                                		<c:if test="${p.professorState eq 'Y'}">
+                                                			<option value="N">N</option>
+                                                		</c:if>
+                                                		<c:if test="${p.professorState eq 'N'}">
+                                                			<option value="Y">Y</option>
+                                                		</c:if>
+                                                	</select>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

@@ -62,7 +62,19 @@
                                                 <td>${e.employeeNo}</td>
                                                 <td>${e.employeeName}</td>
                                                 <td>${e.employeeActive}</td>
-                                                <td>${e.employeeState}</td>
+                                                <td>
+                                                	<select id="employeeState" name="employeeState">
+                                                		<option value="${e.employeeState}" selected>
+                                                			${e.employeeState}
+                                                		</option>
+                                                		<c:if test="${e.employeeState eq 'Y'}">
+                                                			<option value="N">N</option>
+                                                		</c:if>
+                                                		<c:if test="${e.employeeState eq 'N'}">
+                                                			<option value="Y">Y</option>
+                                                		</c:if>
+                                                	</select>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

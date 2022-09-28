@@ -32,6 +32,10 @@ public class EmployeeSalayController {
 		//professorSalaryList에 저장
 		List<Map<String, Object>> professorSalaryList = professorService.getProfessorSalaryList();
 		
+		List<Map<String, Object>> salaryList = salaryService.getSalaryList();
+		
+		model.addAttribute("salaryList",salaryList);
+		
 		//List에 담은 값을 model에 넣어 저장
 		model.addAttribute("professorSalaryList", professorSalaryList);
 		
@@ -56,10 +60,10 @@ public class EmployeeSalayController {
 		
 		List<Map<String, Object>> salaryList = salaryService.getSalaryList();
 		
+		model.addAttribute("salaryList",salaryList);
+		
 		//List에 담은 값을 model에 저장
 		model.addAttribute("subEmployeeSalaryList", subEmployeeSalaryList);
-		
-		model.addAttribute("salaryList",salaryList);
 		
 		//subEmployeeSalaryList 에 담긴 값 확인
 		log.debug(TeamColor.LJE + "EmployeeSalaryController subEmployeeSalaryList값 :" + subEmployeeSalaryList);
@@ -79,6 +83,10 @@ public class EmployeeSalayController {
 				
 		//employeeSalaryList에 저장
 		List<Map<String, Object>> employeeSalaryList = employeeService.getEmployeeSalaryList();
+		
+		List<Map<String, Object>> salaryList = salaryService.getSalaryList();
+		
+		model.addAttribute("salaryList",salaryList);
 		
 		//List에 담은 값을 model에 저장
 		model.addAttribute("employeeSalaryList", employeeSalaryList);

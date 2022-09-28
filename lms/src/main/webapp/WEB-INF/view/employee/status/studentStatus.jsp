@@ -62,7 +62,33 @@
                                                 <td>${s.studentNo}</td>
                                                 <td>${s.majorNo} (${s.majorName})</td>
                                                 <td>${s.studentName}</td>
-                                                <td>${s.studentState}</td>
+                                                <td>
+                                                	<select id="studentState" name="studentState">
+                                                		<option value="${p.professorState}" selected>
+                                                			${s.studentState}
+                                                		</option>
+                                                		<c:if test="${s.studentState eq '휴학'}">
+                                                			<option value="재적">재적</option>
+                                                			<option value="자퇴">자퇴</option>
+                                                			<option value="재학">재학</option>
+                                                		</c:if>
+                                                		<c:if test="${s.studentState eq '재적'}">
+                                                			<option value="휴학">휴학</option>
+                                                			<option value="자퇴">자퇴</option>
+                                                			<option value="재학">재학</option>
+                                                		</c:if>
+                                                		<c:if test="${s.studentState eq '자퇴'}">
+                                                			<option value="휴학">휴학</option>
+                                                			<option value="재적">재적</option>
+                                                			<option value="재학">재학</option>
+                                                		</c:if>
+                                                		<c:if test="${s.studentState eq '재학'}">
+                                                			<option value="휴학">휴학</option>
+                                                			<option value="재적">재적</option>
+                                                			<option value="자퇴">자퇴</option>
+                                                		</c:if>
+                                                	</select>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
