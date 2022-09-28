@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.ClubService;
 import com.gd.lms.service.ProfessorService;
+import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Club;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,34 @@ public class ClubController {
 	ClubService clubService;
 	@Autowired
 	ProfessorService professorService;
+	@Autowired
+	StudentService studentService;
+
+	// 학생의 동아리 가입 action
+	@PostMapping("/addClub")
+	public String addStudentClub(Club club, HttpServletRequest request, Model model) {
+		log.debug(TeamColor.CSJ + "clubController.addStudentClub post");
+		
+		int studentClub = clubService.addStudentClub(club);	
+		
+		model.addAttribute("studentClub", studentClub);
+		
+		return "club/clubList";
+
+	}
+
+	// 학생의 동아리 가입 form
+	@GetMapping("club/addStudentClub")
+	public String addStudentClub(Model model) {
+		log.debug(TeamColor.CSJ + "clubController.addStudentClub get");
+
+		List<Map<String, Object>> clubList = clubService.getClubList(); // 동아리 리스트 불러오기
+		model.addAttribute("clubList", clubList);
+
+		log.debug(TeamColor.CSJ + ("clubController.clubList : " + clubList));
+
+		return "/club/addStudentClub";
+	}
 
 	// 동아리 수정 Form
 	@GetMapping("/club/modifyClub")
@@ -104,7 +133,7 @@ public class ClubController {
 
 		List<Map<String, Object>> professorList = professorService.getProfessorList();
 		model.addAttribute("professorList", professorList); // 동아리추가할때 교수목록추가
-		
+
 		log.debug(TeamColor.CSJ + "clubController.addClub form");
 		log.debug(TeamColor.CSJ + ("clubController.addClub professorList" + professorList));
 
@@ -127,17 +156,17 @@ public class ClubController {
 		log.debug(TeamColor.CSJ + "clubService.addClub 실행결과 " + result);
 
 		if (result != 0) { // 1이면 성공
-			
+
 			String selectClubNo = clubService.getClubNo(club);
-			
+
 			log.debug(TeamColor.CSJ + "동아리 추가 성공");
 
-			model.addAttribute("clubNo", selectClubNo);
-			
+			model.addAttribute("selectClubNo", selectClubNo);
+
 			return "redirect:/club/clubList?clubNo=" + club.getClubNo();
 		} else {
 			log.debug(TeamColor.CSJ + "동아리 추가 실패");
-			
+
 			return "redirect:/club/clubList?clubNo=" + club.getClubNo();
 		}
 

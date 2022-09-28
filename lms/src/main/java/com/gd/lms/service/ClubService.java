@@ -31,6 +31,12 @@ public class ClubService {
 	@Autowired
 	private ClubMapper clubMapper;
 	
+	//학생의 동아리 가입
+	public int addStudentClub(Club club) {
+		log.debug(TeamColor.CSJ + "clubService.addStudentClub");
+		
+		return clubMapper.insertClub(club);
+	}
 	
 	//사진에쓸 clubNo 가져오기
 	public String getClubNo(Club club) {
@@ -56,6 +62,8 @@ public class ClubService {
 	// 동아리 목록
 	public List<Map<String, Object>> getClubList() {
 		log.debug(TeamColor.CSJ + "ClubService.getClubList");
+		
+		
 
 		return clubMapper.selectClubList();
 	}
@@ -111,7 +119,7 @@ public class ClubService {
 
 						// 파일 추가
 						log.debug(TeamColor.CSJ + " 성공 result : " + result);
-					} catch (Exception e) {
+						} catch (Exception e) {
 						log.debug(TeamColor.CSJ + " 실패 result : " + result);
 						e.printStackTrace();
 

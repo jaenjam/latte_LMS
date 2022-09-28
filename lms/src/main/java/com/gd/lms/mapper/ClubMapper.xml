@@ -2,12 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.ClubMapper">
 
+
+	<!-- 동아리 가입 -->
+	<insert id="insertStudentClub"
+		parameterType="com.gd.lms.vo.ClubMember">
+
+		INSERT INTO
+
+		club_member
+
+		(
+		club_no clubNo
+		student_no studentNo
+		create_date createDate
+		update_date
+		updateDate
+
+
+		) VALUES (
+		#{clubNo}
+		,#{studentNo}
+		,now()
+		,now()
+		)
+		
+	</insert>
+
 	<!-- 동아리사진등록하기 -->
-	<insert id="insertClubImg"
-		parameterType="com.gd.lms.vo.ClubImg">
+	<insert id="insertClubImg" parameterType="com.gd.lms.vo.ClubImg">
 
 		INSERT INTO club_img (
-		
+
 		club_no
 		,filename
 		,origin_filename
@@ -24,24 +49,25 @@
 		)
 
 	</insert>
-	
-	<select id ="selectClubNo"  parameterType="com.gd.lms.vo.Club" resultType="String">
-	
-	select 
-	 club_no 
-	 
-	 FROM club
-	 
-	 WHERE
-	 
-	 club_name = #{clubName}
-	 
-	 AND
-	 
-	 professor_no =#{professorNo}
-	 
-	
-	
+
+	<select id="selectClubNo" parameterType="com.gd.lms.vo.Club"
+		resultType="String">
+
+		select
+		club_no
+
+		FROM club
+
+		WHERE
+
+		club_name = #{clubName}
+
+		AND
+
+		professor_no =#{professorNo}
+
+
+
 	</select>
 
 
@@ -62,18 +88,21 @@
 		professor p
 		ON
 		c.professor_no = p.professor_no
-		
-		
+
+
 		SET
 		c.club_name =
 		#{clubName}
 		c.club_content = #{clubContent}
-		, c.club_room = #{clubRoom}
-		, c.professor_no = #{professorNo}
+		, c.club_room =
+		#{clubRoom}
+		,
+		c.professor_no = #{professorNo}
 		, c.update_date = now()
 
 		WHERE
-		c.club_no = #{clubNo}
+		c.club_no =
+		#{clubNo}
 	</update>
 
 	<!-- 동아리 상세보기 -->
@@ -94,6 +123,8 @@
 		professor p
 		ON
 		c.professor_no = p.professor_no
+
+
 
 		WHERE
 		c.club_no =
@@ -144,8 +175,10 @@
 		, c.professor_no professorNo
 		, p.professor_name professorName
 		,
-		c.create_date createDate
-		, c.update_date updateDate
+		ci.club_img_no clubImgNo
+		, c.create_date createDate
+		, c.update_date
+		updateDate
 
 		FROM
 		club c
@@ -153,7 +186,13 @@
 		LEFT JOIN
 		professor p
 		ON
-		c.professor_no = p.professor_no
+		c.professor_no =
+		p.professor_no
+
+		LEFT JOIN
+		club_img ci
+		ON
+		c.clubNo = ci.clubNo
 
 		ORDER BY
 		club_no desc

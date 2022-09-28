@@ -14,6 +14,9 @@ import com.gd.lms.vo.ClubImg;
 @Mapper
 public interface ClubMapper {
 	
+	//동아리 가입
+	int insertStudentClub(Club club);
+	
 	//사진 해당하는 clubNo가져오기
 	String selectClubNo(Club club);
 	
