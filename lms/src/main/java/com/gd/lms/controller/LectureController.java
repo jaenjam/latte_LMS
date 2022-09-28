@@ -132,7 +132,7 @@ public class LectureController {
 		
 		// 강의하는 과목의 과제 수정하기 Form
 		@GetMapping("/lecture/modifyLecture")
-		public String modifyLecture(Model model,@RequestParam("lectureNo") int lectureNo) {
+		public String modifyLecture(Model model, @RequestParam("lectureNo") int lectureNo) {
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 수정하기 Form 컨트롤러 진입");
 			
@@ -149,20 +149,41 @@ public class LectureController {
 		
 		// 강의하는 과목의 과제 수정하기 Action
 		@PostMapping("/lecture/modifyLecture")
-		public String modifyLecture(Lecture lecture, Model model
-				,@RequestParam("lectureNo") int lectureNo
-				,@RequestParam("subjectApproveNo") int subjectApproveNo ) {
+		public String modifyLecture(
+				Lecture lecture // 본문용
+				, Model model // 넘겨주기용
+				, @RequestParam("lectureNo") int lectureNo // 게시글 수정용 넘버
+				, @RequestParam("lectureFileNo") int lectureFileNo // 기존파일정보 불러오기 위한
+				, @RequestParam("subjectApproveNo") int subjectApproveNo // ?
+				, HttpServletRequest request
+				, @RequestParam("newfile") MultipartFile[] newlectureFile ) throws UnsupportedEncodingException {
+			
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 수정하기 Action 컨트롤러 진입");
 			
+			// 넘겨받은 값 확인
+			log.debug(TeamColor.KHW+ "lectureNo : " + lectureNo);
+			log.debug(TeamColor.KHW+ "lectureFileNo : " + lectureFileNo);
+			log.debug(TeamColor.KHW+ "subjectApproveNo : " + subjectApproveNo);
+			log.debug(TeamColor.KHW+ "넘겨받은 파일 = newfile : " + lectureFile);
+			
+			
+			
 			// 과제 서비스 수정 서비스 실행
-			int result = lectureService.modifyLecture(lectureNo);
+			lectureService.modifyLecture(lecture, lectureNo, lectureFile, request);
+			
+			
+			int result = 
+					
+			
+			
 			if(result != 0) { // 수정성공!
 				log.debug(TeamColor.KHW+ "과제 수정성공!");
 				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
 			} else {
 			return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
 			}
+		
 		}
 		
 		

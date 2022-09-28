@@ -21,8 +21,6 @@
 	</select>		
 		
 		
-		
-		
 	<!-- 강의하는 과목의 과제 조회수 -->
 	<update id="lectureHit" parameterType="int">
 		 UPDATE 
@@ -138,16 +136,19 @@
 	
 	
 	<!-- 강의하는 과목의 과제 수정하기 >>> 업로드 파일을 -->
-	<update id="">
-	
-	
-	
-	
+	<update id="updateLectureFile" parameterType="int">
+	UPDATE
+		lecture_file
+	SET
+		lecture_filename = #{lectureFilename}
+		lecture_originname = #{lectureOriginname}
+		lecture_type = #{lecture_type}
+		update_date = now
+	WHERE
+		lecture_no = #{lectureNo}
+		
+	<!--  쿼리스트링으로 연결받은 lectureNo 를 기준으로 이미지파일 테이블 값 셀렉 -->
 	</update>
-	
-	
-	
-	
 	
 	
 	
@@ -158,6 +159,16 @@
 		lecture
 	WHERE
 		lecture_no = #{lectureNo}		
+	</delete>
+	
+	
+	<!-- 강의하는 과목의 과제 파일 삭제하기 -->	
+	<delete id="deleteLectureFileOne" parameterType="int">
+	DELETE 
+	FROM
+		lecture_file
+	WHERE
+		lecturefile_no = #{lecturefileNo}		
 	</delete>
 	
 </mapper>

@@ -152,10 +152,64 @@ public class LectureService {
 	
 	
 	// 강의하는 과목의 과제 수정하기
-	public int modifyLecture(int lectureNo) {
+	public int modifyLecture(Lecture lecture
+			, int lectureNo // 그냥.. 어떤 게시글인지
+			, int lectureFileNo
+			, MultipartFile[] newlectureFile // 새로 넘겨받은 파일정보
+			, HttpServletRequest request) {
+		
 		log.debug(TeamColor.KHW+"강의하는 과목의 과제 수정하기 서비스 진입");
+		
+		
+		// 1) 여기서 본문만 수정하는 경우
+		// 2) 본문 수정 + 파일첨부 수정하는 경우
+		//	  >>> 외래키로 연결되어있으니 lectureNo를 통해 기존의 파일정보를 불러오고 해당하는 로컬파일 및 디비 지움
+		//	  >>> 이후 폼에서 넘어온 새로운 멀티파일정보를 덮어씌움?
+		// 3) 본문 수정 + 파일첨부 취소하는 경우...?
+		//	  >>> 외래키로 연결되어있으니 lectureNo를 통해 기존의 파일정보를 불러오고 해당하는 로컬파일 및 디비 지움
+		
+		int result = lectureMapper.updateLectureOne(lectureNo);
+		
+		// 디버깅
+		log.debug(TeamColor.KHW + "본문수정의 경우 : " + result);
+		
+		// 본문 변경사항이 있으며 첨부파일의 변경사항도 있을 때
+		if (result !=0 && newlectureFile!= null) {
+			
+			// >>> 넘겨받은 lectureFileNo 를 기준으로 이미지 디비와 실제 로컬 파일을 지운다
+			int filede = lectureMapper.deleteLectureFileOne(lectureFileNo);
+			
+			// 
+			
+			log.debug(TeamColor.KHW + "새로운 파일로 수정하기 위해 기존 디비 지움 : " + filede);
+			
+			// 이후 로컬의 파일 지우기
+			String dir = request.getSession().getServletContext().getRealPath("/WEB-INF/view/lecture/uploadFile");
+			
+			if(  != null ) {
+				 String fullpath = dir + "/" + savedfile;
+			      File file = new File(fullpath);
+				 file.delete();
+			}
+			
+			
+			
+			// 렉쳐파일형태의 vo 객체 생성 이후 변수 넣어주기(새로 업로드된)
+			LectureFile existlecturefile = new LectureFile();
+			
+			
+			existlecturefile.getLectureFilename();
+			existlecturefile.getLectureOriginname();
+			existlecturefile.getLectureType();
+	
+			// 새로운 파일 디비 삽입
+			
+		}
+		
+		
 		return lectureMapper.updateLectureOne(lectureNo);
 	}
+	
 	
 	// 강의하는 과목의 과제 삭제하기
 	public int removeLectureOne(int lectureNo) {
@@ -181,7 +235,6 @@ public class LectureService {
 			//헤더
 			HttpHeaders headers = new HttpHeaders();
 			
-			//이건 이해가 필요
 			headers.setContentDisposition(ContentDisposition.builder("attachment").filename(file.getName()).build());
 			
 			//디버깅

@@ -67,15 +67,21 @@
 	                              	<div style="float:right">
 		                              	<c:if test="${user eq 'professor'}"> 
 											<a href="${pageContext.request.contextPath}/lecture/modifyLecture?lectureNo=${lectureOne.lectureNo}">
-												<button type="button" class="btn btn-primary">수정</button>
+												<button type="button" class="btn btn-primary"> 수정 </button>
 												</a>
 											<a href="${pageContext.request.contextPath}/lecture/removeLecture?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}">
-		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn">삭제</button>
+		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn"> 삭제 </button>
 		                                    </a>
 		                                </c:if>
 		                                
 		                                 <c:if test="${user eq 'student'}"> 
-		                                    	 <button class="btn btn-primary" type="button" name="backPage" id="backPage">뒤로가기</button>
+		                                    	 <button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기 </button>
+		                                 		
+		                                 		<!-- 과제제출 -->
+			                                 	<a href="${pageContext.request.contextPath}/lectureStudentHomework/submitHomework?lectureNo=${lectureOne.lectureNo}">
+													<button type="button" class="btn btn-primary"> 과제제출 </button>
+												</a>
+		                                 
 		                                 </c:if> 
 		                                
 									</div>
