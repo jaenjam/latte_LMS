@@ -1,6 +1,7 @@
 package com.gd.lms.service;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -11,9 +12,15 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +42,9 @@ public class LectureService {
 	@Autowired 
 	private LectureRepository repository;
 	
-	// 페이징
+	/*
+	
+	// 페이징>>> 잠시 잠궈둠
 	public Page<Lecture> findLectureList(Pageable pageable, String contains){
 		pageable = PageRequest.of(
 				pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber()-1,
@@ -45,7 +54,7 @@ public class LectureService {
 		return repository.findAllByLectureContentContains(contains, pageable);
 	}
 	
-	
+	*/
 	
 	// 강의하는 과목의 과제 리스트 긁어오기
 	public List<Map<String, Object>> getLectureListProf(int subjectApproveNo) {
@@ -153,6 +162,45 @@ public class LectureService {
 		log.debug(TeamColor.KHW+"강의하는 과목의 과제 삭제하기 서비스 진입");
 		return lectureMapper.deleteLectureOne(lectureNo);
 	}
+	
+	
+	// 첨부파일 다운로드
+	public ResponseEntity<Object> downloadFile(String fileName, String realPath) {
+		log.debug(TeamColor.KHW + "파일 다운로드 서비스 실행");
+		ResponseEntity<Object> returnVal = null;
+		
+		try {
+			
+			Path filePath = Paths.get(realPath);
+			//파일 리소스
+			Resource resource = new InputStreamResource(Files.newInputStream(filePath));
+			
+			//객체
+			File file = new File(realPath);
+			
+			//헤더
+			HttpHeaders headers = new HttpHeaders();
+			
+			//이건 이해가 필요
+			headers.setContentDisposition(ContentDisposition.builder("attachment").filename(file.getName()).build());
+			
+			//디버깅
+			log.debug(TeamColor.KHW + "파일 다운로드 성공");
+			
+			return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
+		} catch(Exception e) {
+			//디버깅
+			log.debug(TeamColor.KHW + "파일 다운로드 실패");
+			
+			return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
+		}
+	
+		
+		
+	}
+	
+	
+	
 	
 	
 }

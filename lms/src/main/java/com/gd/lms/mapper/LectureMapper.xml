@@ -35,9 +35,10 @@
 
 
 	<!-- 강의하는 과목의 과제 상세보기 -->
-	<select id="selectLectureOnePro" parameterType="int" resultType="map">
+	<select id="selectLectureOnePro" resultType="map">
 	SELECT
-		 l.subject_approve_no subjectApproveNo 
+		l.lecture_no lectureNo
+		, l.subject_approve_no subjectApproveNo 
 		, l.lecture_title lectureTitle
 		, l.lecture_content lectureContent
 		, l.create_date createDate
@@ -56,6 +57,7 @@
 	WHERE
 		l.lecture_no = #{lectureNo}
 	</select>
+	
 	
 	
 	<!-- 강의하는 과목의 과제 입력하기 -->
@@ -79,7 +81,7 @@
 	</insert>
 	
 	
-	<!-- 과제 -->
+		<!-- 과제 -->
 	<select id="selectLectureNo" parameterType="com.gd.lms.vo.Lecture" resultType="int">
 	SELECT
 		lecture_no lectureNo		
@@ -92,6 +94,8 @@
 	AND
 		subject_approve_no = #{subjectApproveNo}
 	</select>
+	
+	
 	
 	
 	<!--  강의하는 과목의 과제 파일 첨부하기 -->
@@ -115,7 +119,6 @@
 		, now())
 		
 	</insert>
-	
 	
 	<!-- 강의하는 과목의 과제 수정하기 -->
 	<update id="updateLectureOne" parameterType="int">

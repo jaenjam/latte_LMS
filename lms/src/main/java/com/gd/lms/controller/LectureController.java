@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,12 +45,16 @@ public class LectureController {
 			//lectureService.lectureHit(lecturerNo);
 			
 			// 리스트 긁어오는 service 실행 >>> 교수사번 입력되어 얻은 쿼리문을 lectureList에 담기
-			List<Map<String,Object>> lectureList; 
-			//List<Map<String,Object>> lectureList = lectureService.getLectureListProf(subjectApproveNo);
-			log.debug(TeamColor.KHW +"LectureController로 다시 돌아옴(서비스 끝남)");
 			
+			List<Map<String,Object>> lectureList = lectureService.getLectureListProf(subjectApproveNo);
+			log.debug(TeamColor.KHW +"LectureController로 다시 돌아옴(서비스 끝남)");
+			model.addAttribute("lectureList", lectureList);
+			
+			
+			// 페이징용 >> 수정후 추후 재반영
+			// List<Map<String,Object>> lectureList; 
 			// 해당 값을 모델에 저장(view에서 띄우기 위함)
-			model.addAttribute("lectureList", lectureService.findLectureList(pageable, search));
+			//model.addAttribute("lectureList", lectureService.findLectureList(pageable, search));
 			
 			// 디버그
 			//log.debug(TeamColor.KHW+ lectureList);
@@ -192,6 +197,31 @@ public class LectureController {
 				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
 			}			
 		}
+	
+		
+		
+		// 첨부한 파일 다운로드
+		@GetMapping("/lecture/downloadLecture")
+		public ResponseEntity<Object> downloadFile(String fileName, int lectureNo, HttpServletRequest request) throws UnsupportedEncodingException{
 			
+			log.debug(TeamColor.KHW+ "값 확인 :" +fileName);
+			
+			
+			//파일 경로
+			String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/view/lecture/uploadFile") + "\\"+ fileName;
+			
+			//디버깅
+			log.debug(TeamColor.KHW+ "값 확인 / realPath: " + realPath);
+			
+			//리턴값 세팅
+			ResponseEntity<Object> returnVal = lectureService.downloadFile(fileName, realPath);
+			
+			//디버깅
+			log.debug(TeamColor.KHW + "값 확인 / returnVal: " + returnVal);
+			
+			return returnVal;
+		
+	}
+		
 			
 }

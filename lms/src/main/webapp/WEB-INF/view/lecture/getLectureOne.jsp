@@ -31,74 +31,62 @@
 			
 			
 			
-            <div class="container-fluid">
+			
+			
+		 <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-body">
-                                <div class="form-validation">
-                                    <form class="form-valide" action="${pageContext.request.contextPath}/noticeOne" method="post">
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="lectureNo">번호<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="lectureNo" name="lectureNo" value="${lectureOne.lectureNo}" readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="lectureTitle">제목<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="lectureTitle" name="lectureTitle" value="${lectureOne.lectureTitle}" placeholder="제목을 입력해주세요" readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="lectureContent">내용<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <textarea class="form-control" id="lectureContent" name="lectureContent" rows="5" placeholder="내용을 입력해주세요" readonly="readonly">${lectureOne.lectureContent}</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="createDate">작성일<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="createDate" name="createDate" value="${lectureOne.createDate}" readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="updateDate">수정일<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="updateDate" name="updateDate" value="${lectureOne.updateDate}" readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div style="float:right">
-                                        	<div>
-                                        	
-                                        	<!-- 수정 삭제는 교수만 보이게 -->
-                                        	<c:if test="${user eq 'professor'}"> 
-												<a href="${pageContext.request.contextPath}/lecture/modifyLecture?lectureNo=${lectureOne.lectureNo}">
+                            <div class="card-body" style="color:black">
+                            	<br>
+                            		<div class="row">
+                            			<div class="col-sm-10">
+	                            			<h4>${lectureOne.lectureTitle}</h4>
+	                            		</div>
+	                            		<div class="col-sm-2" >
+	                            			<p style="float:right;">${lectureOne.count}</p>
+	                            		</div>
+                            		</div>
+                            			<hr>
+                            			<br>
+                            		<div>
+                            			 <p style="white-space:pre-line;">
+                            			 	${lectureOne.lectureContent}
+                            			 </p>
+                            		</div>
+                            			<br>
+                            		<div class="row">
+                                        	 <label class="col-lg-2 col-form-label" for="updateDate">
+                                        	 	파일이름                                         	 	
+                                        	 	<a href="${pageContext.request.contextPath}/lecture/downloadLecture?fileName=${lectureOne.lectureFilename}&lectureNo=${lectureOne.lectureNo}">${lectureOne.lectureOriginname}</a>
+                                        	 </label>
+                                     </div>
+                                      	<br>
+                            			
+                            			
+	                              	<div style="float:right">
+		                              	<c:if test="${user eq 'professor'}"> 
+											<a href="${pageContext.request.contextPath}/lecture/modifyLecture?lectureNo=${lectureOne.lectureNo}">
 												<button type="button" class="btn btn-primary">수정</button>
 												</a>
-													<a href="${pageContext.request.contextPath}/lecture/removeLecture?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}">
+											<a href="${pageContext.request.contextPath}/lecture/removeLecture?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}">
 		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn">삭제</button>
 		                                    </a>
-		                                    </c:if>
-		                                    <!--  학생은 뒤로가기 버튼만 -->
-		                                    
-		                                    <c:if test="${user eq 'student'}"> 
+		                                </c:if>
+		                                
+		                                 <c:if test="${user eq 'student'}"> 
 		                                    	 <button class="btn btn-primary" type="button" name="backPage" id="backPage">뒤로가기</button>
-		                                    </c:if>
-											</div>
-										</div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		                                 </c:if> 
+		                                
+									</div>
+						        </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+			
+			
+		
             <!-- #/ container -->
         </div>
         <!--**********************************

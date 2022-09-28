@@ -3,7 +3,10 @@ package com.gd.lms.mapper;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.vo.Lecture;
 import com.gd.lms.vo.LectureFile;
@@ -22,12 +25,15 @@ public interface LectureMapper {
 	
 	// 강의하는 과목의 과제 작성
 	int insertLectureOne(Lecture lecture);
-		
+	
+	
 	// 강의하는 과목의 과제 파일첨부를 하기 위해 값 찾기
 	int selectLectureNo(Lecture lecture);
 	
-	// 강의하는 과목의 과제 파일첨부
-	int insertLecturefile(LectureFile lecturefile);
+	
+	
+	// 강의하는 과목의 과제 파일 추가하기
+	int insertLecturefile(LectureFile lectuefile);
 	
 	// 강의하는 과목의 과제 수정
 	int updateLectureOne(int lectureNo);
