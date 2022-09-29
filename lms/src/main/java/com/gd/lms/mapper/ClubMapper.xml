@@ -3,29 +3,41 @@
 <mapper namespace="com.gd.lms.mapper.ClubMapper">
 
 
-	<!-- 동아리 가입 -->
+	<!-- 동아리 가입신청 리스트 -->
+	<select id="selectStudentClubList" parameterType="map"
+		resultType="com.gd.lms.vo.ClubMember">
+
+		SELECT
+		cm.student_no
+		,s.student_name
+		,cm.club_no
+		,c.club_name
+		,cm.create_date
+
+		FROM club_member cm INNER JOIN club c ON cm.club_no = c.club_no
+
+		LEFT JOIN student s ON cm.student_no = s.student_no
+
+		WHERE cm.student_no = #{studentNo};
+
+	</select>
+
+	<!-- 동아리 가입신청 -->
 	<insert id="insertStudentClub"
 		parameterType="com.gd.lms.vo.ClubMember">
 
 		INSERT INTO
-
-		club_member
-
-		(
-		club_no clubNo
-		student_no studentNo
-		create_date createDate
-		update_date
-		updateDate
-
-
+		club_member (
+		club_no
+		,student_no
+		,create_date
 		) VALUES (
 		#{clubNo}
 		,#{studentNo}
 		,now()
-		,now()
+
 		)
-		
+
 	</insert>
 
 	<!-- 동아리사진등록하기 -->
@@ -49,7 +61,8 @@
 		)
 
 	</insert>
-
+	
+	<!-- 사진 해당하는 clubNo가져오기 -->
 	<select id="selectClubNo" parameterType="com.gd.lms.vo.Club"
 		resultType="String">
 

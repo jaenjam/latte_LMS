@@ -9,13 +9,17 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Club;
 import com.gd.lms.vo.ClubImg;
+import com.gd.lms.vo.ClubMember;
 
 
 @Mapper
 public interface ClubMapper {
 	
-	//동아리 가입
-	int insertStudentClub(Club club);
+	// 동아리 가입 신청 목록
+	List<Map<String, Object>> selectStudentClubList(ClubMember studentNo);
+	
+	//동아리 가입신청
+	int insertStudentClub(ClubMember clubmember);
 	
 	//사진 해당하는 clubNo가져오기
 	String selectClubNo(Club club);

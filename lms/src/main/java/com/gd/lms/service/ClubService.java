@@ -20,6 +20,7 @@ import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.ClubMapper;
 import com.gd.lms.vo.Club;
 import com.gd.lms.vo.ClubImg;
+import com.gd.lms.vo.ClubMember;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +32,20 @@ public class ClubService {
 	@Autowired
 	private ClubMapper clubMapper;
 	
-	//학생의 동아리 가입
-	public int addStudentClub(Club club) {
+	//동아리 가입신청 목록
+	public List<Map<String, Object>> getStudentClubList(ClubMember studentNo) {
+		
+		log.debug(TeamColor.CSJ + "clubService.getStudentClubList");
+		
+		return clubMapper.selectStudentClubList(studentNo);
+	
+	}
+	
+	//학생의 동아리 가입신청
+	public int addStudentClub(ClubMember clubmember) {
 		log.debug(TeamColor.CSJ + "clubService.addStudentClub");
 		
-		return clubMapper.insertClub(club);
+		return clubMapper.insertStudentClub(clubmember);
 	}
 	
 	//사진에쓸 clubNo 가져오기
@@ -98,7 +108,7 @@ public class ClubService {
 					// 업로드한 파일을 vo내 존재하는 파일객체에 넣어주기
 					ClubImg clubimg = new ClubImg();
 
-					clubimg.setOriginFileName(Filename);
+					clubimg.setOriginFileName(Originname);
 					clubimg.setFileName(UUID.randomUUID() + "_" + Originname);
 					clubimg.setContentType(Type);
 					clubimg.setClubNo(club.getClubNo());

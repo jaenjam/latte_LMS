@@ -22,6 +22,7 @@ import com.gd.lms.service.ClubService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Club;
+import com.gd.lms.vo.ClubMember;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,14 +39,15 @@ public class ClubController {
 
 	// 학생의 동아리 가입 action
 	@PostMapping("/club/addStudentClub")
-	public String addStudentClub(Club club, HttpServletRequest request, Model model) {
+	public String addStudentClub(ClubMember clubmember, HttpServletRequest request, Model model) {
+		
 		log.debug(TeamColor.CSJ + "clubController.addStudentClub post");
 		
-		int studentClub = clubService.addStudentClub(club);	
+		int studentClub = clubService.addStudentClub(clubmember);
 		
 		model.addAttribute("studentClub", studentClub);
 		
-		return "club/clubList";
+		return "/club/studentClubList";
 
 	}
 
