@@ -46,18 +46,18 @@ public class LectureController {
 			
 			// 리스트 긁어오는 service 실행 >>> 교수사번 입력되어 얻은 쿼리문을 lectureList에 담기
 			
-			List<Map<String,Object>> lectureList = lectureService.getLectureListProf(subjectApproveNo);
+			//List<Map<String,Object>> lectureList = lectureService.getLectureListProf(subjectApproveNo);
 			log.debug(TeamColor.KHW +"LectureController로 다시 돌아옴(서비스 끝남)");
-			model.addAttribute("lectureList", lectureList);
+			//model.addAttribute("lectureList", lectureList);
 			
 			
 			// 페이징용 >> 수정후 추후 재반영
-			// List<Map<String,Object>> lectureList; 
+			 List<Map<String,Object>> lectureList; 
 			// 해당 값을 모델에 저장(view에서 띄우기 위함)
-			//model.addAttribute("lectureList", lectureService.findLectureList(pageable, search));
+			model.addAttribute("lectureList", lectureService.findLectureList(pageable, search));
 			
 			// 디버그
-			//log.debug(TeamColor.KHW+ lectureList);
+			// log.debug(TeamColor.KHW+ lectureList);
 			log.debug(TeamColor.KHW+ model);
 			
 			
@@ -92,7 +92,7 @@ public class LectureController {
 			return "/lecture/addLectureForm";
 		}
 		
-		
+		/*
 		// 강의하는 과목의 과제 작성하기 Action
 		@PostMapping("/lecture/addLectureForm")
 		public String addLecture(Lecture lecture, Model model, RedirectAttributes rttr
@@ -185,6 +185,8 @@ public class LectureController {
 			}
 		
 		}
+		
+		*/
 		
 		
 		// 강의하는 과목의 과제 삭제하기 Action

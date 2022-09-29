@@ -42,7 +42,7 @@ public class LectureService {
 	@Autowired 
 	private LectureRepository repository;
 	
-	/*
+	
 	
 	// 페이징>>> 잠시 잠궈둠
 	public Page<Lecture> findLectureList(Pageable pageable, String contains){
@@ -54,7 +54,7 @@ public class LectureService {
 		return repository.findAllByLectureContentContains(contains, pageable);
 	}
 	
-	*/
+	
 	
 	// 강의하는 과목의 과제 리스트 긁어오기
 	public List<Map<String, Object>> getLectureListProf(int subjectApproveNo) {
@@ -151,6 +151,7 @@ public class LectureService {
 	}
 	
 	
+	/*
 	// 강의하는 과목의 과제 수정하기
 	public int modifyLecture(Lecture lecture
 			, int lectureNo // 그냥.. 어떤 게시글인지
@@ -210,6 +211,7 @@ public class LectureService {
 		return lectureMapper.updateLectureOne(lectureNo);
 	}
 	
+	*/
 	
 	// 강의하는 과목의 과제 삭제하기
 	public int removeLectureOne(int lectureNo) {
