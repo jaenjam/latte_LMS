@@ -4,12 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.NoticeMapper;
 import com.gd.lms.vo.Notice;
+import com.gd.lms.repository.NoticeRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +23,16 @@ import lombok.extern.slf4j.Slf4j;
 public class NoticeService {
 
 	@Autowired private NoticeMapper noticeMapper;
+	@Autowired private NoticeRepository noticeRepository;
+	
+	//공지페이징
+	public Page<Notice> findNoticeList(Pageable pageable, String contains){
+		pageable = PageRequest.of(
+				pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber()-1,
+				pageable.getPageSize());
+
+		return noticeRepository.findAllByNoticeContentContains(contains, pageable);
+	}
 	
 	//공지삭제
 	public int deleteNotice(int noticeNo) {

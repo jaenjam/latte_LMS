@@ -14,6 +14,10 @@
 		float:right;
 		line-height: 18px;
 	}
+	
+	.input-group .input-group-text {
+    font-size: 1.375rem;
+}
 </style>
 
  <!--**********************************
@@ -62,7 +66,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="N" items="${noticeList}">
+                                        <c:forEach var="N" items="${noticeList.content}">
                                             <tr>
                                                 <td>${N.noticeNo}</td>
                                                 <td>
@@ -79,6 +83,43 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
+	                            <div class="form-group">
+	                            	<div class="row" >
+	                            		<div class="col-sm-6">
+	                                		<input type="text" class="form-control input-rounded" placeholder="검색어를 입력해주세요!">
+	                                	</div>
+	                                	<div class="col-sm-1">
+											<div class="input-group icons">
+												<div class="input-group-prepend">
+													<span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
+														<i class="mdi mdi-magnify"></i>
+													</span>
+												</div>
+											</div>
+	                                	</div>
+	                                	<div class="col-lg-12">
+				                            <div class="card-body">
+				                                <div class="bootstrap-pagination">
+				                                    <nav>
+				                                        <ul class="pagination justify-content-center">
+				                                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a>
+				                                            </li>
+				                                            <li class="page-item"><a class="page-link" href="#">1</a>
+				                                            </li>
+				                                            <li class="page-item"><a class="page-link" href="#">2</a>
+				                                            </li>
+				                                            <li class="page-item"><a class="page-link" href="#">3</a>
+				                                            </li>
+				                                            <li class="page-item"><a class="page-link" href="#">Next</a>
+				                                            </li>
+				                                        </ul>
+				                                    </nav>
+				                                </div>
+				                            </div>
+	                                	</div>
+	                                </div>
+	                            </div>
                             </div>
                         </div>
                     </div>

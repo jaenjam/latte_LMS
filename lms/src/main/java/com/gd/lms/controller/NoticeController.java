@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.NoticeService;
@@ -139,18 +142,19 @@ public class NoticeController {
 	
 	//공지목록
 	@GetMapping("/notice/noticeList")
-	public String noticeList(Model model) {
+	public String noticeList(@RequestParam(required = false, defaultValue = "")  String search,
+			 @PageableDefault Pageable pageable, Model model) {
 		 
 		//디버깅코드출력
 		log.debug(TeamColor.LJE + "NoticeController.noticeList 실행");
 		
 		//map으로 뽑아와서 list에 넣어주기
-		List<Map<String, Object>> noticeList = noticeService.getNoticeList();
+		List<Map<String, Object>> noticeList;
 		
 		//noticeList에 넣어주기
-		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("noticeList", noticeService.findNoticeList(pageable, search));
 		
-		log.debug(TeamColor.LJE + "NoticeController noticeList값 :" + noticeList);
+		//log.debug(TeamColor.LJE + "NoticeController noticeList값 :" + noticeList);
 		
 		//notice/noticeList 페이지로
 		return "/notice/noticeList";
