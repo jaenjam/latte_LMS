@@ -33,11 +33,11 @@ public class ClubService {
 	private ClubMapper clubMapper;
 	
 	//동아리 가입신청 목록
-	public List<Map<String, Object>> getStudentClubList(ClubMember studentNo) {
+	public List<Map<String, Object>> getStudentClubList() {
 		
 		log.debug(TeamColor.CSJ + "clubService.getStudentClubList");
 		
-		return clubMapper.selectStudentClubList(studentNo);
+		return clubMapper.selectStudentClubList();
 	
 	}
 	

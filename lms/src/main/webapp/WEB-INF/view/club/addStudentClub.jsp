@@ -39,8 +39,10 @@
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="studentNo">이름</label>
 									<div class="col-lg-6">
-										<input type="text" class="form-control" id="studentNo"
-											name="studentNo" value="${Name}" readonly="readonly">
+										<input type="text" class="form-control" id="studentName"
+											name="studentName" value="${Name}" readonly="readonly">
+										<input type="hidden" class="form-control" id="studentNo"
+											name="studentNo" value="${No}" readonly="readonly">
 									</div>
 								</div>
 
@@ -55,7 +57,7 @@
 										</select>
 									</div>
 								</div>
-								</div>
+								
 								<!-- 동아리 선택하면 동아리 설명, 담당교수 구현 -->
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="clubContent">동아리
@@ -89,7 +91,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 	<!-- #/ container -->
 <!--**********************************
             Content body end
@@ -100,6 +102,7 @@
 		if ($('#clubNo').val() == '') {
 			alert('동아리를 선택해주세요.');
 		} else {
+			
 			addStudentClub.submit();
 		}
 	});

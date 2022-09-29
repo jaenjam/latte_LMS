@@ -12,6 +12,10 @@
 .addClub {
 	margin-right: 33px;
 }
+.addStudentClub {
+	margin-right: 33px;
+}
+
 </style>
 
 <!--**********************************
@@ -31,7 +35,7 @@
 
 	<c:if test="${user eq 'student'}">
 		<div class="addStudentClub">
-			<a href="${pageContext.request.contextPath}/student/addStudentClub">
+			<a href="${pageContext.request.contextPath}/club/addStudentClub">
 				<button type="submit" class="btn btn-primary" style="float: right;">동아리
 					가입</button>
 			</a>
@@ -64,8 +68,9 @@
 							<p style="color: darkred;">동아리방 : ${c.clubRoom}</p>
 							<br />
 							<p style="color: darkred;">담당교수 : ${c.professorName}</p>
+							
 							<c:forEach var="ci" items="${selectClubNo}">
-								<img class="mr-2" src="${ci.clubNo}" width="200" height="200"
+								<img class="mr-2" src="${ci.originFileName}" width="200" height="200"
 									alt="">
 							</c:forEach>
 						</div>
@@ -76,6 +81,8 @@
 	</c:if>
 
 	<c:if test="${user ne 'employee'}">
+	<br/>
+	<br/>
 		<div class="container-fluid">
 			<c:forEach var="c" items="${clubList}">
 				<div class="card">

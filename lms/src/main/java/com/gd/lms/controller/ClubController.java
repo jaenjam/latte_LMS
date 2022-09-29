@@ -37,17 +37,32 @@ public class ClubController {
 	@Autowired
 	StudentService studentService;
 
+	// 동아리 신청 목록보기(교수) form
+	@GetMapping("/club/studentClubList")
+	public String studentClubList(ClubMember clubmember, Model model) {
+
+		log.debug(TeamColor.CSJ + "ClubController.studentClubList");
+
+		List<Map<String, Object>> studentClubList = clubService.getStudentClubList();
+
+		model.addAttribute("studentClubNo", studentClubList);
+		
+		log.debug(TeamColor.CSJ + ("ClubController.studentClubList : " + studentClubList));
+
+		return "/club/studentClubList";
+	}
+
 	// 학생의 동아리 가입 action
 	@PostMapping("/club/addStudentClub")
-	public String addStudentClub(ClubMember clubmember, HttpServletRequest request, Model model) {
-		
+	public String addStudentClub(ClubMember clubmember, Model model) {
+
 		log.debug(TeamColor.CSJ + "clubController.addStudentClub post");
-		
-		int studentClub = clubService.addStudentClub(clubmember);
-		
-		model.addAttribute("studentClub", studentClub);
-		
-		return "/club/studentClubList";
+
+		int result = clubService.addStudentClub(clubmember);
+
+		model.addAttribute("studentClub", result);
+
+		return "/club/clubList";
 
 	}
 
