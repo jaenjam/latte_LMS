@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.TestMapper">
+
+	<!-- 승인된 과목 리스트를 시험출제리스트에 뽑아주기위해 select -->
+	<select id="selectSubjectApproveList" resultType="map">
+
+		SELECT
+			s.subject_approve_no,s.major_no,s.subject_no,s.professor_no,s.YEAR,s.semester,s.start_date,s.end_date,s.total_date,
+			m.major_name,p.professor_name,j.subject_name
+		FROM
+			subject_approve s
+		LEFT JOIN
+			major m
+		ON
+			s.major_no = m.major_no
+		LEFT JOIN
+			professor p
+		ON 
+			s.professor_no = p.professor_no
+		LEFT JOIN
+			subject j
+		ON 
+			j.subject_no = s.subject_no
+		ORDER BY major_name ASC
+		
+	</select>
+	
+	<select id="selectSubjectOne" resultType="map">
+	
+		SELECT
+			s.subject_approve_no,s.major_no,s.subject_no,s.professor_no,s.YEAR,s.semester,s.start_date,s.end_date,s.total_date,
+			m.major_name,p.professor_name,j.subject_name 
+		FROM
+			subject_approve s 
+		LEFT JOIN 
+			major m 
+		ON 
+			s.major_no = m.major_no
+		LEFT JOIN
+			 professor p 
+		ON 
+			s.professor_no = p.professor_no 
+		LEFT JOIN 
+			subject j 
+		ON 
+			j.subject_no = s.subject_no
+		WHERE 
+			subject_approve_no = #{subjectApproveNo}
+			
+	</select>
+	
+	<!-- 중간/기말 선택하기 -->
+	<insert id="insertTest" parameterType="com.gd.lms.vo.Test">
+	
+		INSERT INTO test(
+			 subject_approve_no
+			,test_name
+			,create_date
+			,update_date)
+		VALUE(
+			 #{subjectApproveNo}
+			,#{testName}
+			,NOW()
+			,NOW())
+			
+	</insert>
+
+
+</mapper>

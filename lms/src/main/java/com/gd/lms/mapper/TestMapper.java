@@ -1,0 +1,23 @@
+package com.gd.lms.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.gd.lms.vo.Test;
+
+@Mapper
+public interface TestMapper {
+	
+	// 승인된 과목리스트를 뽑아주기 
+	List<Map<String,Object>> selectSubjectApproveList();
+	
+	// 과목에 대한 정보 보여주기
+	Map<String,Object> selectSubjectOne(int subjectApproveNo);
+	
+	// 시험지 추가
+	int insertTest(Test test);
+	
+
+}
