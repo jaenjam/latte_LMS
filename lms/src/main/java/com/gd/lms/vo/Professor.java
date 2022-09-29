@@ -1,10 +1,27 @@
 package com.gd.lms.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Accessors(chain = true)
 @Data
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Professor {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int professorNo; // 교수사번(아이디)
+
 	private String professorPass; // 교수비밀번호
 	private int majorNo; // 학과코드
 	private String professorName; // 이름

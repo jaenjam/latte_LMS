@@ -1,15 +1,33 @@
 package com.gd.lms.vo;
 
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.Accessors;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Accessors(chain = true)
 @Data
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 public class SubjectApprove {
-	private int subjcetApproveNo; //과목승인번호
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int subjectApproveNo; //과목승인번호
+
 	private int majorNo; //학과명
-	private String subjcetNo; //과목번호
-	private int professorNo; //교수사번
+	private String subjectNo; //과목번호
+
+	@ToString.Exclude
+	@ManyToOne
+	@JoinColumn(name = "professor_no")
+	private Professor professor; //관계설정
+
 	private int year; //년도
-	private int semester; //학기
+	private String semester; //학기
 	private String startDate; //개강일
 	private String endDate; //종강일
 	private int totalDate; //총수업일수
@@ -18,6 +36,7 @@ public class SubjectApprove {
 	private String day; //요일
 	private int startTime; //시작시간
 	private int endTime; //종료시간
+
 	
 	
 }

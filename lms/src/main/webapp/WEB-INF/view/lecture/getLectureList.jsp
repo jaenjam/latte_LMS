@@ -66,7 +66,7 @@
                                         </thead>
                                         <tbody>
                                       
-                                        <c:forEach var="L" items="${lectureList}">
+                                        <c:forEach var="L" items="${lectureList.content}" varStatus="status">
                                             <tr>
                                                 <td>${L.lectureNo}</td>
                                                 <td>
@@ -74,10 +74,10 @@
                                                 		${L.lectureTitle}
                                                 	</a>
                                                 </td>
-                                                <td> ${L.professorName} </td>                                          
-                                                <td> ${L.createDateL} </td>                                                
-                                                <td> ${L.updateDateL} </td>
-                                                <td> ${L.countL} </td>
+                                                <td>${L.subjectApprove.professor.professorName}</td>
+                                                <td> ${L.createDate} </td>
+                                                <td> ${L.updateDate} </td>
+                                                <td> ${L.count} </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

@@ -9,9 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LectureRepository extends JpaRepository<Lecture, Long> {
+public interface SubjectApproveRepository extends JpaRepository<SubjectApprove, Long> {
 
-    Page<Lecture> findAllByLectureContentContains(String content, Pageable pageable);
-    Page<Lecture> findAllBySubjectApprove(SubjectApprove subjectApprove, Pageable pageable);
+    SubjectApprove findBySubjectApproveNo(int no);
 
 }
