@@ -210,13 +210,9 @@
 	                        </ul>
 	                    </li>
                     </c:if>	
+                   
                     
-                    
-                    
-                    
-                    
-                    
-                    <!-- 학과소개 -->
+                      <!-- 학과소개 -->
                     
                     
                     <li class="mega-menu mega-menu-sm">
@@ -231,9 +227,23 @@
                         </ul>
                     </li>
                     
+                     <!-- 시험소개 -->
                     
                     
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void(2)" aria-expanded="false">
+                            <i class="icon-pencil menu-icon"></i>
+                            <span class="nav-text">시험</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/test/testList">시험 출제</a>
+                            </li>
+                        </ul>
+                    </li>
                     
+                    
+                 
                     <!-- 장학 -->
                     
                     
