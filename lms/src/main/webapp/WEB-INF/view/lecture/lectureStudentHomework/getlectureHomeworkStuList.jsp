@@ -16,6 +16,10 @@
 </head>
 <body>
 
+<!--  교수가 자기 수업듣는 학생들의 과제제출 일람 볼 수 있는
+ 	여기서 학생의 제출과제이름 누르면 one으로 연결 >>> 다운 가능
+ 	여기서 제출 / 미제출 변경 및 점수입력 가능
+  -->
 
 <!--**********************************
             Content body start
@@ -26,7 +30,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제일람</a></li>
                     </ol>
                 </div>
             </div>
@@ -42,14 +46,7 @@
                             	
                                		<h4 class="card-title"> 과제 </h4>
                                 </div>
-                                <div class="col-sm-3">
-                                    <!--  교수만 과제추가버튼 보이게  --> 
-                                    <c:if test="${user eq 'professor'}"> 
-                                	<a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
-                                		<button type="button" class="btn btn-primary">과제추가</button>
-                                	</a>
-                                	</c:if>
-                            	</div>
+                             
                             </div>
                                 <br>
                                 <div class="table-responsive">
@@ -58,31 +55,47 @@
                                             <tr>
                                                 <th>번호</th>
                                                 <th>제목</th>
-                                                <th>작성자</th>
                                                 <th>작성일</th>
-                                                <th>수정일</th>
-                                                <th>조회수</th>
+                                                <th>제출여부</th>
+                                                <th>제출</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                       
-                                        <c:forEach var="L" items="${lectureList}">
+                                        <c:forEach var="L" items="${LectureHomeworList}">
                                             <tr>
                                                 <td>${L.lectureNo}</td>
                                                 <td>
+                                                <!--  해당 넘버의 과제상세보기 로 연결 -->
                                                 	<a href="${pageContext.request.contextPath}/lecture/getLectureOne?lectureNo=${L.lectureNo}">
                                                 		${L.lectureTitle}
                                                 	</a>
+                                                </td> 
+                                                <td> ${L.createDate} </td>   
+                                                
+                                                <!--  제출여부  -->                                             
+                                                <td> 
+                                      
+	                                                ??? 안나옴 ㅋㅋㅅㅂ
                                                 </td>
-                                                <td> ${L.professorName} </td>                                          
-                                                <td> ${L.createDateL} </td>                                                
-                                                <td> ${L.updateDateL} </td>
-                                                <td> ${L.countL} </td>
+                                                
+                                                
+                                                <td>
+	                                                <a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
+	                                					<button type="button" class="btn btn-primary">제출하러가기</button>
+	                                				</a>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
-                                       
                                     </table>
+                                    
+                                    
+                                     <!--  하단 뒤로가기 -->
+	                                    <div style="float:right">
+	                                     	<button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기 </button>
+	                                	</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -99,5 +112,26 @@
 <!-- footer -->
 
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>
+
+
+<script>
+    
+    $('#backPage').click(function() {
+    	alert('이전화면으로 돌아갑니다!');
+    	history.back();
+    });
+    
+    
+    
+</script> 
+    
+    
+    <script src="${pageContext.request.contextPath}/plugins/common/common.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/custom.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/settings.js"></script>
+    <script src="${pageContext.request.contextPath}/js/gleek.js"></script>
+    <script src="${pageContext.request.contextPath}/js/styleSwitcher.js"></script>
+
+
 </body>
 </html>

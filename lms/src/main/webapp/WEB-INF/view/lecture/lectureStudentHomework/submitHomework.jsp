@@ -27,7 +27,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의강의실</a></li>
                         <li class="breadcrumb-item active"><a href="javascript:void(0)">과제</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제추가</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제제출</a></li>
                     </ol>
                 </div>
             </div>
@@ -39,21 +39,21 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="${pageContext.request.contextPath}/lecture/addLectureForm" method="post" enctype="multipart/form-data">
+                                    <form class="form-valide" action="${pageContext.request.contextPath}/lecture/lectureStudentHomework/submitHomework" method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="lectureTitle">제목<span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="lectureTitle"> 제목 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="lectureTitle" name="lectureTitle" placeholder="제목을 입력해주세요">
+                                                <input type="text" class="form-control" id="homeworkTitle" name="homeworkTitle" placeholder="제목을 입력해주세요">
                                             	<input type="hidden" id="subjectApproveNo" name="subjectApproveNo" value="${subjectApproveNo}">
                                             	<input type="hidden" id="lectureNo" name="lectureNo" value="${subjectApproveNo}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="lectureContent">내용<span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="homeworkContent"> 내용 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <textarea class="form-control" id="lectureContent" name="lectureContent" rows="5" placeholder="내용을 입력해주세요"></textarea>
+                                                <textarea class="form-control" id="homeworkContent" name="homeworkContent" rows="5" placeholder="내용을 입력해주세요"></textarea>
                                             </div>
                                         </div>
                                         
@@ -74,7 +74,7 @@
                                         
                                         <!--  버튼  -->
                                         <div style="float:right">											  					
-                                                <button type="submit" class="btn btn-primary" id='addLecture' name='addLecture'>추가</button>
+                                                <button type="submit" class="btn btn-primary" id='addLecture' name='addHomework'>추가</button>
                                       	</div>
 										
                                     </form>
