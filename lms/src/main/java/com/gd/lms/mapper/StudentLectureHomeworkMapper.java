@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface StudentLectureHomeworkMapper {
 
 	// 학생이 본인이 수강하는 과목의 과제 리스트 보기
-	List<Map<String, Object>> selectLecureHomeworkList(int subjectApproveNo);
+	List<Map<String, Object>> selectMyLecureHomeworkList(int subjectApproveNo);
 	
 	// 학생이 수강하는 과목의 과제 제출
 	int insertLectureHomework();

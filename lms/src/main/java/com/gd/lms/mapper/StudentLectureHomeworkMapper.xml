@@ -4,30 +4,52 @@
 
 
 	<!-- 교수가 Lecture생성 시 수강하는 학생들 만큼 student_homework 테이블에 디비 입력하기 -->
+	<!-- 1. 교수의 과제제출 -->
 	<insert id="">
-		INSERT INTO 
-		student_homework
-	(
-	student_no
-	, lecture_no
-	, homework_title
-	, homework_content
-	)
-	VAUES
-	(
-	#{studentNo}
-	, #{lectureNo}
-	, #{homeworkTitle}
-	, #{homeworkTitle}
-	)
-		WHERE (
-		
+		INSERT INTO
+			lecture
+			(
+			subject_approve_no
+			, lecture_title
+			, lecture_content
+			, create_date
+			, update_date
+			)
+			VALUES
+			(#{subjectApproveNo}
+			,#{lectureTitle}
+			,#{lectureContent}
+			, now()
+			, now()		
+			)
+		<!--  2. 교수 과제제출 후 해당 넘버 받아오기 -->
+		<selectKey resultType="integer" order="AFTER" keyProperty="lectureNo"> 
+		SELECT LAST_INSERT_ID()
+		</selectKey>	
+		<!--  3. 수강 학생들에게 데이터 자동생성 -->
+				INSERT INTO 
+			student_homework
+		(
+		student_no
+		, lecture_no
+		, homework_title
+		, homework_content
 		)
+		VAUES
+		(
+		#{studentNo}
+		, #{lectureNo}
+		, #{homeworkTitle}
+		, #{homeworkTitle}
+		)	
+			WHERE (
+			
+			)
 	</insert>
 
 
 	<!-- 학생이 본인이 수강하는 과목의 과제 리스트 보기 -->
-	<select id="selectLecureHomeworkList" parameterType="int" resultType="map">
+	<select id="selectMyLecureHomeworkList" parameterType="int" resultType="map">
 	SELECT 
 		 l.lecture_no lectureNo
 		 , l.subject_approve_no subjectApproveNo
@@ -108,7 +130,25 @@
 	<!-- 학생이 수강하는 과목의 과제 파일 삭제하기  -->
 
 
-	<!--  교수가 자기 강의 수강하는 학생들의 과제 제출 여부 리스트로 보기 -->
+	<!--  교수가 자기 강의 수강하는 학생들의 과제 제출 리스트로 보기 -->
+	<!--  subjcetApproveNo는 사이드바로 선택 -->
+	<select id="selectLecture" resultType="map" parameterType="int">
+	SELECT 
+		l.lecture_no lectureNo
+		, sh.student_no studentNo
+		, sh.homework_title homeworkTitle 
+		, sh.student_submitck studentSubmitCk
+		, sh.score score
+	FROM
+		lecture l
+		 RIGHT JOIN
+		 	student_homework sh
+		 ON
+		  	l.lecture_no = sh.lecture_no
+				WHERE
+					l.lecture_no = ${lectureNo}	
+	</select>
+
 
 
 	<!--  학생의 과제 제출 후 교수가 뷰에서 ck를 Y로 바꿔주기 -->
