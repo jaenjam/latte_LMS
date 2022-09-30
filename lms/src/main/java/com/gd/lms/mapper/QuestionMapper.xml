@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.QuestionMapper">
+
+	<!-- 공지상세보기 -->
+	<select id="selectQuestionOne" resultType="map">
+		
+		SELECT
+			  question_no questionNo
+			, student_no studentNo
+			, question_title questionTitle
+			, question_content questionContent
+			, question_active questionActive
+			, create_date createDate
+			, update_date updateDate
+		FROM question
+		
+		WHERE question_no = #{questionNo}
+		
+	</select>
+
+	<!-- 공지추가 -->
+	<insert id="insertQuestion" parameterType="com.gd.lms.vo.Question">
+			INSERT INTO question
+				(
+					  student_no
+					, question_title
+					, question_content
+					, question_active
+					, create_date
+					, update_date
+				)
+			VALUES
+				(
+					  #{studentNo}
+					, #{questionTitle}
+					, #{questionContent}
+					, #{questionActive}
+					, now()
+					, now()
+				)
+	</insert>
+
+	<!-- 공지리스트 -->
+	<select id="selectQustionList" resultType="map">
+		
+		SELECT
+			  q.question_no questionNo
+			, q.student_no studentNo
+			, s.student_name studentName
+			, q.question_title questionTitle
+			, q.question_content questionContent
+			, q.question_active questionActive
+			, q.create_date createDate
+			, q.update_date updateDate
+		
+		FROM question q 
+		
+		INNER JOIN student s
+		
+		ON q.student_no = s.student_no
+		
+		ORDER BY q.question_no desc
+		
+	</select>
+
+</mapper>

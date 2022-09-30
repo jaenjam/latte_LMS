@@ -9,6 +9,7 @@ public class Question {
 	private int studentNo; // 작성자
 	private String questionTitle; // 제목
 	private String questionContent; //내용
+	private String questionActive; //공개여부
 	private String createDate; //작성일
 	private String updateDate; //수정일
 	

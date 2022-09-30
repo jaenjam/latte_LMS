@@ -339,7 +339,7 @@
 
 
                     <li class="mega-menu mega-menu-sm">
-                        <a href="${pageContext.request.contextPath}/qna/qna" aria-expanded="false">
+                        <a href="${pageContext.request.contextPath}/qna/questionList" aria-expanded="false">
                             <i class="icon-grid menu-icon"></i>
                             <span class="nav-text">QnA</span>
                         </a>
