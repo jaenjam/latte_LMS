@@ -28,8 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.LectureMapper;
 import com.gd.lms.repository.LectureRepository;
+import com.gd.lms.repository.SubjectApproveRepository;
 import com.gd.lms.vo.Lecture;
 import com.gd.lms.vo.LectureFile;
+import com.gd.lms.vo.SubjectApprove;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,20 +43,21 @@ public class LectureService {
 	private LectureMapper lectureMapper;
 	@Autowired 
 	private LectureRepository repository;
-	
+	@Autowired
+	private SubjectApproveRepository subjectApproveRepository;
 	
 	
 	// 페이징>>> 잠시 잠궈둠
-	public Page<Lecture> findLectureList(Pageable pageable, String contains){
+	public Page<Lecture> findLectureList(Pageable pageable, int subjectApproveNo, String search){
 		pageable = PageRequest.of(
 				pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber()-1,
 				pageable.getPageSize());
 
-		//return 	repository.findAllByLectureContentContains(contains, pageable);
-		return repository.findAllByLectureContentContains(contains, pageable);
+		SubjectApprove subject = subjectApproveRepository.findBySubjectApproveNo(subjectApproveNo);
+		log.debug(search);
+		return repository.findAllBySubjectApproveAndLectureTitleContains(subject, search, pageable);
+
 	}
-	
-	
 	
 	// 강의하는 과목의 과제 리스트 긁어오기
 	public List<Map<String, Object>> getLectureListProf(int subjectApproveNo) {

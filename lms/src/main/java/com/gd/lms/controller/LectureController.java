@@ -35,26 +35,14 @@ public class LectureController {
 		@GetMapping("/lecture/getLectureList")
 		public String getlectureList(Model model
 				, @RequestParam("subjectApproveNo") int subjectApproveNo
-				, String search
+				, @RequestParam(required = false, defaultValue = "") String search
 				,  @PageableDefault Pageable pageable
 				){
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW +"LectureController의 lectureList 진입");
-			
-			// 조회수 증가 service 실행
-			//lectureService.lectureHit(lecturerNo);
-			
-			// 리스트 긁어오는 service 실행 >>> 교수사번 입력되어 얻은 쿼리문을 lectureList에 담기
-			
-			//List<Map<String,Object>> lectureList = lectureService.getLectureListProf(subjectApproveNo);
-			log.debug(TeamColor.KHW +"LectureController로 다시 돌아옴(서비스 끝남)");
-			//model.addAttribute("lectureList", lectureList);
-			
-			
-			// 페이징용 >> 수정후 추후 재반영
-			 List<Map<String,Object>> lectureList; 
-			// 해당 값을 모델에 저장(view에서 띄우기 위함)
-			model.addAttribute("lectureList", lectureService.findLectureList(pageable, search));
+
+
+			model.addAttribute("lectureList", lectureService.findLectureList(pageable, subjectApproveNo, search));
 			
 			// 디버그
 			// log.debug(TeamColor.KHW+ lectureList);
@@ -63,7 +51,6 @@ public class LectureController {
 			
 			return "/lecture/getLectureList";
 		}
-		
 		// 강의하는 과목의 과제 상세보기
 		@GetMapping("/lecture/getLectureOne")
 		public String getlectureListOne(Model model, @RequestParam("lectureNo") int lectureNo) {
@@ -92,7 +79,7 @@ public class LectureController {
 			return "/lecture/addLectureForm";
 		}
 		
-		/*
+		
 		// 강의하는 과목의 과제 작성하기 Action
 		@PostMapping("/lecture/addLectureForm")
 		public String addLecture(Lecture lecture, Model model, RedirectAttributes rttr
@@ -118,14 +105,14 @@ public class LectureController {
 				log.debug(TeamColor.KHW +"과제작성 성공!");
 				
 				rttr.addFlashAttribute("result", "과제 등록에 성공했습니다!");
-				log.debug(TeamColor.KHW+"? :" +lecture.getSubjectApproveNo());
-				int subjectApproveNo = lecture.getSubjectApproveNo();
-				model.addAttribute("subjectApproveNo", subjectApproveNo);
-				return "redirect:/lecture/getLectureList?subjectApproveNo="+lecture.getSubjectApproveNo();
+				log.debug(TeamColor.KHW+"? :" +lecture.getSubjectApprove());
+				//int subjectApproveNo = lecture.getSubjectApprove();
+				//model.addAttribute("subjectApproveNo", subjectApproveNo);
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+lecture.getSubjectApprove();
 			} else {
 				log.debug(TeamColor.KHW +"과제작성 실패!");
 				rttr.addFlashAttribute("result", "과제 등록에 실패했습니다!");
-				return "redirect:/lecture/getLectureList?subjectApproveNo="+lecture.getSubjectApproveNo();
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+lecture.getSubjectApprove();
 			}			
 		}
 		
@@ -146,7 +133,7 @@ public class LectureController {
 			return "/lecture/modifyLecture";
 		}
 		
-		
+		/*
 		// 강의하는 과목의 과제 수정하기 Action
 		@PostMapping("/lecture/modifyLecture")
 		public String modifyLecture(

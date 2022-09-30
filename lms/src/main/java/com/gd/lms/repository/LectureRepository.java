@@ -13,5 +13,5 @@ public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
     Page<Lecture> findAllByLectureContentContains(String content, Pageable pageable);
     Page<Lecture> findAllBySubjectApprove(SubjectApprove subjectApprove, Pageable pageable);
-
+    Page<Lecture> findAllBySubjectApproveAndLectureTitleContains(SubjectApprove subjectApprove, String content, Pageable pageable);
 }
