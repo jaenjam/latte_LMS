@@ -287,7 +287,17 @@
                             <li>
                             	<a href="${pageContext.request.contextPath}/club/addStudentClub">동아리 가입</a>
                             </li>  
-                            </c:if>                                    
+                            
+                            </c:if> 
+                            
+                             <c:if test="${user eq 'professor'}"><!-- 교수 권한 -->
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/club/studentClubList">동아리 가입승인</a>
+                            </li>  
+                            
+                            </c:if>      
+                            
+                                                           
                         </ul>
                     </li>
                     
