@@ -113,15 +113,7 @@
 				</div>
 				<div class="stepper-item active">
 					<div class="step-counter">2</div>
-					<div class="step-name">Second</div>
-				</div>
-				<div class="stepper-item active">
-					<div class="step-counter">3</div>
-					<div class="step-name">Third</div>
-				</div>
-				<div class="stepper-item">
-					<div class="step-counter">4</div>
-					<div class="step-name">Forth</div>
+					<div class="step-name">시험출제</div>
 				</div>
 			</div>
 		</div>
@@ -142,7 +134,7 @@
 								<input type="hidden" name="subjectApproveNo"
 									value="${subjectApproveNo}" readonly="readonly"
 									class="form-control">
-
+								<!-- test테이블에 subject_approve_no & test_name(중간/기말)만 받아줘야함  -->
 								<table class="table table-hover">
 									<thead>
 										<!-- session값에 넣어줘서 그냥 빼주면됌 이거 hidden으로 가리고 join값으로 정보빼서 보여주기 -->

@@ -55,6 +55,13 @@ public class TestController {
 		return "/test/multipleTest";
 	}
 	
+	//시험지출제하기(1)Form
+	@GetMapping("/test/multipleTestForm")
+	public String multipleTestForm(){
+		
+	return "/test/multipleTestForm";	
+	}
+	
 	
 	
 	

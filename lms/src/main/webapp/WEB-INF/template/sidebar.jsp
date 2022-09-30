@@ -9,9 +9,6 @@
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                   
-                  
-                  
-                  
                 	<!-- 학생용 : 마이페이지 -->
                     	
                     <c:if test="${user eq 'student'}">
@@ -30,14 +27,22 @@
 	                            </li>
 	                        </ul>
 	                    </li>
+	                      <!-- 시험출제 -->
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void(2)" aria-expanded="false">
+                            <i class="icon-pencil menu-icon"></i>
+                            <span class="nav-text">시험</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/test/doTest">시험응시</a>
+                            </li>
+                        </ul>
+                    </li>
                     </c:if>
-                    
-                    
-                    
-                    
+                       
                     <!-- 관리자페이지 (총관리자) -->
-                    
-                    
+                         
                     <c:if test="${user eq 'employee'}">
                     
                     
@@ -69,10 +74,7 @@
 		                        </li>
 	                         </ul>
 	                    </li>
-	                    
-	                    
-	                    
-	                    
+	                      
 	                    <!-- 연봉관리 : 관리자, 서브관리자, 교수  -->
                     	
                     	
@@ -94,10 +96,6 @@
 	                         </ul>
 	                    </li>
 	                    
-	                    
-	                    
-	               
-	               
 	                    <!-- 재직/재학상태변경 : 서브관리자, 교수, 학생  -->
                     	
                     	
@@ -117,17 +115,10 @@
 	                            	<a href="${pageContext.request.contextPath}/employee/status/studentStatus">학생</a>
 	                            </li>
 	                         </ul>
-	                    </li>
-	               
-	               
-	                    
-	                    
-	                    
+	                    </li>        
                     </c:if>
                     
-                   
-                   
-                   
+
                     <!-- 나의강의실 - 학생용 --> 
                     
                     <c:if test="${user eq 'student'}">
@@ -146,7 +137,6 @@
 	                            
 	                            <!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
 	                            
-	           
 	                            		<c:forEach var="sl" items="${myRegisterListStu}">
 	                            		<!--  승인된과목의 페이지는... 본의아니게 숫자로 해야할듯 ㅠㅠ -->
 	                            			<li>
@@ -154,9 +144,7 @@
 	                            	
 	                            			<li>
 	                            		</c:forEach>
-	                           
-	
-	                            
+     
 	                            <!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의과제제출교수 -->
 	                  
 	                            <li>
@@ -165,12 +153,7 @@
 	                        </ul>
 	                     </li>
                      </c:if>	
-                            
-                    
-                    
-                    
-                    
-                                       
+                                                                
                     <!-- 나의강의실 - 교수용 --> 
                     
                     <c:if test="${user eq 'professor'}"> 
@@ -209,6 +192,19 @@
 	                            </li>
 	                        </ul>
 	                    </li>
+	                  
+	                 <!-- 시험출제 -->
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void(2)" aria-expanded="false">
+                            <i class="icon-pencil menu-icon"></i>
+                            <span class="nav-text">시험</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                            	<a href="${pageContext.request.contextPath}/test/testList">시험 출제</a>
+                            </li>
+                        </ul>
+                    </li>
                     </c:if>	
                    
                     
@@ -226,24 +222,7 @@
                             </li>
                         </ul>
                     </li>
-                    
-                     <!-- 시험소개 -->
-                    
-                    
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void(2)" aria-expanded="false">
-                            <i class="icon-pencil menu-icon"></i>
-                            <span class="nav-text">시험</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li>
-                            	<a href="${pageContext.request.contextPath}/test/testList">시험 출제</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                    
-                 
+                           
                     <!-- 장학 -->
                     
                     
