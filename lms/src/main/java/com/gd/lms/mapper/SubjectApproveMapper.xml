@@ -10,6 +10,7 @@
 			, m.major_name 			majorName
 			, a.subject_no 			subjectNo
 			, s.subject_name 		subjectName
+			, s.subject_credit		subjectCredit
 			, a.professor_no 		professorNo
 			, p.professor_name 		professorName
 			, a.year 				year

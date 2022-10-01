@@ -42,6 +42,14 @@
                             </div>
                                 <br>
                                 <div class="table-responsive">
+                              
+                					<!--  과목 리스트 -->	
+                					<!--  학점구분 이후 전공구분(자를 수 있다면) 이후 이름 출력 -->
+                					<c:forEach var="as" items="${approveSubjectList}">
+                						${as.subjectCredit}                
+              						</c:forEach>
+                					<!--  담길 폼 -->
+                
                 
                                     
                                     <!--  하단 뒤로가기 -->
