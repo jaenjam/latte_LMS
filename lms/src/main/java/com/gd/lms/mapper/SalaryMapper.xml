@@ -19,7 +19,7 @@
 			salary_no = #{salaryNo}
 		WHERE 
 			employee_no = #{employeeNo}
-	
+
 	</update>
 	
 </mapper>

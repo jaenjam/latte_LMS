@@ -47,20 +47,21 @@
 						</div>
 						<br>
 						<div class="table-responsive" style="width: 100%; overflow: auto;">
-							<form
-								action="${pageContext.request.contextPath}/salaryEmployeeAction"
-								method="post">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>사번</th>
-											<th>이름</th>
-											<th>관리자</th>
-											<th>연봉등급 (연봉)</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="es" items="${employeeSalaryList}">
+							<c:forEach var="es" items="${employeeSalaryList}">
+								<form
+									action="${pageContext.request.contextPath}/salaryEmployeeAction?employeeNo=${es.employeeNo}"
+									method="post">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>사번</th>
+												<th>이름</th>
+												<th>관리자</th>
+												<th>연봉등급 (연봉)</th>
+
+											</tr>
+										</thead>
+										<tbody>
 											<tr>
 												<td>${es.employeeNo}</td>
 												<td>${es.employeeName}</td>
@@ -77,16 +78,17 @@
 												</select></td>
 												<td><button type="submit" class="btn btn-primary">변경</button></td>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</form>
+										</tbody>
+									</table>
+								</form>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div><!-- #/ container -->
+	</div>
+	<!-- #/ container -->
 </div>
 <!--**********************************
             Content body end
