@@ -25,6 +25,17 @@ public class EmployeeSalayController {
 	@Autowired ProfessorService professorService;
 	@Autowired SalaryService salaryService;
 	
+	//연봉자체관리
+	@GetMapping("/employee/salary/salaryList")
+	public String salaryList(Model model) {
+		
+		log.debug(TeamColor.JJY + "EmployeeSalaryController ->  salaryList실행");
+		
+		List<Map<String,Object>> salaryList = salaryService.getSalaryList();
+		
+		return "/employee/salary/salaryList";
+	}
+	
 	//연봉관리 - 교수리스트 보여주기
 	@GetMapping("/employee/salary/professorSalary")
 	public String professorSalaryList(Model model) {
@@ -64,7 +75,6 @@ public class EmployeeSalayController {
 		// 쿼리 변경되면 연봉리스트가 다시 보이게 redirect주기!
 		return "redirect:/employee/salary/professorSalary";
 	}
-	
 	
 	//연봉관리 - 서브관리자리스트 보여주기
 	@GetMapping("/employee/salary/subEmployeeSalary")
