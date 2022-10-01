@@ -7,7 +7,17 @@
 	<!-- 1.수강신청 -->
 	<!--  1-1. 수강신청할 때 승인과목 리스트 불러오기
 		: SubjectApproveMapper 에 selectSubjectApproveList 라는 이름으로 있음 -->
-
+	<select id="selectRegisterListByCredit" resultType="map" parameterType="map">
+	SELECT
+		subject_approve_no
+		, major_no
+		, subject_no
+		, professor_no
+		FROM 
+			sa.subject_approve
+		WHERE	
+			s.subject_credit =#{subjectCredit}
+	</select>
 
 	<!--  1-2. 장바구니(registerCart)에 담기 -->
 	<insert id="insertRegisterCart" parameterType="com.gd.lms.vo.RegisterCart">

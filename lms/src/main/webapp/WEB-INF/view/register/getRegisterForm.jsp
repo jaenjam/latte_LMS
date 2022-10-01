@@ -41,23 +41,43 @@
                              
                             </div>
                                 <br>
-                                <div class="table-responsive">
-                              
-                					<!--  과목 리스트 -->	
-                					<!--  학점구분 이후 전공구분(자를 수 있다면) 이후 이름 출력 -->
-                					<c:forEach var="as" items="${approveSubjectList}">
-                						${as.subjectCredit}                
-              						</c:forEach>
-                					<!--  담길 폼 -->
-                
-                
-                                    
-                                    <!--  하단 뒤로가기 -->
-                                    <div style="float:right">
-                                     	<button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기 </button>
-                                	</div>
+                                
+                                
+                                <div class="table-responsive"> <!--  흰 박스 안에 넣기  -->
+		                              ${approveSubjectList}
+		                          
+		                             
+		                				<!--  과목 리스트 -->	
+		                				<div class="form-group">
+		                					<!--  학점구분 이후 전공구분(자를 수 있다면) 이후 이름 출력 -->
+			                					<label> 학점 </label>
+			                						<select id="credit" name="credit" class="form-control" onchange="typeFn();">
+					                					<option>==선택해주세요==</option>
+					                					<option value="3">3</option>
+    													<option value="4">4</option>
+				              						</select>
+		                					<!--  담길 폼 -->
+		                				</div>
+		                
+		                				<div class="form-group">
+		                						<label> 과목 </label>
+		                							<select name="subjectName" class="form-control">
+		                								<option>==선택해주세요==</option>
+			                							<c:forEach var="as" items="${approveSubjectList}">
+							                					<option value="${as.subjectName}"> ${as.subjectName} </option>
+							                			</c:forEach>
+		                							</select>
+		                                </div>
+		                                    
+		                                    
+		                                    <!--  하단 뒤로가기 -->
+		                                    <div style="float:right">
+		                                     	<button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기 </button>
+		                                	</div>
                                 	
-                                </div>
+                                </div><!--  박스 end -->
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -74,5 +94,29 @@
 <!-- footer -->
 
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>
+
+
+<script>
+function typeFn() {
+	// 학점 안누르면 작동 안한다?
+	$("#credit").attr("disabled", true);
+	
+	var subjectCredit = $('#credit').val();
+	console.log("입력된 credit :" + subjectcredit);	
+	
+	// 입력된 크레딧값이랑 쿼리..? 뭔 아작스 통신 걸려서 맞으면 그 값이 보여
+	if($("select[name=subjectName]").val() == credit) {
+		$("#subjectName").show();
+		
+		
+		
+		
+		
+	}
+}
+
+</script>
+
+
 </body>
 </html>

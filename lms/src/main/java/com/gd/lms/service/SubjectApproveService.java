@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.SubjectApproveMapper;
+import com.gd.lms.repository.SubjectApproveRepository;
+import com.gd.lms.vo.SubjectApprove;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SubjectApproveService {
 
 	@Autowired private SubjectApproveMapper subjectApproveMapper;
+	@Autowired SubjectApproveRepository repository;
 	
 	//승인과목 리스트(EmployeeDetailController로)
 	public List<Map<String, Object>> selectSubjectApproveList(){
@@ -26,4 +29,11 @@ public class SubjectApproveService {
 		
 		return subjectApproveMapper.selectSubjectApproveList();
 }
+	
+	public List<SubjectApprove> getSubjectList(int subjectCredit) {
+		// 해당 서비스 진입여부 확인
+		log.debug(TeamColor.LJE + "SubjectApproveService getSubjectList");
+		
+		return repository.findAllBySubjectSubjectCredit(subjectCredit);
+	}
 }

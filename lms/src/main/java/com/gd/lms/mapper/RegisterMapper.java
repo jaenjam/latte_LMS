@@ -13,7 +13,7 @@ public interface RegisterMapper {
 	
 // 1. 학생의 수강신청
 	// 1-1. 수강신청할 때 승인과목 리스트 불러오기
-	
+	Map<String, Object> selectRegisterListByCredit(int subjectCredit);
 	// 1-2. 장바구니(registerCart)에 담기
 	int insertRegisterCart();
 	
