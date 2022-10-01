@@ -10,11 +10,10 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<script type="text/javascript" src="/js/register/Register.js"></script>
+
+
+<!-- 구분 -->
 
       <div class="content-body">
 
@@ -51,7 +50,7 @@
 		                				<div class="form-group">
 		                					<!--  학점구분 이후 전공구분(자를 수 있다면) 이후 이름 출력 -->
 			                					<label> 학점 </label>
-			                						<select id="credit" name="credit" class="form-control" onchange="typeFn();">
+			                						<select id="credit" name="credit" class="form-control" >
 					                					<option>==선택해주세요==</option>
 					                					<option value="3">3</option>
     													<option value="4">4</option>
@@ -96,26 +95,7 @@
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>
 
 
-<script>
-function typeFn() {
-	// 학점 안누르면 작동 안한다?
-	$("#credit").attr("disabled", true);
-	
-	var subjectCredit = $('#credit').val();
-	console.log("입력된 credit :" + subjectcredit);	
-	
-	// 입력된 크레딧값이랑 쿼리..? 뭔 아작스 통신 걸려서 맞으면 그 값이 보여
-	if($("select[name=subjectName]").val() == credit) {
-		$("#subjectName").show();
-		
-		
-		
-		
-		
-	}
-}
 
-</script>
 
 
 </body>

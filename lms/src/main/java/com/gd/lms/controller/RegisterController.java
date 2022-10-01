@@ -60,8 +60,12 @@ public class RegisterController {
 	
 	
 	// 학점에 따른 과목선택
-	
-	
+	/*
+	public String selectsubjectName() {
+		
+		
+	}
+	*/
 	
 	
 	

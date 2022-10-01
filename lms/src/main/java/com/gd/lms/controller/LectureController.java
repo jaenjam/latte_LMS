@@ -51,6 +51,8 @@ public class LectureController {
 			
 			return "/lecture/getLectureList";
 		}
+		
+		
 		// 강의하는 과목의 과제 상세보기
 		@GetMapping("/lecture/getLectureOne")
 		public String getlectureListOne(Model model, @RequestParam("lectureNo") int lectureNo) {

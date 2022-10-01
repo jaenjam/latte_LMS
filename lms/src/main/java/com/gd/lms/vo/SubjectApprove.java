@@ -19,10 +19,14 @@ public class SubjectApprove {
 	private int subjectApproveNo; //과목승인번호
 
 	private int majorNo; //학과명
-	private String subjectNo; //과목번호
+	
+	@ToString.Exclude
+	@ManyToOne // N:1관계 , professor_no를 통해 professor가져오기
+	@JoinColumn(name = "subject_no")	
+	private Subject subject; //과목번호
 
 	@ToString.Exclude
-	@ManyToOne
+	@ManyToOne // N:1관계 , professor_no를 통해 professor가져오기
 	@JoinColumn(name = "professor_no")
 	private Professor professor; //관계설정
 

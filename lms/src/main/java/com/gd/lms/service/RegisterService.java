@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.RegisterMapper;
+import com.gd.lms.repository.SubjectApproveRepository;
+import com.gd.lms.vo.SubjectApprove;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +18,25 @@ import lombok.extern.slf4j.Slf4j;
 public class RegisterService {
 	@Autowired RegisterMapper registerMapper;
 	
+	@Autowired
+	SubjectApproveRepository subjectapproverepository;
 	
+	
+	
+	// 수강신청시 학점에 따른 과목 이름 불러오기
+	public List<Map<String,Object>> getRegisterListByCredit(int subjectCredit) {
+		log.debug(TeamColor.KHW+"학점선택에 따른 과목리스트 셀렉서비스 진입");
+		
+		return registerMapper.selectRegisterListByCredit(subjectCredit);
+		
+	}
+	
+	// 레파지토리 사용
+	public List<SubjectApprove> getSubjectName(int subjectCredit) {
+		log.debug(TeamColor.KHW+"학점선택에 따른 과목리스트 셀렉서비스 진입 >> 레파지토리 사용");
+	
+		return subjectapproverepository.findAllBySubjectSubjectCredit(subjectCredit);
+	}
 	
 	
 	// 학생의 나의강의실리스트
