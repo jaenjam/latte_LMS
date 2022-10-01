@@ -49,7 +49,7 @@
 						<div class="table-responsive" style="width: 100%; overflow: auto;">
 							<c:forEach var="es" items="${employeeSalaryList}">
 								<form
-									action="${pageContext.request.contextPath}/salaryEmployeeAction?employeeNo=${es.employeeNo}"
+									action="${pageContext.request.contextPath}/salaryEmployeeAction?employeeNo=${es.employeeNo}&employeeActive=${es.employeeActive}"
 									method="post">
 									<table class="table table-hover">
 										<thead>
@@ -58,7 +58,6 @@
 												<th>이름</th>
 												<th>관리자</th>
 												<th>연봉등급 (연봉)</th>
-
 											</tr>
 										</thead>
 										<tbody>

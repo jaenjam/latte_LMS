@@ -11,6 +11,7 @@
 		FROM salary
 	</select>
 	
+	<!-- 직원 연봉 수정 쿼리 -->
 	<update id="updateSalaryEmployee" parameterType="com.gd.lms.vo.Employee">
 	
 		UPDATE
@@ -21,5 +22,19 @@
 			employee_no = #{employeeNo}
 
 	</update>
+	
+	<!-- 교수 연보 수정 쿼리 -->
+	<update id="updateSalaryProfessor" parameterType="com.gd.lms.vo.Employee">
+	
+		UPDATE
+			professor 
+		SET 
+			salary_no = #{salaryNo}
+		WHERE 
+			professor_no = #{professorNo}
+
+	</update>
+	
+	
 	
 </mapper>

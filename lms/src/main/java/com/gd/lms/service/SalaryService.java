@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.SalaryMapper;
 import com.gd.lms.vo.Employee;
+import com.gd.lms.vo.Professor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,10 +28,17 @@ public class SalaryService {
 		return salaryMapper.selectSalaryList();
 	}
 	
-	// 연봉 수정
+	// 연봉 수정 (직원)
 	public int modifySalaryEmployee(Employee employee) {
 		
 		log.debug(TeamColor.JJY + "SalaryService modifySalaryEmployee");
 		return salaryMapper.updateSalaryEmployee(employee);
+	}
+	
+	// 연봉 수정 (교수)
+	public int modifySalaryProfessor(Professor professor) {
+		
+		log.debug(TeamColor.JJY + "SalaryService modifySalaryProfessor");
+		return salaryMapper.updateSalaryProfessor(professor);
 	}
 }

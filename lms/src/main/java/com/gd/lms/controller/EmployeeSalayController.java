@@ -14,6 +14,7 @@ import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.SalaryService;
 import com.gd.lms.vo.Employee;
+import com.gd.lms.vo.Professor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,6 +48,21 @@ public class EmployeeSalayController {
 		
 		//employee/salary/professorSalary 페이지로
 		return "/employee/salary/professorSalary";
+	}
+	
+	//연봉관리 - 액션
+	@PostMapping("/salaryProfesorAction")
+	public String salaryProfesorAction(Professor professor) {
+		
+		//controller실행 여부 확인하기
+		log.debug(TeamColor.JJY+"EmployeeSalayController -> salaryProfessorAction 실행");
+		
+		//row값이 1이면 쿼리 작동 성공!
+		int row = salaryService.modifySalaryProfessor(professor);
+		log.debug(TeamColor.JJY +"row : " + row);
+		
+		// 쿼리 변경되면 연봉리스트가 다시 보이게 redirect주기!
+		return "redirect:/employee/salary/professorSalary";
 	}
 	
 	
@@ -100,14 +116,22 @@ public class EmployeeSalayController {
 			return "employee/salary/employeeSalary";
 		}
 		
-		//연봉관리 - 액션
+		//연봉관리 - 액션 (총관리자 / 서브관리자)
 		@PostMapping("/salaryEmployeeAction")
-		public String salaryEmployeeAction(Employee employee,String salaryNo) {
+		public String salaryEmployeeAction(Employee employee,String employeeActive) {
+			
+			log.debug(TeamColor.JJY+"EmployeeSalayController -> salaryEmployeeAction 실행");
 			
 			int row = salaryService.modifySalaryEmployee(employee);
 			log.debug(TeamColor.JJY +"row : " + row);
 			
-			return "redirect:/employee/salary/employeeSalary";
+			
+			if(employeeActive.equals("총관리자")) {
+				return  "redirect:/employee/salary/employeeSalary";
+			} else {
+				return "redirect:/employee/salary/subEmployeeSalary";
+			}
+			
 		}
 	
 }
