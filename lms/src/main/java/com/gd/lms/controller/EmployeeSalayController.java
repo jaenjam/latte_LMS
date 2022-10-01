@@ -32,6 +32,9 @@ public class EmployeeSalayController {
 		log.debug(TeamColor.JJY + "EmployeeSalaryController ->  salaryList실행");
 		
 		List<Map<String,Object>> salaryList = salaryService.getSalaryList();
+		model.addAttribute("salaryList",salaryList);
+		
+		log.debug(TeamColor.JJY + "salaryList model 값 확인 : " + model);
 		
 		return "/employee/salary/salaryList";
 	}

@@ -18,6 +18,5 @@ public interface SubjectApproveRepository extends JpaRepository<SubjectApprove, 
     				// pk일 경우: findBy
     				// 전부 다 찾겠다: findAllBy
    
-    List<SubjectApprove> findAllBySubjectSubjectCredit(int subjectCredit);
     
 }

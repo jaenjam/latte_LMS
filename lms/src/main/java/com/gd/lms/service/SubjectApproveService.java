@@ -30,10 +30,5 @@ public class SubjectApproveService {
 		return subjectApproveMapper.selectSubjectApproveList();
 }
 	
-	public List<SubjectApprove> getSubjectList(int subjectCredit) {
-		// 해당 서비스 진입여부 확인
-		log.debug(TeamColor.LJE + "SubjectApproveService getSubjectList");
-		
-		return repository.findAllBySubjectSubjectCredit(subjectCredit);
-	}
+
 }
