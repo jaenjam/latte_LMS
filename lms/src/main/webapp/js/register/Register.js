@@ -17,7 +17,8 @@ function getSubjectName(subjectCredit) {
         url: '/api/register/get/subjectName' + subjectCredit,
         type: "GET",
         contentType: 'application/json',
-        success: function (data) {
+        
+        success: function (data) { //결과성공 콜백함수
             console.log(data);
             for(let i = 0; i<data.length; i++){
                 console.log("i start");
@@ -28,7 +29,7 @@ function getSubjectName(subjectCredit) {
 
             }
         },
-        error: function (request, status, error) {
+        error: function (request, status, error) { // 결과에러 콜백함수
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
         }
     });

@@ -50,7 +50,7 @@
 		                				<div class="form-group">
 		                					<!--  학점구분 이후 전공구분(자를 수 있다면) 이후 이름 출력 -->
 			                					<label> 학점 </label>
-			                						<select id="credit" name="credit" class="form-control" >
+			                						<select id="subjectcredit" name="subjectcredit" class="form-control" >
 					                					<option>==선택해주세요==</option>
 					                					<option value="3">3</option>
     													<option value="4">4</option>
