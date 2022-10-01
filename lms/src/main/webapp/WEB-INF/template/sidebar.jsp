@@ -25,6 +25,9 @@
 	                            <li>
 	                            	<a href="./page-register.html">전체출결현황</a>
 	                            </li>
+	                             <li>
+	                            	<a href="${pageContext.request.contextPath}/register/getRegisterForm">수강신청</a>
+	                            </li>
 	                        </ul>
 	                    </li>
 	                      <!-- 시험출제 -->

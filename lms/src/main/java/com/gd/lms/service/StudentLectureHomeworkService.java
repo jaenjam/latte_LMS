@@ -24,7 +24,7 @@ public class StudentLectureHomeworkService {
 		
 		log.debug(TeamColor.KHW + "과제리스트보기 서비스 진입");
 		
-		return studentlecturehomeworkmapper.selectLecureHomeworkList(subjectApproveNo);
+		return studentlecturehomeworkmapper.selectMyLecureHomeworkList(subjectApproveNo);
 	}
 	
 	// 학생이 수강하는 과목의 과제 제출
