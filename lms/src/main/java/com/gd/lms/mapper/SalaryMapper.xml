@@ -11,4 +11,15 @@
 		FROM salary
 	</select>
 	
+	<update id="updateSalaryEmployee" parameterType="com.gd.lms.vo.Employee">
+	
+		UPDATE
+			employee 
+		SET 
+			salary_no = #{salaryNo}
+		WHERE 
+			employee_no = #{employeeNo}
+	
+	</update>
+	
 </mapper>

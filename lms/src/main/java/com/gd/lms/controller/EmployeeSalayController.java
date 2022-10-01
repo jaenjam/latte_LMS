@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.SalaryService;
+import com.gd.lms.vo.Employee;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -75,27 +77,37 @@ public class EmployeeSalayController {
 	
 	
 	//연봉관리 - 총관리자리스트 보여주기
-	@GetMapping("/employee/salary/employeeSalary")
-	public String employeeSalaryList(Model model) {
-		
-		//디버깅코드출력
-		log.debug(TeamColor.LJE + "EmployeeSalaryController employeeSalaryList 실행");
-				
-		//employeeSalaryList에 저장
-		List<Map<String, Object>> employeeSalaryList = employeeService.getEmployeeSalaryList();
-		
-		List<Map<String, Object>> salaryList = salaryService.getSalaryList();
-		
-		model.addAttribute("salaryList",salaryList);
-		
-		//List에 담은 값을 model에 저장
-		model.addAttribute("employeeSalaryList", employeeSalaryList);
-		
-		//employeeSalaryList 에 담긴 값 확인
-		log.debug(TeamColor.LJE + "EmployeeSalaryController employeeSalaryList값 :" + employeeSalaryList);
+		@GetMapping("/employee/salary/employeeSalary")
+		public String employeeSalaryList(Model model) {
 			
-		//employee/salary/employeeSalary 페이지로
-		return "employee/salary/employeeSalary";
-	}
+			//디버깅코드출력
+			log.debug(TeamColor.LJE + "EmployeeSalaryController employeeSalaryList 실행");
+					
+			//employeeSalaryList에 저장
+			List<Map<String, Object>> employeeSalaryList = employeeService.getEmployeeSalaryList();
+			List<Map<String, Object>> salaryList = salaryService.getSalaryList();
+			
+			model.addAttribute("salaryList",salaryList);
+			
+			//List에 담은 값을 model에 저장
+			model.addAttribute("employeeSalaryList", employeeSalaryList);
+			
+			//employeeSalaryList 에 담긴 값 확인
+			log.debug(TeamColor.LJE + "EmployeeSalaryController employeeSalaryList값 :" + employeeSalaryList);
+			System.out.println("model : " + model);
+				
+			//employee/salary/employeeSalary 페이지로
+			return "employee/salary/employeeSalary";
+		}
+		
+		//연봉관리 - 액션
+		@PostMapping("/salaryEmployeeAction")
+		public String salaryEmployeeAction(Employee employee,String salaryNo) {
+			
+			int row = salaryService.modifySalaryEmployee(employee);
+			log.debug(TeamColor.JJY +"row : " + row);
+			
+			return "redirect:/employee/salary/employeeSalary";
+		}
 	
 }

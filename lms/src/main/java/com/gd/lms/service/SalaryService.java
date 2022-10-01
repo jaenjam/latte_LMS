@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.SalaryMapper;
+import com.gd.lms.vo.Employee;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,5 +25,12 @@ public class SalaryService {
 		log.debug(TeamColor.LJE + "SalaryService getSalaryList");
 
 		return salaryMapper.selectSalaryList();
+	}
+	
+	// 연봉 수정
+	public int modifySalaryEmployee(Employee employee) {
+		
+		log.debug(TeamColor.JJY + "SalaryService modifySalaryEmployee");
+		return salaryMapper.updateSalaryEmployee(employee);
 	}
 }
