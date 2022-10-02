@@ -1,8 +1,8 @@
 package com.gd.lms.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
@@ -28,6 +28,7 @@ public class AnswerController {
 		
 		//answerService addAnswer 실행 insertAnswer에 넣기
 		int insertAnswer = answerService.addAnswer(answer, questionNo);
+		
 		
 		log.debug(TeamColor.LJE + "AnswerService addNotice 실행결과 1이면 성공, 0이면 실패 : " + insertAnswer);
 		

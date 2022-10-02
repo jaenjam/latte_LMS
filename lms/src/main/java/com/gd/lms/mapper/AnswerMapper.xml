@@ -23,5 +23,24 @@
 				, now()  
 			)
 	</insert>
+	
+	
+	<!-- answer -->
+	<select id="selectAnswerList" resultType="map">
+	
+		SELECT
+			  answer_no			answerNo
+			, question_no		questionNo
+			, answer_title		answerTitle
+			, answer_content	answerContent
+			, answer_writer		answerWriter
+			, create_date		createDate
+			, update_date		updateDate
+			
+		FROM answer
+		
+		WHERE question_no = #{questionNo}
+	
+	</select>
 
 </mapper>

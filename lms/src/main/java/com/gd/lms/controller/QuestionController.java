@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.service.AnswerService;
 import com.gd.lms.service.QuestionService;
+import com.gd.lms.vo.Answer;
 import com.gd.lms.vo.Question;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 public class QuestionController {
 
 	@Autowired QuestionService questionService;
+	@Autowired AnswerService answerService;
+	
 	
 	//질문 답변하기 form
 	@GetMapping("/qna/questionOne")
@@ -33,7 +37,22 @@ public class QuestionController {
 		
 		model.addAttribute("questionOne", questionOne);
 		
-		log.debug(TeamColor.LJE + "QuestionController getQuestionOne에 있는 model의 값 : " + model);
+		//answerService getAnswerList
+		Map<String, Object> answerOne = answerService.getAnswerList(questionNo);
+		
+		if(answerOne != null) {
+		
+			model.addAttribute("answerOne", answerOne);
+			
+			System.out.println(answerOne.toString());
+			
+			log.debug(TeamColor.LJE + "QuestionController getQuestionOne에 있는 answerOne의 값 : " + answerOne);
+		
+		}
+		
+		System.out.println(questionOne.toString());
+		
+		log.debug(TeamColor.LJE + "QuestionController getQuestionOne에 있는 questionOne의 값 : " + questionOne);
 		
 		log.debug(TeamColor.LJE + "QuestionController getQuestionOne에 있는 questionNo의 값 : " + questionNo);
 		
@@ -41,6 +60,8 @@ public class QuestionController {
 		return "/qna/questionOne";
 	}
 	
+	
+
 	//질문추가
 	@GetMapping("/qna/addQuestionForm")
 	public String addQuestion() {

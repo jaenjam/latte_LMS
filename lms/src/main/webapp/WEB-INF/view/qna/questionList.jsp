@@ -60,6 +60,7 @@
                                                 <th>번호</th>
                                                 <th>작성자</th>
                                                 <th>글제목</th>
+                                                <th>답변상태</th>
                                                 <th>작성일</th>
                                                 <th>수정일</th>
                                             </tr>
@@ -70,7 +71,6 @@
                                                 <td>${q.questionNo}</td>
                                                 <td>${q.studentName}</td>
                                                 <td>
-                                                
                                                 	<!-- 전체공개 누구나 볼 수 있음. -->
 	                                                <c:if test="${q.questionActive eq '전체공개'}">
 	                                                	<a href="${pageContext.request.contextPath}/qna/questionOne?questionNo=${q.questionNo}">
@@ -105,6 +105,14 @@
 		                                                	</a>
 	                                               	 	</c:if>
 	                                          		</c:if>
+                                                </td>
+                                                <td>
+                                                	<c:if test="${q.answerTitle ne null}">
+                                                		<span class="badge badge-pill badge-primary">답변완료</span>&nbsp;
+                                                	</c:if>
+                                                	<c:if test="${q.answerTitle eq null}">
+                                                		<span class="badge badge-pill badge-light">답변전</span>&nbsp;
+                                                	</c:if>
                                                 </td>
                                                 <td>${q.createDate}</td>
                                                 <td>${q.updateDate}</td>

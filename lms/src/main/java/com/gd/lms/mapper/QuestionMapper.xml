@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.QuestionMapper">
 
-	<!-- 공지상세보기 -->
+
+	<!-- 질문상세보기 -->
 	<select id="selectQuestionOne" resultType="map">
 		
 		SELECT
@@ -19,7 +20,7 @@
 		
 	</select>
 
-	<!-- 공지추가 -->
+	<!-- 질문추가 -->
 	<insert id="insertQuestion" parameterType="com.gd.lms.vo.Question">
 			INSERT INTO question
 				(
@@ -41,24 +42,29 @@
 				)
 	</insert>
 
-	<!-- 공지리스트 -->
+	<!-- 질문리스트 -->
 	<select id="selectQustionList" resultType="map">
 		
 		SELECT
-			  q.question_no questionNo
-			, q.student_no studentNo
-			, s.student_name studentName
-			, q.question_title questionTitle
-			, q.question_content questionContent
-			, q.question_active questionActive
-			, q.create_date createDate
-			, q.update_date updateDate
+			  q.question_no 		questionNo
+			, q.student_no 			studentNo
+			, s.student_name 		studentName
+			, q.question_title 		questionTitle
+			, q.question_content 	questionContent
+			, q.question_active 	questionActive
+			, q.create_date 		createDate
+			, q.update_date 		updateDate
+			, a.answer_title 		answerTitle
 		
 		FROM question q 
 		
 		INNER JOIN student s
 		
 		ON q.student_no = s.student_no
+		
+		LEFT JOIN answer a
+		
+		ON q.question_no = a.question_no
 		
 		ORDER BY q.question_no desc
 		
