@@ -25,6 +25,12 @@
 						<li><a
 							href="${pageContext.request.contextPath}/register/getRegisterForm">수강신청</a>
 						</li>
+						<li><a
+							href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm">강의평가</a>
+						</li>
+						<li><a
+							href="${pageContext.request.contextPath}/register/getRegisterForm">교수평가</a>
+						</li>
 					</ul></li>
 				<!-- 시험출제 -->
 				<li class="mega-menu mega-menu-sm"><a class="has-arrow"
@@ -240,17 +246,13 @@
 						<li><a
 							href="${pageContext.request.contextPath}/club/addStudentClub">동아리
 								가입</a></li>
-								<li><a
-							href="${pageContext.request.contextPath}/club/studentClubList?studentNo=${No}">동아리
-								가입 신청 목록</a></li>
-								
 
 					</c:if>
 
 					<c:if test="${user eq 'professor'}">
 						<!-- 교수 권한 -->
 						<li><a
-							href="${pageContext.request.contextPath}/club/professorClubList?professorNo=${No}">동아리
+							href="${pageContext.request.contextPath}/club/studentClubList">동아리
 								가입승인</a></li>
 
 					</c:if>
