@@ -19,5 +19,11 @@ public interface TestMapper {
 	// 시험지 추가
 	int insertTest(int subjectApproveNo, String testName);
 	
+	// 객관식문제 추가하기
+	int insertMultipleTest(int testNo,String multiplechoiceQuestion,int multiplechoiceAnswer,String multiplechoiceScore);
+	
+	// 객관식답안보기 추가하기
+	int insertMultipleTestExample(int multiplechoiceNo,String multipleTestExampleNo,String multipleTestExampleContent);
+
 
 }
