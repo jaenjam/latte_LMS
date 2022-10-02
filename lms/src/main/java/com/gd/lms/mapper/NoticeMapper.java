@@ -10,6 +10,9 @@ import com.gd.lms.vo.Notice;
 @Mapper
 public interface NoticeMapper {
 	
+	//공지조회수업로드
+	int updateNoticeCount(int noticeNo);
+	
 	//공지삭제
 	int deleteNotice(int noticeNo);
 	

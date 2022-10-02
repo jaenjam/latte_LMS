@@ -62,6 +62,9 @@
 		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn">공지삭제</button>
 		                                    </a>
 		                                </c:if>
+		                                	<a href="${pageContext.request.contextPath}/notice/noticeList">
+		                                        <button class="btn btn-primary" type="button">공지리스트보기</button>
+		                                    </a>
 									</div>
 	                            </div>
 	                        </div>

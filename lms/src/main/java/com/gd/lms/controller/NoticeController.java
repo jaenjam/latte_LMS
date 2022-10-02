@@ -52,6 +52,10 @@ public class NoticeController {
 		//Map<String, Object> noticeOne을 model에 넣어준다.
 		model.addAttribute("noticeOne",noticeOne);
 		
+		int noticeCount = noticeService.updateNoticeCount(noticeNo);
+		
+		log.debug(TeamColor.LJE + "NoticeControler noticeCount의 값 : " + noticeCount);
+		
 		log.debug(TeamColor.LJE + "NoticeControler getNoticeOne에 있는 model의 값 : " + model);
 		
 		log.debug(TeamColor.LJE + "NoticeControler getNoticeOne에 있는 noticeNo의 값 : " + noticeNo);

@@ -34,6 +34,13 @@ public class NoticeService {
 		return noticeRepository.findAllByNoticeContentContains(contains, pageable);
 	}
 	
+	//공지조회수업로드
+	public int updateNoticeCount(int noticeNo) {
+		log.debug(TeamColor.LJE + "NoticeService updateNotice");
+		
+		return noticeMapper.updateNoticeCount(noticeNo);
+	}
+	
 	//공지삭제
 	public int deleteNotice(int noticeNo) {
 		log.debug(TeamColor.LJE + "NoticeService deleteNotice");
