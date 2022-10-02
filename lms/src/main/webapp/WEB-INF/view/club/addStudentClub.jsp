@@ -12,6 +12,10 @@
 <!--**********************************
             Content body start
         ***********************************-->
+
+<script type="text/javascript" src="/js/studentClub/addStudentClub.js"></script>
+
+
 <div class="content-body">
 
 	<div class="row page-titles mx-0">
@@ -46,13 +50,14 @@
 									</div>
 								</div>
 
+								<c:set value="${clubList}" var="c"/>
 								<div class="form-group row">
-										<label class="col-lg-4 col-form-label" for="clubNo">동아리 선택</label>
+										<label class="col-lg-4 col-form-label" >동아리 선택</label>
 										<div class="col-lg-6">
-										<select name="clubNo" class="form-control">
+										<select id="selectClub" name="clubNo" class="form-control" onselect="selectClub()">
 											<option selected="selected">::동아리를 선택해주세요::</option>
 											<c:forEach items="${clubList}" var="c">
-												<option value="${c.clubNo}">${c.clubName}</option>
+												<option id="clubInfo" value="${c.clubNo}">${c.clubName}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -64,7 +69,7 @@
 										설명 </label>
 									<div class="col-lg-6">
 										<textarea class="form-control" id="clubContent"
-											name="clubContent" rows="10" readonly="readonly">${c.clubContent}</textarea>
+											name="clubContent" rows="10" readonly="readonly"></textarea>
 									</div>
 
 								</div>
@@ -73,7 +78,7 @@
 									</label>
 									<div class="col-lg-6">
 										<input type="text" class="form-control" id="professorNo"
-											name="professorNo" value="${c.professorName}"
+											name="professorNo"
 											readonly="readonly">
 									</div>
 								</div>
@@ -96,18 +101,5 @@
 <!--**********************************
             Content body end
         ***********************************-->
-<script type="text/javascript"> <
-	//공백 확인
-	$('#addStudentClub').click(function() {
-		if ($('#clubNo').val() == '') {
-			alert('동아리를 선택해주세요.');
-		} else {
-			
-			addStudentClub.submit();
-		}
-	});
-	
-	
-</script>
 <!-- footer -->
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>
