@@ -1,11 +1,28 @@
 package com.gd.lms.vo;
 
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.Accessors;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Accessors(chain = true)
 @Data
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Test {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int testNo;
-	private int subjectApproveNo;
+
+	@ToString.Exclude
+	@ManyToOne
+	@JoinColumn(name = "subject_approve_no")
+	private SubjectApprove subjectApprove;
+
 	private String testName;
 	private String createDate;
 	private String updateDate;

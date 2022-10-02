@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.TestMapper;
-import com.gd.lms.vo.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,10 +28,10 @@ public class TestService {
 	}
 
 	// 시험추가하기
-	public int addTest(Test test) {
+	public int addTest(int subjectApproveNo, String testName) {
 
 		log.debug(TeamColor.JJY+"Service -> addTest실행");
-		return testMapper.insertTest(test);
+		return testMapper.insertTest(subjectApproveNo, testName);
 	}
 	
 	// 전공값 가져오기

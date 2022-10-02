@@ -17,7 +17,7 @@ public interface TestMapper {
 	Map<String,Object> selectSubjectOne(int subjectApproveNo);
 	
 	// 시험지 추가
-	int insertTest(Test test);
+	int insertTest(int subjectApproveNo, String testName);
 	
 
 }
