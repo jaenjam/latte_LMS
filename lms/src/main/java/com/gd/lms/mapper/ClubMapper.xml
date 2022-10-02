@@ -2,25 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.ClubMapper">
 
+	<!-- 동아리 가입신청 리스트 (학생) -->
+	<select id="selectStudentClubList" resultType="map"
+		parameterType="com.gd.lms.vo.Club">
 
-	<!-- 동아리 가입신청 리스트 (교수)-->
-	<select id="selectStudentClubList" resultType="map">
-		
 
 		SELECT
-		cm.student_no
-		,s.student_name
-		,cm.club_no
-		,c.club_name
-		,cm.create_date
+		cm.student_no studentNo
+		,s.student_name studentName
+		,cm.club_no clubNo
+		,c.club_name clubName
+		,cm.create_date createDate
 
-		FROM club_member cm INNER JOIN club c ON cm.club_no = c.club_no
+		FROM club_member cm
+		INNER JOIN club c ON cm.club_no = c.club_no
 
-		LEFT JOIN student s ON cm.student_no = s.student_no
-		
-		LEFT JOIN professor p ON c.professor_no = p.professor_no
+		INNER JOIN student s ON
+		cm.student_no = s.student_no
 
-		WHERE p.professor_no = #{professorNo};
+		WHERE s.student_no = #{studentNo};
+
+	</select>
+
+
+	<!-- 동아리 가입신청 리스트 (교수) -->
+	<select id="selectProfessorClubList" resultType="map"
+		parameterType="com.gd.lms.vo.Club">
+
+
+		SELECT
+		cm.student_no studentNo
+		,s.student_name studentName
+		,cm.club_no clubNo
+		,c.club_name clubName
+		,cm.create_date createDate
+
+		FROM club_member cm
+		INNER JOIN club c ON cm.club_no = c.club_no
+
+		INNER JOIN student s ON
+		cm.student_no = s.student_no
+
+		INNER JOIN professor p ON c.professor_no = p.professor_no
+
+		WHERE
+		p.professor_no = #{professorNo};
 
 	</select>
 
@@ -33,7 +59,8 @@
 		club_no
 		,student_no
 		,create_date
-		) VALUES (
+		)
+		VALUES (
 		#{clubNo}
 		,#{studentNo}
 		,now()
@@ -63,7 +90,7 @@
 		)
 
 	</insert>
-	
+
 	<!-- 사진 해당하는 clubNo가져오기 -->
 	<select id="selectClubNo" parameterType="com.gd.lms.vo.Club"
 		resultType="String">
@@ -190,7 +217,7 @@
 		, c.professor_no professorNo
 		, p.professor_name professorName
 		,
-		ci.club_img_no clubImgNo
+		ci.filename fileName
 		, c.create_date createDate
 		, c.update_date
 		updateDate

@@ -1,0 +1,24 @@
+
+
+#addClubBtn{
+    width: 100px;
+    float: none !important;
+    margin-left: calc(100% - 150px);
+    margin-bottom: 30px;
+}
+.clubContainer{
+    width: 90%;
+    min-width: 900px;
+    margin: 0 5%;
+    float: left;
+}
+
+.card{
+    float: left;
+    margin-right: 1%;
+}
+
+.card img{
+    width: 300px;
+    height: 200px;
+}

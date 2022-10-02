@@ -15,8 +15,11 @@ import com.gd.lms.vo.ClubMember;
 @Mapper
 public interface ClubMapper {
 	
-	// 동아리 가입 신청 목록
-	List<Map<String, Object>> selectStudentClubList();
+	//  동아리 가입 신청 목록 (학생)
+	List<Map<String, Object>> selectStudentClubList(int studentNo);
+	
+	// 동아리 가입 신청 목록 (교수)
+	List<Map<String, Object>> selectProfessorClubList(int professorNo);
 	
 	//동아리 가입신청
 	int insertStudentClub(ClubMember clubmember);

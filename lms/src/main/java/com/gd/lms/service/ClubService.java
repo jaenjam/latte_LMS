@@ -32,12 +32,21 @@ public class ClubService {
 	@Autowired
 	private ClubMapper clubMapper;
 	
-	//동아리 가입신청 목록
-	public List<Map<String, Object>> getStudentClubList() {
+	//동아리 가입신청 목록 (교슈)
+		public List<Map<String, Object>> getStudentClubList(int studentNo) {
+			
+			log.debug(TeamColor.CSJ + "clubService.getStudentClubList");
+			
+			return clubMapper.selectStudentClubList(studentNo);
 		
-		log.debug(TeamColor.CSJ + "clubService.getStudentClubList");
+		}
+	
+	//동아리 가입신청 목록 (교슈)
+	public List<Map<String, Object>> getProfessorClubList(int professorNo) {
 		
-		return clubMapper.selectStudentClubList();
+		log.debug(TeamColor.CSJ + "clubService.getProfessorClubList");
+		
+		return clubMapper.selectProfessorClubList(professorNo);
 	
 	}
 	
@@ -91,7 +100,7 @@ public class ClubService {
 		if (result != 0 && clubImg != null) {
 			log.debug(TeamColor.CSJ + "not null");
 
-			String dir = request.getSession().getServletContext().getRealPath("/WEB-INF/view/club/uploadFile");
+			String dir = request.getSession().getServletContext().getRealPath("/images/clubUploadFile/");
 			log.debug(TeamColor.CSJ + "dir 경로 확인 : " + dir);
 			String Filename = ""; // 강의자료파일에서 저장된 이름
 			String Originname = ""; // 기존파일이름
@@ -114,8 +123,6 @@ public class ClubService {
 					clubimg.setClubNo(club.getClubNo());
 
 					log.debug(TeamColor.CSJ + "clubImg : " + clubimg);
-
-				
 
 					String saveFileName = dir + File.separator + clubimg.getFileName();
 

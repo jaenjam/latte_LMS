@@ -38,7 +38,7 @@
 					<div class="card-body">
 						<div class="form-validation">
 							<form class="form-valide"
-								action="${pageContext.request.contextPath}/club/addStudentClub"
+								action="${pageContext.request.contextPath}/club/addStudentClub?studentNo=${No}"
 								method="post">
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="studentNo">이름</label>
@@ -86,7 +86,7 @@
 
 								<div class="form-group row">
 									<div class="col-lg-8 ml-auto">
-										<button type="submit"  id = "addStudentClub" class="btn btn-primary">가입하기</button>
+										<button type="submit"  id = "addStudentClub" class="btn btn-primary">가입신청</button>
 									</div>
 								</div>
 							</form>

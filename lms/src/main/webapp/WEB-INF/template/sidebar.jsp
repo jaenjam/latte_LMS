@@ -240,13 +240,17 @@
 						<li><a
 							href="${pageContext.request.contextPath}/club/addStudentClub">동아리
 								가입</a></li>
+								<li><a
+							href="${pageContext.request.contextPath}/club/studentClubList?studentNo=${No}">동아리
+								가입 신청 목록</a></li>
+								
 
 					</c:if>
 
 					<c:if test="${user eq 'professor'}">
 						<!-- 교수 권한 -->
 						<li><a
-							href="${pageContext.request.contextPath}/club/studentClubList">동아리
+							href="${pageContext.request.contextPath}/club/studentClubList?professorNo=${No}">동아리
 								가입승인</a></li>
 
 					</c:if>

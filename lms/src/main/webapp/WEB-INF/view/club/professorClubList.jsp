@@ -10,6 +10,9 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/studentClub/approveClub.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/studentClub/deleteClub.js"></script>
 
 
 
@@ -25,7 +28,7 @@
 				<li class="breadcrumb-item"><a href="javascript:void(0)"></a>동아리
 				</li>
 				<li class="breadcrumb-item active"><a href="javascript:void(0)">
-				</a>동아리 가입 신청목록</li>
+				</a>동아리 가입승인</li>
 			</ol>
 		</div>
 	</div>
@@ -37,7 +40,7 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-sm-9">
-								<h4 class="card-title">동아리 가입 신청 목록</h4>
+								<h4 class="card-title">동아리 가입승인</h4>
 							</div>
 						</div>
 						<br>
@@ -49,18 +52,19 @@
 										<th>이름</th>
 										<th>동아리명</th>
 										<th>신청일</th>
-										<th></th>
+										<th>승인여부</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="sc" items="${studentClubList}">
+									<c:forEach var="sc" items="${professorClubList}">
 										<tr>
 											<td>${sc.studentNo}</td>
 											<td>${sc.studentName}</td>
 											<td>${sc.clubName}</td>
 											<td>${sc.createDate}</td>
-											<td><button onclick="deleteStudentClub()" type="button"
-													class="btn mb-1 btn-primary" id="deleteClub">취소신청</button>
+											<td><button onclick="approveClub()" type="button" class="btn mb-1 btn-primary" id="approve">승인</button>
+												<button onclick="deleteClub()" type="button" class="btn mb-1 btn-outline-dark" id="delete">거절</button>
+											<td>
 										</tr>
 									</c:forEach>
 								</tbody>
