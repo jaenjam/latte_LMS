@@ -74,10 +74,10 @@
                                                 		${L.lectureTitle}
                                                 	</a>
                                                 </td>
-                                                <td> ${L.professorName} </td>                                          
-                                                <td> ${L.createDateL} </td>                                                
-                                                <td> ${L.updateDateL} </td>
-                                                <td> ${L.countL} </td>
+                                                <td> ${L.subjectApprove.professor.professorName} </td> <!-- subjectApprove로 professor끌어오고 그 안에  -->                                         
+                                                <td> ${L.subjectApprove.professor.createDate} </td>                                                
+                                                <td> ${L.subjectApprove.professor.updateDate} </td>
+                                                <td> ${L.count} </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
