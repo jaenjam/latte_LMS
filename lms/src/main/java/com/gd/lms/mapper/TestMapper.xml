@@ -65,6 +65,43 @@
 			,NOW())
 			
 	</insert>
+	
+	<!-- multipleTest 문제 / 답 / 점수 입력 -->
+	<insert id="insertMultipleTest" parameterType="com.gd.lms.vo.MultipleTest">
+	INSERT INTO multiple_test(
+		 test_no
+		,multiplechoice_question
+		,multiplechoice_answer
+		,multiplechoice_score
+		,create_date
+		,update_date) 
+	VALUES (
+		 #{testNo}
+		,#{multiplechoiceQuestion}
+		,#{multiplechoiceAnswer}
+		,#{multiplechoiceScore}
+		,NOW()
+		,NOW())
+	
+	</insert>
+	
+	<!-- multipleTestQuestion 입력하기 -->
+	<insert id="insertMultipleTestExample" parameterType="com.gd.lms.vo.MultipleTestExample">
+	
+	INSERT INTO multiple_test_example(
+		 multiplechoice_no
+		,multiple_test_example_no
+		,multiple_test_example_content
+		,create_date
+		,update_date) 
+	VALUES (
+		 #{multiplechoiceNo}
+		,#{multipleTestExampleNo}
+		,#{multipleTestExampleContent}
+		,NOW()
+		,NOW())
+	
+	</insert>
 
 
 </mapper>
