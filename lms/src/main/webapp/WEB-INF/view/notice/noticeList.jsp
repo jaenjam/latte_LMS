@@ -16,8 +16,16 @@
 	}
 	
 	.input-group .input-group-text {
-    font-size: 1.375rem;
-}
+    	font-size: 1.375rem;
+   
+	}
+	
+	.content-body{
+   		min-width: 1050px;
+   	}
+    
+
+
 </style>
 
  <!--**********************************
@@ -77,7 +85,9 @@
                                                 <td>${N.noticeWriter}</td>
                                                 <td>${N.createDate}</td>
                                                 <td>${N.updateDate}</td>
-                                                <td>${N.count}</td>
+                                                <td>
+                                                	${N.count}
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -86,7 +96,7 @@
                                 <br>
 	                            <div class="form-group">
 	                            	<div class="row" >
-	                            		<div class="col-sm-6">
+	                            		<div class="col-sm-7" style="margin: 0 0 0 240px">
 	                                		<input type="text" class="form-control input-rounded" placeholder="검색어를 입력해주세요!">
 	                                	</div>
 	                                	<div class="col-sm-1">
