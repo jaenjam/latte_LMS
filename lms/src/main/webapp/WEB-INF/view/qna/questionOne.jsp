@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!-- header.jsp -->
 
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
@@ -9,8 +10,7 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/question/question.js"></script>
 
         <!--**********************************
             Content body start
@@ -38,7 +38,9 @@
                             	<br>
                             		<div class="row">
                             			<div class="col-sm-10">
-	                            			<h4>${questionOne.questionTitle}</h4>
+	                            			<h4>
+	                            			<span class="badge badge-pill badge-primary">답변완료</span>&nbsp;
+	                            			${questionOne.questionTitle}</h4>
 	                            		</div>
 	                            		<div class="col-sm-2" >
 	                            			<p style="float:right;">${questionOne.createDate}</p>
@@ -55,11 +57,15 @@
 	                            </div>
 	                        </div>
 	                    </div>
+	                  
+	                 
+	                <!-- 관리자 댓글 입력기능 -->   
+	                <c:if test="${user eq 'employee'}">
                     <div class="col-lg-12">
                         <div class="card">
                         	<div class="card-body" style="color:black">
                         		<div class="basic-form">
-                                    <form>
+                                    <form action="${pageContext.request.contextPath}/insertAnswer?questionNo=${questionOne.questionNo}" method="post" id="addAnswer">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">답글제목</label>
                                             <div class="col-sm-9">
@@ -79,19 +85,14 @@
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-	                                
-	                              	<div style="float:right">
-		                              	<c:if test="${user eq 'employee'}">
-											<a href="${pageContext.request.contextPath}/qna/updateAnswer?questionNo=${questionOne.questionNo}">
-												<button type="button" class="btn btn-primary">답글작성하기</button>
-											</a>
-		                                </c:if>
+	                              		<div style="float:right">
+											<button onclick="question()" type="button"  class="btn btn-primary" id="addAnswerBtn">답글작성하기</button>
+										</div>
 									</div>
-									
 	                            </div>
 	                        </div>
 	                    </div>
+	                    </c:if>
 	                </div>
 	            </div>
             <!-- #/ container -->
@@ -99,7 +100,6 @@
         <!--**********************************
             Content body end
         ***********************************-->
-
 
 
 <!-- footer -->
