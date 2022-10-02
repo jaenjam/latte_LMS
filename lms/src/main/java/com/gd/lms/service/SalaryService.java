@@ -11,6 +11,7 @@ import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.SalaryMapper;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.Salary;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,5 +41,12 @@ public class SalaryService {
 		
 		log.debug(TeamColor.JJY + "SalaryService modifySalaryProfessor");
 		return salaryMapper.updateSalaryProfessor(professor);
+	}
+	
+	// 연봉 수정
+	public int modifySalary(Salary salary) {
+		
+		System.out.print("modifySalary실행");
+		return salaryMapper.updateSalary(salary);
 	}
 }

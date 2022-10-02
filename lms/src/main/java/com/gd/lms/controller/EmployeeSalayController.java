@@ -15,6 +15,7 @@ import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.SalaryService;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.Salary;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +38,19 @@ public class EmployeeSalayController {
 		log.debug(TeamColor.JJY + "salaryList model 값 확인 : " + model);
 		
 		return "/employee/salary/salaryList";
+	}
+	
+	// 연봉자체관리 action
+	@PostMapping("/salaryAction")
+	public String SalaryAction(Salary salary) {
+		
+		// 쿼리 실행여부 확인하기
+		int row = salaryService.modifySalary(salary);
+		// row가 0이면 실패 1이면 성공!
+		log.debug(TeamColor.JJY + "row 값  : "+row);
+		
+		return "redirect:/employee/salary/salaryList";
+		
 	}
 	
 	//연봉관리 - 교수리스트 보여주기

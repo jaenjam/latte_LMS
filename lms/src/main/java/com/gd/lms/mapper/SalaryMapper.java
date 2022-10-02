@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.Salary;
 
 @Mapper
 public interface SalaryMapper {
@@ -19,4 +20,7 @@ public interface SalaryMapper {
 		
 	// 교수 연봉 수정
 	int updateSalaryProfessor(Professor professor);
+	
+	// 연봉관리 수정
+	int updateSalary(Salary salary);
 }

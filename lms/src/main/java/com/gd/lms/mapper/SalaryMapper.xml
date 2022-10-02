@@ -23,7 +23,7 @@
 
 	</update>
 	
-	<!-- 교수 연보 수정 쿼리 -->
+	<!-- 교수 연봉 수정 쿼리 -->
 	<update id="updateSalaryProfessor" parameterType="com.gd.lms.vo.Employee">
 	
 		UPDATE
@@ -32,6 +32,18 @@
 			salary_no = #{salaryNo}
 		WHERE 
 			professor_no = #{professorNo}
+
+	</update>
+	
+	<!-- 연봉 Value값(금액) 수정 -->
+	<update id="updateSalary" parameterType="com.gd.lms.vo.Salary">
+
+		UPDATE
+			salary
+		SET
+			salary_value = #{salaryValue}
+		WHERE 
+			salary_no = #{salaryNo}
 
 	</update>
 	

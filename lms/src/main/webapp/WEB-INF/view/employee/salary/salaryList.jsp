@@ -42,17 +42,19 @@
 		<c:forEach var="C" items="${salaryList}">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title" style="font-size: 2.0em;">
-						${C.salaryNo}등급</h4>
-					<br />
-					<div class="table-responsive">
-						<div class="salaryHeader">
-							연봉 : <input type="text" name="salaryNo" value="${C.salaryValue}">
-							(만원) &nbsp
-							<button type="submit" class="btn btn-light" style="font-size:18px; font-weight: bold ;">변경</button>
+					<form action="${pageContext.request.contextPath}/salaryAction?salaryNo=${C.salaryNo}" method="post">
+						<h4 class="card-title" style="font-size: 2.0em;">
+							${C.salaryNo}등급</h4>
+						<br />
+						<div class="table-responsive">
+							<div class="salaryHeader">
+								연봉 : <input type="text" name="salaryValue"
+									value="${C.salaryValue}"> (만원) &nbsp
+								<button type="submit" class="btn btn-light"
+									style="font-size: 18px; font-weight: bold;">변경</button>
+							</div>
 						</div>
-						
-					</div>
+					</form>
 				</div>
 			</div>
 		</c:forEach>
