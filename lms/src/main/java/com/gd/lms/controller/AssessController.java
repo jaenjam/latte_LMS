@@ -3,9 +3,13 @@ package com.gd.lms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.service.AssessService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,23 +19,40 @@ import lombok.extern.slf4j.Slf4j;
 public class AssessController {
 
 	
-	@Autowired
+	@Autowired AssessService assessservice;
 	
-	// 교수평가 List 불러오기(수강중인 강의 리스트 불러오는 느낌)
+	// 교수평가 메뉴 누를 시 교수평가 List 불러오기(수강중인 강의 리스트 불러오는 느낌)
 	@GetMapping("/assess/professor/getProfessorAssessList")
-	public String getAssessPfList() {
+	public String getAssessPfList(Model model,
+			@RequestParam("studentNo") int studentNo) {
+		// 해당컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"AssessController의 getAssessPfList 진입");
 		
-		return "/assess/professor/getProfessorAssessForm";
+		log.debug(TeamColor.KHW +"학번 : " + studentNo);
+		
+		model.addAttribute("registerList", assessservice.assessList(studentNo));
+		
+		return "/assess/professor/getProfessorAssessList";
 	}
 	
-	// 교수평가 폼 불러오기
+	
+	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 폼 불러오기
 	@GetMapping("/assess/professor/getProfessorAssessForm")
-	public String getAssessPfForm() {
+	public String getAssessPfForm(Model model,
+			@RequestParam("registerNo") int registerNo) {
 		// 해당컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"AssessController의 getAssessPfForm 진입");
 		
+		// 받아온 registerNo 확인
+		log.debug(TeamColor.KHW +"승인과목넘버 :" + registerNo);
+		model.addAttribute("AssessPfOne", assessservice.assessFormPf(registerNo));
+		
 		return "/assess/professor/getProfessorAssessForm";
 	}
 	
-	
+	/*
+	// 별점 입력후 반영 Action
+	@PostMapping()
+	public String get
+	*/
 }

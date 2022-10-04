@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.AssessMapper">
+
+
+	<!--  1.7하기 전에 reg -->
+
+	<!--  1-7. 수강신청 완료 이후 professor_assess 테이블에 해당 register_no로 디비 자동삽입 -->
+	<insert id="insertPa" parameterType="int">
+	INSERT INTO professor_assess
+	(
+	register_no
+	)
+	VALUE
+	(
+		(SELECT
+		MAX(register_no)
+		FROM
+		register
+		WHERE
+		student_no=#{No})
+	)
+	</insert>
+
+
+
+	<!--  1-75. 수강신청 완료 이후 professor_assess 테이블에 해당 register_no로 디비 자동삽입 -->
+	<insert id="insertSa" parameterType="int">
+	INSERT INTO professor_assess
+	(
+	register_no
+	)
+	VALUE
+	(
+		(SELECT
+		MAX(register_no)
+		FROM
+		register
+		WHERE
+		student_no=#{No})
+	)
+	</insert>
+
+
+	<!--  학번 기준으로 수강강의목록 긁어오기 -->
+	<select id="selectAssessList" parameterType="int" resultType="map">
+	SELECT
+		r.subject_approve_no subjectApproveNo
+		, r.create_date createDate
+		, r.update_date updateDate
+		, sa.professor_no professorNo
+		, sa.year yearS
+		, sa.semester semesterS
+		, pa.register_no registerNo
+		, pa.professor_assess_score professorAssessScore
+		, pa.professor_assess_ck professorAssessCk
+		, pf.professor_name professorName
+		, s.subject_name subjectName
+		, s.subject_credit subjectCredit
+	FROM
+		register r
+		RIGHT JOIN
+			subject_approve sa
+				ON
+				r.subject_approve_no = sa.subject_approve_no
+					RIGHT JOIN
+						professor_assess pa
+							ON
+							r.register_no= pa.register_no 
+							RIGHT JOIN
+							professor pf
+								ON
+								sa.professor_no = pf.professor_no
+								RIGHT JOIN
+									subject s
+									ON
+									sa.subject_no = s.subject_no
+							
+	WHERE
+		student_no = #{No};					
+	</select>
+	
+	
+	<!--  버튼 누르고 수강강의 상세보기  -->
+	<select id="selectAssessPfOne" parameterType="int" resultType="map">
+	SELECT
+			r.subject_approve_no subjectApproveNo
+			, r.create_date createDate
+			, r.update_date updateDate
+			, sa.professor_no professorNo
+			, sa.year yearS
+			, sa.semester semesterS
+			, pa.register_no registerNo
+			, pa.professor_assess_score professorAssessScore
+			, pa.professor_assess_ck professorAssessCk
+			, pf.professor_name professorName
+			, s.subject_name subjectName
+			, s.subject_credit subjectCredit
+	FROM
+			register r
+				RIGHT JOIN
+				subject_approve sa 
+					ON
+					r.subject_approve_no = sa.subject_approve_no
+							RIGHT JOIN
+							professor_assess pa 
+								ON
+								r.register_no= pa.register_no
+								RIGHT JOIN
+								professor pf 
+									ON
+									sa.professor_no = pf.professor_no
+									RIGHT JOIN
+										subject s 
+										ON
+										sa.subject_no = s.subject_no
+	WHERE
+			r.register_no= #{registerNo}	
+	</select>
+
+</mapper>
