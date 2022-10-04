@@ -75,12 +75,15 @@
 											<span class="text-danger">*</span>
 										</label>
 										<div class="col-lg-6">
-											<select name="professorNo" class="form-control">
-												<option selected="selected">::담당교수를 선택해주세요::</option>
+											<select name="professorNo" class="form-control" id="professorNo">
+												<option selected="selected" value="${c.professorNo}">${c.professorName}</option>
+												
 												<c:forEach items="${professorList}" var="p">
-
-													<option value="${c.professorNo}">${p.professorName}</option>
+											<c:if test="${c.professorNo ne p.professorNo}">
+													<option value="${p.professorNo}">${p.professorName}</option>
+													</c:if>
 												</c:forEach>
+												
 											</select>
 										</div>
 									</div>

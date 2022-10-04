@@ -135,7 +135,7 @@
 		SET
 		c.club_name =
 		#{clubName}
-		c.club_content = #{clubContent}
+		,c.club_content = #{clubContent}
 		, c.club_room =
 		#{clubRoom}
 		,
