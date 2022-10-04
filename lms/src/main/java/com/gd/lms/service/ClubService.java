@@ -31,39 +31,49 @@ public class ClubService {
 
 	@Autowired
 	private ClubMapper clubMapper;
-	
-	//동아리 가입신청 목록 (교슈)
-		public List<Map<String, Object>> getStudentClubList(int studentNo) {
-			
-			log.debug(TeamColor.CSJ + "clubService.getStudentClubList");
-			
-			return clubMapper.selectStudentClubList(studentNo);
+
+	// 동아리 가입 신청 취소(학생)
+	public int removeStudentClub(String clubNo, int studentNo) {
+		log.debug(TeamColor.CSJ + "clubService.removeStudentClub");
 		
-		}
-	
-	//동아리 가입신청 목록 (교슈)
-	public List<Map<String, Object>> getProfessorClubList(int professorNo) {
-		
-		log.debug(TeamColor.CSJ + "clubService.getProfessorClubList");
-		
-		return clubMapper.selectProfessorClubList(professorNo);
-	
+		return clubMapper.deleteStudentClub(clubNo, studentNo);
 	}
 	
-	//학생의 동아리 가입신청
+	
+
+	// 동아리 가입신청 목록 (교슈)
+	public List<Map<String, Object>> getStudentClubList(int studentNo) {
+
+		log.debug(TeamColor.CSJ + "clubService.getStudentClubList");
+
+		return clubMapper.selectStudentClubList(studentNo);
+
+	}
+
+	// 동아리 가입신청 목록 (교슈)
+	public List<Map<String, Object>> getProfessorClubList(int professorNo) {
+
+		log.debug(TeamColor.CSJ + "clubService.getProfessorClubList");
+
+		return clubMapper.selectProfessorClubList(professorNo);
+
+	}
+
+	// 학생의 동아리 가입신청
 	public int addStudentClub(ClubMember clubmember) {
 		log.debug(TeamColor.CSJ + "clubService.addStudentClub");
-		
+
 		return clubMapper.insertStudentClub(clubmember);
 	}
-	
-	//사진에쓸 clubNo 가져오기
+
+	// 사진에쓸 clubNo 가져오기
 	public String getClubNo(Club club) {
-		
+
 		log.debug(TeamColor.CSJ + "clubService.getClubNo");
-		
+
 		return clubMapper.selectClubNo(club);
 	}
+
 	// 동아리수정
 	public int modifyClub(Club club) {
 		log.debug(TeamColor.CSJ + "ClubService.modifyClub");
@@ -81,8 +91,6 @@ public class ClubService {
 	// 동아리 목록
 	public List<Map<String, Object>> getClubList() {
 		log.debug(TeamColor.CSJ + "ClubService.getClubList");
-		
-		
 
 		return clubMapper.selectClubList();
 	}
@@ -105,8 +113,6 @@ public class ClubService {
 			String Filename = ""; // 강의자료파일에서 저장된 이름
 			String Originname = ""; // 기존파일이름
 			String Type = ""; // 파일형식
-
-		
 
 			for (MultipartFile file : clubImg) {
 				//
@@ -136,7 +142,7 @@ public class ClubService {
 
 						// 파일 추가
 						log.debug(TeamColor.CSJ + " 성공 result : " + result);
-						} catch (Exception e) {
+					} catch (Exception e) {
 						log.debug(TeamColor.CSJ + " 실패 result : " + result);
 						e.printStackTrace();
 

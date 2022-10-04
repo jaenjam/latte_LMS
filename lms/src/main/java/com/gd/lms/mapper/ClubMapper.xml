@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.ClubMapper">
 
+	<!-- 동아리 가입 신청 취소(학생) - clubMember 테이블 삭제 -->
+	<delete id="deleteStudentClub" parameterType="com.gd.lms.vo.ClubMember">
+	
+	DELETE 
+	FROM club_member
+	WHERE student_no = #{studentNo}
+	AND club_no = #{clubNo}
+	
+	</delete>
+
+
 	<!-- 동아리 가입신청 리스트 (학생) -->
 	<select id="selectStudentClubList" resultType="map"
 		parameterType="com.gd.lms.vo.Club">

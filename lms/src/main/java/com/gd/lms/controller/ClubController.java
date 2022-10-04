@@ -37,6 +37,31 @@ public class ClubController {
 	@Autowired
 	StudentService studentService;
 
+	//
+	
+	
+	
+	// 학생 동아리 가입 신청 취소 action - club_member 테이블 데이터 삭제
+	@GetMapping("/studentClubList")
+	public String removeStudentClub(@RequestParam(name = "studentNo") int studentNo,
+			@RequestParam(name = "clubNo") String clubNo) {
+
+		log.debug(TeamColor.CSJ + "ClubController.removeStudentClub");
+
+		int row = clubService.removeStudentClub(clubNo, studentNo);
+
+		log.debug(TeamColor.CSJ + "ClubController.removeStudentClub row : " + row);
+
+		if (row == 1) {
+			log.debug(TeamColor.CSJ + "삭제 성공");
+		} else {
+			log.debug(TeamColor.CSJ + "삭제 실패");
+		}
+
+		return "redirect:/club/studentClubList?studentNo=" + studentNo;
+
+	}
+
 	// 동아리 신청 목록보기(학생) form
 	@GetMapping("/club/studentClubList")
 	public String studentClubList(ClubMember clubmember, Model model, int studentNo) {
