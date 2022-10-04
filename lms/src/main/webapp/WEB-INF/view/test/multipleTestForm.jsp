@@ -131,7 +131,7 @@
 								</div>
 							</div>
 							<br>
-							<form action="${pageContext.request.contextPath}/addTestAction"
+							<form action="${pageContext.request.contextPath}/addMultipleTest"
 								method="post">
 								<table class="table">
 									<tr>
@@ -212,10 +212,7 @@
 												class="btn btn-primary" style="float: right;">출제</button></td>
 									</tr>
 								</table>
-
-
 							</form>
-
 						</div>
 					</div>
 				</div>

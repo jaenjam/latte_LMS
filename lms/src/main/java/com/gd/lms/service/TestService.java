@@ -40,5 +40,17 @@ public class TestService {
 		log.debug(TeamColor.JJY+"Service -> getSubjectOne실행");
 		return testMapper.selectSubjectOne(subjectApproveNo);
 	}
+	
+	// 객관식문제추가하기
+	public int addMultipleTest(int testNo,String multiplechoiceQuestion,int multiplechoiceAnswer,String multiplechoiceScore) {
+		
+		return testMapper.insertMultipleTest(testNo, multiplechoiceQuestion, multiplechoiceAnswer, multiplechoiceScore);
+	}
+	
+	// 객관식보기추가하기
+	public int addMultipleTestExample(int multiplechoiceNo,String multipleTestExampleNo,String multipleTestExampleContent) {
+		
+		return testMapper.insertMultipleTestExample(multiplechoiceNo, multipleTestExampleNo, multipleTestExampleContent);
+	}
 
 }

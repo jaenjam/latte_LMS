@@ -22,6 +22,9 @@ public interface TestMapper {
 	// 객관식문제 추가하기
 	int insertMultipleTest(int testNo,String multiplechoiceQuestion,int multiplechoiceAnswer,String multiplechoiceScore);
 	
+	// 번호 가져와주기
+	int selectMultipleChoiceNo(int testNo,String multiplechoiceQuestion);
+	
 	// 객관식답안보기 추가하기
 	int insertMultipleTestExample(int multiplechoiceNo,String multipleTestExampleNo,String multipleTestExampleContent);
 
