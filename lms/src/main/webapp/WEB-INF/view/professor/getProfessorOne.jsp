@@ -141,23 +141,23 @@ margin-left:50px;
 												</div>
 												<div class="form-group">
 													<label> 교수실: </label>
-													<c:if test="${professorRoom eq null}">
+													<c:if test="${M.professorRoom eq null}">
 														<input type="text" class="form-control"
 															name="professorRoom" id="professorRoom" value="미정"
 															readonly="readonly">
 													</c:if>
 													<!-- 교수실이 null값이라면 미정출력 -->
-													<c:if test="${professorRoom ne null}">
+													<c:if test="${M.professorRoom ne null}">
 														<input type="text" class="form-control"
 															name="professorRoom" id="professorRoom"
-															value="${professorRoom}" readonly="readonly">
+															value="${M.professorRoom}" readonly="readonly">
 													</c:if>
 													<!-- 교수실이 정해져있으면 교수실출력 -->
 												</div>
 												<div class="form-group">
 													<label> 주민번호: </label> <input type="text"
 														class="form-control" name="professorRegiNo"
-														id="professorRegiNo" value="${professorRegiNo}"
+														id="professorRegiNo" value="${M.professorRegiNo}"
 														readonly="readonly">
 												</div>
 
@@ -171,34 +171,34 @@ margin-left:50px;
 												<div class="form-group">
 													<label> 나이: </label> <input type="text"
 														class="form-control" name="professorAge" id="professorAge"
-														value="${professorAge}" readonly="readonly">
+														value="${M.professorAge}" readonly="readonly">
 												</div>
 
 												<div class="form-group">
 													<label> 성별: </label> <input type="text"
 														class="form-control" name="professorGender"
-														id="professorGender" value="${professorGender}"
+														id="professorGender" value="${M.professorGender}"
 														readonly="readonly">
 												</div>
 
 												<div class="form-group">
 													<label> 핸드폰: </label> <input type="text"
 														class="form-control" name="professorTelephone"
-														id="professorTelephone" value="${professorTelephone}"
+														id="professorTelephone" value="${M.professorTelephone}"
 														readonly="readonly">
 												</div>
 
 												<div class="form-group">
 													<label> 이메일: </label> <input type="text"
 														class="form-control" name="professorEmail"
-														id="professorEmail" value="${professorEmail}"
+														id="professorEmail" value="${M.professorEmail}"
 														readonly="readonly">
 												</div>
 
 												<div class="form-group">
 													<label> 주소: </label> <input type="text"
 														class="form-control" name="professorAddress"
-														id="professorAddress" value="${professorAddress}"
+														id="professorAddress" value="${M.professorAddress}"
 														readonly="readonly">
 												</div>
 
@@ -206,7 +206,7 @@ margin-left:50px;
 													<label> 상세주소: </label> <input type="text"
 														class="form-control" name="studentDetailAddress"
 														id="studentDetailAddress"
-														value="${professorDetailAddress}" readonly="readonly">
+														value="${M.professorDetailAddress}" readonly="readonly">
 												</div>
 
 												<div class="form-group">

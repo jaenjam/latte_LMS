@@ -145,7 +145,7 @@ public class ProfessorController {
 	}
 
 	// 교수회원가입 action
-	@PostMapping("/addProfessor")
+	@PostMapping("/professor/signupProfessorForm")
 	public String addProfessor(Professor professor, Model model) {
 
 		int insertProfessor = professorService.addProfessor(professor);
