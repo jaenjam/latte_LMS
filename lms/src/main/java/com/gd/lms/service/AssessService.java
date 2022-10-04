@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.AssessMapper;
 import com.gd.lms.repository.SubjectApproveRepository;
+import com.gd.lms.vo.ProfessorAssess;
 import com.gd.lms.vo.Register;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,4 +37,15 @@ public class AssessService {
 		
 		return assessmapper.selectAssessPfOne(reigisterNo);
 	}
+	
+	
+	// 별점기반 교수 평가 입력 액션
+	public int addAssessPfOne(int registerNo, int professorAssessScore, String professorAssessContent) {
+		log.debug(TeamColor.KHW +"별점추가  서비스 진입");
+		
+		return assessmapper.insertAssessPfOne(registerNo, professorAssessScore, professorAssessContent);
+	}
+
+
+	
 }

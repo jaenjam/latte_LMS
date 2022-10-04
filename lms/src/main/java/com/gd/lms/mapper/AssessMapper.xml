@@ -117,5 +117,20 @@
 	WHERE
 			r.register_no= #{registerNo}	
 	</select>
+	
+	
+	<!-- 별점기반 교수 평가 입력 -->
+	<insert id="insertAssessPfOne" parameterType="com.gd.lms.vo.ProfessorAssess">
+	INSERT INTO
+	professor_assess
+	(register_no
+	, professor_assess_score
+	, professor_assess_content
+	)
+	VALUES
+	(#{registerNo}
+	, #{professorAssessScore}
+	, #{professorAssessContent})
+	</insert>
 
 </mapper>

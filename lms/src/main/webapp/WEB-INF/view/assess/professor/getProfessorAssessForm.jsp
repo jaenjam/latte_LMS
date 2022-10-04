@@ -82,9 +82,9 @@
                                     <hr>
 <div class="col-12">                                 
 <h4 class="card-title"> 후기 </h4>
-    <form name="reviewform" class="reviewform" method="post" action="/save">
+    <form name="reviewform" class="reviewform" method="post" action="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm">
         <input type="hidden" name="rate" id="rate" value="0"/>
-       
+        <input type="hidden" name="registerNo" id="registerNo" value="${A.registerNo}"/>
         <div class="review_rating">
            
             <div class="rating" title="별점을 선택해 주세요.">
@@ -103,7 +103,7 @@
         </div>
         
         <div class="review_contents">
-            <textarea rows="10" class="form-control" placeholder="100자 이상으로 작성해 주세요." id="review_textarea" name="review_textarea"></textarea>
+            <textarea rows="10" class="form-control" placeholder="100자 이상으로 작성해 주세요." id="reviewTextarea" name="reviewTextarea"></textarea>
         </div>   
         <div class="cmd">
          <button type="button" class="btn btn-primary" name="save" id="save"> 평가하기 </button>
@@ -164,9 +164,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 //상품평 작성 글자수 초과 체크 이벤트 리스너
-document.querySelector('.review_textarea').addEventListener('keydown',function(){
+document.querySelector('.form-control').addEventListener('keydown',function(){
     //리뷰 400자 초과 안되게 자동 자름
-    let review = document.querySelector('.review_textarea');
+    let review = document.querySelector('.form-control');
     let lengthCheckEx = /^.{400,}$/;
     if(lengthCheckEx.test(review.value)){
         //400자 초과 컷
@@ -180,13 +180,18 @@ document.querySelector('#save').addEventListener('click', function(e){
     //별점 선택 안했으면 메시지 표시
     if(rating.rate == 0){
         rating.showMessage('rate');
+        console.log("별점X");
         return false;
-    }
+    } else
     
     //리뷰 100자 미만이면 메시지 표시
-    if(document.querySelector('.review_textarea').value.length < 5){
-        rating.showMessage('review');
+    if(document.querySelector('.form-control').value.length < 100){
+      
+        console.log("글자수100자이하X");
         return false;
+    } else {
+    	$('#save').submit();
+    	console.log("전부 작성완료");
     }
     //폼 서밋
 });

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.AssessService;
+import com.gd.lms.vo.ProfessorAssess;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,9 +51,24 @@ public class AssessController {
 		return "/assess/professor/getProfessorAssessForm";
 	}
 	
-	/*
+	
 	// 별점 입력후 반영 Action
-	@PostMapping()
-	public String get
-	*/
+	@PostMapping("/assess/professor/getProfessorAssessForm")
+	public String addAssessPfOne(@RequestParam("rate") int professorAssessScore
+			, @RequestParam("reviewTextarea") String professorAssessContent
+			, @RequestParam("registerNo") int registerNo
+			, Model model
+			) {
+		// 해당컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"AssessController의 addAssessPfOne 진입");
+		
+		// 받아온 값 확인
+		log.debug(TeamColor.KHW + "점수 : " + professorAssessScore);
+		log.debug(TeamColor.KHW + "평가내용 : " + professorAssessContent);
+		model.addAttribute("AssessPfOne", assessservice.addAssessPfOne(registerNo, professorAssessScore, professorAssessContent));
+		
+		
+		return "/assess/professor/getProfessorAssessForm";
+	}
+	
 }

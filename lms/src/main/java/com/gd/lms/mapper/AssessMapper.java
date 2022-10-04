@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gd.lms.vo.ProfessorAssess;
+
 @Mapper
 public interface AssessMapper {
 
@@ -21,4 +23,7 @@ public interface AssessMapper {
 	
 	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 폼 불러오기
 	List<Map<String,Object>> selectAssessPfOne(int registerNo);
+	
+	// 별점기반 교수 평가 입력 
+	int insertAssessPfOne(int registerNo, int professorAssessScore, String professorAssessContent);
 }
