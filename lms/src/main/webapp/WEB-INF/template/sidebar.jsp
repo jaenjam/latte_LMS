@@ -246,6 +246,9 @@
 						<li><a
 							href="${pageContext.request.contextPath}/club/addStudentClub">동아리
 								가입</a></li>
+								<li><a
+							href="${pageContext.request.contextPath}/club/studentClubList?studentNo=${No}">동아리
+								가입신청 목록</a></li>
 
 					</c:if>
 

@@ -11,6 +11,7 @@
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/studentClub/deleteStudentClub.js"></script>
 
 
 <!--**********************************
@@ -60,7 +61,7 @@
 											<td>${sc.clubName}</td>
 											<td>${sc.createDate}</td>
 											<td><button onclick="deleteStudentClub()" type="button"
-													class="btn mb-1 btn-primary" id="deleteClub">취소신청</button>
+													class="btn mb-1 btn-primary" id="deleteStudentClub">취소신청</button>
 										</tr>
 									</c:forEach>
 								</tbody>
