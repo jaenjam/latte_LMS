@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 <!-- header.jsp -->
@@ -75,15 +77,16 @@
 											<span class="text-danger">*</span>
 										</label>
 										<div class="col-lg-6">
-											<select name="professorNo" class="form-control" id="professorNo">
+											<select name="professorNo" class="form-control"
+												id="professorNo">
 												<option selected="selected" value="${c.professorNo}">${c.professorName}</option>
-												
+
 												<c:forEach items="${professorList}" var="p">
-											<c:if test="${c.professorNo ne p.professorNo}">
-													<option value="${p.professorNo}">${p.professorName}</option>
+													<c:if test="${c.professorNo ne p.professorNo}">
+														<option value="${p.professorNo}">${p.professorName}</option>
 													</c:if>
 												</c:forEach>
-												
+
 											</select>
 										</div>
 									</div>
@@ -97,25 +100,28 @@
 												name="clubRoom" value="${c.clubRoom}">
 										</div>
 									</div>
+									<div style="float: right">
+										<div>
+											<button type="reset" class="btn btn-primary">되돌리기</button>
+											<button type="submit" class="btn btn-primary">수정완료</button>
+										</div>
+									</div>
+
+								</form>
 							</div>
 
 
-							<div style="float: right">
-								<div>
-									<button type="reset" class="btn btn-primary">되돌리기</button>
-									<button type="submit" class="btn btn-primary">수정완료</button>
-								</div>
-							</div>
-							</form>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</c:forEach>
 </div>
-</c:forEach>
+
 <!-- #/ container -->
-</div>
+
 
 <!--**********************************
             Content body end
