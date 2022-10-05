@@ -24,6 +24,13 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
+	//관리자 사진유무
+	public List<Map<String, Object>> getEmployeeImg(int employeeNo){		
+		log.debug(TeamColor.LJE + "Service getEmployeeImg 실행");
+		
+		return employeeMapper.selectEmployeeImg(employeeNo);
+	}
+	
 	//재직상태 - 서브관리자 리스트 출력 (EmployeeStatusController로)
 	public List<Map<String, Object>> getEmployeeStatusList(){
 		log.debug(TeamColor.LJE + "EmployeeService getEmployeeStatusList");

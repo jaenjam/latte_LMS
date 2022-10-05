@@ -1,8 +1,11 @@
 package com.gd.lms.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,6 +26,8 @@ import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.EmployeeImg;
+import com.gd.lms.vo.Student;
+import com.gd.lms.vo.StudentImg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,11 +48,53 @@ public class EmployeeController {
 
 	// 교수사진등록하기 (Action) 첨부파일 업로드
 	@PostMapping("/addEmployeeImg")
-	public String addEmployeeImg(EmployeeImg employeeImg, Model model, MultipartFile[] uploadFile) {
+	public String addEmployeeImg(MultipartFile imgFile, HttpServletRequest request, Employee employee) {
 
-		log.debug(TeamColor.JJY + "employeeController.addEmployeeImg action");
+		log.debug(TeamColor.LJE + "EmployeeController addEmployeeImg 실행");
+		
+		HttpSession session = request.getSession();
 
-		return "/employee/getEmployeeOne";
+		String fileRealName = imgFile.getOriginalFilename(); // 파일명을 나타내줌
+		long size = imgFile.getSize(); // 파일사이즈
+
+		System.out.println("파일명 : " + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/images/userprofile/");
+		System.out.print(uploadFolder);
+
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+
+		String uniqueName = uuids[0];
+		System.out.println("생성된 고유문자열 : " + uniqueName);
+		System.out.println("확장자명 : " + fileExtension);
+
+		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
+
+		EmployeeImg employeeImg = new EmployeeImg();
+
+		employeeImg.setEmployeeNo((int) session.getAttribute("No"));
+		employeeImg.setContentType(fileExtension); // 확장자
+		employeeImg.setFilename(uniqueName);
+		employeeImg.setOriginFilename(fileRealName);
+
+		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
+		try {
+			imgFile.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			employeeService.addEmployeeImg(employeeImg);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.print(employee.getEmployeeNo());
+		
+		return "redirect:/getEmployeeOne?employeeNo=" + employee.getEmployeeNo();
 	}
 
 	// 관리자 목록보기 (총관리자)
@@ -64,36 +111,76 @@ public class EmployeeController {
 		return "/employee/employeeList";
 	}
 
+	// 관리자 정보수정 form
+	@GetMapping("/employee/modifyEmployee")
+	public String modifyEmployee(Model model, int employeeNo) {
+
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployee 실행");
+		
+		List<Map<String, Object>> employeeOne = employeeService.getEmployeeOne(employeeNo);
+
+		model.addAttribute("employeeOne", employeeOne);
+
+		log.debug(TeamColor.CSJ + "EmployeeController의 modifyEmployee:" + employeeOne);
+
+		//employeeImg에 넣어주기
+		List<Map<String, Object>> employeeImg = employeeService.getEmployeeImg(employeeNo);
+		
+		//employeeImg에 값 저장해주기
+		model.addAttribute("employeeImg", employeeImg);
+		
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployee model값 출력 : " + model);
+		
+		return "/employee/modifyEmployee";
+
+	}
+
 	// 관리자 정보수정 action
 	@PostMapping("/modifyEmployee")
-	public String modifyEmployee(Employee employee, Model model) {
+	public String modifyEmployee(HttpServletRequest request, Employee employee, Model model) {
 
-		int row = employeeService.modifyEmployee(employee);
+		//디버깅
+		log.debug(TeamColor.LJE + "modifyEmployee 실행");
+		
+		HttpSession session = request.getSession();
+		
+		//service실행하기
+		employeeService.modifyEmployee(employee);
+		
+		session.setAttribute("Name", employee.getEmployeeName());
 
-		log.debug(TeamColor.CSJ + "EmployeeController.modifyEmployee" + row);
-
-		if (row == 0) {
-			return "redirect:/employee/modifyEmployee";
-		}
-
-		return "redirect:/employee/getEmployeeOne";
-
-	}
-
-	// 관리자 정보수정 form
-	@GetMapping("/modifyEmployee")
-	public String modifyEmployee(Model model, @RequestParam(value = "No") int employeeNo) {
-
-		List<Map<String, Object>> employee = employeeService.getEmployeeOne(employeeNo);
-
-		model.addAttribute("employeeOne", employee);
-
-		log.debug(TeamColor.CSJ + "EmployeeController의 modifyEmployee:" + employee);
-
-		return "modifyEmployeeAfterPass";
+		return "redirect:/getEmployeeOne?employeeNo="+employee.getEmployeeNo();
 
 	}
-
+	
+	//관리자상세보기
+	@GetMapping("/getEmployeeOne")
+	public String EmployeeOne(Employee employee, Model model, HttpServletRequest request,
+			@RequestParam("employeeNo") int employeeNo) {
+		
+		log.debug(TeamColor.LJE + "EmployeeController employeeOne 실행");
+		
+		List<Map<String, Object>> employeeOne = employeeService.getEmployeeOne(employeeNo);
+		
+		model.addAttribute("employeeOne", employeeOne);
+		
+		log.debug(TeamColor.LJE + "EmployeeController employeeOne : " + employeeOne);
+		
+		//employeeImg에 넣어주기
+		List<Map<String,Object>> employeeImg = employeeService.getEmployeeImg(employeeNo);
+		
+		//employeeImg에 값 저장해주기
+		model.addAttribute("employeeImg", employeeImg);
+		
+		log.debug(TeamColor.LJE + "EmployeeController getEmployeeImg employeeImg : " + employeeImg);
+		
+		
+		return "/employee/getEmployeeOne";
+	}
+	
+	
+	/*
+	
 	// 관리자 정보 수정 전 비밀번호 확인 form
 	@GetMapping("/modifyEmployeePass")
 	public String pageLock() {
@@ -135,7 +222,7 @@ public class EmployeeController {
 		return "/employee/getEmployeeOne";
 
 	}
-
+ */
 	// 아이디 중복검사
 	@RequestMapping(value = "/employeeNoChk", method = RequestMethod.POST)
 	@ResponseBody
@@ -154,7 +241,8 @@ public class EmployeeController {
 		}
 
 	}
-
+	
+	
 	// 관리자회원가입 form
 	@GetMapping("/employee/signupEmployeeForm")
 	public String addEmployee() {

@@ -10,10 +10,15 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<style>
+.mr-2 {
+	margin-left: 10px;
+}
+</style>
 
-<!--**********************************
-            Content body start
-***********************************-->
+	<!--**********************************
+	            Content body start
+	***********************************-->
 
 	<div class="content-body">
 
@@ -22,7 +27,7 @@
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="javascript:void(0)">마이페이지</a></li>
 					<li class="breadcrumb-item active"><a
-						href="javascript:void(0)">나의 정보</a></li>
+						href="javascript:void(0)">정보보기</a></li>
 				</ol>
 			</div>
 		</div>
@@ -30,38 +35,52 @@
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-4 col-xl-3">
-					<div class="card">
-						<div class="card-body">
-							<div class="media align-items-center mb-4">
-								<img class="mr-2" src="${filename}" width="80" height="80">
-
-
-							</div>
-
-
-							<div class="row mb-8">
-								<div class="col-12 text-center">
-									<form
-										action="${pageContext.request.contextPath}/employee/addEmployeeImgForm">
-										<button class="btn btn-danger px-5">사진첨부하기</button>
-									</form>
+				<c:if test="${empty employeeImg}">
+					<div class="col-lg-4 col-xl-3">
+						<div class="card">
+							<div class="card-body">
+								<div class="media align-items-center mb-4">
+									<img class="mr-2"
+										src="/images/userprofile/image.jpg"
+										width="200" height="200" alt="">
+								</div>
+								<div class="row mb-8">
+									<div class="col-12 text-center">
+										<p>정보수정에서 이미지 추가해주세요</p>
+									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
-				</div>
+					</c:if>
+			
+				<c:forEach var="i" items="${employeeImg}">
+					
+					<c:if test="${i.filename ne null}">
+						<div class="col-lg-4 col-xl-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="media align-items-center mb-4">
+										<img class="mr-2"
+											src="/images/userprofile/${i.filename}${i.contentType}"
+											width="200" height="200" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+				
+				
 				<div class="col-lg-8 col-xl-9">
 					<div class="card">
 						<div class="card-body">
-							<form
-								action="${pageContext.request.contextPath}/modifyEmployeePass"
-								method="post" class="form-profile">
+							<form action="${pageContext.request.contextPath}/employee/modifyEmployee" class="form-profile">
 								<div class="form-group">
 									<h4 class="card-title">나의 정보</h4>
 									<div class="basic-form">
 										<div class="form-row">
+										<c:forEach var="i" items="${employeeOne}">
 											<div class="form-group col-md-8">
 												<div class="form-group">
 													<label> 등급 </label> <input type="text" class="form-control"
@@ -121,15 +140,18 @@
 														id="employeeDetailAddress"
 														value="${employeeDetailAddress}" readonly>
 												</div>
-
-
+												<div style="float:right">
+													<a href="${pageContext.request.contextPath}/employee/modifyEmployee?employeeNo=${No}">
+														<button type="submit" class="btn btn-primary px-3 ml-4">정보수정</button>
+													</a>
+												</div>
 											</div>
+											</c:forEach>
 										</div>
 
 									</div>
-									<button class="btn btn-primary px-3 ml-4">이전화면으로</button>
-									<button type="submit" class="btn btn-primary px-3 ml-4">
-										정보수정하기</button>
+									
+								</div>
 							</form>
 						</div>
 					</div>
@@ -143,10 +165,6 @@
 	<!--**********************************
             Content body end
     ***********************************-->
-
-
-
-
 
 
 	<!--**********************************

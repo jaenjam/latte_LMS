@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentService {
 	@Autowired
 	StudentMapper studentMapper;
-
+	
 	//학생사진여부유무
 	public List<Map<String, Object>> getStudentImg(int studentNo){
 		log.debug(TeamColor.LJE + "StudentService getStudentImg");

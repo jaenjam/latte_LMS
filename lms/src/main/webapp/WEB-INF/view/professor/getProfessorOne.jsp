@@ -55,17 +55,17 @@
 				<c:forEach var="i" items="${professorImg}">
 					
 					<c:if test="${i.filename ne null}">
-					<div class="col-lg-4 col-xl-3">
-						<div class="card">
-							<div class="card-body">
-								<div class="media align-items-center mb-4">
-									<img class="mr-2"
-										src="/images/userprofile/${i.filename}${i.contentType}"
-										width="200" height="200" alt="">
+						<div class="col-lg-4 col-xl-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="media align-items-center mb-4">
+										<img class="mr-2"
+											src="/images/userprofile/${i.filename}${i.contentType}"
+											width="200" height="200" alt="">
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</c:if>
 				</c:forEach>
 

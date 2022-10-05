@@ -12,6 +12,9 @@ import com.gd.lms.vo.EmployeeImg;
 @Mapper
 public interface EmployeeMapper {
 	
+	//교수사진유무
+	List<Map<String, Object>> selectEmployeeImg(int employeeNo);
+	
 	//재직상태 - 관리자 리스트
 	List<Map<String, Object>> EmployeeStatus();
 	
@@ -23,9 +26,6 @@ public interface EmployeeMapper {
 	
 	// 상세관리 - 서브관리자리스트
 	List<Map<String, Object>> subEmployeeList();
-
-	// 관리자 사진 보기
-	EmployeeImg selectEmployeeImg(int employeeNo);
 
 	// 관리자 정보수정에서 사진등록
 	int insertEmployeeImg(EmployeeImg employeeImg);

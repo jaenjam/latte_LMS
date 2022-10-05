@@ -14,7 +14,7 @@
 	<div class="row page-titles mx-0">
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">나의 정보</a></li>
+				<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">내정보</a></li>
 				<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/professor/addProfessorImgForm">사진파일추가</a></li>
 			</ol>
 		</div>
@@ -33,13 +33,14 @@
 
 						</div>
 						<br>
+						<form action="${pageContext.request.contextPath}/addEmployeeImg" method="post" enctype="multipart/form-data">
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>사번</th>
+										<th>관리자사번</th>
 										<td><input type="text" class="form-control"
-											name="employeeNo" id="No" readonly="readonly"
+											name="employeeNo" id="employeeNo" readonly="readonly"
 											value="${No}"></td>
 									</tr>
 								</thead>
@@ -50,12 +51,9 @@
 									</tr>
 								</tbody>
 							</table>
-							
-								<form action="${pageContext.request.contextPath}/addEmployeeImg" method="post" enctype="multipart/form-data">
-									<button type="submit" class="btn btn-primary" style="float: right;">파일등록</button>
-								</form>
-							
+							<button type="submit" class="btn btn-primary" style="float: right;">파일등록</button>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>

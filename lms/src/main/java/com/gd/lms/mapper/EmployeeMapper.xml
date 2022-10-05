@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.EmployeeMapper">
 
+	<!-- 관리자사진 유무확인 -->
+	<select id="selectEmployeeImg" parameterType="int" resultType="map">
+		SELECT
+			  employee_no		employeeNo
+			, content_type		contentType
+			, filename
+			, origin_filename	originFilename
+		FROM
+			employee_img
+		WHERE
+			employee_no = #{employeeNo}
+	</select>
+
 	<!-- 재직상태 : 관리자 리스트 -->
 	<select id="EmployeeStatus" resultType="map">
 		SELECT
@@ -274,62 +287,40 @@
 	<update id="updateEmployee"
 		parameterType="com.gd.lms.vo.Employee">
 
-		UPDATE employee e
-		INNER JOIN salary s
-		ON e.salary_no =
-		s.salary_no
-		INNER JOIN employee_img ei
-		ON e.employee_no = ei.employee_no
+		UPDATE
+			employee
 		SET
-		e.employee_no = #{employeeNo}
-		,e.employee_pass = #{employeePass}
-		,e.employee_name = #{employeeName}
-		,e.employee_regi_no
-		=#{employeeRegiNo}
-		,e.employee_age = #{employeeAge}
-		,e.employee_gender =
-		#{employeeGender}
-		,e.employee_telephone
-		= #{employeeTelephone}
-		,e.employee_email = #{employeeEmail}
-		,e.employee_address
-		=
-		#{employeeAddress}
-		,e.employee_detail_address =
-		#{employeeDetailAddress}
-		,e.employee_state = #{employeeState}
-		,e.employee_active = #{employeeActive}
-		,e.employee_account = #{employeeAccount}
-		,s.salary_no = #{salaryNo}
-		,ei.filename = #{fileName}
-		,ei.origin_filename = #{originFilename}
-		,ei.content_type = #{contentType}
+			  employee_name 			= #{employeeName}
+			, employee_telephone 		= #{employeeTelephone}
+			, employee_email 			= #{employeeEmail}
+			, employee_address		 	= #{employeeAddress}
+			, employee_detail_address 	= #{employeeDetailAddress}
 
-
-		WHERE e.employee_no = #{employeeNo}
+		WHERE employee_no = #{employeeNo}
 
 	</update>
 
 	<!-- 관리자 정보수정 사진등록 -->
-	<insert id="insertEmployeeImg"
-		parameterType="com.gd.lms.vo.EmployeeImg">
+	<insert id="insertEmployeeImg" parameterType="com.gd.lms.vo.EmployeeImg">
 
-		INSERT INTO employee_img (
-		employee_no employeeNo
-		,filename filename
-		,origin_filename originFilename
-		,content_type contentType
-		,create_date createDate
-		,update_date
-		updateDate)
-		VALUES (
-		#{employeeNo}
-		,#{filename}
-		,#{originFilename}
-		,#{contentType}
-		,now()
-		,now()
-		)
+		INSERT INTO employee_img 
+			(
+				  employee_no
+				, filename
+				, origin_filename
+				, content_type
+				, create_date
+				, update_date
+			)
+		VALUES
+			(
+				  #{employeeNo}
+				, #{filename}
+				, #{originFilename}
+				, #{contentType}
+				, now()
+				, now()
+			)
 	</insert>
 
 </mapper>
