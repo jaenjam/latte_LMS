@@ -100,7 +100,7 @@ public class StudentController {
 	
 	// 학생 로그인 action
 	@PostMapping("/StudentForm")
-	public String loginstudent(Student student, Model model, HttpServletRequest request) {
+	public String loginstudent(Student student, Model model, HttpServletRequest request, @RequestParam("studentNo") int studentNo) {
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW+ "StudentController의 학생로그인액션 진입");
 		
@@ -127,8 +127,15 @@ public class StudentController {
 		model.addAttribute("noticeListTop", noticeListTop);
 		
 		//디버깅코드 재확인
-		log.debug(TeamColor.LJE + "StudentController loginEmployee noticeListTop : " + noticeListTop);
+		log.debug(TeamColor.LJE + "StudentController loginstudent noticeListTop : " + noticeListTop);
 		
+		
+		//studentImg에 넣어주기
+		List<Map<String, Object>> studentImg = studentService.getStudentImg(studentNo);
+		
+		model.addAttribute("studentImg", studentImg);
+		
+		log.debug(TeamColor.LJE + "StudentController getStudentOne studentImg : " + studentImg);
 		
 	
 		if (loginstudent == null) { // 로그인시 null값이면 >>> 쿼리에서 맞는 값을 찾지 못했다면

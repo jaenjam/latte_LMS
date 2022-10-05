@@ -273,7 +273,7 @@ public class EmployeeController {
 
 	// 관리자로그인 action
 	@PostMapping("/EmployeeForm")
-	public String loginEmployee(Employee employee, Model model, HttpServletRequest request) {
+	public String loginEmployee(Employee employee, Model model, HttpServletRequest request, @RequestParam("employeeNo") int employeeNo) {
 
 		// 세션 사용하기위해 선언
 		HttpSession session = request.getSession();
@@ -294,6 +294,16 @@ public class EmployeeController {
 		
 		//디버깅코드 재확인
 		log.debug(TeamColor.LJE + "EmployeeController loginEmployee noticeListTop : " + noticeListTop);
+		
+		
+		//employeeImg에 넣어주기
+		List<Map<String,Object>> employeeImg = employeeService.getEmployeeImg(employeeNo);
+		
+		//employeeImg에 값 저장해주기
+		model.addAttribute("employeeImg", employeeImg);
+		
+		log.debug(TeamColor.LJE + "EmployeeController loginEmployee employeeImg : " + employeeImg);
+		
 		
 		
 		// 계정 정보가 없으면 로그인 실패
