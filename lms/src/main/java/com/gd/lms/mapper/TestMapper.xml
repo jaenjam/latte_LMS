@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.TestMapper">
 
+	<!-- 시험지 상세보기 -->
+	<select id="selectTestOne" resultType="map">
+	
+	SELECT 
+		t.test_no,sa.subject_no,s.subject_name,sa.year,sa.semester
+	FROM 
+		subject_approve sa
+	LEFT JOIN 
+		subject s
+	ON 
+		sa.subject_no = s.subject_no
+	LEFT JOIN 
+		test t
+	ON 
+		a.subject_approve_no = t.subject_approve_no
+	WHERE 
+		t.test_no = #{testNo}
+	
+	</select>
+
 	<!-- 승인된 과목 리스트를 시험출제리스트에 뽑아주기위해 select -->
 	<select id="selectSubjectApproveList" resultType="map">
 

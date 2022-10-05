@@ -10,6 +10,9 @@ import com.gd.lms.vo.Test;
 @Mapper
 public interface TestMapper {
 	
+	// 시험지 상세보기(join해서 세부적인 요소 끌고오기)
+	public List<Map<String,Object>> selectTestOne(int testNo);
+	
 	// 승인된 과목리스트를 뽑아주기 
 	List<Map<String,Object>> selectSubjectApproveList();
 	

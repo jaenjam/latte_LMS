@@ -10,6 +10,9 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/salary/professorSalary.js"></script>
+
 <style>
 .btn {
 	float: right;
@@ -48,40 +51,44 @@
 						</div>
 						<br>
 						<div class="table-responsive" style="width: 100%; overflow: auto;">
-							<c:forEach var="p" items="${professorSalaryList}">
-								<form
-									action="${pageContext.request.contextPath}/salaryProfesorAction?professorNo=${p.professorNo}" method="post">
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>사번</th>
-												<th>소속학과번호 (학과이름)</th>
-												<th>이름</th>
-												<th>연봉등급 (연봉)</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>${p.professorNo}</td>
-												<td>${p.majorNo}(${p.majorName})</td>
-												<td>${p.professorName}</td>
-												<td><select id="salaryNo" name="salaryNo">
-														<option value="${p.salaryNo}" selected>
-															${p.salaryNo} (${p.salaryValue})</option>
-														<c:forEach var="sa" items="${salaryList}">
-															<c:if test="${p.salaryNo ne sa.salaryNo}">
-																<option value="${sa.salaryNo}">
-																	${sa.salaryNo}(${sa.salaryValue})</option>
-															</c:if>
-														</c:forEach>
-												</select></td>
-												<td><button type="submit" class="btn btn-primary">변경</button></td>
-											</tr>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>사번</th>
+										<th>소속학과번호 (학과이름)</th>
+										<th>이름</th>
+										<th>연봉등급 (연봉)</th>
+									</tr>
+								</thead>
+								<c:forEach var="p" items="${professorSalaryList}">
+									<form
+										action="${pageContext.request.contextPath}/salaryProfesorAction?professorNo=${p.professorNo}"
+										method="post" id="updateProfessorSalary">
+									<tbody>
+										<tr>
+											<td>${p.professorNo}</td>
+											<td>${p.majorNo}(${p.majorName})</td>
+											<td>${p.professorName}</td>
+											<td><select id="salaryNo" name="salaryNo">
+													<option value="${p.salaryNo}" selected>
+														${p.salaryNo} (${p.salaryValue})</option>
+													<c:forEach var="sa" items="${salaryList}">
+														<c:if test="${p.salaryNo ne sa.salaryNo}">
+															<option value="${sa.salaryNo}">
+																${sa.salaryNo}(${sa.salaryValue})</option>
+														</c:if>
+													</c:forEach>
+											</select></td>
+											<td><button onclick="updateProfessorSalary()"
+													type="button" class="btn btn-primary"
+													id="updateProfessorSalaryBtn">변경</button></td>
+										</tr>
+									</tbody>
+									</form>
+								</c:forEach>
+							</table>
 
-										</tbody>
-									</table>
-								</form>
-							</c:forEach>
+
 						</div>
 					</div>
 				</div>

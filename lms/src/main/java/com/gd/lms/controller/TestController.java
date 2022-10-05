@@ -28,6 +28,17 @@ public class TestController {
 	TestService testService;
 	@Autowired
 	TestRepository repository;
+	
+	// 시험지 상세보기
+	@GetMapping("/test/TestOne")
+	public String TestOne(Model model) {
+		
+		log.debug(TeamColor.JJY + "professorController TestOne(시험지 상세보기)실행");
+		
+			
+		return "redirect:/test/TestOne";
+		
+	}
 
 	// 수강된 강의 리스트
 	@GetMapping("/test/testList")
