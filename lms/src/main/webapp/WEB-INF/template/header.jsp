@@ -231,8 +231,10 @@
 						</li>
 
 
-						<li class="icons dropdown"><c:if
-								test="${user eq 'professor'}">
+						<li class="icons dropdown">
+						
+						<!-- header 교수진 -->
+						<c:if test="${user eq 'professor'}">
 								<div class="user-img c-pointer position-relative"
 									data-toggle="dropdown">
 									<span class="activity active"></span>
@@ -253,7 +255,9 @@
 									</c:forEach>
 									
 								</div>
-							</c:if> <c:if test="${user eq 'employee'}">
+							</c:if>
+							
+							<c:if test="${user eq 'employee'}">
 								<div class="user-img c-pointer position-relative"
 									data-toggle="dropdown">
 									<span class="activity active"></span>
@@ -265,17 +269,29 @@
 											height="40" width="40" alt="">
 									</c:if>
 								</div>
-							</c:if> <c:if test="${user eq 'student'}">
+							</c:if>
+							
+						<!-- header 학생사진 -->	
+						<c:if test="${user eq 'student'}">
 								<div class="user-img c-pointer position-relative"
 									data-toggle="dropdown">
 									<span class="activity active"></span>
-									<!-- 여기 사진부분 -->
-									<c:if test="${empty studentImg}">
-										<!-- 값이 비어있을때 -->
-										<img
-											src="${pageContext.request.contextPath}/images/userprofile/image.jpg"
+									<!-- 사진 -->
+									
+										<c:if test="${empty studentImg}">
+										<!-- 값이 비어있을때 images 폴더안에 있는 기본값 뜨게 만들기 -->
+										<img src="${pageContext.request.contextPath}/images/userprofile/image.jpg"
 											height="40" width="40" alt="">
-									</c:if>
+										</c:if>
+										
+									<!-- 값이 있으면 studentImg 셀렉 값 찾아와서 내 사진 보여주기 -->
+									<c:forEach var="I" items="${studentImg}">
+										<c:if test="${I.filename ne null}">
+											<img src="${pageContext.request.contextPath}/images/userprofile/${I.filename}${I.contentType}"
+												height="40" width="40" alt="">
+										</c:if>
+									</c:forEach>
+									
 								</div>
 							</c:if>
 
@@ -301,7 +317,7 @@
 									<div class="dropdown-content-body">
 										<ul>
 											<li><a
-												href="${pageContext.request.contextPath}/getStudentOne?No=${No}"><i
+												href="${pageContext.request.contextPath}/getStudentOne?studentNo=${No}"><i
 													class="icon-user"></i> <span>마이페이지</span> </a></li>
 											<hr class="my-2">
 											<li><a href="/loginForm"><i class="icon-key"></i> <span>Logout</span></a></li>

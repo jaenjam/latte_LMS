@@ -19,6 +19,12 @@ public class StudentService {
 	@Autowired
 	StudentMapper studentMapper;
 
+	//학생사진여부유무
+	public List<Map<String, Object>> getStudentImg(int studentNo){
+		log.debug(TeamColor.LJE + "StudentService getStudentImg");
+		
+		return studentMapper.selectStudentImg(studentNo);
+	}
 	
 	//재직/재학 상태 - 학생 리스트 출력(EmployeeStatusController로)
 	public List<Map<String, Object>> getStudentStatusList(){
@@ -88,10 +94,12 @@ public class StudentService {
 	}
 
 	// 학생 정보수정하기
-	public int updateStudentOne(Student studnet) {
+	public int modifyStudent(Student studnet) {
 		// 해당 서비스 진입여부 확인
+		log.debug(TeamColor.LJE + "StudentService modifyStudent 실행");
+		
 		log.debug(TeamColor.KHW + "학생정보수정 서비스 진입");
 
-		return studentMapper.updateStudentOne(studnet);
+		return studentMapper.updateStudent(studnet);
 	}
 }

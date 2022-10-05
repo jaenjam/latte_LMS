@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!-- header.jsp -->
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
-
 <!-- sidebar.jsp -->
-<c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
 <div class="content-body">
 
@@ -30,18 +30,18 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-sm-9">
-								<h4 class="card-title">사진파일추가</h4>
+								<h4 class="card-title">사진파일수정</h4>
 							</div>
 
 						</div>
 						<br>
-						<form action="${pageContext.request.contextPath}/addStudentImg"
+						<form action="${pageContext.request.contextPath}/modifyStudentImg"
 							method="post" enctype="multipart/form-data">
 							<div class="table-responsive">
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>학생사번</th>
+											<th>교수사번</th>
 											<td><input type="text" class="form-control"
 												name="studentNo" id="studentNo" readonly="readonly"
 												value="${No}"></td>
@@ -49,7 +49,7 @@
 									</thead>
 									<tbody>
 										<tr>
-											<th>이미지파일</th> <!-- 이미지파일만 추가할수있도록 accept지정해주기 -->
+											<td>이미지파일</td> <!-- 이미지파일만 추가할수있도록 accept지정해주기 -->
 											<td><input type="file" name="imgFile" accept="image/*"></td>
 										</tr>
 									</tbody>
@@ -58,7 +58,6 @@
 									style="float: right;">파일추가</button>
 							</div>
 						</form>
-
 					</div>
 				</div>
 			</div>
@@ -67,5 +66,5 @@
 </div>
 <!-- #/ container -->
 
-<!-- footer -->
+
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>

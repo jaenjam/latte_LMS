@@ -136,6 +136,7 @@
 			, i.origin_filename originFilename
 			, s.salary_no salaryNo
 			, s.salary_value salaryValue
+			
 		FROM
 			professor p LEFT JOIN professor_img i
 		ON
@@ -165,6 +166,7 @@
 			,professor_email=#{professorEmail}
 			,professor_address=#{professorAddress}
 			,professor_detail_address=#{professorDetailAddress}
+			,update_date = now()
 		WHERE
 			professor_no = #{professorNo}
 

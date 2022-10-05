@@ -1,12 +1,13 @@
 package com.gd.lms.controller;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -223,25 +224,134 @@ public class StudentController {
 	// 학생정보 상세보기 FORM (비밀번호입력전)
 	//@RequestMapping(value="/student/getStudentOne", method = {RequestMethod.GET, RequestMethod.POST})
 	@GetMapping("/getStudentOne") 
-	public String getStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("No") int studentNo) {
+	public String getStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("studentNo") int studentNo) {
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW+ "StudentController의 학생정보상세보기 폼 진입");
 		
-		
 		List<Map<String, Object>> studentOne = studentService.getStudentOne(studentNo);
+		
+		model.addAttribute("studentOne", studentOne);
+		
 		//디버그
-		log.debug(TeamColor.KHW +studentOne);
+		log.debug(TeamColor.KHW + "studentOne : " + studentOne);
 		
+		//studentImg에 넣어주기
+		List<Map<String, Object>> studentImg = studentService.getStudentImg(studentNo);
 		
-		model.addAttribute("StudentIdd", studentOne);
+		model.addAttribute("studentImg", studentImg);
+		
+		log.debug(TeamColor.LJE + "StudentController getStudentOne studentImg : " + studentImg);
+		
 		
 		//디버그
 		log.debug(TeamColor.KHW +model);
 		log.debug(TeamColor.KHW +studentNo);
+		
 		return "/student/getStudentOne";
 	}
 	
 	
+	//학생정보수정 Form
+	@GetMapping("/student/modifyStudent")
+	public String modifyStudent(Model model, int studentNo) {
+		
+		log.debug(TeamColor.LJE + "StudentController modifyStudent Form 실행");
+		
+		//수정하기 폼에 띄울 상세정보 가져오기
+		List<Map<String, Object>> studentOne = studentService.getStudentOne(studentNo);
+		
+		//studentOne
+		model.addAttribute("studentOne", studentOne);
+		
+		log.debug(TeamColor.LJE + "StudentController model studentOne값 확인 : " + studentOne);
+		
+		//studentImg에 넣어주기
+		List<Map<String, Object>> studentImg = studentService.getStudentImg(studentNo);
+		
+		model.addAttribute("studentImg", studentImg);
+		
+		log.debug(TeamColor.LJE + "StudentController modifyStudent studentImg : " + studentImg);
+		
+		return "/student/modifyStudent";
+	}
+	
+	//학생정보수정 Action
+	@PostMapping("/modifyStudent")
+	public String modifyStudent(HttpServletRequest request, Student student, Model model) {
+		
+		//디버깅
+		log.debug(TeamColor.LJE + "StudentController modifyStudent Action 실행");
+		
+		HttpSession session = request.getSession();
+		
+		//service 실행
+		studentService.modifyStudent(student);
+		
+		session.setAttribute("Name", student.getStudentName());
+		
+		return "redirect:/getStudentOne?studentNo=" + student.getStudentNo();
+	}
+	
+	//학생사진등록하기 (Form)
+	@GetMapping("/student/addStudentImgForm")
+	public String addStudentImg(Model model) {
+		log.debug(TeamColor.LJE + "StudentController addStudentImgForm 실행");
+		
+		return "/student/addStudentImgForm";
+	}
+	
+	//학생사진등록하기 (Action) 첨부파일 업로드
+	@PostMapping("/addStudentImg")
+	public String addStudentImg(MultipartFile imgFile, HttpServletRequest request, Student student) {
+		
+		log.debug(TeamColor.LJE + "StudentController addStudentImg 실행");
+		
+		HttpSession session = request.getSession();
+
+		String fileRealName = imgFile.getOriginalFilename(); // 파일명을 나타내줌
+		long size = imgFile.getSize(); // 파일사이즈
+
+		System.out.println("파일명 : " + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/images/userprofile/");
+		System.out.print(uploadFolder);
+
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+
+		String uniqueName = uuids[0];
+		System.out.println("생성된 고유문자열 : " + uniqueName);
+		System.out.println("확장자명 : " + fileExtension);
+
+		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
+
+		StudentImg studentImg = new StudentImg();
+
+		studentImg.setStudentNo((int) session.getAttribute("No"));
+		studentImg.setContentType(fileExtension); // 확장자
+		studentImg.setFilename(uniqueName);
+		studentImg.setOriginFilename(fileRealName);
+
+		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
+		try {
+			imgFile.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			studentService.addStudentImg(studentImg);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.print(student.getStudentNo());
+		
+		return "redirect:/getStudentOne?studentNo=" + student.getStudentNo();
+		
+	}
+	/*
 	// 학생정보 수정전 비밀번호확인 FORM
 	@GetMapping("/modifyStudentPass")
 	public String pageLock() {
@@ -299,26 +409,7 @@ public class StudentController {
 		
 		return "home"; // 성공시 main 이동
 	}
-	
-	
-	
-	// 학생사진 등록하기 FORM
-	@GetMapping("/student/addStduentImgForm")
-	public String addStudentImg() {
-		log.debug(TeamColor.KHW + "FORM");
-		
-		return "/student/assStudentImgForm";
-	}
-	
-	
-	// 교수사진 등록 Action
-	@PostMapping("/student/addStduentImgForm")
-	public String addStudentImg(StudentImg studentImg, Model model, MultipartFile[] uploadFile ) {
-		
-		// 파일저장할 위치 설정 >> 임시로 로컬설정
-		String dir = "/upload";
-		return "/student/getStudentOne";
-	}
+	*/
 	
 	
 }

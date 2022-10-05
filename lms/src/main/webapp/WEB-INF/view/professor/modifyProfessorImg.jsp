@@ -56,6 +56,7 @@
 								</table>
 								<button type="submit" class="btn btn-primary"
 									style="float: right;">파일추가</button>
+							</div>
 						</form>
 
 					</div>

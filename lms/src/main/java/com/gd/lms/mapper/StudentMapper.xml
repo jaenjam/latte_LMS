@@ -3,6 +3,19 @@
 <mapper namespace="com.gd.lms.mapper.StudentMapper">
 
 
+	<!-- 학생 사진 유무 -->
+	<select id="selectStudentImg" parameterType="int" resultType="map">
+		SELECT
+			  student_no 		studentNo
+			, content_type 		contentType
+			, filename
+			, origin_filename 	originFilename
+		FROM
+			student_img
+		WHERE
+			student_no = #{studentNo}
+	</select>
+
 	<!-- 재직/재학상태 : 학생 -->
 	<select id="studentStatusList" resultType="map">
 		SELECT
@@ -142,33 +155,37 @@
 	
 	<!-- 학생정보 상세보기 비밀번호 입력전 -->
 	<select id="selectStudentOne" parameterType="int" resultType="map">
-	SELECT 
-		s.student_no
-		, s.student_pass
-		, s.major_no
-		, s.student_name
-		, s.student_regi_no
-		, s.student_age
-		, s.student_gender
-		, s.student_telephone
-		, s.student_email
-		, s.student_address
-		, s.student_detail_address
-		, s.scholar_no
-		, s.create_date
-		, s.update_date
-		, sh.scholar_name
-		, si.filename
-	FROM 
-		student s LEFT JOIN scholar sh
-	ON 
-		s.scholar_no = sh.scholar_no
-	LEFT JOIN 
-		student_img si
-	ON 
-		s.student_no = si.student_no
-	WHERE 
-		s.student_no=#{studentNo}	
+		SELECT 
+			  s.student_no 				studentNo
+			, s.student_pass			studentPass
+			, s.major_no				majorNo
+			, s.student_name			studentName
+			, s.student_regi_no			studentRegiNo
+			, s.student_age				studentAge
+			, s.student_gender			studentGender
+			, s.student_telephone		studentTelephone
+			, s.student_email			studentEmail
+			, s.student_address			studentAddress
+			, s.student_detail_address	studentDetailAddress
+			, s.student_state			studentState
+			, s.scholar_no				scholarNo
+			, s.create_date				createDate
+			, s.update_date				updateDate
+			, sh.scholar_name			scholarName
+			, sh.scholar_price			scholarPrice
+			, si.filename				fileName
+			, si.origin_filename 		originFilename
+			
+		FROM 
+			student s LEFT JOIN scholar sh
+		ON 
+			s.scholar_no = sh.scholar_no
+		LEFT JOIN 
+			student_img si
+		ON 
+			s.student_no = si.student_no
+		WHERE 
+			s.student_no=#{studentNo}	
 	</select>
 	
 	<!-- 학생정보 상세보기 확인비밀번호 입력 후 -->
@@ -207,34 +224,40 @@
 	
 	<!--  학생사진 등록하기  -->
 	<insert id="insertStudentImg" parameterType="com.gd.lms.vo.StudentImg">
-		INSERT INTO student_img ( 
-			 student_no studentNo
-			,filename filename
-			,origin_filename originFilename
-			,content_type contentType
-			,create_date createDate
-			,update_date updateDate)
-		VALUES (
-			 #{studentNo}
-			,#{filename}
-			,#{originFilename}
-			,#{contentType}
-			,now()
-			,now()
-		)
+		INSERT INTO student_img 
+			( 
+				  student_no
+				, filename
+				, origin_filename
+				, content_type
+				, create_date
+				, update_date
+			)
+		VALUES
+			(
+				  #{studentNo}
+				, #{filename}
+				, #{originFilename}
+				, #{contentType}
+				, now()
+				, now()
+			)
 	</insert>
 	
 	
 	<!--  학생정보 수정하기 -->
-	<update id="updateStudentOnde" parameterType="com.gd.lms.vo.Student">
-		UPDATE student
-			SET
-			 student_pass = #{studentPass}
-			 , student_telephone= #{studentpTelephone}
+	<update id="updateStudent" parameterType="com.gd.lms.vo.Student">
+		UPDATE 
+			student
+		SET
+			   student_name = #{studentName}
+			 , student_gender = #{studentGender}
+			 , student_telephone= #{studentTelephone}
 			 , student_email = #{studentEmail}
 			 , student_address = #{studentAddress}
 			 , student_detail_address = #{studentDetailAddress}
 			 , update_date = now()
+			 
 			 WHERE
 			 	student_no = #{studentNo};	
 	
