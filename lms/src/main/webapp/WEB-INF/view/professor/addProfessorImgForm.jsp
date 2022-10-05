@@ -49,13 +49,14 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td>이미지파일</td> <!-- 이미지파일만 추가할수있도록 accept지정해주기 -->
+											<th>이미지파일</th> <!-- 이미지파일만 추가할수있도록 accept지정해주기 -->
 											<td><input type="file" name="imgFile" accept="image/*"></td>
 										</tr>
 									</tbody>
 								</table>
 								<button type="submit" class="btn btn-primary"
 									style="float: right;">파일추가</button>
+							</div>
 						</form>
 
 					</div>

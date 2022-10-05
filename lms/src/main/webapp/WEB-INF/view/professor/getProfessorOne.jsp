@@ -56,7 +56,7 @@ body {
 }
 
 .mr-2{
-margin-left:50px;
+margin-left:10px;
 }
 </style>
 </head>
@@ -92,7 +92,7 @@ margin-left:50px;
 								</div>
 								<div class="row mb-8">
 									<div class="col-12 text-center">
-										<p>정보수정에서 이미지를 추가해주세요</p>
+										<p>정보수정에서 이미지 추가해주세요</p>
 									</div>
 								</div>
 							</div>

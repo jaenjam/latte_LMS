@@ -10,7 +10,7 @@
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 <style>
 .mr-2 {
-	margin-left: 50px;
+	margin-left: 10px;
 }
 </style>
 
@@ -33,7 +33,7 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<c:forEach var="M" items="${professor}">
+			<c:forEach var="M" items="${professorOne}">
 				<div class="col-lg-4 col-xl-3">
 					<div class="card">
 						<div class="card-body">
@@ -84,7 +84,7 @@
 								<div class="basic-form">
 									<div class="form-row">
 										<div class="form-group col-md-8">
-											<c:forEach var="M" items="${professor}">
+											<c:forEach var="M" items="${professorOne}">
 												<div class="form-group">
 													<label> 교수사번: </label> <input type="text"
 														class="form-control" name="professorNo" id="professorNo"

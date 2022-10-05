@@ -95,9 +95,9 @@ public class ProfessorController {
 			log.debug(TeamColor.JJY + "professorRegiNo : " + session.getAttribute("professorRegiNo")); // 값 출력되는지 확인
 			
 			// Header사진셀렉
-			List<Map<String, Object>> professorImg = professorService.getProfessorImg(professorNo);
-			log.debug(TeamColor.JJY +"professorImg값 : "+professorImg);
-			model.addAttribute("professorImg",professorImg);
+			List<Map<String, Object>> professorOne = professorService.getProfessorImg(professorNo);
+			log.debug(TeamColor.JJY +"professorImg값 : "+professorOne);
+			model.addAttribute("professorOne",professorOne);
 			log.debug(TeamColor.JJY +"professorImgModel : " + model);
 
 			// 교수의 나의 강의리스트 get을 위한 서비스 실행 ( 로그인 주체에 따른 사이드바 구분을 위함 )
@@ -106,7 +106,8 @@ public class ProfessorController {
 			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
 			log.debug(TeamColor.KHW + myRegisterListProf);
-
+			
+			
 			result = "/home";
 		}
 		return result;
@@ -177,10 +178,10 @@ public class ProfessorController {
 		log.debug(TeamColor.JJY + "modifyProfessor Get실행");
 
 		// 수정할때 폼에 띄워줄거기때문에 상세보기 내역 불러오기
-		List<Map<String, Object>> professor = professorService.getProfessorOne(professorNo);
+		List<Map<String, Object>> professorOne = professorService.getProfessorOne(professorNo);
 
-		model.addAttribute("professor", professor);
-		log.debug(TeamColor.JJY + "model professor값 확인 : " + professor);
+		model.addAttribute("professorOne", professorOne);
+		log.debug(TeamColor.JJY + "model professor값 확인 : " + professorOne);
 
 		return "/professor/modifyProfessor";
 	}
