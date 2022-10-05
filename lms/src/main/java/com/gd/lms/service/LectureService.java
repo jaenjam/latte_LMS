@@ -81,17 +81,17 @@ public class LectureService {
 	
 	
 	// 강의하는 과목의 과제 작성하기
-	public int addLecture(Lecture lecture, MultipartFile[] lectureFile
-			, HttpServletRequest request) {
+	public int addLecture(int subjectApproveNo, String lectureTitle, String lectureContent
+			, MultipartFile[] lectureFile, HttpServletRequest request) {
 		log.debug(TeamColor.KHW +"강의하는 과목의 과제 작성하기 서비스 진입");
-		int result = lectureMapper.insertLectureOne(lecture);
+		int result = lectureMapper.insertLectureOne(subjectApproveNo, lectureTitle, lectureContent);
 		
 		log.debug(TeamColor.KHW +"result :" + result);
 		log.debug(TeamColor.KHW +"lectureFile :" + lectureFile);		
 		
 		
 		if(result != 0 && lectureFile!= null ) {
-			int lectureNoo = lectureMapper.selectLectureNo(lecture);
+			int lectureNoo = lectureMapper.selectLectureNo(lectureTitle, lectureContent, subjectApproveNo);
 			
 			log.debug(TeamColor.KHW +"셀렉트로 no셀렉 : " + lectureNoo);
 			

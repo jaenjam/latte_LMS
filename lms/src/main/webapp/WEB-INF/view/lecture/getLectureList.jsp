@@ -45,7 +45,7 @@
                                 <div class="col-sm-3">
                                     <!--  교수만 과제추가버튼 보이게  --> 
                                     <c:if test="${user eq 'professor'}"> 
-                                	<a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
+                                	<a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${approveNo}">
                                 		<button type="button" class="btn btn-primary">과제추가</button>
                                 	</a>
                                 	</c:if>

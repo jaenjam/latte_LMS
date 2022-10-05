@@ -24,11 +24,12 @@ public interface LectureMapper {
 	Map<String, Object> selectLectureOnePro(int lectureNo);
 	
 	// 강의하는 과목의 과제 작성
-	int insertLectureOne(Lecture lecture);
-		
+	//int insertLectureOne(Lecture lecture);
+	int insertLectureOne(int subjectApproveNo, String lectureTitle, String lectureContent);	
+	
 	// 강의하는 과목의 과제 파일 첨부를 하기 위해 값 찾기
-	int selectLectureNo(Lecture lecture);
-		
+	//int selectLectureNo(Lecture lecture);
+	int selectLectureNo(String lectureTitle, String lectureContent, int subjectApproveNo);	
 	// 강의하는 과목의 과제 파일 추가하기
 	int insertLecturefile(LectureFile lectuefile);
 	
@@ -43,5 +44,8 @@ public interface LectureMapper {
 	
 	// 강의하는 과목의 과제 파일 삭제
 	int deleteLectureFileOne(int lectureFileNo);
+
+	
+
 	
 }

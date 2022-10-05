@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class LectureController {
+public class  LectureController {
 
 		@Autowired LectureService lectureService;
 		
@@ -43,6 +43,7 @@ public class LectureController {
 
 
 			model.addAttribute("lectureList", lectureService.findLectureList(pageable, subjectApproveNo, search));
+			model.addAttribute("approveNo", subjectApproveNo);
 			
 			// 디버그
 			// log.debug(TeamColor.KHW+ lectureList);
@@ -74,28 +75,29 @@ public class LectureController {
 		
 		// 강의하는 과목의 과제 작성하기 FORM
 		@GetMapping("/lecture/addLectureForm")
-		public String addLecture() {
+		public String addLecture(Model model, @RequestParam("subjectApproveNo") int subjectApproveNo) {
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 작성하기 FORM 컨트롤러 진입");
-			
+			model.addAttribute("subjectApproveNo", subjectApproveNo);
 			return "/lecture/addLectureForm";
 		}
 		
 		
 		// 강의하는 과목의 과제 작성하기 Action
 		@PostMapping("/lecture/addLectureForm")
-		public String addLecture(Lecture lecture, Model model, RedirectAttributes rttr
+		public String addLecture(int subjectApproveNo, String lectureTitle, String lectureContent,
+								 Model model, RedirectAttributes rttr
 				, HttpServletRequest request
 				, @RequestParam("file") MultipartFile[] lectureFile ) throws UnsupportedEncodingException {
 			
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 작성하기 Action 컨트롤러 진입");
-			
+			log.debug(TeamColor.KHW+ subjectApproveNo+" "+lectureTitle+"  "+lectureContent);
 			log.debug(TeamColor.KHW+ "lectureFile :" +lectureFile);
 			//log.debug(TeamColor.KHW+ "File :" +file);
-			
+
 			// lectureService를 실행하여 form에서 입력받은 sql의 값 insert
-			int result = lectureService.addLecture(lecture, lectureFile, request);
+			int result = lectureService.addLecture(subjectApproveNo,lectureTitle, lectureContent,lectureFile, request);
 			
 			
 			
@@ -107,14 +109,14 @@ public class LectureController {
 				log.debug(TeamColor.KHW +"과제작성 성공!");
 				
 				rttr.addFlashAttribute("result", "과제 등록에 성공했습니다!");
-				log.debug(TeamColor.KHW+"? :" +lecture.getSubjectApprove());
+				log.debug(TeamColor.KHW+"? :" +subjectApproveNo);
 				//int subjectApproveNo = lecture.getSubjectApprove();
 				//model.addAttribute("subjectApproveNo", subjectApproveNo);
-				return "redirect:/lecture/getLectureList?subjectApproveNo="+lecture.getSubjectApprove();
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
 			} else {
 				log.debug(TeamColor.KHW +"과제작성 실패!");
 				rttr.addFlashAttribute("result", "과제 등록에 실패했습니다!");
-				return "redirect:/lecture/getLectureList?subjectApproveNo="+lecture.getSubjectApprove();
+				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
 			}			
 		}
 		
