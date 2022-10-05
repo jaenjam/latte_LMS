@@ -65,7 +65,7 @@
         ***********************************-->
 		<div class="nav-header">
 			<div class="brand-logo">
-				<a href="${pageContext.request.contextPath}/home"> <b
+				<a href="${pageContext.request.contextPath}/home?No=${No}"> <b
 					class="logo-abbr"><img
 						src="${pageContext.request.contextPath}/images/logo_cut.png" alt="">
 				</b> <span class="logo-compact"><img
