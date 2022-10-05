@@ -55,6 +55,7 @@
 		, pa.register_no registerNo
 		, pa.professor_assess_score professorAssessScore
 		, pa.professor_assess_ck professorAssessCk
+		, pa.professor_assess_ck professorAssessContent
 		, pf.professor_name professorName
 		, s.subject_name subjectName
 		, s.subject_credit subjectCredit
@@ -132,6 +133,21 @@
 	(#{registerNo}
 	, #{professorAssessScore}
 	, #{professorAssessContent})
+	</insert>
+	
+	
+	<!-- 별점기반 과목 평가 입력 -->
+	<insert id="insertAssessSbOne" parameterType="com.gd.lms.vo.SubjectAssess">
+	INSERT INTO
+	subject_assess
+	(register_no
+	, professor_assess_score
+	, professor_assess_content
+	)
+	VALUES
+	(#{registerNo}
+	, #{subjectAssessScore}
+	, #{subjectAssessContent})
 	</insert>
 
 </mapper>

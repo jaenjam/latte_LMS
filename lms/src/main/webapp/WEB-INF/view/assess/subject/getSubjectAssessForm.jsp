@@ -61,7 +61,7 @@
                                                 <th>년도</th>
                                                 <th>학기</th>
                                                 <th>학점</th>  
-                                                <th>교수</th>
+                                                <th>과목</th>
                                                 
                                                 <th>별점</th>
                                                 <th>평가내용</th>
@@ -74,7 +74,7 @@
                                                <td>${A.yearS}</td>
                                                 <td>${A.semesterS}</td>
                                                 <td>${A.subjectCredit}</td>
-                                                <td> ${A.professorName} </td>
+                                                <td> ${A.subjectName} </td>
                                                 <td> ${A.professorAssessScore} </td>
                                                 <td> ${A.professorAssessCk} </td>
                                                 <td>

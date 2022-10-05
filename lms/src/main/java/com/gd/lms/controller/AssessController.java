@@ -72,4 +72,34 @@ public class AssessController {
 		return "redirect:/assess/professor/getProfessorAssessForm?registerNo="+professorassess.getRegisterNo();
 	}
 	
+	
+	// 과목평가 메뉴 누를 시 과목평가 List 불러오기(수강중인 강의 리스트 불러오는 느낌)
+	@GetMapping("/assess/subject/getSubjectAssessList")
+	public String getAssessSbList(Model model,
+			@RequestParam("studentNo") int studentNo) {
+		// 해당컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"AssessController의 getAssessPfList 진입");
+		
+		log.debug(TeamColor.KHW +"학번 : " + studentNo);
+		
+		model.addAttribute("registerList", assessservice.assessList(studentNo));
+		
+		return "/assess/subject/getSubjectAssessList";
+	}
+	
+	
+	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 폼 불러오기
+	@GetMapping("/assess/professor/getSubjectrAssessForm")
+	public String getAssessSbForm(Model model,
+			@RequestParam("registerNo") int registerNo) {
+		// 해당컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"AssessController의 getAssessPfForm 진입");
+		
+		// 받아온 registerNo 확인
+		log.debug(TeamColor.KHW +"승인과목넘버 :" + registerNo);
+		model.addAttribute("AssessPfOne", assessservice.assessFormPf(registerNo));
+		
+		return "/assess/professor/getSubjectAssessForm";
+	}
+	
 }

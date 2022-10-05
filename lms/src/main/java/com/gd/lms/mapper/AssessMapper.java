@@ -13,8 +13,6 @@ public interface AssessMapper {
 	
 	//
 	int insertPa(int studentNo);
-	
-	
 	//
 	int insertSa(int studentNo);
 	
@@ -26,4 +24,9 @@ public interface AssessMapper {
 	
 	// 별점기반 교수 평가 입력 
 	int insertAssessPfOne(int registerNo, int professorAssessScore, String professorAssessContent);
+
+	// 별점기반 과목 평가 입력
+	int insertAssessSbOne(int registerNo, int professorAssessScore, String professorAssessContent);
+
+
 }

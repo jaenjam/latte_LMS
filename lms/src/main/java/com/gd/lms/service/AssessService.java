@@ -47,5 +47,7 @@ public class AssessService {
 	}
 
 
+	// 과목평가 메뉴 누를 시 과목평가 List 불러오기
+	
 	
 }
