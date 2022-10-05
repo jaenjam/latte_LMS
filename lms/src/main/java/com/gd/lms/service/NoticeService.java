@@ -25,6 +25,14 @@ public class NoticeService {
 	@Autowired private NoticeMapper noticeMapper;
 	@Autowired private NoticeRepository noticeRepository;
 	
+	
+	//메인 : 공지 상위 5개 미리 노출
+	public List<Map<String, Object>> selectNoticeListTop(){
+		log.debug(TeamColor.LJE + "NoticeService selectNoticeListTop");
+		
+		return noticeMapper.selectNoticeTop();
+	}
+	
 	//공지페이징
 	public Page<Notice> findNoticeList(Pageable pageable, String contains){
 		pageable = PageRequest.of(

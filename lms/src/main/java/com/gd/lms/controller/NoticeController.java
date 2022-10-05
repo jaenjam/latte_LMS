@@ -25,6 +25,7 @@ public class NoticeController {
 	
 	@Autowired NoticeService noticeService;
 	
+	
 	//공지 삭제하기 action
 	@GetMapping("/deleteNotice")
 	public String removeNotice(int noticeNo) {

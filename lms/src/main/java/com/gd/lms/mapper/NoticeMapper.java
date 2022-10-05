@@ -10,6 +10,9 @@ import com.gd.lms.vo.Notice;
 @Mapper
 public interface NoticeMapper {
 	
+	//메인:공지 최근5개 노출
+	List<Map<String, Object>> selectNoticeTop();
+	
 	//공지조회수업로드
 	int updateNoticeCount(int noticeNo);
 	

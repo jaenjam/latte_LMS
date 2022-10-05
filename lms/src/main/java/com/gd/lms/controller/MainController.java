@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
+import com.gd.lms.service.NoticeService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.StudentService;
 
@@ -27,6 +28,7 @@ public class MainController {
 	@Autowired ProfessorService professorService;
 	@Autowired StudentService studentService;
 	@Autowired EmployeeService employeeService;
+	@Autowired NoticeService noticeService;
 	
 		// 상단 헤더 누를 시 메인접근
 		@GetMapping("/home")
@@ -37,6 +39,19 @@ public class MainController {
 			// 세션 사용하기위해 선언
 			HttpSession session =  request.getSession();	
 			
+////////////////////////////////////////////////////////////////////////////////////////////////////////			
+			
+			//noticeList최근 5개를 List에 담아준다.
+			List<Map<String, Object>> noticeListTop = noticeService.selectNoticeListTop();
+			
+			//꺼내서 쓸수 있게 model에 넣어준다.
+			model.addAttribute("noticeListTop", noticeListTop);
+			
+			//디버깅코드 재확인
+			log.debug(TeamColor.LJE + "MainController gomain noticeListTop : " + noticeListTop);
+			
+////////////////////////////////////////////////////////////////////////////////////////////////////////			
+			
 			//professorImg에 넣어주기
 			List<Map<String,Object>> professorImg = professorService.getProfessorImg(No);
 			
@@ -45,6 +60,7 @@ public class MainController {
 
 			log.debug(TeamColor.LJE + "MainController gomain professorImg : " + professorImg);
 			
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
 			//studentImg에 넣어주기
 			List<Map<String, Object>> studentImg = studentService.getStudentImg(No);
@@ -53,6 +69,7 @@ public class MainController {
 			
 			log.debug(TeamColor.LJE + "MainController gomain studentImg : " + studentImg);
 			
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
 			//employeeImg에 넣어주기
 			List<Map<String, Object>> employeeImg = employeeService.getEmployeeImg(No);

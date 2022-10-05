@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
+import com.gd.lms.service.NoticeService;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.EmployeeImg;
 import com.gd.lms.vo.Student;
@@ -37,6 +38,7 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeService employeeService;
+	@Autowired NoticeService noticeService;
 
 	// 교수사진등록하기 (Form)
 	@GetMapping("/employee/addEmployeeImgForm")
@@ -283,6 +285,17 @@ public class EmployeeController {
 		log.debug(TeamColor.CSJ + "EmployeeController의 loginEmployee model:" + model);
 		log.debug(TeamColor.CSJ + "EmployeeController의 loginEmployee loginEmployee:" + loginEmployee);
 
+		
+		//noticeList최근 5개를 List에 담아준다.
+		List<Map<String, Object>> noticeListTop = noticeService.selectNoticeListTop();
+		
+		//꺼내서 쓸수 있게 model에 넣어준다.
+		model.addAttribute("noticeListTop", noticeListTop);
+		
+		//디버깅코드 재확인
+		log.debug(TeamColor.LJE + "EmployeeController loginEmployee noticeListTop : " + noticeListTop);
+		
+		
 		// 계정 정보가 없으면 로그인 실패
 		if (loginEmployee == null) {
 			log.debug(TeamColor.CSJ + "EmployeeController.login : " + "로그인 실패");

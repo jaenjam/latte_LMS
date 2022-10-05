@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
+import com.gd.lms.service.NoticeService;
 import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Student;
@@ -37,7 +38,7 @@ public class StudentController {
 	@Autowired StudentService studentService;
 	@Autowired MajorService majorService;
 	@Autowired RegisterService registerService;
-	
+	@Autowired NoticeService noticeService;
 	
 	// 학생 회원가입 form
 	@GetMapping("/student/signupStudentForm")
@@ -117,6 +118,17 @@ public class StudentController {
 		//${StudentId.studentNo}
 		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 model:" +model);
 		log.debug(TeamColor.KHW+ "StudentController의 loginstudent의 loginstudent:" +loginstudent);
+		
+		
+		//noticeList최근 5개를 List에 담아준다.
+		List<Map<String, Object>> noticeListTop = noticeService.selectNoticeListTop();
+		
+		//꺼내서 쓸수 있게 model에 넣어준다.
+		model.addAttribute("noticeListTop", noticeListTop);
+		
+		//디버깅코드 재확인
+		log.debug(TeamColor.LJE + "StudentController loginEmployee noticeListTop : " + noticeListTop);
+		
 		
 	
 		if (loginstudent == null) { // 로그인시 null값이면 >>> 쿼리에서 맞는 값을 찾지 못했다면

@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
+import com.gd.lms.service.NoticeService;
 
 @Controller
 @Transactional
@@ -41,6 +42,7 @@ public class ProfessorController {
 	MajorService majorService;
 	@Autowired
 	RegisterService registerService;
+	@Autowired NoticeService noticeService;
 
 	// 로그인폼
 	@GetMapping("loginForm")
@@ -66,6 +68,16 @@ public class ProfessorController {
 		log.debug(TeamColor.JJY + "ProfessorController professorLogin 값 :" + professorLogin); // professorLogin안에 들어가있는																							
 		log.debug(TeamColor.JJY + "ProfessorController professorLogin의 model :" + model); // model값 출력
 
+		//noticeList최근 5개를 List에 담아준다.
+		List<Map<String, Object>> noticeListTop = noticeService.selectNoticeListTop();
+		
+		//꺼내서 쓸수 있게 model에 넣어준다.
+		model.addAttribute("noticeListTop", noticeListTop);
+		
+		//디버깅코드 재확인
+		log.debug(TeamColor.LJE + "ProfessorController loginEmployee noticeListTop : " + noticeListTop);
+		
+		
 		if (professorLogin == null) {
 			log.debug(TeamColor.JJY + "로그인실패 ! professorLogin값이 null");
 			result = "/loginForm";

@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.NoticeMapper">
 	
+	<!-- 메인 : 공지 최근 5개 노출  -->
+	<select id="selectNoticeTop" resultType="map">
+		SELECT
+			  notice_title		noticeTitle
+			, notice_writer		noticeWriter
+			, create_date		createDate
+		FROM notice
+		
+		ORDER BY notice_no desc
+		
+		LIMIT 5
+	</select>
+	
 	<!-- 공지 조회수 -->
 	<update id="updateNoticeCount" parameterType="com.gd.lms.vo.Notice">
 		UPDATE
