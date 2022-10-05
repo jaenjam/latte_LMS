@@ -226,10 +226,10 @@
 	<!-- header부분 사진 null값 셀렉 -->
 	<select id="selectProfessorImg" parameterType="int" resultType="map">
 	SELECT
-		 professor_no
-		,content_type
+		 professor_no professorNo
+		,content_type contentType
 		,filename
-		,origin_filename
+		,origin_filename originFilename
 	FROM
 		professor_img
 	WHERE

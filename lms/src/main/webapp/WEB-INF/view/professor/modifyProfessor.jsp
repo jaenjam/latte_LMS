@@ -32,45 +32,46 @@
 
 	<div class="container-fluid">
 		<div class="row">
-
-			<c:forEach var="M" items="${professorOne}">
 				<div class="col-lg-4 col-xl-3">
 					<div class="card">
 						<div class="card-body">
 							<div class="media align-items-center mb-4">
-								<c:if test="${M.filename eq null}">
+								<c:if test="${empty professorImg}">
 									<!-- 파일 없을때 경로 설정해줘야함 -->
 									<img class="mr-2" src="/images/userprofile/image.jpg"
 										width="200" height="200" alt="">
 								</c:if>
-								<c:if test="${M.filename ne null}">
-									<img class="mr-2"
-										src="/images/userprofile/${M.filename}${M.contentType}"
-										width="200" height="200" alt="">
-								</c:if>
+								<c:forEach var="i" items="${professorImg}">
+									<c:if test="${i.filename ne null}">
+										<img class="mr-2"
+											src="/images/userprofile/${i.filename}${i.contentType}"
+											width="200" height="200" alt="">
+									</c:if>
+								</c:forEach>
 							</div>
 							
 							
 							<div class="row mb-8">
 								<div class="col-12 text-center">
-								<c:if test="${M.filename eq null}">
+								<c:if test="${empty professorImg}">
 									<form
 										action="${pageContext.request.contextPath}/professor/addProfessorImgForm">
 										<button class="btn btn-danger px-5">사진추가하기</button>
 									</form>
-									</c:if>
-									<c:if test="${M.filename ne null}">
-									<form
-										action="${pageContext.request.contextPath}/professor/modifyProfessorImg">
-										<button class="btn btn-danger px-5">사진수정하기</button>
-									</form>
-									</c:if>
+								</c:if>
+									<c:forEach var="i" items="${professorImg}">
+										<c:if test="${i.filename ne null}">
+											<form
+												action="${pageContext.request.contextPath}/professor/modifyProfessorImg">
+												<button class="btn btn-danger px-5">사진수정하기</button>
+											</form>
+										</c:if>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</c:forEach>
 			<!-- 사진부분 -->
 
 			<div class="col-lg-8 col-xl-9">

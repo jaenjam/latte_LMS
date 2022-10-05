@@ -107,6 +107,14 @@ public class ProfessorController {
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
 			log.debug(TeamColor.KHW + myRegisterListProf);
 			
+			//professorImg에 넣어주기
+			List<Map<String,Object>> professorImg = professorService.getProfessorImg(professorNo);
+			
+			//professorImg에 값 저장해주기
+			model.addAttribute("professorImg", professorImg);
+
+			log.debug(TeamColor.LJE + "ProfessorController professorImg : " + professorImg);
+			
 			
 			result = "/home";
 		}
@@ -167,7 +175,15 @@ public class ProfessorController {
 		List<Map<String, Object>> professorOne = professorService.getProfessorOne(professorNo);
 		model.addAttribute("professorOne", professorOne);
 		log.debug(TeamColor.JJY + "professorOne : " + professorOne);
+		
+		//professorImg에 넣어주기
+		List<Map<String,Object>> professorImg = professorService.getProfessorImg(professorNo);
+		
+		//professorImg에 값 저장해주기
+		model.addAttribute("professorImg", professorImg);
 
+		log.debug(TeamColor.LJE + "ProfessorController getProfessorOne professorImg : " + professorImg);
+		
 		return "/professor/getProfessorOne";
 	}
 
@@ -182,6 +198,14 @@ public class ProfessorController {
 
 		model.addAttribute("professorOne", professorOne);
 		log.debug(TeamColor.JJY + "model professor값 확인 : " + professorOne);
+		
+		//professorImg에 넣어주기
+		List<Map<String,Object>> professorImg = professorService.getProfessorImg(professorNo);
+		
+		//professorImg에 값 저장해주기
+		model.addAttribute("professorImg", professorImg);
+
+		log.debug(TeamColor.LJE + "ProfessorController modifyProfessor professorImg : " + professorImg);
 
 		return "/professor/modifyProfessor";
 	}

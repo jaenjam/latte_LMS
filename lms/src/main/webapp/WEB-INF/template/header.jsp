@@ -237,15 +237,16 @@
 									data-toggle="dropdown">
 									<span class="activity active"></span>
 									<!-- 여기 사진부분 -->
-
-									<c:if test="${empty professorOne}">
+									
+										<c:if test="${empty professorImg}">
 										<!-- 값이 비어있을때 images 폴더안에 있는 기본값 뜨게 만들기 -->
 										<img src="${pageContext.request.contextPath}/images/userprofile/image.jpg"
 											height="40" width="40" alt="">
-									</c:if>
+										</c:if>
+										
 									<!-- 값이 있으면 professorImg 셀렉 값 찾아와서 내 사진 보여주기 -->
-									<c:forEach var="I" items="${professorOne}">
-										<c:if test="${not empty professorOne}">
+									<c:forEach var="I" items="${professorImg}">
+										<c:if test="${I.filename ne null}">
 											<img src="${pageContext.request.contextPath}/images/userprofile/${I.filename}${I.contentType}"
 												height="40" width="40" alt="">
 										</c:if>
