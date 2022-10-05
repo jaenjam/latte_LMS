@@ -49,6 +49,9 @@
                             	</div>
                             </div>
                                 <br>
+                                
+                                
+            <form name="reviewform" class="reviewform" id="reviewform" method="post" action="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm">                    
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
@@ -70,9 +73,11 @@
                                                 <td>${A.semesterS}</td>
                                                 <td>${A.subjectCredit}</td>
                                                 <td> ${A.professorName} </td>
-                                               
                                                 <td> ${A.professorAssessScore} </td>
                                                 <td> ${A.professorAssessCk} </td>
+                                                <td>
+                                                	<input type="hidden" id="registerNo" name="registerNo" value="${A.registerNo}">
+                                                 </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -80,39 +85,40 @@
                                     </table>
                                     
                                     <hr>
-<div class="col-12">                                 
-<h4 class="card-title"> 후기 </h4>
-    <form name="reviewform" class="reviewform" method="post" action="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm">
-        <input type="hidden" name="rate" id="rate" value="0"/>
-        <input type="hidden" name="registerNo" id="registerNo" value="${A.registerNo}"/>
-        <div class="review_rating">
-           
-            <div class="rating" title="별점을 선택해 주세요.">
-                <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
-                <input type="checkbox" name="rating" id="rating1" value="1" class="rate_radio" title="1점">
-                <label for="rating1"></label>
-                <input type="checkbox" name="rating" id="rating2" value="2" class="rate_radio" title="2점">
-                <label for="rating2"></label>
-                <input type="checkbox" name="rating" id="rating3" value="3" class="rate_radio" title="3점" >
-                <label for="rating3"></label>
-                <input type="checkbox" name="rating" id="rating4" value="4" class="rate_radio" title="4점">
-                <label for="rating4"></label>
-                <input type="checkbox" name="rating" id="rating5" value="5" class="rate_radio" title="5점">
-                <label for="rating5"></label>
-            </div>
-        </div>
-        
-        <div class="review_contents">
-            <textarea rows="10" class="form-control" placeholder="100자 이상으로 작성해 주세요." id="reviewTextarea" name="reviewTextarea"></textarea>
-        </div>   
-        <div class="cmd">
-         <button type="button" class="btn btn-primary" name="save" id="save"> 평가하기 </button>
-        </div>
-    </form>
+								<div class="col-12">                                 
+								<h4 class="card-title"> 후기 </h4>
+								    
+								        <input type="hidden" name="rate" id="rate" value="0"/>
+								        <div class="review_rating">
+								           
+								            <div class="rating" title="별점을 선택해 주세요.">
+								                <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
+								                <input type="checkbox" name="rating" id="rating1" value="1" class="rate_radio" title="1점">
+								                <label for="rating1"></label>
+								                <input type="checkbox" name="rating" id="rating2" value="2" class="rate_radio" title="2점">
+								                <label for="rating2"></label>
+								                <input type="checkbox" name="rating" id="rating3" value="3" class="rate_radio" title="3점" >
+								                <label for="rating3"></label>
+								                <input type="checkbox" name="rating" id="rating4" value="4" class="rate_radio" title="4점">
+								                <label for="rating4"></label>
+								                <input type="checkbox" name="rating" id="rating5" value="5" class="rate_radio" title="5점">
+								                <label for="rating5"></label>
+								            </div>
+								        </div>
+								        
+								        <div class="review_contents">
+								            <textarea rows="10" class="form-control" placeholder="100자 이상으로 작성해 주세요." id="reviewTextarea" name="reviewTextarea"></textarea>
+								        </div>   
+								        <div class="cmd">
+								         <button type="button" class="btn btn-primary" name="save" id="save"> 평가하기 </button>
+								        </div>
+								       </div>  
+								   </div>
+    							</form>
 
                                     
                                     
-                                </div>
+                               
                                 </div>
                             </div>
                         </div>
@@ -120,7 +126,7 @@
                 </div>
             </div>
             <!-- #/ container -->
-        </div>
+ 
         <!--**********************************
             Content body end
         ***********************************-->
@@ -133,27 +139,10 @@
 
 <script>
 
-//별점 마킹 모듈 프로토타입으로 생성
-function Rating(){};
-Rating.prototype.rate = 0;
-Rating.prototype.setRate = function(newrate){
-    //별점 마킹 - 클릭한 별 이하 모든 별 체크 처리
-    this.rate = newrate;
-    let items = document.querySelectorAll('.rate_radio');
-    items.forEach(function(item, idx){
-        if(idx < newrate){
-            item.checked = true;
-        }else{
-            item.checked = false;
-        }
-    });
-}
 
-
-let rating = new Rating();//별점 인스턴스 생성
-
+// 별점선택 이벤트 리스너
 document.addEventListener('DOMContentLoaded', function(){
-    //별점선택 이벤트 리스너
+
     document.querySelector('.rating').addEventListener('click',function(e){
         let elem = e.target;
         if(elem.classList.contains('rate_radio')){
@@ -177,24 +166,47 @@ document.querySelector('.form-control').addEventListener('keydown',function(){
 
 //저장 전송전 필드 체크 이벤트 리스너
 document.querySelector('#save').addEventListener('click', function(e){
-    //별점 선택 안했으면 메시지 표시
-    if(rating.rate == 0){
+    
+    if(rating.rate == 0){//별점 선택 안했으면 메시지 표시
         rating.showMessage('rate');
         console.log("별점X");
         return false;
-    } else
-    
-    //리뷰 100자 미만이면 메시지 표시
-    if(document.querySelector('.form-control').value.length < 100){
-      
-        console.log("글자수100자이하X");
-        return false;
     } else {
-    	$('#save').submit();
     	console.log("전부 작성완료");
+    	$('#reviewform').submit();
+    	
     }
     //폼 서밋
+    alert("저장완료!");
+    rating.setRate(0);
+    document.querySelector('.form-control').value = '';
 });
+
+
+//별점 마킹 모듈 프로토타입으로 생성
+function Rating(){};
+Rating.prototype.rate = 0;
+Rating.prototype.setRate = function(newrate){
+    //별점 마킹 - 클릭한 별 이하 모든 별 체크 처리
+    this.rate = newrate;
+    let items = document.querySelectorAll('.rate_radio');
+    items.forEach(function(item, idx){
+        if(idx < newrate){
+        	console.log(rate);
+            item.checked = true;
+        }else{
+        	console.log(rate);
+            item.checked = false;
+        }
+    });
+}
+
+
+
+let rating = new Rating();//별점 인스턴스 생성
+
+
+
 
 
 </script>

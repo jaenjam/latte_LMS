@@ -58,6 +58,7 @@ public class AssessController {
 			, @RequestParam("reviewTextarea") String professorAssessContent
 			, @RequestParam("registerNo") int registerNo
 			, Model model
+			, ProfessorAssess professorassess
 			) {
 		// 해당컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"AssessController의 addAssessPfOne 진입");
@@ -68,7 +69,7 @@ public class AssessController {
 		model.addAttribute("AssessPfOne", assessservice.addAssessPfOne(registerNo, professorAssessScore, professorAssessContent));
 		
 		
-		return "/assess/professor/getProfessorAssessForm";
+		return "redirect:/assess/professor/getProfessorAssessForm?registerNo="+professorassess.getRegisterNo();
 	}
 	
 }

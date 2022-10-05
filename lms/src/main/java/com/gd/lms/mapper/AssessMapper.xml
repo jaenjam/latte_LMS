@@ -45,6 +45,7 @@
 	<!--  학번 기준으로 수강강의목록 긁어오기 -->
 	<select id="selectAssessList" parameterType="int" resultType="map">
 	SELECT
+	distinct
 		r.subject_approve_no subjectApproveNo
 		, r.create_date createDate
 		, r.update_date updateDate
@@ -83,7 +84,7 @@
 	
 	<!--  버튼 누르고 수강강의 상세보기  -->
 	<select id="selectAssessPfOne" parameterType="int" resultType="map">
-	SELECT
+	SELECT DISTINCT
 			r.subject_approve_no subjectApproveNo
 			, r.create_date createDate
 			, r.update_date updateDate
