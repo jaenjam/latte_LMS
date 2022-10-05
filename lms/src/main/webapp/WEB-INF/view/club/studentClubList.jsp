@@ -37,44 +37,48 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<div class="row">
-							<div class="col-sm-9">
-								<h4 class="card-title">동아리 가입 신청 목록</h4>
+						<form
+							action="${pageContext.request.contextPath}/studentClubList?studentNo=${No}"
+							method="post" id="deleteStudentClub">
+							<div class="row">
+
+								<div class="col-sm-9">
+									<h4 class="card-title">동아리 가입 신청 목록</h4>
+								</div>
 							</div>
-						</div>
-						<br>
-						<div class="table-responsive">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>학번</th>
-										<th>이름</th>
-										<th>동아리명</th>
-										<th>신청일</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="sc" items="${studentClubList}">
+							<br>
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
 										<tr>
-											<td>${sc.studentNo}</td>
-											<td>${sc.studentName}</td>
-											<td>${sc.clubName}</td>
-											<td>${sc.createDate}</td>
-											<td><a
-												href="${pageContext.request.contextPath}/studentClubList?studentNo=${No}&clubNo=${sc.clubNo}"><button
-														onclick="deleteStudentClub()" type="button"
-														class="btn mb-1 btn-primary" id="deleteStudentClub">취소신청</button></a>
-											</td>
+											<th>학번</th>
+											<th>이름</th>
+											<th>동아리명</th>
+											<th>신청일</th>
+											<th></th>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+									</thead>
+									<tbody>
+										<c:forEach var="sc" items="${studentClubList}">
+											<tr>
+
+												<td><input type="hidden" value="${sc.clubNo}"
+													id="clubNo" name="clubNo">${sc.studentNo}</td>
+												<td>${sc.studentName}</td>
+												<td>${sc.clubName}</td>
+												<td>${sc.createDate}</td>
+												<td><button onclick="deleteStudentClub()" type="button"
+														class="btn mb-1 btn-primary" id="deleteStudentbtn">취소신청</button>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
 
 
 
-
+						</form>
 					</div>
 				</div>
 			</div>

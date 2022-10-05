@@ -8,6 +8,7 @@ function approveClub(){
 		$('#approve').submit();	
 	}else{
 		
+		
 	}
 	
  

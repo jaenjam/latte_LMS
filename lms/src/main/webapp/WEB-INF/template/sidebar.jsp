@@ -26,10 +26,10 @@
 							href="${pageContext.request.contextPath}/register/getRegisterForm">수강신청</a>
 						</li>
 						<li><a
-							href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessList?studentNo=${No}">강의평가</a>
+							href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm">강의평가</a>
 						</li>
 						<li><a
-							href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessList?studentNo=${No}">교수평가</a>
+							href="${pageContext.request.contextPath}/register/getRegisterForm">교수평가</a>
 						</li>
 					</ul></li>
 				<!-- 시험출제 -->
@@ -67,9 +67,15 @@
 						<li><a
 							href="${pageContext.request.contextPath}/employee/detail/studentList">학생</a>
 						</li>
+
+
+
 						<li><a
-							href="${pageContext.request.contextPath}/employee/detail/subjectList">과목</a>
-						</li>
+							href="${pageContext.request.contextPath}/employee/detail/subjectList">과목
+								목록</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/employee/subject/addSubject">과목
+								추가</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">과목승인</a>
 						</li>
@@ -221,6 +227,10 @@
 						<li><a
 							href="${pageContext.request.contextPath}/scholar/addScholar">장학
 								추가</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/employee/scholar/studentScholar">학생
+								장학 관리</a></li>
+
 					</c:if>
 				</ul></li>
 
@@ -246,7 +256,7 @@
 						<li><a
 							href="${pageContext.request.contextPath}/club/addStudentClub">동아리
 								가입</a></li>
-								<li><a
+						<li><a
 							href="${pageContext.request.contextPath}/club/studentClubList?studentNo=${No}">동아리
 								가입신청 목록</a></li>
 

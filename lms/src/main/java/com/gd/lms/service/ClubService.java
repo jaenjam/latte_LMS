@@ -32,14 +32,26 @@ public class ClubService {
 	@Autowired
 	private ClubMapper clubMapper;
 
-	// 동아리 가입 신청 취소(학생)
-	public int removeStudentClub(String clubNo, int studentNo) {
+	// 동아리 가입 승인 (clubmember삭제)
+	public int removeProfessorClub(ClubMember clubmember) {
 		log.debug(TeamColor.CSJ + "clubService.removeStudentClub");
-		
-		return clubMapper.deleteStudentClub(clubNo, studentNo);
+
+		return clubMapper.deleteProfessorClub(clubmember);
 	}
-	
-	
+
+	// 동아리 가입 승인 (교수)
+	public int modifyStudentClub(String clubNo, int studentNo) {
+		log.debug(TeamColor.CSJ + "clubService.modifyStudentClub");
+
+		return clubMapper.updateStudentClub(clubNo, studentNo);
+	}
+
+	// 동아리 가입 신청 취소(학생)
+	public int removeStudentClub(ClubMember clubmember, int studentNo) {
+		log.debug(TeamColor.CSJ + "clubService.removeStudentClub");
+
+		return clubMapper.deleteStudentClub(clubmember.getClubNo(), studentNo);
+	}
 
 	// 동아리 가입신청 목록 (교슈)
 	public List<Map<String, Object>> getStudentClubList(int studentNo) {

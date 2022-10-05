@@ -36,19 +36,41 @@ public class ClubController {
 	ProfessorService professorService;
 	@Autowired
 	StudentService studentService;
-
-	//
 	
+	//동아리 가입 거절 (삭제)
+	@PostMapping("/professorClubList")
+	public String removeStudentClub(int professorNo, ClubMember clubmember) {
+		log.debug(TeamColor.CSJ + "ClubController.removeProfessorClub");
+
+		clubService.removeProfessorClub(clubmember);
+		
+		return "redirect:/club/professorClubList?professorNo=" + professorNo;
+		
+		
+	}
+	
+	//동아리 가입 승인 및 clubMember 테이블 삭제
+	@GetMapping("/professorClubList")
+	public String updateStudentClub(String clubNo, int studentNo, int professorNo, ClubMember clubmember) {
+		log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
+		
+		clubService.modifyStudentClub(clubNo, studentNo);
+		clubService.removeProfessorClub(clubmember);
+		
+		return "redirect:/club/professorClubList?professorNo=" + professorNo;
+		
+		
+	}
 	
 	
 	// 학생 동아리 가입 신청 취소 action - club_member 테이블 데이터 삭제
-	@GetMapping("/studentClubList")
-	public String removeStudentClub(@RequestParam(name = "studentNo") int studentNo,
-			@RequestParam(name = "clubNo") String clubNo) {
-
+	@PostMapping("/studentClubList")
+	public String removeStudentClub(ClubMember clubmember, int studentNo
+			  ) {
+		System.out.println(clubmember.toString());
 		log.debug(TeamColor.CSJ + "ClubController.removeStudentClub");
 
-		int row = clubService.removeStudentClub(clubNo, studentNo);
+		int row = clubService.removeStudentClub(clubmember, studentNo);
 
 		log.debug(TeamColor.CSJ + "ClubController.removeStudentClub row : " + row);
 

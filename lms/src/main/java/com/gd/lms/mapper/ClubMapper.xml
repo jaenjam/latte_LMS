@@ -2,14 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.ClubMapper">
 
+	<!-- 동아리 가입 승인 clubMember 테이블 삭제 -->
+	<delete id="deleteProfessorClub"
+		parameterType="com.gd.lms.vo.ClubMember">
+		DELETE
+
+		FROM
+
+		club_member
+
+		WHERE student_no = #{studentNo}
+
+
+	</delete>
+
+
+
+
+
+	<!-- 동아리 가입 승인 student테이블에 clubNo 추가 -->
+	<update id="updateStudentClub"
+		parameterType="com.gd.lms.vo.Student">
+
+		UPDATE
+		student
+
+		SET club_no = #{clubNo}
+
+		WHERE
+
+		student_no =
+		#{studentNo}
+
+
+
+	</update>
+
+
 	<!-- 동아리 가입 신청 취소(학생) - clubMember 테이블 삭제 -->
-	<delete id="deleteStudentClub" parameterType="com.gd.lms.vo.ClubMember">
-	
-	DELETE 
-	FROM club_member
-	WHERE student_no = #{studentNo}
-	AND club_no = #{clubNo}
-	
+	<delete id="deleteStudentClub"
+		parameterType="com.gd.lms.vo.ClubMember">
+
+		DELETE
+		FROM club_member
+		WHERE student_no = #{studentNo}
+		AND club_no = #{clubNo}
+
 	</delete>
 
 
@@ -25,13 +63,16 @@
 		,c.club_name clubName
 		,cm.create_date createDate
 
-		FROM club_member cm
+		FROM
+		club_member cm
 		INNER JOIN club c ON cm.club_no = c.club_no
 
-		INNER JOIN student s ON
+		INNER JOIN
+		student s ON
 		cm.student_no = s.student_no
 
-		WHERE s.student_no = #{studentNo};
+		WHERE s.student_no =
+		#{studentNo};
 
 	</select>
 
@@ -48,13 +89,16 @@
 		,c.club_name clubName
 		,cm.create_date createDate
 
-		FROM club_member cm
+		FROM
+		club_member cm
 		INNER JOIN club c ON cm.club_no = c.club_no
 
-		INNER JOIN student s ON
+		INNER JOIN
+		student s ON
 		cm.student_no = s.student_no
 
-		INNER JOIN professor p ON c.professor_no = p.professor_no
+		INNER JOIN professor p ON
+		c.professor_no = p.professor_no
 
 		WHERE
 		p.professor_no = #{professorNo};
@@ -154,7 +198,8 @@
 		, c.update_date = now()
 
 		WHERE
-		c.club_no =
+		c.club_no
+		=
 		#{clubNo}
 	</update>
 
