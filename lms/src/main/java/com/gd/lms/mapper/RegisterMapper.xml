@@ -219,12 +219,15 @@
 		<!-- 교수 출석체크를 위한 학생리스트 -->	
 		<select id="selectRegisterStudentList" parameterType="int" resultType="map">
 			SELECT
-				  r.register_no			registorNo
+				 a.attendance_no		attendanceNo
 				, r.student_no			studentNo
 				, s.student_name		studentName
+				, a.attendance_date		attendanceDate
+				, a.attendance_state	attendanceState
 				, r.subject_approve_no	subejctApproveNo
 				, s.major_no			majorNo
 				, m.major_name			majorName
+				, a.attendance_etc		attendanceEtc
 			FROM
 				register r
 			INNER JOIN
@@ -235,6 +238,10 @@
 				major m
 			ON
 				s.major_no = m.major_no
+			INNER JOIN
+				attendance a
+			ON
+				a.student_no = r.student_no
 			WHERE
 				r.subject_approve_no = #{subjectApproveNo}
 		</select>	

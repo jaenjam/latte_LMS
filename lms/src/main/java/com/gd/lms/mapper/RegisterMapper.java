@@ -42,5 +42,5 @@ public interface RegisterMapper {
 	Map<String,Object> selectRegisteInfo(int subjectApproveNo);
 	
 	// 교수 출석체크를 위한 학생리스트
-	Map<String, Object> selectRegisterStudentList(int subjectApproveNo);
+	List<Map<String, Object>> selectRegisterStudentList(int subjectApproveNo);
 }

@@ -57,7 +57,7 @@ public class SubjectAppoveController {
 			log.debug(TeamColor.LJE + "SubjectApproveController getsubjectApproveMain myRegisterListProf : " + myRegisterListProf);
 				
 			//교수 출석페이지 구동을 위한 (승인된 수업듣는 학생리스트 출력)
-			Map<String, Object> registerStudentList = registerService.getRegisterStudentList(subjectApproveNo);
+			List<Map<String, Object>> registerStudentList = registerService.getRegisterStudentList(subjectApproveNo);
 			
 			//registerStudent 안에 넣기
 			model.addAttribute("registerStudentList", registerStudentList);

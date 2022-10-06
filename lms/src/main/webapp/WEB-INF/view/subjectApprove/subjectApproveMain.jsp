@@ -72,26 +72,40 @@
 			                                    </div>
 			                                    <div id="navpills-4" class="tab-pane">
 			                                        <div>
+			                                        	<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+		                                                    <option selected="selected">Choose...</option>
+		                                                    <option value="1">One</option>
+		                                                    <option value="2">Two</option>
+		                                                    <option value="3">Three</option>
+                                                		</select>
+                                                		
+                                                		<br>
+			                                        	
 			                                        	<div class="table-responsive">
 						                                    <table class="table table-bordered">
 						                                        <thead>
 						                                            <tr>
 						                                                <th>#</th>
-						                                                <th>Name</th>
-						                                                <th>Status</th>
-						                                                <th>Date</th>
-						                                                <th>Price</th>
+						                                                <th>소속학과</th>
+						                                                <th>학생</th>
+						                                                <th>출석일</th>
+						                                                <th>출석상태</th>
+						                                                <th>비고</th>
 						                                            </tr>
 						                                        </thead>
 						                                        <tbody>
+						                                        <c:forEach var="r" items="${registerStudentList}">
 						                                            <tr>
 						                                                <th>1</th>
-						                                                <td>Kolor Tea Shirt For Man</td>
-						                                                <td><span class="badge badge-primary px-2">Sale</span>
+						                                                <td>${r.majorName}(${r.majorNo})</td>
+						                                                <td>${r.studentName}(${r.studentNo})</td>
+						                                                <td>
+						                                                	${r.attendanceDate}
 						                                                </td>
-						                                                <td>January 22</td>
-						                                                <td class="color-primary">$21.56</td>
+						                                                <td>${r.attendanceState}</td>
+						                                                <td>${r.attendanceEtc}</td>
 						                                            </tr>
+						                                        </c:forEach>
 						                                        </tbody>
 						                                    </table>
 						                                </div>
