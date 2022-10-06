@@ -86,7 +86,7 @@
 		, update_date)
 	VALUES (
 		  #{professorNo}
-		, #{professorPass}
+		, PASSWORD(#{professorPass})
 		, #{majorNo}
 		, #{professorName}
 		, #{professorRegiNo}

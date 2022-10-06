@@ -85,7 +85,7 @@
 		VALUES
 			(
 				#{studentNo}
-				, #{studentPass}
+				, PASSWORD(#{studentPass})
 				, #{majorNo}
 				, #{studentName}
 				, #{studentRegiNo}

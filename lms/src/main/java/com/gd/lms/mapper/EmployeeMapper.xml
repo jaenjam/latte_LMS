@@ -118,7 +118,7 @@
 		VALUES
 		(
 		#{employeeNo},
-		#{employeePass},
+		PASSWORD(#{employeePass}),
 		#{employeeName},
 		#{employeeRegiNo},
 		#{employeeAge},

@@ -51,7 +51,7 @@
                             	<c:if test="${user eq 'student'}">
 	                                <div class="card-body" style="min-height:450px;">
 	                                    <h5 class="text-muted">수업진행률</h5>
-	                                    <h2 class="mt-4">5680</h2>
+	                                    <h2 class="mt-4">5680명</h2>
 	                                    <span>Total Revenue</span>
 	                                    <div class="mt-4">
 	                                        <h4>30</h4>
@@ -63,9 +63,9 @@
 	                                    </div>
 	                                    <div class="mt-4">
 	                                        <h4>50</h4>
-	                                        <h6 class="m-t-10 text-muted">Offline Order <span class="pull-right">50%</span></h6>
+	                                        <h6 class="m-t-10 text-muted">Offline Order <span class="pull-right">80%</span></h6>
 	                                        <div class="progress mb-3" style="height: 7px">
-	                                            <div class="progress-bar bg-success" style="width: 50%;" role="progressbar"><span class="sr-only">50% Order</span>
+	                                            <div class="progress-bar bg-success" style="width: 80%;" role="progressbar"><span class="sr-only">50% Order</span>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -83,7 +83,7 @@
                             	<c:if test="${user eq 'professor'}">
 	                                <div class="card-body" style="min-height:450px;">
 	                                    <h5 class="text-muted">강좌결석률</h5>
-	                                    <h2 class="mt-4">5680</h2>
+	                                    <h2 class="mt-4">5680명</h2>
 	                                    <span>Total Revenue</span>
 	                                    <div class="mt-4">
 	                                        <h4>30</h4>
