@@ -2,71 +2,84 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.ScholarMapper">
 
+
+	<!-- 학생 장학 수정 쿼리 -->
+	<update id="updateScholarStudent"
+			parameterType="com.gd.lms.vo.Student">
+
+		UPDATE
+		student
+		SET
+		scholar_no = #{scholarNo}
+		WHERE
+		student_no = #{studentNo}
+	</update>
+
 	<!-- 장학상세보기 -->
 	<select id="selectScholarOne" resultType="map">
-	SELECT 
-		 scholar_no scholarNo
+		SELECT
+		scholar_no scholarNo
 		,scholar_name scholarName
 		,scholar_Content scholarContent
 		,scholar_price scholarPrice
-		
-	FROM
+
+		FROM
 		scholar
-	WHERE
+		WHERE
 		scholar_no = #{scholarNo}
 	</select>
-	
-	<!-- 전공수정하기 -->
+
+	<!-- 장학수정하기 -->
 	<update id="updateScholar" parameterType="com.gd.lms.vo.Scholar">
-		
-		UPDATE 
-				scholar
-		SET 
-				
-				scholar_name=#{scholarName}
-				,scholar_content=#{scholarContent}
-				,scholar_price=#{scholarPrice}
-				,update_date=now()
+
+		UPDATE
+		scholar
+		SET
+
+		scholar_name=#{scholarName}
+		,scholar_content=#{scholarContent}
+		,scholar_price=#{scholarPrice}
+		,update_date=now()
 		WHERE
-				scholar_no=#{scholarNo}
-				
+		scholar_no=#{scholarNo}
+
 	</update>
-	
+
 
 
 
 
 	<!-- 장학목록받아주기 -->
 	<select id="selectScholarList" resultType="map">
-	
-	SELECT
-		 scholar_no scholarNo
+
+		SELECT
+		scholar_no scholarNo
 		,scholar_name scholarName
 		,scholar_content scholarContent
 		,scholar_price scholarPrice
-		
-	FROM scholar
-	
+
+		FROM scholar
+
 	</select>
-	
+
 	<!-- 장학추가해주기 -->
 	<insert id="insertScholar" parameterType="com.gd.lms.vo.Scholar">
-	
-	INSERT INTO scholar(
-		 scholar_no
+
+		INSERT INTO scholar(
+		scholar_no
 		,scholar_name
 		,scholar_content
 		,scholar_price
 		,create_date
 		,update_date)
-	values (
-		 #{scholarNo}
+		values (
+		#{scholarNo}
 		,#{scholarName}
 		,#{scholarContent}
 		,#{scholarPrice}
 		,now()
 		,now()
-	)
+		)
 	</insert>
 
 </mapper>

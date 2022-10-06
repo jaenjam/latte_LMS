@@ -2,14 +2,21 @@ package com.gd.lms.mapper;
 
 import java.util.List;
 
+
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Scholar;
+import com.gd.lms.vo.Student;
+
+
 
 @Mapper
 public interface ScholarMapper {
+	
+	//장학 수정 (학생)
+	int updateScholarStudent(Student student);
 
 	// 장학목록가져오기
 	List<Map<String, Object>> selectScholarList();

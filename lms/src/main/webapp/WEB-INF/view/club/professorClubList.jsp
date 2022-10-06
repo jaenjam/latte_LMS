@@ -62,7 +62,8 @@
 											<td>${sc.studentName}</td>
 											<td>${sc.clubName}</td>
 											<td>${sc.createDate}</td>
-											<td><a href="${pageContext.request.contextPath}/professorClubList?&professorNo=${No}"><button onclick="approveClub()" type="button" class="btn mb-1 btn-primary" id="approve">
+											<td><a href="${pageContext.request.contextPath}/professorClubList?professorNo=${No}&clubNo=${sc.clubNo}&studentNo=${sc.studentNo}">
+											<button onclick="approveClub()" type="button" class="btn mb-1 btn-primary" id="approve">
 											승인</button></a>
 												<button onclick="deleteClub()" type="button" class="btn mb-1 btn-outline-dark" id="delete">거절</button>
 											<td>

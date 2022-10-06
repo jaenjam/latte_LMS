@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.ScholarService;
+import com.gd.lms.service.StudentService;
+import com.gd.lms.vo.Student;
 import com.gd.lms.vo.Scholar;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,39 @@ public class ScholarController {
 
 	@Autowired
 	ScholarService scholarService;
+	@Autowired
+	StudentService studentService;
+
+	// 학생 장학 추가 action
+	@PostMapping("/scholarStudentAction")
+	public String scholarStudentAction(Student student) {
+
+		// controller실행 여부 확인하기
+		log.debug(TeamColor.CSJ + "ScholarController -> salaryStudentAction");
+
+		// row=1 성공
+		int row = scholarService.modifyScholarStudent(student);
+		log.debug(TeamColor.CSJ + "row : " + row);
+
+		// 학생 정보 목록보여주기
+		return "redirect:/employee/scholar/studentScholar";
+	}
+	
+	
+	// 학생 장학 추가 form
+		@GetMapping("/employee/scholar/studentScholar")
+		public String scholarStudentAction(Model model) {
+			log.debug(TeamColor.CSJ + ("scholarController.scholarStudentAction form"));
+			
+			List<Map<String, Object>> studentList= studentService.getStudentList();
+			List<Map<String, Object>> scholarList = scholarService.getScholarList();
+			
+			
+			model.addAttribute("selectStudentList",studentList);
+			model.addAttribute("selectScholarList",scholarList);
+
+			return "/employee/scholar/studentScholar";
+		}
 
 	// 장학수정 Action
 	@PostMapping("/modifyScholar")

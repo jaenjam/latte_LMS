@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.ScholarMapper;
+import com.gd.lms.vo.Student;
 import com.gd.lms.vo.Scholar;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,13 @@ public class ScholarService {
 
 	@Autowired
 	private ScholarMapper scholarMapper;
+
+	// 장학 넣기 (학생)
+	public int modifyScholarStudent(Student student) {
+
+		log.debug(TeamColor.CSJ + "ScholarService modifyScholarStudent");
+		return scholarMapper.updateScholarStudent(student);
+	}
 
 	// 장학상세보기
 	public List<Map<String, Object>> getScholarOne(int scholarNo) {
