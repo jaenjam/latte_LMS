@@ -177,7 +177,7 @@
 		#{employeeNo}
 
 		AND
-		employee_pass = #{employeePass}
+		employee_pass = PASSWORD(#{employeePass})
 	</select>
 
 	<!-- 관리자 목록 -->

@@ -65,7 +65,7 @@
 		WHERE
 			professor_no = #{professorNo}
 		AND	
-			professor_pass = #{professorPass}	
+			professor_pass = PASSWORD(#{professorPass})	
 	</select>
 	
 	<!-- 교수회원가입 -->

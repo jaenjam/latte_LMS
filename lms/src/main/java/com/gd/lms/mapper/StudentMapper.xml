@@ -60,7 +60,7 @@
 		WHERE
 			student_no = #{studentNo}
 		AND
-			student_pass = #{studentPass}
+			student_pass = PASSWORD(#{studentPass})
 	</select>
 
 
