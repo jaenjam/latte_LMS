@@ -180,7 +180,7 @@ public class ProfessorController {
 	// 교수상세보기
 	@GetMapping("/getProfessorOne")
 	public String ProfessorOne(Professor professor, Model model, HttpServletRequest request,
-			@RequestParam("professorNo") int professorNo) {
+			@RequestParam("professorNo") int professorNo, HttpSession session) {
 
 		log.debug(TeamColor.JJY + "ProfessorController ProfessorOne Get실행");
 
@@ -196,12 +196,22 @@ public class ProfessorController {
 
 		log.debug(TeamColor.LJE + "ProfessorController getProfessorOne professorImg : " + professorImg);
 		
+		
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "ProfessorController ProfessorOne myRegisterListProf : " + myRegisterListProf);		
+		
+		
 		return "/professor/getProfessorOne";
 	}
 
 	// 교수정보수정 Form
 	@GetMapping("/professor/modifyProfessor")
-	public String modifyProfessor(Model model, int professorNo) {
+	public String modifyProfessor(Model model, int professorNo, HttpSession session) {
 
 		log.debug(TeamColor.JJY + "modifyProfessor Get실행");
 
@@ -219,6 +229,17 @@ public class ProfessorController {
 
 		log.debug(TeamColor.LJE + "ProfessorController modifyProfessor professorImg : " + professorImg);
 
+		
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "ProfessorController modifyProfessor myRegisterListProf : " + myRegisterListProf);		
+		
+		
+		
 		return "/professor/modifyProfessor";
 	}
 

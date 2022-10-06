@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.ScholarService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Student;
@@ -29,7 +30,8 @@ public class ScholarController {
 	ScholarService scholarService;
 	@Autowired
 	StudentService studentService;
-
+	@Autowired RegisterService registerService;
+	
 	// 학생 장학 추가 action
 	@PostMapping("/scholarStudentAction")
 	public String scholarStudentAction(Student student) {
@@ -97,7 +99,7 @@ public class ScholarController {
 
 	// 장학목록
 	@GetMapping("/scholar/scholarList")
-	public String scholarList(Model model) {
+	public String scholarList(Model model, HttpServletRequest request, HttpSession session) {
 
 		log.debug(TeamColor.CSJ + "ScholarController.scholarList");
 
@@ -105,6 +107,14 @@ public class ScholarController {
 
 		model.addAttribute("scholarList", scholarList);
 		log.debug(TeamColor.CSJ + ("scholarController.scholarList : " + scholarList));
+		
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "ScholarController scholarList myRegisterListProf : " + myRegisterListProf);
 
 		return "/scholar/scholarList";
 	}

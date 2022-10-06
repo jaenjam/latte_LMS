@@ -3,6 +3,9 @@ package com.gd.lms.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.NoticeService;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.Notice;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class NoticeController {
 	
 	@Autowired NoticeService noticeService;
-	
+	@Autowired RegisterService registerService;
 	
 	//공지 삭제하기 action
 	@GetMapping("/deleteNotice")
@@ -148,7 +152,7 @@ public class NoticeController {
 	//공지목록
 	@GetMapping("/notice/noticeList")
 	public String noticeList(@RequestParam(required = false, defaultValue = "")  String search,
-			 @PageableDefault Pageable pageable, Model model) {
+			 @PageableDefault Pageable pageable, Model model, HttpServletRequest request, HttpSession session) {
 		 
 		//디버깅코드출력
 		log.debug(TeamColor.LJE + "NoticeController.noticeList 실행");
@@ -159,7 +163,17 @@ public class NoticeController {
 		//noticeList에 넣어주기
 		model.addAttribute("noticeList", noticeService.findNoticeList(pageable, search));
 		
-		//log.debug(TeamColor.LJE + "NoticeController noticeList값 :" + noticeList);
+		log.debug(TeamColor.LJE + "NoticeController noticeList값 :" + model);
+		
+		
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
 		
 		//notice/noticeList 페이지로
 		return "/notice/noticeList";

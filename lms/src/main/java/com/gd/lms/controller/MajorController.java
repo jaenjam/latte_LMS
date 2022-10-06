@@ -3,6 +3,9 @@ package com.gd.lms.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.MajorService;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.Major;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +25,11 @@ import lombok.extern.slf4j.Slf4j;
 public class MajorController {
 	
 	@Autowired MajorService majorService;
+	@Autowired RegisterService registerService;
 	
 	//전공목록
 	@GetMapping("/major/majorList")
-	public String majorList(Model model) {
+	public String majorList(Model model, HttpServletRequest request, HttpSession session) {
 		
 		log.debug(TeamColor.JJY +"MajorController.majorList실행");
 		
@@ -32,7 +37,15 @@ public class MajorController {
 		
 		model.addAttribute("majorList",majorList);
 		log.debug(TeamColor.JJY +("majorController majorList값 : " + majorList));
-			
+		
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "MajorController majorList myRegisterListProf : " + myRegisterListProf);
+		
 		return "/major/majorList"; // major폴더안에 majorList보여주기
 	}
 	

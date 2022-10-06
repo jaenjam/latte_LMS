@@ -3,15 +3,20 @@ package com.gd.lms.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.gd.lms.repository.TestRepository;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.TestService;
 import com.gd.lms.vo.Test;
 
@@ -22,12 +27,14 @@ import javax.management.ValueExp;
 
 @Slf4j
 @Controller
+@Transactional
 public class TestController {
 
 	@Autowired
 	TestService testService;
 	@Autowired
 	TestRepository repository;
+	@Autowired RegisterService registerService;
 	
 	// 시험지 상세보기
 	@GetMapping("/test/TestOne")
@@ -42,7 +49,7 @@ public class TestController {
 
 	// 수강된 강의 리스트
 	@GetMapping("/test/testList")
-	public String testList(Model model) {
+	public String testList(Model model, HttpServletRequest request, HttpSession session) {
 
 		List<Map<String, Object>> subjectApproveList = testService.getSubjectApproveList();
 		model.addAttribute("subjectApproveList", subjectApproveList);
@@ -50,6 +57,14 @@ public class TestController {
 		// 승인된 과목정보들이 다 들어가있음
 		log.debug(TeamColor.JJY + "subjectApproveList 값 : " + model);
 
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "TestController testList myRegisterListProf : " + myRegisterListProf);
+		
 		return "/test/testList";
 	}
 

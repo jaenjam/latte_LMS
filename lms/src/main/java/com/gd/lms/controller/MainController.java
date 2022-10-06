@@ -16,6 +16,7 @@ import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.NoticeService;
 import com.gd.lms.service.ProfessorService;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.StudentService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ public class MainController {
 	@Autowired StudentService studentService;
 	@Autowired EmployeeService employeeService;
 	@Autowired NoticeService noticeService;
+	@Autowired RegisterService registerService;
 	
 		// 상단 헤더 누를 시 메인접근
 		@GetMapping("/home")
@@ -119,6 +121,16 @@ public class MainController {
 			
 			// 학생/전체
 			model.addAttribute("studentPer", (double)studentCount/(employeeCount+professorCount+studentCount)*100);
+			
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			// 교수의 강의리스트 확인
+			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.LJE + "SubjectApproveController getsubjectApproveMain myRegisterListProf : " + myRegisterListProf);
 			
 			
 			if(session.getAttribute("user") !=null) {

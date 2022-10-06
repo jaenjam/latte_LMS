@@ -3,6 +3,8 @@ package com.gd.lms.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.FaqService;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.Faq;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 public class FaqController {
 
 	@Autowired FaqService faqService;
+	@Autowired RegisterService registerService;
+	
 	
 	//자주묻는질문 수정하기 form
 	@GetMapping("/faq/updateFaq")
@@ -114,7 +119,7 @@ public class FaqController {
 	
 	//자주묻는질문목록
 	@GetMapping("/faq/faqList")
-	public String faqList(Model model) {
+	public String faqList(Model model, HttpSession session) {
 		
 		//디버깅코드출력
 		log.debug(TeamColor.LJE + "FaqController.faqList 실행");
@@ -127,6 +132,14 @@ public class FaqController {
 		
 		log.debug(TeamColor.LJE + "FaqController faqList에 저장된 값 : " + faqList);
 		
+		
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "FaqController faqList myRegisterListProf : " + myRegisterListProf);		
 		
 		//faq/faqList 페이지로
 		return "/faq/faqList";

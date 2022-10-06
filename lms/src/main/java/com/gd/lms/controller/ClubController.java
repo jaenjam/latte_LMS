@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.ClubService;
 import com.gd.lms.service.ProfessorService;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Club;
 import com.gd.lms.vo.ClubMember;
@@ -36,6 +37,7 @@ public class ClubController {
 	ProfessorService professorService;
 	@Autowired
 	StudentService studentService;
+	@Autowired RegisterService registerService;
 	
 	//동아리 가입 거절 (삭제)
 	@GetMapping("/removeClubList")
@@ -108,6 +110,8 @@ public class ClubController {
 
 		log.debug(TeamColor.CSJ + "ClubController.studentClubList : " + model);
 
+		
+		
 		return "/club/studentClubList";
 	}
 
@@ -125,6 +129,15 @@ public class ClubController {
 
 		log.debug(TeamColor.CSJ + "ClubController.ProfesorClubList : " + model);
 
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "ClubController professorClubList myRegisterListProf : " + myRegisterListProf);
+		
+		
 		return "/club/professorClubList";
 	}
 
@@ -208,7 +221,7 @@ public class ClubController {
 
 	// 동아리 목록
 	@GetMapping("/club/clubList")
-	public String clubList(Model model) {
+	public String clubList(Model model, HttpServletRequest request, HttpSession session) {
 
 		log.debug(TeamColor.CSJ + "ClubController.clubList");
 
@@ -217,6 +230,14 @@ public class ClubController {
 		model.addAttribute("clubList", clubList);
 		log.debug(TeamColor.CSJ + ("clubController.clubList : " + clubList));
 
+		// 교수의 강의리스트 확인
+		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+		// myRegisterListProf확인
+		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		
+		log.debug(TeamColor.LJE + "ClubController clubList myRegisterListProf : " + myRegisterListProf);
+		
 		return "/club/clubList";
 	}
 
