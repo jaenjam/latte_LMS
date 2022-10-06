@@ -48,14 +48,22 @@ public class SubjectAppoveController {
 			model.addAttribute("MyRegister", MyRegister);
 			
 			
-			// 교수의 강의리스트
+			// 교수의 강의리스트 확인
 			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
 
-			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
+			// myRegisterListProf확인
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
 			
-			log.debug(TeamColor.KHW + "SubjectApproveController getsubjectApproveMain myRegisterListProf : " + myRegisterListProf);
+			log.debug(TeamColor.LJE + "SubjectApproveController getsubjectApproveMain myRegisterListProf : " + myRegisterListProf);
 				
+			//교수 출석페이지 구동을 위한 (승인된 수업듣는 학생리스트 출력)
+			Map<String, Object> registerStudentList = registerService.getRegisterStudentList(subjectApproveNo);
+			
+			//registerStudent 안에 넣기
+			model.addAttribute("registerStudentList", registerStudentList);
+			
+			log.debug(TeamColor.LJE + "SubjectApproveController getsubjectApproveMain registerStudent : " + registerStudentList);
+			
 			
 			return "/subjectApprove/subjectApproveMain";
 	}

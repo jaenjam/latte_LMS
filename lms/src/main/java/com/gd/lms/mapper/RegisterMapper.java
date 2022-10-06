@@ -40,4 +40,7 @@ public interface RegisterMapper {
 
 	// 넘겨받은 approveNo 기준으로 강의정보 셀렉하기 & 학생 교수 상관없이 (특정 수강강의 메인용)
 	Map<String,Object> selectRegisteInfo(int subjectApproveNo);
+	
+	// 교수 출석체크를 위한 학생리스트
+	Map<String, Object> selectRegisterStudentList(int subjectApproveNo);
 }

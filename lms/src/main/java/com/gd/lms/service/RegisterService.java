@@ -61,5 +61,11 @@ public class RegisterService {
 		return registerMapper.selectRegisteInfo(subjectApproveNo);
 	}
 
+	//
+	public Map<String, Object> getRegisterStudentList(int subjectApproveNo){
+		log.debug(TeamColor.LJE + "RegisterService getRegisterStudentList");
+		
+		return registerMapper.selectRegisterStudentList(subjectApproveNo);
+	}
 	
 }

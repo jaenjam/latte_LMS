@@ -214,5 +214,28 @@
 		WHERE
 			sa.professor_no = #{No};		
 		</select>	
-					
+			
+			
+		<!-- 교수 출석체크를 위한 학생리스트 -->	
+		<select id="selectRegisterStudentList" parameterType="int" resultType="map">
+			SELECT
+				  r.register_no			registorNo
+				, r.student_no			studentNo
+				, s.student_name		studentName
+				, r.subject_approve_no	subejctApproveNo
+				, s.major_no			majorNo
+				, m.major_name			majorName
+			FROM
+				register r
+			INNER JOIN
+				student s
+			ON
+				r.student_no = s.student_no
+			INNER JOIN
+				major m
+			ON
+				s.major_no = m.major_no
+			WHERE
+				r.subject_approve_no = #{subjectApproveNo}
+		</select>	
 </mapper>

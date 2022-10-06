@@ -37,9 +37,9 @@
 			                                <ul class="nav nav-pills mb-3">
 			                                    <li class="nav-item"><a href="#navpills-1" class="nav-link active show" data-toggle="tab" aria-expanded="false">과목과제</a>
 			                                    </li>
-			                                    <li class="nav-item"><a href="#navpills-2" class="nav-link" data-toggle="tab" aria-expanded="false">Tab Two</a>
+			                                    <li class="nav-item"><a href="#navpills-2" class="nav-link" data-toggle="tab" aria-expanded="false">강의</a>
 			                                    </li>
-			                                    <li class="nav-item"><a href="#navpills-3" class="nav-link" data-toggle="tab" aria-expanded="true">Tab Three</a>
+			                                    <li class="nav-item"><a href="#navpills-3" class="nav-link" data-toggle="tab" aria-expanded="true">시험추가</a>
 			                                    </li>
 			                                    <li class="nav-item"><a href="#navpills-4" class="nav-link" data-toggle="tab" aria-expanded="true">출석체크</a>
 			                                    </li>
@@ -72,6 +72,29 @@
 			                                    </div>
 			                                    <div id="navpills-4" class="tab-pane">
 			                                        <div>
+			                                        	<div class="table-responsive">
+						                                    <table class="table table-bordered">
+						                                        <thead>
+						                                            <tr>
+						                                                <th>#</th>
+						                                                <th>Name</th>
+						                                                <th>Status</th>
+						                                                <th>Date</th>
+						                                                <th>Price</th>
+						                                            </tr>
+						                                        </thead>
+						                                        <tbody>
+						                                            <tr>
+						                                                <th>1</th>
+						                                                <td>Kolor Tea Shirt For Man</td>
+						                                                <td><span class="badge badge-primary px-2">Sale</span>
+						                                                </td>
+						                                                <td>January 22</td>
+						                                                <td class="color-primary">$21.56</td>
+						                                            </tr>
+						                                        </tbody>
+						                                    </table>
+						                                </div>
 			                                        </div>
 			                                    </div>
 			                                </div>
