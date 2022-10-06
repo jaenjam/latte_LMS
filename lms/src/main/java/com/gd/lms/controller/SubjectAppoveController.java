@@ -11,10 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.RegisterService;
+import com.gd.lms.service.SubjectApproveService;
+import com.gd.lms.vo.SubjectApprove;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +28,7 @@ public class SubjectAppoveController {
 
 	//@Autowired subjectAppoveService subjectAppoveService;
 	@Autowired RegisterService registerService;
+	@Autowired SubjectApproveService subjectApproveService;
 
 	// 승인과목 메인 진입 (승인과목메인진입은 왼쪽 사이드바에서 주체에 따라 구분된 강의를 눌러 들어옴)
 	@GetMapping("/subjectApprove/subjectApproveMain")
@@ -41,12 +45,12 @@ public class SubjectAppoveController {
 			// 이전 페이지에서 쿼리스트링으로 받아온 subjectApproveNo 세션저장 & 디버깅
 			session.setAttribute("subjectApproveNo", subjectApproveNo);		
 			log.debug(TeamColor.KHW + subjectApproveNo);
+			
 				
 			Map<String, Object> MyRegister = registerService.getRegisterInfo(subjectApproveNo);
 				
 				
 			model.addAttribute("MyRegister", MyRegister);
-			
 			
 			// 교수의 강의리스트 확인
 			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
@@ -67,4 +71,20 @@ public class SubjectAppoveController {
 			
 			return "/subjectApprove/subjectApproveMain";
 	}
+	
+	
+	//승인과목 active값 변경
+	@PostMapping("/modifySubjectActive")
+	public String modifySubjectActive(SubjectApprove subjectApprove) {
+		
+		log.debug(TeamColor.JJY+"modifySubjectActiveController실행");
+		
+		// row가 1이면 성공! 0이면 실패!
+		int row = subjectApproveService.modifyApproveActive(subjectApprove);
+		
+		log.debug(TeamColor.JJY+"row값 (subjectApproveService Active값) : " + row);
+		
+		return "redirect:/employee/detail/subjectApproveList";
+	}
+	
 }
