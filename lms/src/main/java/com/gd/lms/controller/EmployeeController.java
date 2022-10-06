@@ -340,13 +340,13 @@ public class EmployeeController {
 		model.addAttribute("total", employeeCount+professorCount+studentCount);
 		
 		// 직원/전체
-		model.addAttribute("employeePer", employeeCount/employeeCount+professorCount+studentCount);
+		model.addAttribute("employeePer", (double)employeeCount/(employeeCount+professorCount+studentCount)*100);
 		
 		// 교수/전체
-		model.addAttribute("professorPer", professorCount/employeeCount+professorCount+studentCount);
+		model.addAttribute("professorPer", (double)professorCount/(employeeCount+professorCount+studentCount)*100);
 		
 		// 학생/전체
-		model.addAttribute("studentPer", studentCount/employeeCount+professorCount+studentCount);
+		model.addAttribute("studentPer", (double)studentCount/(employeeCount+professorCount+studentCount)*100);
 		
 		
 		// 계정 정보가 없으면 로그인 실패

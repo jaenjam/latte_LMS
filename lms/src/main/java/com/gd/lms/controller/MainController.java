@@ -78,6 +78,47 @@ public class MainController {
 			model.addAttribute("employeeImg", employeeImg);
 			
 			log.debug(TeamColor.LJE + "MainController gomain model값 출력 : " + model);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////			
+			
+			//employeeCount에 넣어주기
+			int employeeCount = employeeService.selectEmployeeCount();
+			
+			//employeeCount에 값 저장해주기
+			model.addAttribute("employeeCount", employeeCount);
+			
+			log.debug(TeamColor.LJE + "MainController gomain employeeCount : " + employeeCount);
+			
+			
+			//professorCount에 실행결과넣어주기
+			int professorCount = professorService.professorCount();
+			
+			//professorCount에 값 넣어주기
+			model.addAttribute("professorCount", professorCount);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorCount : " + professorCount);
+			
+			
+			//studentCount에 실행결과넣어주기
+			int studentCount = studentService.studentCount();
+			
+			//studentCount에 값 넣어주기
+			model.addAttribute("studentCount", studentCount);
+			
+			log.debug(TeamColor.LJE + "MainController gomain studentCount : " + studentCount);
+			
+			
+			//직원,교수,학생 수 총합
+			model.addAttribute("total", employeeCount+professorCount+studentCount);
+			
+			// 직원/전체
+			model.addAttribute("employeePer", (double)employeeCount/(employeeCount+professorCount+studentCount)*100);
+			
+			// 교수/전체
+			model.addAttribute("professorPer", (double)professorCount/(employeeCount+professorCount+studentCount)*100);
+			
+			// 학생/전체
+			model.addAttribute("studentPer", (double)studentCount/(employeeCount+professorCount+studentCount)*100);
 			
 			
 			if(session.getAttribute("user") !=null) {
