@@ -39,7 +39,7 @@ public class ClubController {
 	
 	//동아리 가입 거절 (삭제)
 	@PostMapping("/professorClubList")
-	public String removeStudentClub(int professorNo, ClubMember clubmember) {
+	public String removeProfessorClub(int professorNo, ClubMember clubmember) {
 		log.debug(TeamColor.CSJ + "ClubController.removeProfessorClub");
 
 		clubService.removeProfessorClub(clubmember);
@@ -50,17 +50,24 @@ public class ClubController {
 	}
 	
 	//동아리 가입 승인 및 clubMember 테이블 삭제
-	@GetMapping("/professorClubList")
-	public String updateStudentClub(String clubNo, int studentNo, int professorNo, ClubMember clubmember) {
-		log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
-		
-		clubService.modifyStudentClub(clubNo, studentNo);
-		clubService.removeProfessorClub(clubmember);
-		
-		return "redirect:/club/professorClubList?professorNo=" + professorNo;
-		
-		
-	}
+		@GetMapping("/professorClubList")
+		public String updateStudentClub(String clubNo, int studentNo, ClubMember clubmember, HttpSession session) {
+			log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
+			
+			int professorNo = (int) session.getAttribute("No");
+			
+			log.debug(TeamColor.CSJ + " > " + clubNo + "/" + studentNo + "/" +professorNo);
+			log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
+			
+			
+			
+			clubService.modifyStudentClub(clubNo, studentNo);
+			clubService.removeProfessorClub(clubmember);
+			
+			return "redirect:/club/professorClubList?professorNo=" + professorNo;
+			
+			
+		}
 	
 	
 	// 학생 동아리 가입 신청 취소 action - club_member 테이블 데이터 삭제

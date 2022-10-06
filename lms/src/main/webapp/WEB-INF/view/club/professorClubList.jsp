@@ -45,6 +45,7 @@
 						</div>
 						<br>
 						<div class="table-responsive">
+							<form action="${pageContext.request.contextPath}/professorClubList" method="get">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -52,30 +53,35 @@
 										<th>이름</th>
 										<th>동아리명</th>
 										<th>신청일</th>
-										<th>승인여부</th>
+										<th> </th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="sc" items="${professorClubList}">
+									<c:forEach var="pc" items="${professorClubList}">
+										
 										<tr>
-											<td>${sc.studentNo}</td>
-											<td>${sc.studentName}</td>
-											<td>${sc.clubName}</td>
-											<td>${sc.createDate}</td>
-											<td><a href="${pageContext.request.contextPath}/professorClubList?professorNo=${No}&clubNo=${sc.clubNo}&studentNo=${sc.studentNo}">
-											<button onclick="approveClub()" type="button" class="btn mb-1 btn-primary" id="approve">
-											승인</button></a>
-												<button onclick="deleteClub()" type="button" class="btn mb-1 btn-outline-dark" id="delete">거절</button>
+											<td>${pc.studentNo}</td>
+											<td>${pc.studentName}</td>
+											<td>${pc.clubName}</td>
+											<td>${pc.createDate}</td>
+											
 											<td>
+											<input name="studentNo" id="student${staus.index}" type="text"
+												value="${pc.studentNo}" />
+												 <input id="professor${staus.index}" name="professorNo"
+												type="text" value="${pc.professorNo}" /> 
+												<input name="clubNo"  
+												id="club${staus.index}" type="text" value="${pc.clubNo}" />
+												<button type="submit"
+													class="btn mb-1 btn-primary" id="approveClub">승인</button></td>
+											
 										</tr>
+										
 									</c:forEach>
 								</tbody>
 							</table>
+							</form>
 						</div>
-
-
-
-
 					</div>
 				</div>
 			</div>

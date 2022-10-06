@@ -50,7 +50,7 @@
 						</div>
 						<br>
 						<div class="table-responsive" style="width: 100%; overflow: auto;">
-							<c:forEach var="s" items="${selectStudentList}">
+							
 								<form
 									action="${pageContext.request.contextPath}/scholarStudentAction?studentNo=${s.studentNo}"
 									method="post" id="studentScholar">
@@ -64,7 +64,7 @@
 											</tr>
 										</thead>
 										<tbody>
-
+											<c:forEach var="s" items="${selectStudentList}">
 											<tr>
 												<td>${s.studentNo}</td>
 												<td>${s.majorNo}(${s.majorName})</td>
@@ -88,10 +88,11 @@
 												</select></td>
 												<td><button type="submit" class="btn btn-primary">변경</button></td>
 											</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</form>
-							</c:forEach>
+							
 						</div>
 					</div>
 				</div>
