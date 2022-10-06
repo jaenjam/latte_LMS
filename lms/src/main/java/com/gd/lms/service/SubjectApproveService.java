@@ -22,6 +22,7 @@ public class SubjectApproveService {
 
 	@Autowired private SubjectApproveMapper subjectApproveMapper;
 	@Autowired SubjectApproveRepository repository;
+	@Autowired 
 	
 	//승인과목 리스트(EmployeeDetailController로)
 	public List<Map<String, Object>> selectSubjectApproveList(){
@@ -29,6 +30,13 @@ public class SubjectApproveService {
 		
 		return subjectApproveMapper.selectSubjectApproveList();
 }
+	
+	// SubjectApprove값 승인
+	public int modifyApproveActive(SubjectApprove subjectApprove) {
+		log.debug(TeamColor.JJY + "modifyApproveActive service 실행");
+		
+		return subjectApproveMapper.updateApproveActive(subjectApprove);
+	}
 	
 
 }
