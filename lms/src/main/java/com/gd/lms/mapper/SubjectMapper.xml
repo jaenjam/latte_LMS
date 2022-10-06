@@ -5,16 +5,44 @@
 	<!-- 과목리스트 -->
 	<select id="selectSubjectList" resultType="map">
 		SELECT
-			  subject_no 		subjectNo
-			, subject_name 		subjectName
-			, subject_state 	subjectState
-			, subject_credit 	subjectCredit
-			, subject_major 	subjectMajor
-			, create_date 		createDate
-			, end_date 			endDate
+		subject_no subjectNo
+		, subject_name subjectName
+		, subject_state subjectState
+		, subject_credit subjectCredit
+		, subject_major subjectMajor
+		, create_date createDate
+		, end_date endDate
 		FROM subject
-		
+
 		ORDER BY subject_no
 	</select>
+
+
+	<!-- 과목 추가 -->
+
+	<insert id="insertSubject" parameterType="com.gd.lms.vo.Subject">
+
+		INSERT INTO subject
+		(
+		subject_no
+		,subject_name
+		,subject_state
+		,subject_credit
+		,subject_major
+		,create_date
+	
+		)
+		VALUES
+		(
+		
+		#{subjectNo}
+		,#{subjectName}
+		,#{subjectState}
+		,#{subjectCredit}
+		,#{subjectMajor}
+		, now()
+
+		)
+	</insert>
 
 </mapper>
