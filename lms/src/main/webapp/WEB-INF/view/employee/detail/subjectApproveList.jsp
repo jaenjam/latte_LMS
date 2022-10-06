@@ -78,6 +78,16 @@
                                                 <td>${a.startDate}</td>
                                                 <td>${a.endDate}</td>
                                                 <td>${a.totalDate}</td>
+                                                <td><select id="approveActive" name="approveActive">
+													<option value="${a.approveActive}" selected>
+														${a.approveActive}</option>
+														<c:if test="${a.approveActive eq 'Y'}">
+														<option value="N">N</option>
+														</c:if>
+														<c:if test="${a.approveActive eq 'N'}">
+														<option value="Y">Y</option>
+														</c:if>
+											</select></td>
                                                 <td>${a.approveActive}</td>
                                                 <td>${a.subjectRoom}</td>
                                                 <td>${a.day}</td>

@@ -37,5 +37,17 @@
 				
 		ORDER BY a.subject_approve_no
 	</select>
+	
+	<!-- active값 변경 쿼리 -->
+	<update id="updateApproveActive" parameterType="com.gd.lms.vo.SubjectApprove"> 
+	
+		UPDATE 
+			subject_approve
+		SET 
+			approve_active = #{approveActive}
+		WHERE 
+			subject_approve_no = #{subjectApproveNo}
+	
+	</update>
 
 </mapper>
