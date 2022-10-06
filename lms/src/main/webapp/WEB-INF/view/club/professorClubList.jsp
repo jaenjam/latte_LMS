@@ -45,7 +45,6 @@
 						</div>
 						<br>
 						<div class="table-responsive">
-							<form action="${pageContext.request.contextPath}/professorClubList" method="get">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -72,15 +71,20 @@
 												type="text" value="${pc.professorNo}" /> 
 												<input name="clubNo"  
 												id="club${staus.index}" type="text" value="${pc.clubNo}" />
-												<button type="submit"
-													class="btn mb-1 btn-primary" id="approveClub">승인</button></td>
+												<input type="text" value="${pc.studentNo}">
+												<input type="text" value="${pc.clubNo}">
+												
+												<a href="${pageContext.request.contextPath}/addClubList?studentNo=${pc.studentNo}&clubNo=${pc.clubNo}&clubMemberNo=${pc.clubMemberNo}"
+													class="btn mb-1 btn-primary">승인</a>
+												<a href="${pageContext.request.contextPath}/removeClubList?clubMemberNo=${pc.clubMemberNo}"
+													class="btn mb-1 btn-primary">삭제</a>
+											</td>
 											
 										</tr>
 										
 									</c:forEach>
 								</tbody>
 							</table>
-							</form>
 						</div>
 					</div>
 				</div>

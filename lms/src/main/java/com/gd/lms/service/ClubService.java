@@ -32,11 +32,11 @@ public class ClubService {
 	@Autowired
 	private ClubMapper clubMapper;
 
-	// 동아리 가입 승인 (clubmember삭제)
-	public int removeProfessorClub(ClubMember clubmember) {
+	// 동아리 가입 승인 (clubmember 삭제)
+	public int removeProfessorClub(int clubMemberNo) {
 		log.debug(TeamColor.CSJ + "clubService.removeStudentClub");
 
-		return clubMapper.deleteProfessorClub(clubmember);
+		return clubMapper.deleteProfessorClub(clubMemberNo);
 	}
 
 	// 동아리 가입 승인 (교수)

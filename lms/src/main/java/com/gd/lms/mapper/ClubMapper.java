@@ -15,8 +15,8 @@ import com.gd.lms.vo.ClubMember;
 @Mapper
 public interface ClubMapper {
 	
-	//동아리 가입 승인
-	int deleteProfessorClub(ClubMember clubmember);
+	//동아리 가입 거절
+	int deleteProfessorClub(int clubMemberNo);
 	
 	//동아리 가입 승인(교수)
 	int updateStudentClub(String clubNo, int studentNo);

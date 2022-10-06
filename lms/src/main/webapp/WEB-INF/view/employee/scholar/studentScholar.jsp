@@ -49,8 +49,7 @@
 							</div>
 						</div>
 						<br>
-						<div class="table-responsive" style="width: 100%; overflow: auto;">
-							
+						<div class="table-responsive" style="width: 100%; overflow: auto;">							
 								<form
 									action="${pageContext.request.contextPath}/scholarStudentAction?studentNo=${s.studentNo}"
 									method="post" id="studentScholar">

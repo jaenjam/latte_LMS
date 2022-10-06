@@ -38,36 +38,41 @@ public class ClubController {
 	StudentService studentService;
 	
 	//동아리 가입 거절 (삭제)
-	@PostMapping("/professorClubList")
-	public String removeProfessorClub(int professorNo, ClubMember clubmember) {
+	@GetMapping("/removeClubList")
+	public String removeProfessorClub(HttpSession session, @RequestParam(value="clubMemberNo") int clubMemberNo) {
+		
 		log.debug(TeamColor.CSJ + "ClubController.removeProfessorClub");
 
-		clubService.removeProfessorClub(clubmember);
+		clubService.removeProfessorClub(clubMemberNo);
 		
-		return "redirect:/club/professorClubList?professorNo=" + professorNo;
+		int professorNo = (int) session.getAttribute("No");
+		
+		return "redirect:/club/professorClubList";
 		
 		
 	}
 	
 	//동아리 가입 승인 및 clubMember 테이블 삭제
-		@GetMapping("/professorClubList")
-		public String updateStudentClub(String clubNo, int studentNo, ClubMember clubmember, HttpSession session) {
-			log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
-			
-			int professorNo = (int) session.getAttribute("No");
-			
-			log.debug(TeamColor.CSJ + " > " + clubNo + "/" + studentNo + "/" +professorNo);
-			log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
-			
-			
-			
-			clubService.modifyStudentClub(clubNo, studentNo);
-			clubService.removeProfessorClub(clubmember);
-			
-			return "redirect:/club/professorClubList?professorNo=" + professorNo;
-			
-			
-		}
+	@GetMapping("/addClubList")
+	public String updateStudentClub(@RequestParam(value="clubNo") String clubNo,
+			@RequestParam(value="studentNo") int studentNo,
+			@RequestParam(value="clubMemberNo") int clubMemberNo,HttpSession session) {
+		log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
+		
+		
+		log.debug(TeamColor.CSJ + " > " + clubNo + "/" + studentNo + "/");
+		log.debug(TeamColor.CSJ + "ClubController.updateProfessorClub");
+		
+		
+		
+		clubService.modifyStudentClub(clubNo, studentNo);
+		clubService.removeProfessorClub(clubMemberNo);
+		int professorNo = (int) session.getAttribute("No");
+		
+		return "redirect:/club/professorClubList?professorNo=" + professorNo;
+		
+		
+	}
 	
 	
 	// 학생 동아리 가입 신청 취소 action - club_member 테이블 데이터 삭제
@@ -108,10 +113,12 @@ public class ClubController {
 
 	// 동아리 신청 목록보기(교수) form
 	@GetMapping("/club/professorClubList")
-	public String professorClubList(ClubMember clubmember, Model model, int professorNo) {
+	public String professorClubList(ClubMember clubmember, Model model, HttpSession session, int professorNo) {
 
 		log.debug(TeamColor.CSJ + "ClubController.professorClubList");
 
+		
+		int profesorNo = (int) session.getAttribute("No");
 		List<Map<String, Object>> professorClubList = clubService.getProfessorClubList(professorNo);
 
 		model.addAttribute("professorClubList", professorClubList);
