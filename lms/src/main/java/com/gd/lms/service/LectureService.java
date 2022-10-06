@@ -259,6 +259,12 @@ public class LectureService {
 	
 	
 	
-	
+	// 교수메뉴 시작-------------------------------------------------------
+	// 교수의 낸 과제 고유넘버당 듣는 학생들의 강의제출일람 확인
+	public List<Map<String, Object>> getLectureTotalList (int lectureNo) {
+		log.debug(TeamColor.KHW + "교수의 낸 과제 고유넘버당 듣는 학생들의 강의제출일람 확인 서비스 실행");
+		
+		return lectureMapper.selectLectureTotalList(lectureNo);
+	}
 	
 }

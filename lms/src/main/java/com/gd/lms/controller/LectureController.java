@@ -235,7 +235,27 @@ public class  LectureController {
 			
 			return returnVal;
 		
-	}
+		}
+	
 		
+		// 교수메뉴 시작-------------------------------------------------------
+		// 교수의 낸 과제 고유넘버당 듣는 학생들의 강의제출일람 확인
+		@GetMapping("/lecture/notStudent/getlectureHomeworkStuList")
+		public String getLectureTotalList(Model model
+				, @RequestParam("lectureNo") int lectureNo
+				, @RequestParam("subjectApproveNo") int subjectApproveNo) {
+			
+			// 해당 컨트롤러 진입여부 확인
+			log.debug(TeamColor.KHW+ "교수의 낸 과제 고유넘버당 듣는 학생들의 강의제출일람 확인 컨트롤러 진입");
+			
+			// 받아온 값 디버깅 확인
+			log.debug(TeamColor.KHW+ "lectureNo : " + lectureNo);
+			log.debug(TeamColor.KHW+ "subjectApproveNo : " + subjectApproveNo);
+			
+			model.addAttribute("LectureTotalList",lectureService.getLectureTotalList(lectureNo) );
+			
+			
+			return "/lecture/notStudent/getlectureHomeworkStuList";
+		}
 			
 }

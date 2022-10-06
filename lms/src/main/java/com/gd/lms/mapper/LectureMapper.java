@@ -30,6 +30,7 @@ public interface LectureMapper {
 	// 강의하는 과목의 과제 파일 첨부를 하기 위해 값 찾기
 	//int selectLectureNo(Lecture lecture);
 	int selectLectureNo(String lectureTitle, String lectureContent, int subjectApproveNo);	
+	
 	// 강의하는 과목의 과제 파일 추가하기
 	int insertLecturefile(LectureFile lectuefile);
 	
@@ -46,6 +47,8 @@ public interface LectureMapper {
 	int deleteLectureFileOne(int lectureFileNo);
 
 	
-
+	// 교수메뉴 시작
+	// 교수의 낸 과제 고유넘버당 듣는 학생들의 강의제출일람 확인
+	List<Map<String, Object>> selectLectureTotalList(int lectureNo);
 	
 }

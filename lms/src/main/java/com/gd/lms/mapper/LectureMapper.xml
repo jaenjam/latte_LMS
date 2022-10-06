@@ -171,4 +171,49 @@
 		lecturefile_no = #{lecturefileNo}		
 	</delete>
 	
+	
+	
+	
+	
+	<!--  교수 메뉴 시작  -->
+	<!--  교수의 낸 과제 고유넘버당 듣는 학생들의 강의제출일람 확인 -->
+	<select id="selectLectureTotalList" parameterType="int" resultType="map">
+	SELECT
+	DISTINCT 
+	sh.student_no studentNo
+	, sh.lecture_no lectureNo
+	, sh.homework_title homeworkTitle
+	, sh.homework_content homeworkContent
+	, sh.student_submitck studentSubmitCk
+	, sh.score score
+	, l.subject_approve_no	subjectApproveNo
+	, sa.subject_no subjectNo
+	, sa.professor_no professorNo
+	, sa.subject_no subjectNo
+	, sa.major_no majorNo
+	, s.subject_name subjectName
+	, st.student_name studentName
+	FROM
+		student_homework sh
+		RIGHT JOIN
+			lecture l
+			ON
+				sh.lecture_no=l.lecture_no
+				RIGHT JOIN
+				subject_approve sa
+					ON
+					l.subject_approve_no = sa.subject_approve_no
+						RIGHT JOIN
+						subject s
+						ON
+						sa.subject_no = s.subject_no
+							RIGHT JOIN
+							student st
+								ON
+								sh.student_no = st.student_no
+						WHERE
+						sh.lecture_no = #{letureNo}
+	</select>
+	
+	
 </mapper>

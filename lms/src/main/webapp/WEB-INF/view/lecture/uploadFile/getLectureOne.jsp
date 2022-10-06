@@ -81,13 +81,15 @@
 		                                    	 <button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기 </button>
 		                                 		
 		                                 		<!-- 과제제출 -->
-			                                 	<a href="${pageContext.request.contextPath}/lectureStudentHomework/submitHomework?lectureNo=${lectureOne.lectureNo}">
+			                                 	<a href="${pageContext.request.contextPath}/lecture/lectureStudentHomework/submitHomework?lectureNo=${lectureOne.lectureNo}">
 													<button type="button" class="btn btn-primary"> 과제제출 </button>
 												</a>
 		                                 
 		                                 </c:if> 
 		                                
 									</div>
+									
+									
 						        </div>
 	                        </div>
 	                    </div>
