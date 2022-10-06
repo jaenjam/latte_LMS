@@ -5,7 +5,8 @@
 	<!-- 메인 : 공지 최근 5개 노출  -->
 	<select id="selectNoticeTop" resultType="map">
 		SELECT
-			  notice_title		noticeTitle
+			  notice_no			noticeNo
+			, notice_title		noticeTitle
 			, notice_writer		noticeWriter
 			, create_date		createDate
 		FROM notice

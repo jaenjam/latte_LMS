@@ -35,7 +35,11 @@
                                         <tbody>
                                         	<c:forEach var="n" items="${noticeListTop}">
                                             <tr>
-                                                <td>${n.noticeTitle}</td>
+                                                <td>
+                                                	<a href="${pageContext.request.contextPath}/notice/noticeOne?noticeNo=${n.noticeNo}">
+                                                		${n.noticeTitle}
+                                                	</a>
+                                                </td>
                                                 <td>${n.createDate}</td>
                                             </tr>
                                             </c:forEach>
@@ -115,29 +119,29 @@
                             	<c:if test="${user eq 'employee'}">
 	                                <div class="card-body" style="min-height:450px;">
 	                                    <h5 class="text-muted">전체 학생,직원 수</h5>
-	                                    <h2 class="mt-4">5680명</h2>
-	                                    <span>총 결석률</span>
+	                                    <h2 class="mt-4">총 ${total}명</h2>
+	                                    <span>직원수, 교수, 학생</span>
 	                                    <div class="mt-4">
-	                                        <h4>30</h4>
-	                                        <h6>Online Order <span class="pull-right">%</span></h6>
+	                                        <h4>${employeeCount}명</h4>
+	                                        <h6>직원수<span class="pull-right">${employeePer}%</span></h6>
 	                                        <div class="progress mb-3" style="height: 7px">
-	                                            <div class="progress-bar bg-primary" style="width: 30%;" role="progressbar"><span class="sr-only">30% Order</span>
+	                                            <div class="progress-bar bg-primary" style="width: ${employeePer}%;" role="progressbar"><span class="sr-only">30% Order</span>
 	                                            </div>
 	                                        </div>
 	                                    </div>
 	                                    <div class="mt-4">
-	                                        <h4>50</h4>
-	                                        <h6 class="m-t-10 text-muted">Offline Order <span class="pull-right">50%</span></h6>
+	                                        <h4>${professorCount}명</h4>
+	                                        <h6 class="m-t-10 text-muted">교수수<span class="pull-right">${professorPer}%</span></h6>
 	                                        <div class="progress mb-3" style="height: 7px">
-	                                            <div class="progress-bar bg-success" style="width: 50%;" role="progressbar"><span class="sr-only">50% Order</span>
+	                                            <div class="progress-bar bg-success" style="width: ${professorPer}%;" role="progressbar"><span class="sr-only">50% Order</span>
 	                                            </div>
 	                                        </div>
 	                                    </div>
 	                                    <div class="mt-4">
-	                                        <h4>20</h4>
-	                                        <h6 class="m-t-10 text-muted">Cash On Develery <span class="pull-right">20%</span></h6>
+	                                        <h4>${studentCount}명</h4>
+	                                        <h6 class="m-t-10 text-muted">학생수<span class="pull-right">${studentPer}%</span></h6>
 	                                        <div class="progress mb-3" style="height: 7px">
-	                                            <div class="progress-bar bg-warning" style="width: 20%;" role="progressbar"><span class="sr-only">20% Order</span>
+	                                            <div class="progress-bar bg-warning" style="width: ${studentPer}%;" role="progressbar"><span class="sr-only">20% Order</span>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -350,203 +354,6 @@
                         </div>                        
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6">
-
-                        <div class="card">
-                            <div class="chart-wrapper mb-4">
-                                <div class="px-4 pt-4 d-flex justify-content-between">
-                                    <div>
-                                        <h4>Sales Activities</h4>
-                                        <p>Last 6 Month</p>
-                                    </div>
-                                    <div>
-                                        <span><i class="fa fa-caret-up text-success"></i></span>
-                                        <h4 class="d-inline-block text-success">720</h4>
-                                        <p class=" text-danger">+120.5(5.0%)</p>
-                                    </div>
-                                </div>
-                                <div>
-                                        <canvas id="chart_widget_3"></canvas>
-                                </div>
-                            </div>
-                            <div class="card-body border-top pt-4">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <ul>
-                                            <li>5% Negative Feedback</li>
-                                            <li>95% Positive Feedback</li>
-                                        </ul>
-                                        <div>
-                                            <h5>Customer Feedback</h5>
-                                            <h3>385749</h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div id="chart_widget_3_1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Activity</h4>
-                                <div id="activity">
-                                    <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./images/avatar/1.jpg" class="mr-3 rounded-circle">
-                                        <div class="media-body">
-                                            <h5>Received New Order</h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back,</p>
-                                        </div><span class="text-muted ">April 24, 2018</span>
-                                    </div>
-                                    <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
-                                        <div class="media-body">
-                                            <h5>iPhone develered</h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back,</p>
-                                        </div><span class="text-muted ">April 24, 2018</span>
-                                    </div>
-                                    <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
-                                        <div class="media-body">
-                                            <h5>3 Order Pending</h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back,</p>
-                                        </div><span class="text-muted ">April 24, 2018</span>
-                                    </div>
-                                    <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
-                                        <div class="media-body">
-                                            <h5>Join new Manager</h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back,</p>
-                                        </div><span class="text-muted ">April 24, 2018</span>
-                                    </div>
-                                    <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
-                                        <div class="media-body">
-                                            <h5>Branch open 5 min Late</h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back,</p>
-                                        </div><span class="text-muted ">April 24, 2018</span>
-                                    </div>
-                                    <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
-                                        <div class="media-body">
-                                            <h5>New support ticket received</h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back,</p>
-                                        </div><span class="text-muted ">April 24, 2018</span>
-                                    </div>
-                                    <div class="media pt-3 pb-3">
-                                        <img width="35" src="./images/avatar/3.jpg" class="mr-3 rounded-circle">
-                                        <div class="media-body">
-                                            <h5>Facebook Post 30 Comments</h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back,</p>
-                                        </div><span class="text-muted ">April 24, 2018</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-12 col-sm-12 col-xxl-12">
-                        <div class="card">
-                            <div class="card-body">
-                                    <h4 class="card-title mb-0">Store Location</h4>
-                                <div id="world-map" style="height: 470px;"></div>
-                            </div>        
-                        </div>
-                    </div>
-                </div>
-
-                
-
-                <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="social-graph-wrapper widget-facebook">
-                                    <span class="s-icon"><i class="fa fa-facebook"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="social-graph-wrapper widget-linkedin">
-                                    <span class="s-icon"><i class="fa fa-linkedin"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="social-graph-wrapper widget-googleplus">
-                                    <span class="s-icon"><i class="fa fa-google-plus"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="social-graph-wrapper widget-twitter">
-                                    <span class="s-icon"><i class="fa fa-twitter"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
             <!-- #/ container -->
         </div>
         <!--**********************************

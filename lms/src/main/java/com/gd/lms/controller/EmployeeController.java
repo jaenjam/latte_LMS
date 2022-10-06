@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.NoticeService;
+import com.gd.lms.service.ProfessorService;
+import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.EmployeeImg;
 import com.gd.lms.vo.Student;
@@ -39,7 +41,10 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 	@Autowired NoticeService noticeService;
+	@Autowired ProfessorService professorService;
+	@Autowired StudentService studentService;
 
+	
 	// 교수사진등록하기 (Form)
 	@GetMapping("/employee/addEmployeeImgForm")
 	public String addEmployeeImg(Model model) {
@@ -304,6 +309,44 @@ public class EmployeeController {
 		
 		log.debug(TeamColor.LJE + "EmployeeController loginEmployee employeeImg : " + employeeImg);
 		
+		
+		//employeeCount에 넣어주기
+		int employeeCount = employeeService.selectEmployeeCount();
+		
+		//employeeCount에 값 저장해주기
+		model.addAttribute("employeeCount", employeeCount);
+		
+		log.debug(TeamColor.LJE + "EmployeeController loginEmployee employeeCount : " + employeeCount);
+		
+		
+		//professorCount에 실행결과넣어주기
+		int professorCount = professorService.professorCount();
+		
+		//professorCount에 값 넣어주기
+		model.addAttribute("professorCount", professorCount);
+		
+		log.debug(TeamColor.LJE + "EmployeeController loginEmployee professorCount : " + professorCount);
+		
+		
+		//studentCount에 실행결과넣어주기
+		int studentCount = studentService.studentCount();
+		
+		//studentCount에 값 넣어주기
+		model.addAttribute("studentCount", studentCount);
+		
+		log.debug(TeamColor.LJE + "EmployeeController loginEmployee studentCount : " + studentCount);
+		
+		//직원,교수,학생 수 총합
+		model.addAttribute("total", employeeCount+professorCount+studentCount);
+		
+		// 직원/전체
+		model.addAttribute("employeePer", employeeCount/employeeCount+professorCount+studentCount);
+		
+		// 교수/전체
+		model.addAttribute("professorPer", professorCount/employeeCount+professorCount+studentCount);
+		
+		// 학생/전체
+		model.addAttribute("studentPer", studentCount/employeeCount+professorCount+studentCount);
 		
 		
 		// 계정 정보가 없으면 로그인 실패

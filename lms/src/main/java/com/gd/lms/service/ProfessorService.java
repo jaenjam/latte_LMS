@@ -20,6 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 public class ProfessorService {
 	@Autowired ProfessorMapper professorMapper;
 	
+	//교수 수
+	public int professorCount() {
+		log.debug(TeamColor.LJE + "ProfessorService professorCount 실행");
+		
+		return professorMapper.selectProfessorCount();
+	}
+	
 	//재직/재학 상태 - 교수 계정상태리스트 출력(EmployeeStatusController로)
 	public List<Map<String, Object>> getProfessorStatusList(){
 		log.debug(TeamColor.LJE + "ProfessorService getProfessorStatusList");

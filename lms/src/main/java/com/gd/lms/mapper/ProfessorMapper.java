@@ -11,6 +11,9 @@ import com.gd.lms.vo.ProfessorImg;
 @Mapper
 public interface ProfessorMapper {
 
+	//교수 수
+	int selectProfessorCount();
+	
 	//재직/재학 상태 - 교수 상태 수정폼
 	List<Map<String, Object>> professorStatusList();
 	

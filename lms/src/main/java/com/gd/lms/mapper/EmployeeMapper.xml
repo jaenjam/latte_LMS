@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.EmployeeMapper">
+	
+	<!-- 관리자 수 -->
+	<select id="selectEmployeeCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			employee
+	</select>
 
 	<!-- 관리자사진 유무확인 -->
 	<select id="selectEmployeeImg" parameterType="int" resultType="map">

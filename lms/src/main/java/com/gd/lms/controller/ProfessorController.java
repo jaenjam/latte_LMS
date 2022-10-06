@@ -125,7 +125,7 @@ public class ProfessorController {
 			//professorImg에 값 저장해주기
 			model.addAttribute("professorImg", professorImg);
 
-			log.debug(TeamColor.LJE + "ProfessorController professorImg : " + professorImg);
+			log.debug(TeamColor.LJE + "ProfessorController professorLogin professorImg : " + professorImg);
 			
 			
 			result = "/home";

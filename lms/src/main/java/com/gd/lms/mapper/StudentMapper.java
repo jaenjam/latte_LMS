@@ -11,6 +11,9 @@ import com.gd.lms.vo.StudentImg;
 @Mapper
 public interface StudentMapper {
 
+	//학생 수
+	int selectStudentCount();
+	
 	//학생사진유무
 	List<Map<String, Object>> selectStudentImg(int studentNo);
 	

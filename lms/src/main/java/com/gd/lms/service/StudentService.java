@@ -19,6 +19,13 @@ public class StudentService {
 	@Autowired
 	StudentMapper studentMapper;
 	
+	//학생 수
+	public int studentCount() {
+		log.debug(TeamColor.LJE + "StudentService studentCount");
+		
+		return studentMapper.selectStudentCount();
+	}
+	
 	//학생사진여부유무
 	public List<Map<String, Object>> getStudentImg(int studentNo){
 		log.debug(TeamColor.LJE + "StudentService getStudentImg");

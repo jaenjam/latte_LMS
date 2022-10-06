@@ -24,9 +24,16 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
+	//관리자 수
+	public int selectEmployeeCount() {
+		log.debug(TeamColor.LJE + "EmployeeService selectEmployeeCount 실행");
+		
+		return employeeMapper.selectEmployeeCount();
+	}
+	
 	//관리자 사진유무
 	public List<Map<String, Object>> getEmployeeImg(int employeeNo){		
-		log.debug(TeamColor.LJE + "Service getEmployeeImg 실행");
+		log.debug(TeamColor.LJE + "EmployeeService getEmployeeImg 실행");
 		
 		return employeeMapper.selectEmployeeImg(employeeNo);
 	}
