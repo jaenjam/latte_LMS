@@ -47,7 +47,7 @@ public class ClubController {
 		
 		int professorNo = (int) session.getAttribute("No");
 		
-		return "redirect:/club/professorClubList";
+		return "redirect:/club/professorClubList?professorNo=" +professorNo;
 		
 		
 	}

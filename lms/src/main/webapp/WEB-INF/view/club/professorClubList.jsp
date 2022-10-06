@@ -65,19 +65,13 @@
 											<td>${pc.createDate}</td>
 											
 											<td>
-											<input name="studentNo" id="student${staus.index}" type="text"
-												value="${pc.studentNo}" />
-												 <input id="professor${staus.index}" name="professorNo"
-												type="text" value="${pc.professorNo}" /> 
-												<input name="clubNo"  
-												id="club${staus.index}" type="text" value="${pc.clubNo}" />
-												<input type="text" value="${pc.studentNo}">
-												<input type="text" value="${pc.clubNo}">
+											
+												 
 												
 												<a href="${pageContext.request.contextPath}/addClubList?studentNo=${pc.studentNo}&clubNo=${pc.clubNo}&clubMemberNo=${pc.clubMemberNo}"
 													class="btn mb-1 btn-primary">승인</a>
 												<a href="${pageContext.request.contextPath}/removeClubList?clubMemberNo=${pc.clubMemberNo}"
-													class="btn mb-1 btn-primary">삭제</a>
+													class="btn mb-1 btn-outline-primary">거절</a>
 											</td>
 											
 										</tr>
