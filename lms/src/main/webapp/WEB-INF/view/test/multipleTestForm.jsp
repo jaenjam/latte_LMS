@@ -192,21 +192,8 @@
 											class="form-control" type="text"
 											name="multipleChoiceExampleList"></td>
 									</tr>
-									<tr>
-										<th class="align-middle">배점</th>
-										<td style="padding-top: 0.75rem; padding-bottom: 0.75rem;">
-											<div class="row">
-												<div class="col">
-													<input class="" type="radio"
-														name="" value="5"> 5점
-												</div>
-												<div class="col">
-													<input class="" type="radio"
-														name="" value="10"> 10점
-												</div>
-											</div>
-										</td>
-									</tr>
+									<tr><td><input type="hidden" value="10" name=""></td></tr>
+
 									<tr>
 										<td class="text-right" colspan="2"><button type="submit"
 												class="btn btn-primary" style="float: right;">출제</button></td>
