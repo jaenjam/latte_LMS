@@ -26,10 +26,10 @@
 							href="${pageContext.request.contextPath}/register/getRegisterForm">수강신청</a>
 						</li>
 						<li><a
-							href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm">강의평가</a>
+							href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessList?studentNo=${No}">강의평가</a>
 						</li>
 						<li><a
-							href="${pageContext.request.contextPath}/register/getRegisterForm">교수평가</a>
+							href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessList?studentNo=${No}">교수평가</a>
 						</li>
 					</ul></li>
 				<!-- 시험출제 -->

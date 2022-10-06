@@ -42,7 +42,7 @@
                             <div class="row">
                             	<div class="col-sm-9">
                             	
-                               		<h4 class="card-title"> 수강중인 강의 </h4>
+                               		<h4 class="card-title"> 교수평가 </h4>
                                 </div>
                                 <div class="col-sm-3">
                                  
@@ -61,7 +61,7 @@
                                                 <th>평가여부</th>
                                             </tr>
                                         </thead>
-                                        <tbody><span>${registerList}</span>
+                                        <tbody>
                                       
                                         <c:forEach var="L" items="${registerList}">
                                             <tr>
@@ -73,13 +73,48 @@
                                                 	<!--  강의 상세정보 -->
                                                 	<a href="${pageContext.request.contextPath}/lecture/getLectureOne?lectureNo=${L.lectureNo}">
                                                 		${L.subjectName}
-                                                	
+                                                	</a>
                                                 </td>
-                                                                                            <td> ${L.professorAssessCk} </td>
+                                              <td>
+                                               		<c:if test="${L.professorAssessCk == 'N'}">
+                                               			N
+                                                	</c:if>
+                                                	
+                                                	<c:if test="${L.professorAssessCk == null}">
+                                                		N
+                                                	</c:if>
+                                                	
+                                                	 <c:if test="${L.professorAssessCk == 'Y'}">
+                                                	 	${L.professorAssessCk}
+                                                	 </c:if>
+                                                </td>	
+                                               
+                                               
                                                 <td> 
+                                               	 <c:if test="${L.professorAssessCk == 'N'}">
 	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm?registerNo=${L.registerNo}"> 
-	                                                <button type="button" class="btn btn-primary">
-	                                                평가하기 </button> </a> 
+		                                                <button type="button" class="btn btn-primary">
+		                                                	평가하기 
+		                                                </button> 
+	                                                </a> 
+	                                              </c:if>
+	                                                
+	                                               <c:if test="${L.professorAssessCk == null}">
+	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm?registerNo=${L.registerNo}"> 
+		                                                <button type="button" class="btn btn-primary">
+		                                                	평가하기 
+		                                                </button> 
+	                                                </a>    	                                            
+	                                             </c:if>
+	                                                
+	                                             <c:if test="${L.professorAssessCk == 'Y'}">
+	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessFormOne?registerNo=${L.registerNo}"> 
+		                                                <button type="button" class="btn btn-primary">
+		                                                	상세보기 
+		                                                </button> 
+	                                                </a> 
+	                                               
+	                                             </c:if>      
                                                 </td>
                                             </tr>
                                         </c:forEach>

@@ -30,7 +30,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">강의평가</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">교수평가</a></li>
                     </ol>
                 </div>
             </div>
@@ -44,10 +44,10 @@
                             <div class="row">
                             	<div class="col-sm-9">
                             	
-                               		<h4 class="card-title"> 과목평가 </h4>
+                               		<h4 class="card-title"> 교수평가 </h4>
                                 </div>
                                 <div class="col-sm-3">
-                                    과목평가는 자유롭게 남겨주세요!
+                                    교수평가는 자유롭게 남겨주세요!
                             	</div>
                             </div>
                                 <br>
@@ -61,7 +61,7 @@
                                                 <th>년도</th>
                                                 <th>학기</th>
                                                 <th>학점</th>  
-                                                <th>과목</th>
+                                                <th>교수</th>
                                                 
                                                 <th>별점</th>
                                                 <th>평가내용</th>
@@ -74,7 +74,7 @@
                                                <td>${A.yearS}</td>
                                                 <td>${A.semesterS}</td>
                                                 <td>${A.subjectCredit}</td>
-                                                <td> ${A.subjectName} </td>
+                                                <td> ${A.professorName} </td>
                                                 <td> ${A.professorAssessScore} </td>
                                                 <td> ${A.professorAssessCk} </td>
                                                 <td>

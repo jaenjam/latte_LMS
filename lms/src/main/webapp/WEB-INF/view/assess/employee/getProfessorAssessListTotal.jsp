@@ -17,7 +17,7 @@
 <body>
 
 
-<!--  듣고있는 강의 리스트 / 평가제출여부 -->
+<!--  전체 토탈 리스트 / 평가제출여부 -->
 
 <!--**********************************
             Content body start
@@ -27,8 +27,8 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">강의평가</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">만족도평가</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">교수평가</a></li>
                     </ol>
                 </div>
             </div>
@@ -42,10 +42,10 @@
                             <div class="row">
                             	<div class="col-sm-9">
                             	
-                               		<h4 class="card-title"> 강의평가 </h4>
+                               		<h4 class="card-title"> 현재 개설된 강의 </h4>
                                 </div>
                                 <div class="col-sm-3">
-                                 
+                                  
                             	</div>
                             </div>
                                 <br>
@@ -58,10 +58,10 @@
                                                 <th>학점</th>  
                                                 <th>교수</th>
                                                 <th>과목명</th>
-                                                <th>평가여부</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        
+                                        <tbody><span>${registerList}</span>
                                       
                                         <c:forEach var="L" items="${registerList}">
                                             <tr>
@@ -73,47 +73,13 @@
                                                 	<!--  강의 상세정보 -->
                                                 	<a href="${pageContext.request.contextPath}/lecture/getLectureOne?lectureNo=${L.lectureNo}">
                                                 		${L.subjectName}
-                                                	</a>
+                                                	
                                                 </td>
-                                                <td>
-                                               		<c:if test="${L.subjectAssessCk == 'N'}">
-                                               			N
-                                                	</c:if>
-                                                	
-                                                	<c:if test="${L.subjectAssessCk == null}">
-                                                		N
-                                                	</c:if>
-                                                	
-                                                	 <c:if test="${L.subjectAssessCk == 'Y'}">
-                                                	 	${L.subjectAssessCk}
-                                                	 </c:if>
-                                                </td>	
-                                               
                                                 <td> 
-                                                <c:if test="${L.subjectAssessCk == 'N'}">
-	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm?registerNo=${L.registerNo}"> 
-		                                          		<button type="button" class="btn  vbtn-primary">
-		                                                	평가하기 
-		                                                </button> 
-	                                                </a> 
-	                                             </c:if>   
-	                                             <c:if test="${L.subjectAssessCk == null}">
-	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm?registerNo=${L.registerNo}"> 
-		                                                <button type="button" class="btn btn-primary">
-		                                                	평가하기 
-		                                                </button> 
-	                                                </a> 
-	                                             </c:if>   
-	                                             <c:if test="${L.subjectAssessCk == 'Y'}">
-	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessFormOne?registerNo=${L.registerNo}"> 
-		                                                <button type="button" class="btn btn-primary">
-		                                                	상세보기 
-		                                                </button> 
-	                                                </a> 
-	                                             </c:if>      
+	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm?registerNo=${L.registerNo}"> 
+	                                                <button type="button" class="btn btn-primary">
+	                                                상세하기 </button> </a> 
                                                 </td>
-                                                
-                                                	
                                             </tr>
                                         </c:forEach>
                                         </tbody>

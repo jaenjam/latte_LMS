@@ -23,7 +23,6 @@
 	</insert>
 
 
-
 	<!--  1-75. 수강신청 완료 이후 professor_assess 테이블에 해당 register_no로 디비 자동삽입 -->
 	<insert id="insertSa" parameterType="int">
 	INSERT INTO professor_assess
@@ -46,7 +45,8 @@
 	<select id="selectAssessList" parameterType="int" resultType="map">
 	SELECT
 	distinct
-		r.subject_approve_no subjectApproveNo
+		r.student_no
+		, r.subject_approve_no subjectApproveNo
 		, r.create_date createDate
 		, r.update_date updateDate
 		, sa.professor_no professorNo
@@ -61,19 +61,19 @@
 		, s.subject_credit subjectCredit
 	FROM
 		register r
-		RIGHT JOIN
+		LEFT JOIN
 			subject_approve sa
 				ON
 				r.subject_approve_no = sa.subject_approve_no
-					RIGHT JOIN
+					LEFT JOIN
 						professor_assess pa
 							ON
 							r.register_no= pa.register_no 
-							RIGHT JOIN
+							LEFT JOIN
 							professor pf
 								ON
 								sa.professor_no = pf.professor_no
-								RIGHT JOIN
+								LEFT JOIN
 									subject s
 									ON
 									sa.subject_no = s.subject_no
@@ -95,6 +95,7 @@
 			, pa.register_no registerNo
 			, pa.professor_assess_score professorAssessScore
 			, pa.professor_assess_ck professorAssessCk
+			, pa.professor_assess_content professorAssessContent
 			, pf.professor_name professorName
 			, s.subject_name subjectName
 			, s.subject_credit subjectCredit
@@ -136,6 +137,51 @@
 	</insert>
 	
 	
+	
+	
+	<!--  과목평가 관련 -->
+	<select id="selectSubjectAssessList" parameterType="int" resultType="map">
+	SELECT
+	distinct
+		r.student_no
+		, r.subject_approve_no subjectApproveNo
+		, r.create_date createDate
+		, r.update_date updateDate
+		, sa.professor_no professorNo
+		, sa.year yearS
+		, sa.semester semesterS
+		, sba.register_no registerNo
+		, sba.subject_assess_score subjectAssessScore
+		, sba.subject_assess_ck subjectAssessCk
+		, sba.subject_assess_content subjectAssessContent
+		, pf.professor_name professorName
+		, s.subject_name subjectName
+		, s.subject_credit subjectCredit
+	FROM
+		register r
+		LEFT JOIN
+			subject_approve sa
+				ON
+				r.subject_approve_no = sa.subject_approve_no
+					LEFT JOIN
+						subject_assess sba
+							ON
+							r.register_no= sba.register_no 
+							LEFT JOIN
+							professor pf
+								ON
+								sa.professor_no = pf.professor_no
+								LEFT JOIN
+									subject s
+									ON
+									sa.subject_no = s.subject_no
+							
+	WHERE
+		student_no = #{No};	
+	</select>
+	
+	
+	
 	<!-- 별점기반 과목 평가 입력 -->
 	<insert id="insertAssessSbOne" parameterType="com.gd.lms.vo.SubjectAssess">
 	INSERT INTO
@@ -149,5 +195,7 @@
 	, #{subjectAssessScore}
 	, #{subjectAssessContent})
 	</insert>
+
+
 
 </mapper>
