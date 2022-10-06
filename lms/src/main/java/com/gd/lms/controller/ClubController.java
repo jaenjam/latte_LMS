@@ -64,7 +64,7 @@ public class ClubController {
 	
 	
 	// 학생 동아리 가입 신청 취소 action - club_member 테이블 데이터 삭제
-	@PostMapping("/studentClubList")
+	@GetMapping("/studentClubList")
 	public String removeStudentClub(ClubMember clubmember, int studentNo
 			  ) {
 		System.out.println(clubmember.toString());

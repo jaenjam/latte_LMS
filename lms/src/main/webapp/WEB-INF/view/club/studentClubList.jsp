@@ -37,9 +37,7 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<form
-							action="${pageContext.request.contextPath}/studentClubList?studentNo=${No}"
-							method="post" id="deleteStudentClub">
+						
 							<div class="row">
 
 								<div class="col-sm-9">
@@ -59,26 +57,29 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="sc" items="${studentClubList}">
-											<tr>
+										<c:forEach varStatus="staus" var="sc" items="${studentClubList}">
+                                    <tr>
+                                        <td>${sc.studentNo}</td>
+                                        <td>${sc.studentName}</td>
+                                        <td>${sc.clubName}</td>
+                                        <td>${sc.createDate}</td>
+                                        <td>
 
-												<td><input type="hidden" value="${sc.clubNo}"
-													id="clubNo" name="clubNo">${sc.studentNo}</td>
-												<td>${sc.studentName}</td>
-												<td>${sc.clubName}</td>
-												<td>${sc.createDate}</td>
-												<td><button onclick="deleteStudentClub()" type="button"
-														class="btn mb-1 btn-primary" id="deleteStudentbtn">취소신청</button>
-												</td>
-											</tr>
-										</c:forEach>
+                                            <input id="student${staus.index}" type="hidden" value="${sc.studentNo}"/>
+                                            <input id="club${staus.index}" type="hidden" value="${sc.clubNo}"/>
+                                            <button onclick="deleteStudentClub(${staus.index})" type="button"
+                                                    class="btn mb-1 btn-primary" id="deleteStudentClub">취소신청
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
 									</tbody>
 								</table>
 							</div>
 
 
 
-						</form>
+					
 					</div>
 				</div>
 			</div>
