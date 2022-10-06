@@ -56,7 +56,6 @@
 	<!--**********************************
         Main wrapper start
     ***********************************-->
-	<div id="main-wrapper">
 
 		<!--**********************************
             Nav header start
@@ -91,17 +90,20 @@
 					</div>
 				</div><!-- 클릭시 메뉴 반응 -->
 				
-			
+				<div class="header-left">
+					<div class="input-group icons">
+						<div class="input-group-prepend">
+						</div>
+						<div class="drop-down animated flipInX d-md-none">
+							<form action="#">
+								<input type="text" class="form-control" placeholder="Search">
+							</form>
+						</div>
+					</div>
+				</div>
+				
 				<div class="header-right">
 					<ul class="clearfix">
-						<li class="icons dropdown">
-							<div class="drop-down animated fadeIn dropdown-menu">
-								<div
-									class="dropdown-content-heading d-flex justify-content-between">
-									
-								</div>
-							
-							</div></li>
 					
 						
 						<!-- 접속한 사람이름 -->
@@ -230,7 +232,6 @@
 					</ul>
 				</div>
 			</div>
-		</div>
 		</div>
 		<!--**********************************
             Header end ti-comment-alt
