@@ -1,5 +1,6 @@
 package com.gd.lms.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +46,17 @@ public class SubjectAppoveController {
 				
 				
 			model.addAttribute("MyRegister", MyRegister);
+			
+			
+			// 교수의 강의리스트
+			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
+
+			// 서비스실행 결과물을 model에 저장 & 디버깅으로 확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "SubjectApproveController getsubjectApproveMain myRegisterListProf : " + myRegisterListProf);
 				
-				
+			
 			return "/subjectApprove/subjectApproveMain";
 	}
 }
