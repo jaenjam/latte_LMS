@@ -10,8 +10,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>latte_LMS</title>
 <!-- Favicon icon -->
-<link rel="icon" type="image/png" sizes="16x16"
-	href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/images/head.png">
 <!-- Pignose Calender -->
 <link
 	href="${pageContext.request.contextPath}/plugins/pg-calendar/css/pignose.calendar.min.css"
