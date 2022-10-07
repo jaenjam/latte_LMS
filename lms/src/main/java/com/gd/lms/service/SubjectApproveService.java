@@ -22,7 +22,14 @@ public class SubjectApproveService {
 
 	@Autowired private SubjectApproveMapper subjectApproveMapper;
 	@Autowired SubjectApproveRepository repository;
-	@Autowired 
+	
+	
+	// SubjectApprove 정보 변경
+		public int modifySubjectApprove(int year, String semester, String approveActive, String subjectRoom, String day, int startTime, int endTime,int subjectApproveNo) {
+			log.debug(TeamColor.CSJ+ "modifySubjectApprove service 실행");
+			
+			return subjectApproveMapper.updateSubjectApprove(year, semester, approveActive, subjectRoom, day, startTime, endTime, subjectApproveNo);
+		}
 	
 	//승인과목 리스트(EmployeeDetailController로)
 	public List<Map<String, Object>> selectSubjectApproveList(){
@@ -31,12 +38,7 @@ public class SubjectApproveService {
 		return subjectApproveMapper.selectSubjectApproveList();
 }
 	
-	// SubjectApprove값 승인
-	public int modifyApproveActive(SubjectApprove subjectApprove) {
-		log.debug(TeamColor.JJY + "modifyApproveActive service 실행");
-		
-		return subjectApproveMapper.updateApproveActive(subjectApprove);
-	}
+	
 	
 	// 교수가 신청한 과목이 승인테이블로 넘어옴
 	public int addSubjectApprove(int majorNo,String subjectNo,int professorNo,String startDate,String endDate) {

@@ -31,6 +31,7 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="javascript:void(4)">상세관리</a></li>
 				<li class="breadcrumb-item active"><a href="javascript:void(0)">과목승인</a></li>
+				
 			</ol>
 		</div>
 	</div>
@@ -55,7 +56,7 @@
 										<th>승인번호</th>
 										<th>학과번호 (학과명)</th>
 										<th>과목번호 (과목명)</th>
-										<th>담당교수사번 (교수이름)</th>
+										<th>담당교수사번 (교수명)</th>
 										<th>년도</th>
 										<th>학기</th>
 										<th>개강일</th>
@@ -69,7 +70,7 @@
 									</tr>
 								</thead>
 								<c:forEach var="a" items="${subjectApproveList}">
-									<form action="${pageContext.request.contextPath}/modifySubjectActive?subjectApproveNo=${a.subjectApproveNo}" method="post">
+									<form action="${pageContext.request.contextPath}/modifySubjectApprove?subjectApproveNo=${a.subjectApproveNo}&year=${a.year}&semester=${a.semester}&approveActive=${a.approveActive}&subjectRoom=${a.subjectRoom}&day=${a.day}&startTime=${a.startTime}&endTime=${a.endTime}" method="post">
 									<tbody>
 
 										<tr>
@@ -77,8 +78,15 @@
 											<td>${a.majorNo}(${a.majorName})</td>
 											<td>${a.subjectNo}(${a.subjectName})</td>
 											<td>${a.professorNo}(${a.professorName})</td>
-											<td>${a.year}</td>
-											<td>${a.semester}</td>
+											<td>
+											<c:if test = "${a.year eq null}">
+											<input type="text" name="year" value="${a.year}" style="width:36px;height:20px;font-size:13px;">
+											</c:if>
+											${a.year}</td>
+											<td><c:if test = "${a.semester eq null}">
+											<input type="text" name="semester" value="${a.semester}" style="width:36px;height:20px;font-size:13px;">
+											</c:if>
+											${a.semester}</td>
 											<td>${a.startDate}</td>
 											<td>${a.endDate}</td>
 											<td>${a.totalDate}</td>
@@ -92,10 +100,31 @@
 														<option value="Y">Y</option>
 													</c:if>
 											</select></td>
-											<td>${a.subjectRoom}</td>
-											<td>${a.day}</td>
-											<td>${a.startTime}</td>
-											<td>${a.endTime}</td>
+											<td>
+											<c:if test = "${a.subjectRoom eq null}">
+											<input type="text" name="subjectRoom" value="${a.subjectRoom}" style="width:65px;height:20px;font-size:13px;">
+											</c:if>
+											${a.subjectRoom}</td>
+											<td>
+											<c:if test = "${a.day eq null}">
+											<select id="subjectDay" name="day">
+											<option value ="월">월</option>
+											<option value ="화">화</option>
+											<option value ="수">수</option>
+											<option value ="목">목</option>
+											<option value ="금">금</option>
+											</select>
+											</c:if>
+											${a.day}</td>
+											<td>
+											<c:if test = "${a.startTime eq null}">
+											<input type="text" name="startTime" value="${a.startTime}" style="width:20px;height:20px;font-size:13px;">
+											</c:if>
+											${a.startTime}</td>
+											<td><c:if test = "${a.endTime eq null}">
+											<input type="text" name="endTime" value="${a.endTime}" style="width:20px;height:20px;font-size:13px;">
+											</c:if> 
+											${a.endTime}</td>
 											<td>
 												<button type="submit" class="btn btn-primary">변경</button>
 											</td>

@@ -2,6 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.SubjectApproveMapper">
 
+	<!-- 관리자 : 승인과목 정보 수정 -->
+
+	<update id="updateSubjectApprove"
+		parameterType="com.gd.lms.vo.SubjectApprove">
+
+		UPDATE
+		
+		subject_approve
+		
+		SET
+
+		year = #{year}
+		,semester = #{semester}
+		,subject_room =#{subjectRoom}
+		,day = #{day}
+		,approve_active = #{approveActive}
+		,start_time = #{startTime}
+		,end_time = ${endTime}
+
+		WHERE
+		subject_approve_no = #{subjectApproveNo}
+
+
+	</update>
+	
+
+
+
 	<!-- 관리자 : 승인과목 리스트 확인 -->
 	<select id="selectSubjectApproveList" resultType="map">
 		SELECT
@@ -38,17 +66,7 @@
 		ORDER BY a.subject_approve_no
 	</select>
 	
-	<!-- active값 변경 쿼리 -->
-	<update id="updateApproveActive" parameterType="com.gd.lms.vo.SubjectApprove"> 
 	
-		UPDATE 
-			subject_approve
-		SET 
-			approve_active = #{approveActive}
-		WHERE 
-			subject_approve_no = #{subjectApproveNo}
-	
-	</update>
 	
 	<!-- 교수가 과목목록에서 신청버튼을 누르면 과목승인으로 들어감 -->
 	<insert id="insertSubjectApprove" parameterType="com.gd.lms.vo.SubjectApprove">
