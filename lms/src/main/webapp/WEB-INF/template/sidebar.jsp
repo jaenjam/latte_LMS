@@ -165,8 +165,15 @@
 						<li><a href="./chart-flot.html">시간표</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/professor/mylecture?professorNo=${No}">내강의</a>
+						</li>						
+						
+						<li><a href="./chart-morris.html">강의 출결</a></li>
+						
+						<li>
+							<a
+							href="${pageContext.request.contextPath}/employee/detail/subjectList">
+								강의 신청</a>
 						</li>
-						<li><a href="./chart-morris.html">강의출결</a></li>
 
 						<!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
 
@@ -182,7 +189,7 @@
 						<!-- ${pageContext.request.contextPath}/lecture/getLectureList?No=${No} //강의과제제출교수 -->
 
 						<li><a
-							href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의과제</a>
+							href="${pageContext.request.contextPath}/lecture/getLectureList?No=${No}">강의 과제</a>
 						</li>
 					</ul></li>
 
