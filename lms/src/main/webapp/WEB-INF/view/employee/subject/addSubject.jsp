@@ -9,6 +9,38 @@
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png">
+<!-- Custom Stylesheet -->
+<link
+	href="${pageContext.request.contextPath}/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
+	rel="stylesheet">
+<!-- Page plugins css -->
+<link
+	href="${pageContext.request.contextPath}/plugins/clockpicker/dist/jquery-clockpicker.min.css"
+	rel="stylesheet">
+<!-- Color picker plugins css -->
+<link
+	href="${pageContext.request.contextPath}/plugins/jquery-asColorPicker-master/css/asColorPicker.css"
+	rel="stylesheet">
+<!-- Date picker plugins css -->
+<link
+	href="${pageContext.request.contextPath}/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css"
+	rel="stylesheet">
+<!-- Daterange picker plugins css -->
+<link
+	href="${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/plugins/bootstrap-daterangepicker/daterangepicker.css"
+	rel="stylesheet">
+
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet">
+
+
 <!--**********************************
             Content body start
         ***********************************-->
@@ -55,6 +87,7 @@
 											name="subjectName" placeholder="과목명을 입력해주세요">
 									</div>
 								</div>
+
 								<input type="hidden" class="form-control" id="subjectState"
 									name="subjectState" value="Y">
 
@@ -78,17 +111,24 @@
 											<option value="N">N</option>
 										</select>
 									</div>
-
-
 								</div>
-									
+
+
+								<!-- 달력 -->
 								<div class="form-group row">
-									<input type="text" class="form-control"
-										id="datepicker-autoclose" placeholder="mm/dd/yyyy"> <span
-										class="input-group-append"><span
-										class="input-group-text"><i
-											class="mdi mdi-calendar-check"></i></span></span>
+									<label class="col-lg-4 col-form-label" for="createDate">개강일
+										/ 폐강일 <span class="text-danger">*</span>
+									</label>
+									<div class="col-lg-6">
+										<div class="input-daterange input-group" id="date-range">
+											<input type="text" class="form-control" name="createDate" value="createDate">											
+											<input type="text" class="form-control" name="endDate" value="endDate">
+										</div>
+									</div>
+
 								</div>
+								<!-- 달력 -->
+
 
 
 								<div class="form-group row">
@@ -96,34 +136,64 @@
 										<button type="submit" class="btn btn-primary">추가</button>
 									</div>
 								</div>
-
 							</form>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- #/ container -->
 	</div>
-	<!-- #/ container -->
 </div>
 <!--**********************************
             Content body end
         ***********************************-->
-<script type="text/javascript"> <
-	//공백 확인
-	$('#addScholar').click(function() {
-		if ($('#scholarNo').val() == '') {
-			alert('장학코드를 입력해주세요.');
-		} else if ($('#scholaName').val() == '') {
-			alert('장학명을 입력해주세요.');
-		} else if ($('#scholarContent').val() == '') {
-			alert('장학내용을 입력해주세요.');
-		} else if ($('#scholarPrice').val() == '') {
-			alert('장학금액을 입력해주세요.');
-		} else {
-			addScholar.submit();
-		}
-	})
-</script>
+
+
+
+<!--**********************************
+        Scripts
+    ***********************************-->
+
+<script
+	src="${pageContext.request.contextPath}/plugins/common/common.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/custom.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/settings.js"></script>
+<script src="${pageContext.request.contextPath}/js/gleek.js"></script>
+<script src="${pageContext.request.contextPath}/js/styleSwitcher.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/plugins/moment/moment.js"></script>
+<script
+	src="${pageContext.request.contextPath}/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<!-- Clock Plugin JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+<!-- Color Picker Plugin JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+<script
+	src="${pageContext.request.contextPath}/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+<script
+	src="${pageContext.request.contextPath}/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+<!-- Date Picker Plugin JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- Date range Plugin JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/js/plugins-init/form-pickers-init.js"></script>
+
+
+
+
+
+
+
 <!-- footer -->
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>

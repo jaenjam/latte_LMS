@@ -32,6 +32,7 @@ public class SubjectController {
 		log.debug(TeamColor.CSJ + "subjectController.addSubject 실행");
 		
 		subjectService.addSubject(subject);
+		log.debug(TeamColor.CSJ+"subject : " + subject.toString());
 		
 		return "redirect:/employee/detail/subjectList";
 		

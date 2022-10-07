@@ -13,6 +13,8 @@
 		scholar_no = #{scholarNo}
 		WHERE
 		student_no = #{studentNo}
+		
+		
 	</update>
 
 	<!-- 장학상세보기 -->

@@ -30,6 +30,7 @@
 		,subject_credit
 		,subject_major
 		,create_date
+		,end_date
 	
 		)
 		VALUES
@@ -40,7 +41,8 @@
 		,#{subjectState}
 		,#{subjectCredit}
 		,#{subjectMajor}
-		, now()
+		,#{createDate}
+		,#{endDate}
 
 		)
 	</insert>

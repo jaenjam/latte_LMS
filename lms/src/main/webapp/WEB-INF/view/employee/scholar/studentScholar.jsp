@@ -49,49 +49,53 @@
 							</div>
 						</div>
 						<br>
-						<div class="table-responsive" style="width: 100%; overflow: auto;">							
-								<form
-									action="${pageContext.request.contextPath}/scholarStudentAction?studentNo=${s.studentNo}"
-									method="post" id="studentScholar">
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>학번</th>
-												<th>소속학과 (학과이름)</th>
-												<th>이름</th>
-												<th>장학 여부</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="s" items="${selectStudentList}">
-											<tr>
-												<td>${s.studentNo}</td>
-												<td>${s.majorNo}(${s.majorName})</td>
-												<td>${s.studentName}</td>
-												<td><select id="studentScholar" name="studentScholar">
-														<option value="${s.scholarNo}" selected>
-															${s.scholarName}
-															<c:if test="${empty s.scholarNo}">
+						<div class="table-responsive" style="width: 100%; overflow: auto;">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>학번</th>
+										<th>소속학과 (학과이름)</th>
+										<th>이름</th>
+										<th>장학 여부</th>
+									</tr>
+								</thead>
+								<c:forEach var="s" items="${selectStudentList}">
+
+									<form
+										action="${pageContext.request.contextPath}/scholarStudentAction?studentNo=${s.studentNo}"
+										method="post" id="studentScholar">
+										
+										
+										</form>
+									<tbody>
+
+										<tr>
+											<td>${s.studentNo}</td>
+											<td>${s.majorNo}(${s.majorName})</td>
+											<td>${s.studentName}</td>
+											<td><select id="studentScholar" name="scholarNo">
+													<option value="${s.scholarNo}" selected>
+														${s.scholarName}
+														<c:if test="${empty s.scholarNo}">
 																==선택해주세요==
 														</c:if>
-														</option>
+													</option>
 
 
-														<c:forEach var="sc" items="${selectScholarList}">
-															<c:if test="${s.scholarNo ne sc.scholarNo}">
-																<option value="${sc.scholarNo}">
-																	${sc.scholarName}</option>
-															</c:if>
-														</c:forEach>
+													<c:forEach var="sc" items="${selectScholarList}">
+														<c:if test="${s.scholarNo ne sc.scholarNo}">
+															<option value="${sc.scholarNo}">
+																${sc.scholarName}</option>
+														</c:if>
+													</c:forEach>
 
-												</select></td>
-												<td><button type="submit" class="btn btn-primary">변경</button></td>
-											</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</form>
-							
+											</select></td>
+											<td><button type="submit" class="btn btn-primary">변경</button></td>
+										</tr>
+									</tbody>
+								</c:forEach>
+							</table>
+
 						</div>
 					</div>
 				</div>
