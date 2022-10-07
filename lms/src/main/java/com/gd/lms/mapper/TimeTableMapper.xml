@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.TimeTableMapper">
+
+		<!-- 학생시간표 : 월 -->
+		<select id="selectStudentTimeTableMon" parameterType="int" resultType="map">
+			SELECT
+				  r.student_no				studentNo
+				, r.subject_approve_no		subjectApproveNo
+				, a.major_no				majorNo
+				, a.subject_no				subjectNo
+				, s.subject_name			subjectName
+				, a.professor_no			professorNo
+				, p.professor_name			professorName
+				, a.subject_room			subjectRoom
+				, a.day						day
+				, a.start_time				startTime
+				, a.end_time				endTime
+			
+			FROM register r
+			
+			INNER JOIN subject_approve a
+			ON r.subject_approve_no = a.subject_approve_no
+			
+			INNER JOIN subject s
+			ON a.subject_no = s.subject_no
+			
+			INNER JOIN professor p
+			ON a.professor_no = p.professor_no
+			
+			WHERE student_no = #{studentNo}
+			AND a.day = '월'
+		</select>
+		
+		
+		<!-- 학생시간표 : 화 -->
+		<select id="selectStudentTimeTableTue" parameterType="int" resultType="map">
+			SELECT
+				  r.student_no				studentNo
+				, r.subject_approve_no		subjectApproveNo
+				, a.major_no				majorNo
+				, a.subject_no				subjectNo
+				, s.subject_name			subjectName
+				, a.professor_no			professorNo
+				, p.professor_name			professorName
+				, a.subject_room			subjectRoom
+				, a.day						day
+				, a.start_time				startTime
+				, a.end_time				endTime
+			
+			FROM register r
+			
+			INNER JOIN subject_approve a
+			ON r.subject_approve_no = a.subject_approve_no
+			
+			INNER JOIN subject s
+			ON a.subject_no = s.subject_no
+			
+			INNER JOIN professor p
+			ON a.professor_no = p.professor_no
+			
+			WHERE student_no = #{studentNo}
+			AND a.day = '화'
+		</select>	
+		
+		
+		
+		<!-- 학생시간표 : 수 -->
+		<select id="selectStudentTimeTableWed" parameterType="int" resultType="map">
+			SELECT
+				  r.student_no				studentNo
+				, r.subject_approve_no		subjectApproveNo
+				, a.major_no				majorNo
+				, a.subject_no				subjectNo
+				, s.subject_name			subjectName
+				, a.professor_no			professorNo
+				, p.professor_name			professorName
+				, a.subject_room			subjectRoom
+				, a.day						day
+				, a.start_time				startTime
+				, a.end_time				endTime
+			
+			FROM register r
+			
+			INNER JOIN subject_approve a
+			ON r.subject_approve_no = a.subject_approve_no
+			
+			INNER JOIN subject s
+			ON a.subject_no = s.subject_no
+			
+			INNER JOIN professor p
+			ON a.professor_no = p.professor_no
+			
+			WHERE student_no = #{studentNo}
+			AND a.day = '수'
+		</select>	
+		
+		
+		<!-- 학생시간표 : 목 -->
+		<select id="selectStudentTimeTableThu" parameterType="int" resultType="map">
+			SELECT
+				  r.student_no				studentNo
+				, r.subject_approve_no		subjectApproveNo
+				, a.major_no				majorNo
+				, a.subject_no				subjectNo
+				, s.subject_name			subjectName
+				, a.professor_no			professorNo
+				, p.professor_name			professorName
+				, a.subject_room			subjectRoom
+				, a.day						day
+				, a.start_time				startTime
+				, a.end_time				endTime
+			
+			FROM register r
+			
+			INNER JOIN subject_approve a
+			ON r.subject_approve_no = a.subject_approve_no
+			
+			INNER JOIN subject s
+			ON a.subject_no = s.subject_no
+			
+			INNER JOIN professor p
+			ON a.professor_no = p.professor_no
+			
+			WHERE student_no = #{studentNo}
+			AND a.day = '목'
+		</select>	
+		
+		
+		<!-- 학생시간표 : 금 -->
+		<select id="selectStudentTimeTableFri" parameterType="int" resultType="map">
+			SELECT
+				  r.student_no				studentNo
+				, r.subject_approve_no		subjectApproveNo
+				, a.major_no				majorNo
+				, a.subject_no				subjectNo
+				, s.subject_name			subjectName
+				, a.professor_no			professorNo
+				, p.professor_name			professorName
+				, a.subject_room			subjectRoom
+				, a.day						day
+				, a.start_time				startTime
+				, a.end_time				endTime
+			
+			FROM register r
+			
+			INNER JOIN subject_approve a
+			ON r.subject_approve_no = a.subject_approve_no
+			
+			INNER JOIN subject s
+			ON a.subject_no = s.subject_no
+			
+			INNER JOIN professor p
+			ON a.professor_no = p.professor_no
+			
+			WHERE student_no = #{studentNo}
+			AND a.day = '금'
+		</select>		
+
+</mapper>

@@ -18,6 +18,7 @@ import com.gd.lms.service.NoticeService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.StudentService;
+import com.gd.lms.service.TimeTableService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +32,7 @@ public class MainController {
 	@Autowired EmployeeService employeeService;
 	@Autowired NoticeService noticeService;
 	@Autowired RegisterService registerService;
+	@Autowired TimeTableService timetableService;
 	
 		// 상단 헤더 누를 시 메인접근
 		@GetMapping("/home")
@@ -131,7 +133,47 @@ public class MainController {
 			model.addAttribute("myRegisterListProf", myRegisterListProf);
 			
 			log.debug(TeamColor.LJE + "SubjectApproveController getsubjectApproveMain myRegisterListProf : " + myRegisterListProf);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
+			//학생 시간표 : 월
+			Map<String, Object> Mon = timetableService.getStudentTimeTableMon(No);
+			
+			model.addAttribute("Mon", Mon);
+			
+			log.debug(TeamColor.LJE + "MainController gomain studentTimeTable 월요일 수업 값 확인 : " + Mon);
+			
+			
+			//학생 시간표 : 화
+			Map<String, Object> Tue = timetableService.getStudentTimeTableTue(No);
+			
+			model.addAttribute("Tue", Tue);
+			
+			log.debug(TeamColor.LJE + "MainController gomain studentTimeTable 화요일 수업 값 확인 : " + Tue);
+			
+			
+			//학생 시간표 : 수
+			Map<String, Object> Wed = timetableService.getStudentTimeTableWed(No);
+			
+			model.addAttribute("Wed", Wed);
+			
+			log.debug(TeamColor.LJE + "MainController gomain studentTimeTable 수요일 수업 값 확인 : " + Wed);
+			
+			
+			//학생 시간표 : 목
+			Map<String, Object> Thu = timetableService.getStudentTimeTableThu(No);
+			
+			model.addAttribute("Thu", Thu);
+			
+			log.debug(TeamColor.LJE + "MainController gomain studentTimeTable 목요일 값 확인 : " + Thu);
+			
+			
+			//학생 시간표 : 금
+			Map<String, Object> Fri = timetableService.getStudentTimeTableFri(No);
+			
+			model.addAttribute("Fri", Fri);
+			
+			log.debug(TeamColor.LJE + "MainController gomain studentTimeTable 금요일 값 확인 : " + Fri);
 			
 			if(session.getAttribute("user") !=null) {
 				return "/home";

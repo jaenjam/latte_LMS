@@ -133,7 +133,7 @@
 						class="icon-graph menu-icon"></i> <span class="nav-text">나의강의실</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="./chart-flot.html">시간표</a></li>
+						<li><a href="${pageContext.request.contextPath}/timetable/studentTimeTable?studentNo=${No}">시간표</a></li>
 						<li><a href="./chart-morris.html">강의출결</a></li>
 
 						<!-- 학생이 수강하는 과목 List 보여주기 / 교수는 수업하는 과목 List 보여주기 -->
