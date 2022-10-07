@@ -41,10 +41,11 @@
 		,#{subjectState}
 		,#{subjectCredit}
 		,#{subjectMajor}
-		,#{createDate}
-		,#{endDate}
+		,STR_TO_DATE(#{createDate}, '%m/%d/%Y')
+		,STR_TO_DATE(#{endDate}, '%m/%d/%Y')
 
 		)
+		
 	</insert>
 
 </mapper>
