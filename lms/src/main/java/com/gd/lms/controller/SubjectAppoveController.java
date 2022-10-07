@@ -87,4 +87,17 @@ public class SubjectAppoveController {
 		return "redirect:/employee/detail/subjectApproveList";
 	}
 	
+	// 교수가 신청하면 승인목록으로 넘어감
+	@PostMapping("/addSubjectApprove")
+	public String addSubjectApprove(int majorNo,String subjectNo,int professorNo,String startDate,String endDate) {
+		
+		log.debug(TeamColor.JJY + "addSubjectApprove실행");
+		
+		int row = subjectApproveService.addSubjectApprove(majorNo, subjectNo, professorNo, startDate, endDate);
+		
+		log.debug(TeamColor.JJY + "insertApprove row값 확인 :" +  row);
+		
+		return "redirect:/employee/detail/subjectList";
+	}
+	
 }

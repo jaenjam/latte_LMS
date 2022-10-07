@@ -15,4 +15,7 @@ public interface SubjectApproveMapper {
 	
 	//과목승인 active값 변경
 	int updateApproveActive(SubjectApprove subjectApprove);
+
+	//교수가 과목신청하면 승인테이블로 넘어감
+	int insertSubjectApprove(int majorNo,String subjectNo,int professorNo,String startDate,String endDate);
 }

@@ -49,5 +49,26 @@
 			subject_approve_no = #{subjectApproveNo}
 	
 	</update>
+	
+	<!-- 교수가 과목목록에서 신청버튼을 누르면 과목승인으로 들어감 -->
+	<insert id="insertSubjectApprove" parameterType="com.gd.lms.vo.SubjectApprove">
+	
+	
+	INSERT INTO subject_approve (
+		 major_no
+		,subject_no
+		,professor_no
+		,start_date
+		,end_date
+		) 
+	VALUES (
+		 #{majorNo}
+		,#{subjectNo}
+		,#{professorNo}
+		,#{startDate}
+		,#{endDate}
+		)
+	
+	</insert>
 
 </mapper>

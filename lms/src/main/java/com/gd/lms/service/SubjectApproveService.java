@@ -38,5 +38,13 @@ public class SubjectApproveService {
 		return subjectApproveMapper.updateApproveActive(subjectApprove);
 	}
 	
+	// 교수가 신청한 과목이 승인테이블로 넘어옴
+	public int addSubjectApprove(int majorNo,String subjectNo,int professorNo,String startDate,String endDate) {
+		
+		log.debug(TeamColor.JJY+"suvjectApproveService -> addSubjectApprove 실행");
+		
+		return subjectApproveMapper.insertSubjectApprove(majorNo, subjectNo, professorNo, startDate, endDate);
+	}
+	
 
 }
