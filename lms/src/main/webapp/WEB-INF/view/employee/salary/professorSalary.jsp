@@ -60,30 +60,32 @@
 										<th>연봉등급 (연봉)</th>
 									</tr>
 								</thead>
-								<c:forEach var="p" items="${professorSalaryList}">
+								<c:forEach varStatus="status" var="p" items="${professorSalaryList}">
 									<form
 										action="${pageContext.request.contextPath}/salaryProfesorAction?professorNo=${p.professorNo}"
-										method="post" id="updateProfessorSalary">
-									<tbody>
-										<tr>
-											<td>${p.professorNo}</td>
-											<td>${p.majorNo}(${p.majorName})</td>
-											<td>${p.professorName}</td>
-											<td><select id="salaryNo" name="salaryNo">
-													<option value="${p.salaryNo}" selected>
-														${p.salaryNo} (${p.salaryValue})</option>
-													<c:forEach var="sa" items="${salaryList}">
-														<c:if test="${p.salaryNo ne sa.salaryNo}">
-															<option value="${sa.salaryNo}">
-																${sa.salaryNo}(${sa.salaryValue})</option>
-														</c:if>
-													</c:forEach>
-											</select></td>
-											<td><button onclick="updateProfessorSalary()"
-													type="button" class="btn btn-primary"
-													id="updateProfessorSalaryBtn">변경</button></td>
-										</tr>
-									</tbody>
+										method="post" id="updateProfessorSalary${status.index}">
+										<tbody>
+											<tr>
+												<td>${p.professorNo}</td>
+												<td>${p.majorNo}(${p.majorName})</td>
+												<td>${p.professorName}</td>
+												<td><select id="salaryNo" name="salaryNo">
+														<option value="${p.salaryNo}" selected>
+															${p.salaryNo} (${p.salaryValue})</option>
+														<c:forEach var="sa" items="${salaryList}">
+															<c:if test="${p.salaryNo ne sa.salaryNo}">
+																<option value="${sa.salaryNo}">
+																	${sa.salaryNo}(${sa.salaryValue})</option>
+															</c:if>
+														</c:forEach>
+												</select></td>
+												<td>
+													<button onclick="updateProfessorSalary(${status.index})"
+														type="button" class="btn btn-primary"
+														id="updateProfessorSalaryBtn">변경</button>
+												</td>
+											</tr>
+										</tbody>
 									</form>
 								</c:forEach>
 							</table>

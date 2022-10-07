@@ -24,7 +24,7 @@ public class SalaryService {
 	
 	// 연봉 목록
 	public List<Map<String, Object>> getSalaryList(){
-		log.debug(TeamColor.LJE + "SalaryService getSalaryList");
+		log.debug(TeamColor.LJE + "SalaryService getSalaryList 실행");
 
 		return salaryMapper.selectSalaryList();
 	}
@@ -32,21 +32,21 @@ public class SalaryService {
 	// 연봉 수정 (직원)
 	public int modifySalaryEmployee(Employee employee) {
 		
-		log.debug(TeamColor.JJY + "SalaryService modifySalaryEmployee");
+		log.debug(TeamColor.JJY + "SalaryService modifySalaryEmployee 실행");
 		return salaryMapper.updateSalaryEmployee(employee);
 	}
 	
 	// 연봉 수정 (교수)
 	public int modifySalaryProfessor(Professor professor) {
 		
-		log.debug(TeamColor.JJY + "SalaryService modifySalaryProfessor");
+		log.debug(TeamColor.JJY + "SalaryService modifySalaryProfessor 실행");
 		return salaryMapper.updateSalaryProfessor(professor);
 	}
 	
 	// 연봉 수정
 	public int modifySalary(Salary salary) {
 		
-		System.out.print("modifySalary실행");
+		System.out.print("modifySalary 실행");
 		return salaryMapper.updateSalary(salary);
 	}
 }

@@ -66,7 +66,6 @@
 										<th>요일</th>
 										<th>시작시간</th>
 										<th>종료시간</th>
-
 									</tr>
 								</thead>
 								<c:forEach var="a" items="${subjectApproveList}">

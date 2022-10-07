@@ -60,28 +60,31 @@
 										<th>연봉등급 (연봉)</th>
 									</tr>
 								</thead>
-								<c:forEach var="es" items="${subEmployeeSalaryList}">
+								<c:forEach varStatus="status" var="es"
+									items="${subEmployeeSalaryList}">
 									<form
 										action="${pageContext.request.contextPath}/salaryEmployeeAction?employeeNo=${es.employeeNo}&employeeActive=${es.employeeActive}"
-										method="post" id="updateSubEmployeeSalary">
-									<tbody>
-										<tr>
-											<td>${es.employeeNo}</td>
-											<td>${es.employeeName}</td>
-											<td>${es.employeeActive}</td>
-											<td><select id="salaryNo" name="salaryNo">
-													<option value="${es.salaryNo}" selected>
-														${es.salaryNo} (${es.salaryValue})</option>
-													<c:forEach var="sa" items="${salaryList}">
-														<c:if test="${es.salaryNo ne sa.salaryNo}">
-															<option value="${sa.salaryNo}">
-																${sa.salaryNo}(${sa.salaryValue})</option>
-														</c:if>
-													</c:forEach>
-											</select></td>
-											<td><button onclick="updateSubEmployeeSalary()" type="button" class="btn btn-primary">변경</button></td>
-										</tr>
-									</tbody>
+										method="post" id="updateSubEmployeeSalary${status.index}">
+										<tbody>
+											<tr>
+												<td>${es.employeeNo}</td>
+												<td>${es.employeeName}</td>
+												<td>${es.employeeActive}</td>
+												<td><select id="salaryNo" name="salaryNo">
+														<option value="${es.salaryNo}" selected>
+															${es.salaryNo} (${es.salaryValue})</option>
+														<c:forEach var="sa" items="${salaryList}">
+															<c:if test="${es.salaryNo ne sa.salaryNo}">
+																<option value="${sa.salaryNo}">
+																	${sa.salaryNo}(${sa.salaryValue})</option>
+															</c:if>
+														</c:forEach>
+												</select></td>
+												<td><button
+														onclick="updateSubEmployeeSalary(${status.index})"
+														type="button" class="btn btn-primary">변경</button></td>
+											</tr>
+										</tbody>
 									</form>
 								</c:forEach>
 							</table>

@@ -53,7 +53,7 @@ public class EmployeeSalayController {
 		
 	}
 	
-	//연봉관리 - 교수리스트 보여주기
+	//연봉관리 - 리스트 보여주기
 	@GetMapping("/employee/salary/professorSalary")
 	public String professorSalaryList(Model model) {
 		
@@ -63,12 +63,12 @@ public class EmployeeSalayController {
 		//professorSalaryList에 저장
 		List<Map<String, Object>> professorSalaryList = professorService.getProfessorSalaryList();
 		
-		List<Map<String, Object>> salaryList = salaryService.getSalaryList();
+		List<Map<String, Object>> salaryList = salaryService.getSalaryList(); //연봉 변경할떄 select값을 끌어오기위해서
 		
-		model.addAttribute("salaryList",salaryList);
+		model.addAttribute("salaryList",salaryList); // 연봉리스트
 		
 		//List에 담은 값을 model에 넣어 저장
-		model.addAttribute("professorSalaryList", professorSalaryList);
+		model.addAttribute("professorSalaryList", professorSalaryList); // 정보리스트
 		
 		//디버깅코드출력
 		log.debug(TeamColor.LJE + "EmployeeSalaryController professorSalaryList라는 model값 확인 : " + professorSalaryList);

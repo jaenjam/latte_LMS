@@ -1,14 +1,12 @@
-function updateProfessorSalary(){
+function updateProfessorSalary(no){
 	
-	var con = confirm("연봉을 변경하시겠습니까?");
-	
+	let con = confirm("연봉을 변경하시겠습니까?");
 	
 	if(con){
 		//확인 버튼 클릭 true
-		$('#updateProfessorSalary').submit();	
+		document.getElementById("updateProfessorSalary"+no).submit();
 	}else{
 		
 	}
 	
- 
- };
+ }

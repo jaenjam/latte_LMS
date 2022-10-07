@@ -1,12 +1,12 @@
-function updateEmployeeSalary(){
+function updateEmployeeSalary(no){
 	
-	var con = confirm("연봉을 변경하시겠습니까?");
+	let con = confirm("연봉을 변경하시겠습니까?");
 	
 	if(con){
 		//확인 버튼 클릭 true
-		$('#updateEmployeeSalary').submit();	
+		document.getElementById("updateEmployeeSalary"+no).submit();
 	}else{
 		
 	}
 	
- };
+ }

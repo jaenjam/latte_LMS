@@ -59,32 +59,38 @@
 										<th>연봉등급 (연봉)</th>
 									</tr>
 								</thead>
-								<c:forEach var="es" items="${employeeSalaryList}">
-									<form
-										action="${pageContext.request.contextPath}/salaryEmployeeAction?employeeNo=${es.employeeNo}&employeeActive=${es.employeeActive}"
-										method="post" id="updateEmployeeSalary">
-									<tbody>
-										<tr>
-											<td>${es.employeeNo}</td>
-											<td>${es.employeeName}</td>
-											<td>${es.employeeActive}</td>
-											<td><select id="salaryNo" name="salaryNo">
-													<option value="${es.salaryNo}" selected>
-														${es.salaryNo} (${es.salaryValue})</option>
-													<c:forEach var="sa" items="${salaryList}">
-														<c:if test="${es.salaryNo ne sa.salaryNo}">
-															<option value="${sa.salaryNo}">
-																${sa.salaryNo}(${sa.salaryValue})</option>
-														</c:if>
-													</c:forEach>
-											</select></td>
-											<td><button onclick="updateEmployeeSalary()"
-													type="button" class="btn btn-primary"
-													id="updateEmployeeSalaryBtn">변경</button></td>
-										</tr>
-									</tbody>
-									</form>
-								</c:forEach>
+							<c:forEach varStatus="status" var="es" items="${employeeSalaryList}">
+                                    <form
+                                            action="${pageContext.request.contextPath}/salaryEmployeeAction?employeeNo=${es.employeeNo}&employeeActive=${es.employeeActive}"
+                                            method="post" id="updateEmployeeSalary${status.index}">
+                                        <tbody>
+                                        <tr>
+                                            <td>${es.employeeNo}</td>
+                                            <td>${es.employeeName}</td>
+                                            <td>${es.employeeActive}</td>
+                                            <td><select id="salaryNo" name="salaryNo">
+                                                <option value="${es.salaryNo}" selected>
+                                                        ${es.salaryNo} (${es.salaryValue})
+                                                </option>
+                                                <c:forEach var="sa" items="${salaryList}">
+                                                    <c:if test="${es.salaryNo ne sa.salaryNo}">
+                                                        <option value="${sa.salaryNo}">
+                                                                ${sa.salaryNo}(${sa.salaryValue})
+                                                        </option>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </select></td>
+                                            <td>
+                                                <button onclick="updateEmployeeSalary(${status.index})"
+                                                        type="button" class="btn btn-primary"
+                                                        id="updateEmployeeSalaryBtn">변경
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+										<input type="hidden" name="">
+                                    </form>
+                                </c:forEach>
 							</table>
 
 						</div>
