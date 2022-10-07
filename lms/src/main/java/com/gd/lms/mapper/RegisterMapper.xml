@@ -212,7 +212,7 @@
 		ON
 			sa.major_no = m.major_no
 		WHERE
-			sa.professor_no = #{No};		
+			sa.professor_no = #{No} AND sa.approve_active = 'Y';		
 		</select>	
 			
 			
