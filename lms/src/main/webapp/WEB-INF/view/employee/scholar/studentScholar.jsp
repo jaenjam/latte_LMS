@@ -59,21 +59,20 @@
 										<th>장학 여부</th>
 									</tr>
 								</thead>
-								<c:forEach var="s" items="${selectStudentList}">
+								<c:forEach varStatus="status" var="s" items="${selectStudentList}">
 
-									<form
-										action="${pageContext.request.contextPath}/scholarStudentAction?studentNo=${s.studentNo}"
-										method="post" id="studentScholar">
+									 <form
+                                            action="${pageContext.request.contextPath}/scholarStudentAction?studentNo=${s.studentNo}"
+                                            method="post" id="studentScholar${status.index}" class="submit_form">
 										
 										
-										</form>
 									<tbody>
 
 										<tr>
 											<td>${s.studentNo}</td>
 											<td>${s.majorNo}(${s.majorName})</td>
 											<td>${s.studentName}</td>
-											<td><select id="studentScholar" name="scholarNo">
+											<td><select name="scholarNo">
 													<option value="${s.scholarNo}" selected>
 														${s.scholarName}
 														<c:if test="${empty s.scholarNo}">
@@ -90,9 +89,12 @@
 													</c:forEach>
 
 											</select></td>
-											<td><button type="submit" class="btn btn-primary">변경</button></td>
+											<td> <button value="${status.index}" form="studentScholar${status.index}"
+                                                        type="submit" class="btn btn-primary submit_btn">변경
+                                                </button></td>
 										</tr>
 									</tbody>
+									</form>
 								</c:forEach>
 							</table>
 
@@ -104,6 +106,8 @@
 	</div>
 	<!-- #/ container -->
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/scholar.js"></script>
 <!--**********************************
             Content body end
         ***********************************-->
