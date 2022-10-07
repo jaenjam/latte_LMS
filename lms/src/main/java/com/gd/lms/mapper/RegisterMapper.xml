@@ -219,7 +219,7 @@
 		<!-- 교수 출석체크를 위한 학생리스트 -->	
 		<select id="selectRegisterStudentList" parameterType="int" resultType="map">
 			SELECT
-				 a.attendance_no		attendanceNo
+				  a.attendance_no		attendanceNo
 				, r.student_no			studentNo
 				, s.student_name		studentName
 				, a.attendance_date		attendanceDate

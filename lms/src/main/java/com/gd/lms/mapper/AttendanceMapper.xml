@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.AttendaceMapper">
+	
+	<!-- 출석부 자동생성 -->
+	<insert id="autoInsertAttendance" parameterType="int">
+		INSERT INTO attendance
+			(
+				  student_no
+				, student_approve_no
+				, attendance_date	
+			)
+			VALUES
+			(
+				  #{studentNo}
+				, #{studentApproveNo}
+				, #{attandanceDate}
+			)
+	</insert>
+	
+	
+	<!-- 출석부 날짜에 따라 조회 -->
+	<select id="selectAttendaceDay" resultType="map">
+			SELECT
+				  a.attendance_no		attendanceNo
+				, r.student_no			studentNo
+				, s.student_name		studentName
+				, a.attendance_date		attendanceDate
+				, a.attendance_state	attendanceState
+				, r.subject_approve_no	subejctApproveNo
+				, s.major_no			majorNo
+				, m.major_name			majorName
+				, a.attendance_etc		attendanceEtc
+			FROM
+				register r
+			INNER JOIN
+				student s
+			ON
+				r.student_no = s.student_no
+			INNER JOIN
+				major m
+			ON
+				s.major_no = m.major_no
+			INNER JOIN
+				attendance a
+			ON
+				a.student_no = r.student_no
+			WHERE
+				r.subject_approve_no = #{subjectApproveNo}
+			AND
+				a.attendance_date = #{attendance_date}
+	</select>
+
+</mapper>
