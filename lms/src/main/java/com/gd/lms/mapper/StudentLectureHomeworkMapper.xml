@@ -149,28 +149,19 @@
 					l.lecture_no = ${lectureNo}	
 	</select>
 
-
-
-	<!--  학생의 과제 제출 후 교수가 뷰에서 ck를 Y로 바꿔주기 -->
-	<update id="updateStudentHomeworkSubmitCk" parameterType="int">
-	UPDATE 
-		student_homework
+	
+	
+	<!-- 두개 다 업데이트 -->
+	<update id="updateLectureHomeworkall" parameterType="com.gd.lms.vo.StudentHomework">
+	UPDATE
+	student_homework
 	SET
-		student_submitck = ${studentSubmitCk}
+	score = ${score}
+	, student_submitck = ${studentSubmitCk}
 	WHERE
-		lecture_no = ${lectureNo}
+	pf_homework_no = ${pfHomeworkNo}
 	</update>
-
-
-	<!--  교수의 제출 과제 평가; 점수매기기 -->
-	<update id="udpateStudentHomeworkScore" parameterType="int">
-		UPDATE 
-		student_homework
-	SET
-		score = ${score}
-	WHERE
-		lecture_no = ${lectureNo}
-	</update>
+	
 	
 	
 </mapper>

@@ -10,11 +10,11 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
+<script type="text/javascript" src="/js/jquery/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/lecture/getlectureHomeworkStuList.js"></script>
+
+
 
 <!--  교수가 자기 수업듣는 학생들의 과제제출 일람 볼 수 있는
  	여기서 학생의 제출과제이름 누르면 one으로 연결 >>> 다운 가능
@@ -60,12 +60,17 @@
                                                 <th>점수</th>
                                             </tr>
                                         </thead>
+                                       
                                         <tbody>
-                                      
+                                       <form id="modifystu" method="post" action="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
+                                  
                                         <c:forEach var="L" items="${LectureTotalList}">
                                             <tr>
-                                            	<td>${L.lectureNo}</td>
-                                                <td>${L.studentName}</td>
+                                            	<td>${L.lectureNo}
+                                            	</td>
+                                                <td>${L.studentName}
+                                                	<input type="hidden" name="pfHomeworkNo" id="pfHomeworkNo" value="${L.pfHomeworkNo}">
+                                                </td>
                                                 
                                                 <!--  학생이 제출한 제목명 -->
                                                 <td>
@@ -78,56 +83,47 @@
                                               	</td>	
                                                 <!--  제출여부 1111 -->                                             
                                                 <td> 
-                                                <select>
+                                                <select name="studentSubmitCk" id="studentSubmitCk">
 		                                      		<c:forEach items="${L.studentSubmitCk}">
 		                                      			<c:if test="${L.studentSubmitCk == '미제출'}">
 		                                      				<option value=${L.studentSubmitCk} selected> ${L.studentSubmitCk} </option>
-		                                      				<option value='제출'> 제출 </option>	
+		                                      				<option value="제출"> 제출 </option>	
 		                                      			</c:if>
 		                                      			
 		                                      			<c:if test="${L.studentSubmitCk == 'null'}">
 		                                      				<option value=${L.studentSubmitCk}> 제출 </option>
-		                                      				<option value='제출'> 미제출 </option>	
+		                                      				<option value="제출"> 미제출 </option>	
 		                                      			</c:if>
 		                                      			
 		                                      			<c:if test="${L.studentSubmitCk == '제출'}">
 		                                      				<option value=${L.studentSubmitCk}> ${L.studentSubmitCk} </option>
-		                                      				<option value='미제출'> 미제출 </option>	
+		                                      				<option value="미제출"> 미제출 </option>	
 		                                      			</c:if>
 		                                      		
-		                                      		</c:forEach>	                                                
-                                                
+		                                      		</c:forEach>	
                                                 </select>
                                                 </td>
                                      
                                      
-                                     			         <!--  제출여부 2222 -->                                             
-                                                <td> 
-                                                <select>
-		                                      		<c:forEach items="${L.studentSubmitCk}">
-		                                      			<option value=${L.studentSubmitCk}>
-		                                      				${L.studentSubmitCk}
-		                                      			</option>
-		                                      		</c:forEach>	                                                
-                                                
-                                                </select>
-                                                </td>
-                                     
+                                     		
                                      	
                                                  <!--  제출여부  -->                                             
                                                 <td> 
-                                                	<input type="text" id="" name="" value"">
+                                                	<input type="text" id="score" name="score" value="${L.score}">
                                                 </td>
                                                 
                                                 <td>
-	                                                <a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
-	                                					<button type="button" class="btn btn-primary">수정하기</button>
-	                                				</a>
+	                                               
+	                                					<button type="button" class="btn btn-primary" name="modify" id="modify">수정하기</button>
+	                                				
                                                 </td>
                                                 
                                             </tr>
                                         </c:forEach>
+                                        </form>
                                         </tbody>
+                                        
+                                        
                                     </table>
                                     
                                     
@@ -173,5 +169,4 @@
     <script src="${pageContext.request.contextPath}/js/styleSwitcher.js"></script>
 
 
-</body>
 </html>

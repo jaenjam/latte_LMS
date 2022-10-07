@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gd.lms.vo.StudentHomework;
+
 @Mapper
 public interface StudentLectureHomeworkMapper {
 
@@ -31,4 +33,9 @@ public interface StudentLectureHomeworkMapper {
 	
 	// 교수의 제출 과제 평가; 점수매기기
 	int udpateStudentHomeworkScore(int lectureNo);
+	
+	// 교수가 제출일람에서 수정하는 경우
+	//	└ 두개 다 업데이트
+	int updateLectureHomeworkall(StudentHomework studenthomework);
+		
 }
