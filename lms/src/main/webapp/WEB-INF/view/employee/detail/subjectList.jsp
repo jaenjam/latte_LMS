@@ -29,7 +29,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(4)">상세관리</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과목</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과목 목록</a></li>
                     </ol>
                 </div>
             </div>
@@ -69,6 +69,9 @@
                                                 <td>${s.subjectMajor}</td>
                                                 <td>${s.createDate}</td>
                                                 <td>${s.endDate}</td>
+                                                <c:if test="${user eq 'professor'}">
+                                                <td><button type="submit" class="btn btn-primary">신청</button></td>
+                                                </c:if>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
