@@ -5,6 +5,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,4 +27,8 @@ public class Test {
 	private String testName;
 	private String createDate;
 	private String updateDate;
+
+	@ToString.Exclude
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "test")
+	private List<MultipleTest> multipleTestList;
 }

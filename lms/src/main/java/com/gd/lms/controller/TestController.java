@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.gd.lms.repository.TestRepository;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,45 +78,40 @@ public class TestController {
 
 	// 시험지출제하기(1)Action
 	@PostMapping("/addTest")
-	public String addTest(Model model, int subjectApproveNo, String testName) {
+	public String addTest(Model model, int subjectApproveNo, String testName, HttpSession session) {
 
 		Test testt = repository.findByTestNameAndSubjectApproveSubjectApproveNo(testName, subjectApproveNo);
-		log.debug(TeamColor.JJY + "test checking 값 : " + subjectApproveNo + "  " + testName);
-		log.debug(TeamColor.JJY + "test checking 값 : " + testt);
-		if (testt == null) {
-			testService.addTest(subjectApproveNo, testName);
-		} else {
 
+		session.setAttribute("testName", testName);
+		session.setAttribute("subjectApproveNo", subjectApproveNo);
+		if (testt == null) {
+			return "redirect:/test/multipleTestForm?subjectApproveNo="+subjectApproveNo;
+		} else {
+			return "redirect:/test/testList";
 		}
 
-		log.debug(TeamColor.JJY + "insertTest 값 : " + model);
-
-		return "/test/multipleTestForm";
 	}
 
 	// 시험지출제하기(1)Form
 	@GetMapping("/test/multipleTestForm")
-	public String multipleTestForm() {
-
+	public String multipleTestForm(Model model, HttpSession session) {
+		model.addAttribute("subjectApproveNo",session.getAttribute("subjectApproveNo"));
+		model.addAttribute("testName", session.getAttribute("testName"));
 		return "/test/multipleTestForm";
 	}
 
 	// 시험지출제하기(2) action
 	@PostMapping("/addMultipleTest")
-	public String addMultipleTest(Model model, @RequestParam("testNo") int testNo,
-			@RequestParam("multiplechoiceAnswer") int multiplechoiceAnswer,
+	public String addMultipleTest(Model model, @RequestParam("multiplechoiceAnswer") int multiplechoiceAnswer,
 			@RequestParam("multiplechoiceScore") String multiplechoiceQuestion,
 			@RequestParam("multiplechoiceQuestion") String multiplechoiceScore,
-			@RequestParam("multiplechoiceNo") int multiplechoiceNo,
 			@RequestParam("multipleTestExampleNo") String multipleTestExampleNo,
 			@RequestParam("multipleTestExampleContent") String multipleTestExampleContent) {
 
-		testService.addMultipleTest(testNo, multiplechoiceQuestion, multiplechoiceAnswer, multiplechoiceScore);	
+
 		
 		//MultipleTest no값 가져오기
-		
-		
-		testService.addMultipleTestExample(multiplechoiceNo, multipleTestExampleNo, multipleTestExampleContent);
+
 
 		return "redirect:/test/result";
 	}

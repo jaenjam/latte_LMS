@@ -93,14 +93,12 @@
 		 test_no
 		,multiplechoice_question
 		,multiplechoice_answer
-		,multiplechoice_score
 		,create_date
 		,update_date) 
 	VALUES (
 		 #{testNo}
 		,#{multiplechoiceQuestion}
 		,#{multiplechoiceAnswer}
-		,#{multiplechoiceScore}
 		,NOW()
 		,NOW())
 	

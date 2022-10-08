@@ -130,75 +130,73 @@
 									<!-- 시험출제 -->
 								</div>
 							</div>
-							<br>
-							<form action="${pageContext.request.contextPath}/addMultipleTest"
-								method="post">
-								<table class="table">
-									<tr>
-										<th class="align-middle" style="width: 20%">문제 내용</th>
-										<td><input id="multipleChoiceQuestion"
-											class="form-control" type="text"
-											name=""></td>
-									</tr>
-									<tr>
-										<th class="align-middle">정답</th>
-										<td style="padding-top: 0.75rem; padding-bottom: 0.75rem;">
-											<div class="row">
-												<div class="col">
-													<input class="" type="radio"
-														name="" value="1"> 1번
-												</div>
-												<div class="col">
-													<input class="" type="radio"
-														name="" value="2"> 2번
-												</div>
-												<div class="col">
-													<input class="" type="radio"
-														name="" value="3"> 3번
-												</div>
-												<div class="col">
-													<input class="" type="radio"
-														name="" value="4"> 4번
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th class="align-middle">1번 보기</th>
-										<td>
-										<input type="hidden" value="1" name=""> 
-										<input id="multipleChoiceExample1" class="form-control" type="text" name="multipleChoiceExampleList"></td>
-									</tr>
-									<tr>
-										<th class="align-middle">2번 보기</th>
-										<td>
-										<input type="hidden" value="2" name=""> 
-										<input id="multipleChoiceExample2"
-											class="form-control" type="text"
-											name="multipleChoiceExampleList"></td>
-									</tr>
-									<tr>
-										<th class="align-middle">3번 보기</th>
-										<td>
-										<input type="hidden" value="3" name=""> 
-										<input id="multipleChoiceExample3"
-											class="form-control" type="text"
-											name="multipleChoiceExampleList"></td>
-									</tr>
-									<tr>
-										<th class="align-middle">4번 보기</th>
-										<td><input type="hidden" value="4" name=""> 
-										<input id="multipleChoiceExample4"
-											class="form-control" type="text"
-											name="multipleChoiceExampleList"></td>
-									</tr>
-									<tr><td><input type="hidden" value="10" name=""></td></tr>
+							<br/>
 
-									<tr>
-										<td class="text-right" colspan="2"><button type="submit"
-												class="btn btn-primary" style="float: right;">출제</button></td>
-									</tr>
-								</table>
+							<form <%--action="${pageContext.request.contextPath}/addMultipleTest"--%>
+								method="post">
+								<c:forEach var="i" begin="1" end="10">
+									<h5>${i}번 문제</h5>
+									<table class="test_table${i} table">
+										<tr>
+											<th class="align-middle" style="width: 20%">문제 내용</th>
+											<td><input class="form-control" id="multipleChoiceQuestion${i}"  type="text"
+													   name=""></td>
+										</tr>
+										<tr>
+											<th class="align-middle">정답</th>
+											<td style="padding-top: 0.75rem; padding-bottom: 0.75rem;">
+												<div class="row">
+													<div class="col">
+														<input id="answer_1_${i}" type="radio"
+															   name="answer_radio${i}" value="1"> 1번
+													</div>
+													<div class="col">
+														<input id="answer_2_${i}" type="radio"
+															   name="answer_radio${i}" value="2"> 2번
+													</div>
+													<div class="col">
+														<input id="answer_3_${i}" type="radio"
+															   name="answer_radio${i}" value="3"> 3번
+													</div>
+													<div class="col">
+														<input id="answer_4_${i}" type="radio"
+															   name="answer_radio${i}" value="4"> 4번
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="align-middle">1번 보기</th>
+											<td>
+												<input type="hidden" value="1" name="">
+												<input class="form-control" id="multipleChoiceExample1_${i}" type="text" name="multipleChoiceExampleList"></td>
+										</tr>
+										<tr>
+											<th class="align-middle">2번 보기</th>
+											<td>
+												<input type="hidden" value="2" name="">
+												<input class="form-control" id="multipleChoiceExample2_${i}" type="text"
+													   name="multipleChoiceExampleList"></td>
+										</tr>
+										<tr>
+											<th class="align-middle">3번 보기</th>
+											<td>
+												<input type="hidden" value="3" name="">
+												<input class="form-control" id="multipleChoiceExample3_${i}" type="text"
+													   name="multipleChoiceExampleList"></td>
+										</tr>
+										<tr>
+											<th class="align-middle">4번 보기</th>
+											<td><input type="hidden" value="4" name="">
+												<input class="form-control" id="multipleChoiceExample4_${i}" type="text"
+													   name="multipleChoiceExampleList"></td>
+										</tr>
+										<tr><td><input type="hidden" value="10" name=""></td></tr>
+									</table>
+									<br/>
+								</c:forEach>
+								<button type="button" onclick="nullCheck()"
+										class="btn btn-primary" style="float: right;">출제</button>
 							</form>
 						</div>
 					</div>
@@ -207,5 +205,10 @@
 		</div>
 	</div>
 </div>
+
+<input id="approveNo" type="hidden" value="${subjectApproveNo}">
+<input id="testName" type="hidden" value="${testName}">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/multipleTest.js"></script>
 
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>

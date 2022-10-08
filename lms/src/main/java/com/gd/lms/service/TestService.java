@@ -42,9 +42,9 @@ public class TestService {
 	}
 	
 	// 객관식문제추가하기
-	public int addMultipleTest(int testNo,String multiplechoiceQuestion,int multiplechoiceAnswer,String multiplechoiceScore) {
+	public int addMultipleTest(int testNo,String multiplechoiceQuestion,int multiplechoiceAnswer) {
 		
-		return testMapper.insertMultipleTest(testNo, multiplechoiceQuestion, multiplechoiceAnswer, multiplechoiceScore);
+		return testMapper.insertMultipleTest(testNo, multiplechoiceQuestion, multiplechoiceAnswer);
 	}
 	
 	// 객관식보기추가하기
