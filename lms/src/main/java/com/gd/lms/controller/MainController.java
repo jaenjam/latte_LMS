@@ -175,6 +175,17 @@ public class MainController {
 			
 			log.debug(TeamColor.LJE + "MainController gomain studentTimeTable 금요일 값 확인 : " + Fri);
 			
+			
+							
+			//사이드 바(학생 수강 중인 강의 리스트 출력)
+			List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList(No);
+			
+			//model myRegisterListStu에 저장
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.LJE + "MainController gomain myRegisterListStu : " + myRegisterListStu);
+			
+			
 			if(session.getAttribute("user") !=null) {
 				return "/home";
 			} else {

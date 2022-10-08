@@ -46,7 +46,7 @@ public class NoticeController {
 	
 	//공지 상세보기 form
 	@GetMapping("/notice/noticeOne")
-	public String getNoticeOne(Model model, int noticeNo) {
+	public String getNoticeOne(Model model, int noticeNo, HttpServletRequest request, HttpSession session) {
 		
 		//디버깅
 		log.debug(TeamColor.LJE + "NoticeController getNoticeOne");
@@ -64,6 +64,17 @@ public class NoticeController {
 		log.debug(TeamColor.LJE + "NoticeControler getNoticeOne에 있는 model의 값 : " + model);
 		
 		log.debug(TeamColor.LJE + "NoticeControler getNoticeOne에 있는 noticeNo의 값 : " + noticeNo);
+		
+		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+		
+		
 		
 		//notice/noticeOne에 넣어준다.
 		return "/notice/noticeOne";
@@ -173,6 +184,16 @@ public class NoticeController {
 		model.addAttribute("myRegisterListProf", myRegisterListProf);
 		
 		log.debug(TeamColor.LJE + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		
+		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "NoticeController noticeList myRegisterListStu : " + myRegisterListStu);
 		
 		
 		//notice/noticeList 페이지로

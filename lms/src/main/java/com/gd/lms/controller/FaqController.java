@@ -133,13 +133,24 @@ public class FaqController {
 		log.debug(TeamColor.LJE + "FaqController faqList에 저장된 값 : " + faqList);
 		
 		
+		
 		// 교수의 강의리스트 확인
 		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
 
 		// myRegisterListProf확인
 		model.addAttribute("myRegisterListProf", myRegisterListProf);
 		
-		log.debug(TeamColor.LJE + "FaqController faqList myRegisterListProf : " + myRegisterListProf);		
+		log.debug(TeamColor.LJE + "FaqController faqList myRegisterListProf : " + myRegisterListProf);	
+		
+		
+		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "FaqController faqList myRegisterListStu : " + myRegisterListStu);
 		
 		//faq/faqList 페이지로
 		return "/faq/faqList";

@@ -304,6 +304,14 @@ public class StudentController {
 		log.debug(TeamColor.LJE + "StudentController getStudentOne studentImg : " + studentImg);
 		
 		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList(studentNo);
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "StudentController getStudentOne myRegisterListStu : " + myRegisterListStu);
+		
 		//디버그
 		log.debug(TeamColor.KHW +model);
 		log.debug(TeamColor.KHW +studentNo);
@@ -326,12 +334,25 @@ public class StudentController {
 		
 		log.debug(TeamColor.LJE + "StudentController model studentOne값 확인 : " + studentOne);
 		
+		
 		//studentImg에 넣어주기
 		List<Map<String, Object>> studentImg = studentService.getStudentImg(studentNo);
 		
 		model.addAttribute("studentImg", studentImg);
 		
 		log.debug(TeamColor.LJE + "StudentController modifyStudent studentImg : " + studentImg);
+		
+		
+		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList(studentNo);
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "StudentController modifyStudent myRegisterListStu : " + myRegisterListStu);
+		
+		
 		
 		return "/student/modifyStudent";
 	}

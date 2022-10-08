@@ -117,6 +117,15 @@ public class QuestionController {
 		log.debug(TeamColor.LJE + "QuestionController faqList myRegisterListProf : " + myRegisterListProf);		
 		
 		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "QuestionController questionList myRegisterListStu : " + myRegisterListStu);
+		
+		
 		//question/questionList 페이지로
 		return "/qna/questionList";
 	}

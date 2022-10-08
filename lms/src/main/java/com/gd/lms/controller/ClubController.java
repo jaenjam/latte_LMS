@@ -111,6 +111,15 @@ public class ClubController {
 		log.debug(TeamColor.CSJ + "ClubController.studentClubList : " + model);
 
 		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList(studentNo);
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "ClubController addStudentClub myRegisterListStu : " + myRegisterListStu);
+		
+		
 		
 		return "/club/studentClubList";
 	}
@@ -157,7 +166,7 @@ public class ClubController {
 
 	// 학생의 동아리 가입 form
 	@GetMapping("/club/addStudentClub")
-	public String addStudentClub(Model model) {
+	public String addStudentClub(Model model, HttpServletRequest request, HttpSession session) {
 		log.debug(TeamColor.CSJ + "clubController.addStudentClub get");
 
 		List<Map<String, Object>> clubList = clubService.getClubList(); // 동아리 리스트 불러오기
@@ -165,6 +174,15 @@ public class ClubController {
 
 		log.debug(TeamColor.CSJ + ("clubController.clubList : " + clubList));
 
+		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "ClubController addStudentClub myRegisterListStu : " + myRegisterListStu);
+		
 		return "/club/addStudentClub";
 	}
 
@@ -237,6 +255,16 @@ public class ClubController {
 		model.addAttribute("myRegisterListProf", myRegisterListProf);
 		
 		log.debug(TeamColor.LJE + "ClubController clubList myRegisterListProf : " + myRegisterListProf);
+		
+		
+		//사이드 바(학생 수강 중인 강의 리스트 출력)
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "ClubController clubList myRegisterListStu : " + myRegisterListStu);
+		
 		
 		return "/club/clubList";
 	}
