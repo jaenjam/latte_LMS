@@ -78,7 +78,7 @@
 
 
 	<!-- 학생이 수강하는 과목의 과제 제출 -->
-	<insert id="insertLectureHomework" parameterType="int" >
+	<insert id="insertLectureHomework" parameterType="com.gd.lms.vo.StudentHomework">
 	INSERT INTO 
 		student_homework
 	(
@@ -87,9 +87,9 @@
 	, homework_title
 	, homework_content
 	)
-	VAUES
+	VALUES
 	(
-	#{No}
+	#{studentNo}
 	, #{lectureNo}
 	, #{homeworkTitle}
 	, #{homeworkTitle}
@@ -97,12 +97,28 @@
 	</insert>
 	
 	
+	<!--  과제 첨부를 위해 필요한 No 찾기 -->
+	<select id="selectLectureHomeworkPf" parameterType="com.gd.lms.vo.StudentHomework" resultType="int">
+	SELECT
+		pf_homework_no
+	FROM
+	student_homework
+	WHERE
+		student_no = #{studentNo}
+	AND
+		lecture_no = #{lectureNo}
+	AND
+		homework_title = #{homeworkTitle}			
+	</select>
+	
+	
 	<!-- 학생이 수강하는 과목의 과제 파일 첨부하기 -->
 	<insert id="insertLectureHomeworkfile" parameterType="com.gd.lms.vo.StudentHomeworkFile">
 	INSERT INTO
 		student_homework_file
 	(
-	student_no
+	pf_homework_no
+	, student_no
 	, homework_filename
 	, homework_originname
 	, homework_filetype
@@ -111,10 +127,11 @@
 	)
 	VALUES
 	(
-	#{No}
-	, #{homeworkFilename}
-	, #{homeworkOriginname}
-	, #{homeworkFiletype}
+	#{pfHomeworkNo}
+	, #{studentNo}
+	, #{homeworkFileName}
+	, #{homeworkOriginName}
+	, #{homeworkFileType}
 	, now()
 	, now()
 	)

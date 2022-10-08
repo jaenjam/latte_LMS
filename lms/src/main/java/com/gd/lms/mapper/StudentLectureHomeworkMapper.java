@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.StudentHomework;
+import com.gd.lms.vo.StudentHomeworkFile;
 
 @Mapper
 public interface StudentLectureHomeworkMapper {
@@ -14,9 +15,13 @@ public interface StudentLectureHomeworkMapper {
 	List<Map<String, Object>> selectMyLecureHomeworkList(int subjectApproveNo);
 	
 	// 학생이 수강하는 과목의 과제 제출
-	int insertLectureHomework();
+	int insertLectureHomework(StudentHomework studenthomework);
+	
+	// 강의하는 과목의 과제파일첨부를 위해 값 찾기
+	int selectLectureHomeworkPf(StudentHomework studenthomework);
 	
 	// 학생이 수강하는 과목의 과제 파일 첨부하기
+	int insertLectureHomeworkfile(StudentHomeworkFile studenthomeworkfile);
 	
 	// 학생이 수강하는 과목의 과제 수정하기
 	// 학생이 수강하는 과목의 과제 파일 수정하기 
