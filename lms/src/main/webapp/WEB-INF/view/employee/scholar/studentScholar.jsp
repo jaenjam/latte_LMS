@@ -72,11 +72,11 @@
 											<td>${s.studentNo}</td>
 											<td>${s.majorNo}(${s.majorName})</td>
 											<td>${s.studentName}</td>
-											<td><select name="scholarNo">
+											<td><select name="scholarNo" class="form-control" style="width:200px;height:20px; text-align : center;">
 													<option value="${s.scholarNo}" selected>
 														${s.scholarName}
 														<c:if test="${empty s.scholarNo}">
-																==선택해주세요==
+																====선택해주세요====
 														</c:if>
 													</option>
 

@@ -67,19 +67,27 @@
 						<li><a
 							href="${pageContext.request.contextPath}/employee/detail/studentList">학생</a>
 						</li>
+						</ul>
 
+</li>
 
-
-						<li><a
-							href="${pageContext.request.contextPath}/employee/detail/subjectList">과목
+						
+						<li class="mega-menu mega-menu-sm"><a class="has-arrow"
+					href="javascript:void(1)" aria-expanded="false"> <i
+						class="icon-notebook menu-icon"></i> <span class="nav-text">과목관리</span>
+						</a>
+						<ul aria-expanded="false">
+						<li>
+							<a href="${pageContext.request.contextPath}/employee/detail/subjectList">과목
 								목록</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/employee/subject/addSubject">과목
 								추가</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">과목승인</a>
+							href="${pageContext.request.contextPath}/employee/detail/subjectApproveList">과목 승인</a>
 						</li>
-					</ul></li>
+					</ul>
+					</li>
 
 				<!-- 연봉관리 : 관리자, 서브관리자, 교수  -->
 

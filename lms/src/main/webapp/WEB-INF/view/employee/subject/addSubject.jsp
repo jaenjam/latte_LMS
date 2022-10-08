@@ -117,7 +117,7 @@
 								<!-- 달력 -->
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="createDate">개강일
-										/ 폐강일 <span class="text-danger">*</span>
+										/ 종강일 <span class="text-danger">*</span>
 									</label>
 									<div class="col-lg-6">
 										<div class="input-daterange input-group" id="date-range">

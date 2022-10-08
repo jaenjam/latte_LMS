@@ -41,7 +41,7 @@
 		,#{subjectState}
 		,#{subjectCredit}
 		,#{subjectMajor}
-		,STR_TO_DATE(#{createDate}, '%m/%d/%Y')
+		,STR_TO_DATE(#{createDate}, '%m/%d/%Y') 11022022
 		,STR_TO_DATE(#{endDate}, '%m/%d/%Y')
 
 		)

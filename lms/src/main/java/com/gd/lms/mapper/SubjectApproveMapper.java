@@ -11,7 +11,7 @@ import com.gd.lms.vo.SubjectApprove;
 public interface SubjectApproveMapper {
 
 	// 과목승인 정보변경
-	int updateSubjectApprove(int year, String semester, String approveActive, String subjectRoom, String day, int startTime, int endTime,int subjectApproveNo);
+	int updateSubjectApprove(int year, String semester, String approveActive, String subjectRoom, String day,  int startTime, int endTime,int subjectApproveNo);
 
 	// 승인과목목록
 	List<Map<String, Object>> selectSubjectApproveList();

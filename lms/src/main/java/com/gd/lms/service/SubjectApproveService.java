@@ -25,7 +25,7 @@ public class SubjectApproveService {
 	
 	
 	// SubjectApprove 정보 변경
-		public int modifySubjectApprove(int year, String semester, String approveActive, String subjectRoom, String day, int startTime, int endTime,int subjectApproveNo) {
+		public int modifySubjectApprove(int year, String semester, String approveActive, String subjectRoom, String day,  int startTime, int endTime,int subjectApproveNo) {
 			log.debug(TeamColor.CSJ+ "modifySubjectApprove service 실행");
 			
 			return subjectApproveMapper.updateSubjectApprove(year, semester, approveActive, subjectRoom, day, startTime, endTime, subjectApproveNo);
