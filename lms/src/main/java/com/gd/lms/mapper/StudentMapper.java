@@ -43,4 +43,7 @@ public interface StudentMapper {
 
 	// 학생정보 수정하기
 	int updateStudent(Student student);
+	
+	//나의정보 : 기본
+	List<Map<String, Object>> selectStudentInfo(int studentNo);
 }

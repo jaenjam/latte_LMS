@@ -114,6 +114,8 @@
 		, s.subject_no subjectNo
 		, s.subject_name subjectName		
 		, m.major_name majorName
+		, s.subject_credit		subjectCredit
+		, s.subject_major		subjectMajor
 	FROM 
 		register r
 	INNER JOIN

@@ -494,7 +494,27 @@ public class StudentController {
 	*/
 	
 	@GetMapping("/student/studentMyPage")
-	public String studentMyPage(int studentNo) {
+	public String studentMyPage(Model model, int studentNo) {
+		
+		//나의정보 : 기본(학생)
+		List<Map<String, Object>> studentInfo = studentService.getStudentInfo(studentNo);
+		
+		//studentInfo model 값 저장해주기
+		model.addAttribute("studentInfo", studentInfo);
+		
+		log.debug(TeamColor.LJE + "StudentController studentMyPage studentInfo : " + studentInfo);
+		
+		
+		
+		
+		//학생이 수강중인 과목
+		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList(studentNo);
+		
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		log.debug(TeamColor.LJE + "StudentController studentMyPage myRegisterListStu : " + myRegisterListStu);
+		
 		
 		return "/student/studentMyPage";
 	}

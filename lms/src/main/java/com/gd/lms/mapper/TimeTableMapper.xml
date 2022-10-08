@@ -157,4 +157,12 @@
 			AND a.day = '금'
 		</select>		
 
+
+		<!-- 교수시간표 : 월 -->
+		<select id="selectProfessorTimeTableMon" parameterType="int" resultType="map">
+			SELECT
+				  a.professor_no			professorNo
+				, a.subject_approve_no		subjectApproveNo
+				, a.major_no				majorNo
+		</select>
 </mapper>

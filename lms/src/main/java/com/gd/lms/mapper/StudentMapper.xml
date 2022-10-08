@@ -270,4 +270,38 @@
 			 	student_no = #{studentNo};	
 	
 	</update>
+	
+	<!-- 마이페이지 : 기본(학생정보) -->
+	<select id="selectStudentInfo" parameterType="com.gd.lms.vo.Student" resultType="map">
+		SELECT
+			  s.student_no				studentNo
+			, s.major_no				majorNo
+			, m.major_name				majorName
+			, s.student_name			studentName
+			, s.student_telephone		studentTelephone
+			, s.student_email			studentEmail
+			, s.student_state			studentState
+			, s.student_top				studentTop
+			, s.club_no					clubNo
+			, c.club_name				clubName
+			, s.scholar_no				scholarNo
+			, h.scholar_name			scholarName
+			, h.scholar_content			scholarContent
+			, h.scholar_price			scholarPrice
+		
+		FROM student s
+		
+		INNER JOIN major m
+		ON s.major_no = m.major_no
+		
+		INNER JOIN club c
+		ON s.club_no = c.club_no
+		
+		INNER JOIN scholar h
+		ON s.scholar_no = h.scholar_no
+		
+		WHERE s.student_no = #{studentNo}
+	</select>
+
+	
 </mapper>

@@ -109,4 +109,14 @@ public class StudentService {
 
 		return studentMapper.updateStudent(studnet);
 	}
+	
+	
+	//나의정보 : 기본
+	public List<Map<String, Object>> getStudentInfo(int studentNo){
+		log.debug(TeamColor.LJE + "StudentService getStudentInfo 실행");
+		
+		return studentMapper.selectStudentInfo(studentNo);
+	}
+	
+	
 }
