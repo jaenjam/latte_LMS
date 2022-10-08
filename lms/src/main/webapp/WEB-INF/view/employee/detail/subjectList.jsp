@@ -10,6 +10,9 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/subject.js"></script>
+
 <style>
 .btn {
 	float: right;
@@ -61,11 +64,13 @@
 										<th>폐강날짜</th>
 									</tr>
 								</thead>
-								<tbody>
-									<c:forEach var="s" items="${subjectList}">
-										<form
+								<c:forEach var="s" items="${subjectList}">
+								<form
 											action="${pageContext.request.contextPath}/addSubjectApprove?majorNo=${MajorNo}&subjectNo=${s.subjectNo}&professorNo=${No}&startDate=${s.createDate}&endDate=${s.endDate}"
-											method="post">
+											method="post" id="subjectList${status.index}" class="submit_form">
+								<tbody>
+									
+										
 										<tr>
 											<td>${s.subjectNo}</td>
 											<td>${s.subjectName}</td>
@@ -75,12 +80,14 @@
 											<td>${s.createDate}</td>
 											<td>${s.endDate}</td>
 											<c:if test="${user eq 'professor'}">
-												<td><button type="submit" class="btn btn-primary">신청</button></td>
+												<td><button value="${status.index}" form="subjectList${status.index}" type="submit" class="btn btn-primary submit_btn">신청</button></td>
 											</c:if>
 										</tr>
-										</form>
-									</c:forEach>
+										
+									
 								</tbody>
+								</form>
+								</c:forEach>
 							</table>
 						</div>
 					</div>
@@ -93,7 +100,8 @@
 <!--**********************************
             Content body end
         ***********************************-->
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/subject.js"></script>
 
 
 
