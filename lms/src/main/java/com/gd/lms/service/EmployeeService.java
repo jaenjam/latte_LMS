@@ -119,4 +119,11 @@ public class EmployeeService {
 		return employeeMapper.selectEmployeeList();
 	}
 
+	//관리자사진수정하기
+	public int modifyEmployeeImg(EmployeeImg employeeImg) {
+		log.debug(TeamColor.LJE + "EmployeeService modifyEmployeeImg 실행");
+		
+		return employeeMapper.updateEmployeeImg(employeeImg);
+	}
+	
 }

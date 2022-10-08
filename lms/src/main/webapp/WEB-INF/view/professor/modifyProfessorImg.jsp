@@ -17,7 +17,7 @@
 				<li class="breadcrumb-item"><a
 					href="${pageContext.request.contextPath}/">내정보</a></li>
 				<li class="breadcrumb-item active"><a
-					href="${pageContext.request.contextPath}/professor/addProfessorImgForm">사진파일추가</a></li>
+					href="${pageContext.request.contextPath}/professor/addProfessorImgForm">사진파일수정</a></li>
 			</ol>
 		</div>
 	</div>
@@ -55,7 +55,7 @@
 									</tbody>
 								</table>
 								<button type="submit" class="btn btn-primary"
-									style="float: right;">파일추가</button>
+									style="float: right;">파일수정</button>
 							</div>
 						</form>
 

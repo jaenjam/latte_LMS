@@ -331,4 +331,20 @@
 			)
 	</insert>
 
+	<!-- 직원사진수정하기 -->
+	<update id="updateEmployeeImg" parameterType="com.gd.lms.vo.EmployeeImg">
+	
+		UPDATE 
+				employee_img
+		SET
+				  employee_no = #{employeeNo}
+				, content_type = #{contentType}
+				, filename = #{filename}
+				, origin_filename = #{originFilename}
+				, update_date = now()
+		WHERE
+				employee_no = #{employeeNo}
+	
+	</update>
+
 </mapper>

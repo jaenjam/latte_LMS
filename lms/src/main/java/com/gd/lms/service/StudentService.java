@@ -120,7 +120,7 @@ public class StudentService {
 	
 	//학생사진수정하기
 	public int modifyStudentImg(StudentImg studentImg) {
-		log.debug(TeamColor.LJE + "StudentService updateStudentImg 실행");
+		log.debug(TeamColor.LJE + "StudentService modifyStudentImg 실행");
 		
 		return studentMapper.updateStudentImg(studentImg);
 	}

@@ -54,4 +54,6 @@ public interface EmployeeMapper {
 	// 관리자 로그인
 	Employee getEmployee(Employee employee);
 
+	//관리자 사진 수정
+	int updateEmployeeImg(EmployeeImg employeeImg);
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,13 +30,12 @@ import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Employee;
 import com.gd.lms.vo.EmployeeImg;
-import com.gd.lms.vo.Student;
-import com.gd.lms.vo.StudentImg;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@Transactional
 public class EmployeeController {
 
 	@Autowired
@@ -375,5 +375,71 @@ public class EmployeeController {
 
 		}
 	}
+	
+	
+	//직원사진수정하기
+	@GetMapping("/employee/modifyEmployeeImg")
+	public String modifyEmployeeImg(Model model) {
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg 실행");
+		
+		return "/employee/modifyEmployeeImg";
+		
+	}	
+	
+	
+	//직원사진수정하기 Action
+	@PostMapping("/modifyEmployeeImg")
+	public String modifyEmployeeImg(MultipartFile imgFile, HttpServletRequest request, Employee employee) {
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg 실행");
+		
+		HttpSession session = request.getSession();
+		
+		//파일명
+		String fileRealName = imgFile.getOriginalFilename();
+		
+		//파일 사이즈
+		long size = imgFile.getSize();
+		
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg fileRealName : " + fileRealName);
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg size : " + size);
+		
+		//확장자(fileType)
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
+		
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/images/userprofile/");
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg uploadFolder : " + uploadFolder);
+		
+		UUID uuid = UUID.randomUUID();
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg uuid : " + uuid.toString());
+		
+		String [] uuids = uuid.toString().split("-");
+		
+		String uniqueName = uuids[0];
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg uniqueName : " + uniqueName);
+		log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg fileExtendsion : " + fileExtension);
+		
+		EmployeeImg employeeImg = new EmployeeImg();
+		
+		employeeImg.setEmployeeNo((int)session.getAttribute("No"));
+		employeeImg.setContentType(fileExtension);
+		employeeImg.setFilename(uniqueName);
+		employeeImg.setOriginFilename(fileRealName);
+		
+		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+		
+		try {
+			log.debug(TeamColor.LJE + "EmployeeController modifyEmployeeImg update 실행");
+			//img파일을 변환해서 넣어준다.
+			imgFile.transferTo(saveFile);
+			employeeService.modifyEmployeeImg(employeeImg);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/getEmployeeOne?employeeNo=" + employee.getEmployeeNo();
+	}
+	
 
 }
