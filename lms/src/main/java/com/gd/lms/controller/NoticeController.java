@@ -177,6 +177,10 @@ public class NoticeController {
 		log.debug(TeamColor.LJE + "NoticeController noticeList값 :" + model);
 		
 		
+		model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+		model.addAttribute("next", pageable.next().getPageNumber());
+		
+		
 		// 교수의 강의리스트 확인
 		List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((int)session.getAttribute("No"));
 

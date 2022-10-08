@@ -95,15 +95,18 @@
                                 </div>
                                 <br>
 	                            <div class="form-group">
+	                            	<form name="s" action = "${pageContext.request.contextPath}/notice/noticeList?search=${search}">
 	                            	<div class="row" >
 	                            		<div class="col-sm-7" style="margin: 0 0 0 240px">
-	                                		<input type="text" class="form-control input-rounded" placeholder="검색어를 입력해주세요!">
+	                                		<input type="text" class="form-control input-rounded" placeholder="검색어를 입력해주세요!" id="search" name="search">
 	                                	</div>
 	                                	<div class="col-sm-1">
 											<div class="input-group icons">
 												<div class="input-group-prepend">
 													<span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-														<i class="mdi mdi-magnify"></i>
+														<a href="javascript:s.submit();">
+															<i class="mdi mdi-magnify"></i>
+														</a>
 													</span>
 												</div>
 											</div>
@@ -112,16 +115,25 @@
 				                            <div class="card-body">
 				                                <div class="bootstrap-pagination">
 				                                    <nav>
+				                                      
+				                                      
+				                                      
 				                                        <ul class="pagination justify-content-center">
-				                                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a>
+				                                            <li class="page-item disabled">
+				                                            	<a class="page-link" href="${pageContext.request.contextPath}/notice/noticeList?page=${previous}" aria-label="Previous">
+				                                            		<span aria-hidden="true">&laquo;</span>
+				                                            	</a>
 				                                            </li>
-				                                            <li class="page-item"><a class="page-link" href="#">1</a>
+				                                            <li class="page-item">
+				                                            	<a class="page-link" href="${pageContext.request.contextPath}/notice/noticeList?page=1">1</a>
 				                                            </li>
-				                                            <li class="page-item"><a class="page-link" href="#">2</a>
+				                                            <li class="page-item">
+				                                            	<a class="page-link" href="${pageContext.request.contextPath}/notice/noticeList?page=2">2</a>
 				                                            </li>
-				                                            <li class="page-item"><a class="page-link" href="#">3</a>
-				                                            </li>
-				                                            <li class="page-item"><a class="page-link" href="#">Next</a>
+				                                            <li class="page-item">
+				                                            	<a class="page-link" href="${pageContext.request.contextPath}/notice/noticeList?page=${next}" aria-label="Next">
+				                                            		<span aria-hidden="true">&raquo;</span>
+				                                            	</a>
 				                                            </li>
 				                                        </ul>
 				                                    </nav>
@@ -129,6 +141,7 @@
 				                            </div>
 	                                	</div>
 	                                </div>
+	                                </form>
 	                            </div>
                             </div>
                         </div>
@@ -140,8 +153,6 @@
         <!--**********************************
             Content body end
         ***********************************-->
- 
-
  
         
 <!-- footer -->
