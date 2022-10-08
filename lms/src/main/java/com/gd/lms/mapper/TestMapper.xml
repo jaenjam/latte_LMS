@@ -83,8 +83,6 @@
 			,#{testName}
 			,NOW()
 			,NOW())
-		WHERE test_no = #{testNo}
-			
 	</insert>
 	
 	<!-- multipleTest 문제 / 답 / 점수 입력 -->
@@ -93,19 +91,19 @@
 		 test_no
 		,multiplechoice_question
 		,multiplechoice_answer
+		,multiplechoice_score
 		,create_date
 		,update_date) 
 	VALUES (
 		 #{testNo}
 		,#{multiplechoiceQuestion}
 		,#{multiplechoiceAnswer}
+		,10
 		,NOW()
 		,NOW())
 	
 	</insert>
-	
-	<!-- select multiplechoiceNo값  -->
-	<select id="selectMultipleChoiceNo" parameterType="com.gd.lms.vo.MultipleTestExample"></select>
+
 	
 	<!-- multipleTestQuestion 입력하기 -->
 	<insert id="insertMultipleTestExample" parameterType="com.gd.lms.vo.MultipleTestExample">

@@ -1,19 +1,5 @@
 function nullCheck() {
 
-    let randomInt = Math.random();
-    for(let i = 1 ; i<11; i++){
-
-        $('#multipleChoiceQuestion'+i).val(i+"번문제 문제란");
-
-        $('input[id=answer_'+ Math.floor(randomInt * 4 +1)+'_'+i+']').prop("checked", true);
-        $('#multipleChoiceExample1_'+i).val(i+"번문제 1번보기");
-        $('#multipleChoiceExample2_'+i).val(i+"번문제 2보기");
-        $('#multipleChoiceExample3_'+i).val(i+"번문제 3맛보기");
-        $('#multipleChoiceExample4_'+i).val(i+"번문제 4돋보기");
-        randomInt = Math.random();
-    }
-
-
     //null check
     for(let k = 1; k<11; k++){
         let txtEle = $('.test_table'+ k +'input[type=text]');
