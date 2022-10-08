@@ -46,4 +46,7 @@ public interface StudentMapper {
 	
 	//나의정보 : 기본
 	List<Map<String, Object>> selectStudentInfo(int studentNo);
+	
+	//학생 사진수정
+	int updateStudentImg(StudentImg studentImg);
 }

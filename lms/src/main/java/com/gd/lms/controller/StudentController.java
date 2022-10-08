@@ -519,4 +519,66 @@ public class StudentController {
 		return "/student/studentMyPage";
 	}
 	
+	// 학생 사진 수정하기 (Form)
+	@GetMapping("/student/modifyStudentImg")
+	public String modifyStudentImg(Model model) {
+		log.debug(TeamColor.LJE + "modifyStudentImg 실행");
+		
+		return "/student/modifyStudentImg";
+	}
+	
+	//학생사진 수정하기 (Action) 첨부파일 업로드
+	@PostMapping("/modifyStudentImg")
+	public String modifyStudentImg(MultipartFile imgFile, HttpServletRequest request, Student student) {
+	
+		log.debug(TeamColor.LJE + "StudentController modifyStudentImg 실행");
+		
+		HttpSession session = request.getSession();
+		
+		//파일명
+		String fileRealName = imgFile.getOriginalFilename();
+		
+		//파일 사이즈
+		long size = imgFile.getSize();
+		
+		log.debug(TeamColor.LJE + "StudentController modifyStudentImg fileRealName : " + fileRealName);
+		log.debug(TeamColor.LJE + "StudentController modifyStudentImg size : " + size);
+		
+		//확장자(fileType)
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
+		
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/images/userprofile/");
+		log.debug(TeamColor.LJE + "StudentController modifyStudentImg uploadFolder : " + uploadFolder);
+		
+		UUID uuid = UUID.randomUUID();
+		log.debug(TeamColor.LJE + "StudentController modifyStudentImg uuid : " + uuid.toString());
+		
+		String [] uuids = uuid.toString().split("-");
+		
+		String uniqueName = uuids[0];
+		log.debug(TeamColor.LJE + "StudentController modifyStudentImg uniqueName : " + uniqueName);
+		log.debug(TeamColor.LJE + "StudentController modifyStudentImg fileExtendsion : " + fileExtension);
+		
+		StudentImg studentImg = new StudentImg();
+		
+		studentImg.setStudentNo((int)session.getAttribute("No"));
+		studentImg.setContentType(fileExtension);
+		studentImg.setFilename(uniqueName);
+		studentImg.setOriginFilename(fileRealName);
+		
+		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+		
+		try {
+			//img파일을 변환해서 넣어준다.
+			imgFile.transferTo(saveFile);
+			studentService.modifyStudentImg(studentImg);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/getStudentOne?studentNo=" + student.getStudentNo();
+	}
+	
 }

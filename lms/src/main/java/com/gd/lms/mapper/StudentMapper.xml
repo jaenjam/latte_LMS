@@ -303,5 +303,19 @@
 		WHERE s.student_no = #{studentNo}
 	</select>
 
+	<!-- 학생사진수정하기 -->
+	<update id="updateStudentImg" parameterType="com.gd.lms.vo.StudentImg">
 	
+		UPDATE
+			student_img
+		SET
+			  student_no = #{studentNo}
+			, content_type = #{contentType}
+			, filename = #{filename}
+			, origin_filename = #{originFilename}
+			, update_date = now()
+		WHERE
+			student_no = #{studentNo}
+	
+	</update>
 </mapper>
