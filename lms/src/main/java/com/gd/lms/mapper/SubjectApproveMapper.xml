@@ -15,11 +15,11 @@
 
 		year = #{year}
 		,semester = #{semester}
-		,subject_room =#{subjectRoom}
+		,subject_room = #{subjectRoom}
 		,day = #{day}
 		,approve_active = #{approveActive}
 		,start_time = #{startTime}
-		,end_time = ${endTime}
+		,end_time = #{endTime}
 
 		WHERE
 		subject_approve_no = #{subjectApproveNo}

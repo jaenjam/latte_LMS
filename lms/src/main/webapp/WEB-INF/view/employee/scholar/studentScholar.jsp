@@ -10,6 +10,9 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/scholar.js"></script>
+
 <style>
 .btn {
 	float: right;
@@ -20,6 +23,9 @@
 	white-space: nowrap;
 }
 </style>
+
+
+
 
 <!--**********************************
             Content body start
