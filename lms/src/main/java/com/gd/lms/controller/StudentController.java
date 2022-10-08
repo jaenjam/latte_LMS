@@ -493,5 +493,10 @@ public class StudentController {
 	}
 	*/
 	
+	@GetMapping("/student/studentMyPage")
+	public String studentMyPage(int studentNo) {
+		
+		return "/student/studentMyPage";
+	}
 	
 }

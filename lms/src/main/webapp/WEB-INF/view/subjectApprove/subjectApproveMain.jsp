@@ -32,7 +32,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
-			                                <h4 class="card-title">게임이론</h4>
+			                                <h4 class="card-title">${MyRegister.subjectName}</h4>
 			                                <br>
 			                                <ul class="nav nav-pills mb-3">
 			                                    <li class="nav-item"><a href="#navpills-1" class="nav-link active show" data-toggle="tab" aria-expanded="false">과목과제</a>

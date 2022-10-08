@@ -20,7 +20,7 @@
 						class="icon-notebook menu-icon"></i> <span class="nav-text">마이페이지</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="./page-login.html">나의정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/student/studentMyPage?studentNo=${No}">나의정보</a></li>
 						<li><a href="./page-register.html">전체출결현황</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/register/getRegisterForm">수강신청</a>
