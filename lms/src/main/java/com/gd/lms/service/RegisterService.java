@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.RegisterMapper;
 import com.gd.lms.repository.SubjectApproveRepository;
+import com.gd.lms.vo.Register;
+import com.gd.lms.vo.RegisterCart;
 import com.gd.lms.vo.SubjectApprove;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,13 @@ public class RegisterService {
 	@Autowired
 	SubjectApproveRepository subjectapproverepository;
 	
+	
+	// 수강신청시 학생학번에 따른 담긴 수강목록 불러오기
+	public List<Map<String, Object>> getMyRegisterCart(int studentNo) {
+		log.debug(TeamColor.KHW+"수강신청시 학번에 따른 수강바구니가 있다면 보여주는 서비스 진입");
+	
+		return registerMapper.selectMyRegisterCart(studentNo);
+	}
 	
 	
 	// 수강신청시 학점에 따른 과목 이름 불러오기
@@ -38,6 +47,40 @@ public class RegisterService {
 		return subjectapproverepository.findAllBySubjectSubjectCredit(subjectCredit);
 	}
 	
+	
+	
+	// 수강신청전 중복검사
+	public int checkRegisterCart(RegisterCart registercart) {
+		log.debug(TeamColor.KHW+ "수강신청바구니에 담기 서비스 진입전 중복검사 ajax api컨트롤러이용");
+		
+		return  registerMapper.selectCheckRegisterCart(registercart);
+	}
+	
+	
+	// 수강신청 바구니에 담기
+	public int insertRegisterCart(RegisterCart registercart) {
+		log.debug(TeamColor.KHW+ "수강신청바구니에 담기 서비스 진입 ajax api컨트롤러이용");
+		
+		return registerMapper.insertRegisterCart(registercart);
+	}
+	
+	
+	// 수강신청 바구니에 담긴 과목 삭제하기
+	public int removeRegisterCart(RegisterCart registercart) {
+		log.debug(TeamColor.KHW+ "수강신청바구니에서 삭제하기 서비스 진입 ajax api컨트롤러이용");
+		
+		return registerMapper.deleteRegisterCart(registercart);
+	}
+	
+	
+	// 수강신청하기
+	public int insertRegister(RegisterCart registercart) {
+		log.debug(TeamColor.KHW+ "수강신청하기 서비스 진입 ajax api컨트롤러이용");
+		
+		return registerMapper.insertRegister(registercart);
+	}
+	
+
 	
 	// 학생의 나의강의실리스트
 	public List<Map<String,Object>> getMyRegisterList(int studentNo){

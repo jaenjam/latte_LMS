@@ -6,31 +6,39 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.Register;
+import com.gd.lms.vo.RegisterCart;
 
 @Mapper
 public interface RegisterMapper {
 
 	
 // 1. 학생의 수강신청
+	// 1-0. 수강신청할 때 이미 담긴 과목이 있다면 과목 리스트 불러오기
+	List<Map<String, Object>> selectMyRegisterCart(int studentNo);
+	
 	// 1-1. 수강신청할 때 승인과목 리스트 불러오기
-	List<Map<String, Object>> selectRegisterListByCredit(int subjectCredit);
+	List<Map<String, Object>> selectRegisterListByCredit(int subjectCredit);	
+	
+	// 1-15 담기전 중복검사
+	int selectCheckRegisterCart(RegisterCart registercart);	
+	
 	// 1-2. 장바구니(registerCart)에 담기
-	int insertRegisterCart();
+	int insertRegisterCart(RegisterCart registercart);
 	
 	// 1-3. 장바구니(registerCart)에 담긴 내용 수정
 	int updateRegisterCart(int studentNo);
 	
 	// 1-4. 장바구니(registerCart)에 담긴 내용 삭제-일부만
-	int deleteRegisterCart(Register register);
+	int deleteRegisterCart(RegisterCart registercart);
 	
-	// 1-45. 장바구니(registerCart)에 담긴 내용 삭제-전체 다
-	int deleteRegisterCartAll(int studentNo);
+
+	// 1-5. 수강신청 완료 >> register에 최종 제출 & >>> 이때 장바구니 삭제(1-4)
+	int insertRegister(RegisterCart registercart);
 	
-	// 1-5. 수강신청 완료 >> register에 최종 제출 & >>> 이때 장바구니 삭제(1-45)
-	int insertRegister(int studentNo);
 	
 	// 1-6. 수강신청 완료 >> register에 최종 제출시 미반영된 create_date update
 	int updateRegisterCreateDate(int studentNo);
+	
 	
 	// 학생의 나의강의실 리스트 >>> sidebar용
 	List<Map<String,Object>> selectStudentMyRegisterList(int studentNo);

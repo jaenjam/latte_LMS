@@ -72,8 +72,8 @@
 
 
                             <!-- 버튼 -->
-                            <button class="btn btn-primary" type="button" name="backPage" > 담기</button>
-                            <button class="btn btn-primary" type="button" name="backPage"> 삭제</button>
+                            <button class="btn btn-primary" type="button" id="addRegisterCart" > 담기</button>
+                            <button class="btn btn-primary" type="button" id="deleteRegisterCart"> 삭제</button>
 
                             <br>
                             <br>
@@ -81,16 +81,27 @@
                             <!--  나의 바구니  -->
                             <div class="form-group">
                                 <label> 나의 수강바구니 </label>
+                                
+                                <ul id="RegisteCartList">
+                                
+                                </ul>
                                 <br>
 
                             </div>
 
 
                             <!--  하단 뒤로가기 -->
+                            
                             <div style="float:right">
+                                <button class="btn btn-primary" type="button" name="addRegister" id="addRegister"> 수강신청하기
+                                </button>
+                            </div>
+                            
+                           <div style="float:right">
                                 <button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기
                                 </button>
                             </div>
+                            
 
 
                         </div><!-- 맨 바깥 박스 end   --> 

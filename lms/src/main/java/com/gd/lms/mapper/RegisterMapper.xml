@@ -5,8 +5,43 @@
 
 
 	<!-- 1.수강신청 -->
+	
+	<!--  1-0. 담긴 과목이 있다면 담긴 과목 리스트 불러오기 -->
+	<select id="selectMyRegisterCart" resultType="map" parameterType="int">
+	SELECT
+		rc.subject_approve_no
+		, sa.major_no
+		, sa.subject_no
+		, sa.professor_no
+		, sa.day
+		, sa.start_time
+		, sa.end_time
+		, s.subject_name
+		, s.subject_major
+		, pf.professor_name
+	FROM
+	register_cart rc
+		RIGHT JOIN
+		subject_approve sa
+		ON
+		rc.subject_approve_no = sa.subject_approve_no
+			RIGHT JOIN
+			subject s
+			ON
+			sa.subject_no = s.subject_no
+				RIGHT JOIN
+				professor pf
+				ON
+				sa.professor_no = pf.professor_no 
+				WHERE
+				rc.student_no = #{studentNo}		
+	</select>
+	
+	
+	
 	<!--  1-1. 수강신청할 때 승인과목 리스트 불러오기
 		: SubjectApproveMapper 에 selectSubjectApproveList 라는 이름으로 있음 -->
+	
 	<select id="selectRegisterListByCredit" resultType="map" parameterType="map">
 	SELECT
 		subject_approve_no
@@ -19,6 +54,7 @@
 			s.subject_credit =#{subjectCredit}
 	</select>
 
+
 	<!--  1-2. 장바구니(registerCart)에 담기 -->
 	<insert id="insertRegisterCart" parameterType="com.gd.lms.vo.RegisterCart">
 	INSERT INTO
@@ -27,16 +63,29 @@
 		student_no
 		, subject_approve_no
 		, create_date
-		, update_date
+		
 		)
 		VALUES
 		(
-		#{No}
+		#{studentNo}
 		, #{subjectApproveNo}
 		, now()
-		, now()
+		
 		)
 	</insert>
+	
+	
+	<!-- 1-25. 중복 확인 -->
+	<select id="selectCheckRegisterCart" parameterType="com.gd.lms.vo.RegisterCart" resultType="int">
+		SELECT
+		count(student_no) count
+		FROM
+		register_cart
+		where
+		student_no = #{studentNo}
+		AND
+		subject_approve_no = #{subjectApproveNo}
+	</select>
 	
 
 	<!--  1-3. 장바구니(registerCart)에 담긴 내용 수정 -->
@@ -57,29 +106,25 @@
 		FROM
 		register_cart
 		WHERE
-		student_no = ${No}
+		student_no = ${studentNo}
 		AND
 		subject_approve_no = ${subjectApproveNo}
 	</delete>
 
 
-	<!-- 1-45. 장바구니(registerCart)에 담긴 내용 삭제-전체 다 -->
-	<delete id="deleteRegisterCartAll" parameterType="int">
-	DELETE
-		FROM
-		register_cart
-		WHERE
-		student_no = ${No}
-	</delete>
-
 
 	<!--  1-5. 수강신청 완료 >> register에 최종 제출 & >>> 이때 장바구니 삭제(1-45) -->
-	<insert id="insertRegister" parameterType="int">					
-	INSERT INTO register_cart(student_no, subject_approve_no)
-	    SELECT register.student_no, register.subject_approve_no
-	        FROM register
-			  	WHERE student_no = ${No}
+	<insert id="insertRegister" parameterType="com.gd.lms.vo.RegisterCart">					
+	INSERT INTO register(student_no, subject_approve_no, create_date)
+		    SELECT register_cart.student_no, register_cart.subject_approve_no, register_cart.create_date
+		        FROM register_cart
+				  	WHERE student_no = #{studentNo} AND subject_approve_no=#{subjectApproveNo};
+				  		
 	</insert>
+
+
+	<!-- 1-55 선택된것만 보내기 -->
+	
 
 
 	<!--  1-6. 수강신청 완료 >> register에 최종 제출시 미반영된 create_date update -->
@@ -88,7 +133,7 @@
 		register
 	SET
 		create_date = NOW()
-	WHERE student_no=${No}; 	
+	WHERE student_no=${studentNo}
 	</insert>
 	
 
