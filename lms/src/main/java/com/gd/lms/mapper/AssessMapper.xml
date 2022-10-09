@@ -64,7 +64,7 @@
 		r.student_no
 		, r.subject_approve_no subjectApproveNo
 		, r.create_date createDate
-		, r.update_date updateDate
+		
 		, sa.professor_no professorNo
 		, sa.year yearS
 		, sa.semester semesterS
@@ -104,7 +104,7 @@
 	SELECT DISTINCT
 			r.subject_approve_no subjectApproveNo
 			, r.create_date createDate
-			, r.update_date updateDate
+			
 			, sa.professor_no professorNo
 			, sa.year yearS
 			, sa.semester semesterS
@@ -162,7 +162,6 @@
 		r.student_no
 		, r.subject_approve_no subjectApproveNo
 		, r.create_date createDate
-		, r.update_date updateDate
 		, sa.professor_no professorNo
 		, sa.year yearS
 		, sa.semester semesterS

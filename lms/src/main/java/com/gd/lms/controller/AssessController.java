@@ -33,7 +33,7 @@ public class AssessController {
 		log.debug(TeamColor.KHW +"학번 : " + studentNo);
 		
 		model.addAttribute("registerList", assessservice.assessList(studentNo));
-		
+		model.getAttribute("registerList").toString();
 		return "/assess/professor/getProfessorAssessList";
 	}
 	
@@ -103,13 +103,13 @@ public class AssessController {
 		log.debug(TeamColor.KHW +"학번 : " + studentNo);
 		
 		model.addAttribute("registerList", assessservice.selectSubjectAssessList(studentNo));
-		
+		log.debug(TeamColor.KHW +model.getAttribute("registerList").toString());
 		return "/assess/subject/getSubjectAssessList";
 	}
 	
 	
 	// 이후 평가하기를 누를시 그 특정 과목 평가 폼 불러오기
-	@GetMapping("/assess/professor/getSubjectrAssessForm")
+	@GetMapping("/assess/subject/getSubjectrAssessForm")
 	public String getAssessSbForm(Model model
 			, @RequestParam("registerNo") int registerNo) {
 		// 해당컨트롤러 진입여부 확인
@@ -119,7 +119,7 @@ public class AssessController {
 		log.debug(TeamColor.KHW +"승인과목넘버 :" + registerNo);
 		model.addAttribute("AssessSbOne", assessservice.assessFormPf(registerNo));
 		
-		return "/assess/professor/getSubjectAssessForm";
+		return "/assess/subject/getSubjectAssessForm";
 	}
 	
 	

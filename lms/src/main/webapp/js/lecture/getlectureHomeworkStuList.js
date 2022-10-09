@@ -2,11 +2,11 @@
 
 // 문서끝나면 수정버튼 누르면 시작
 $(document).on('click', "#modify" , function(e){
-	
+	let indexNo = $(this).val();
 	// 데이터 담을건데 이름은 이래
-	const studentSubmitCk = $("#studentSubmitCk").val();
-	const score = $("#score").val();
-	const pfHomeworkNo = $("input:hidden[name=pfHomeworkNo]").val();
+	const studentSubmitCk = $("#studentSubmitCk"+indexNo).val();
+	const score = $("#score"+indexNo).val();
+	const pfHomeworkNo = $("input:hidden[id=pfHomeworkNo"+indexNo+"]").val();
 	
 	// 찍혔나 확인
 	console.log("studentSubmitCk :"  + studentSubmitCk);
@@ -41,13 +41,12 @@ $(document).on('click', "#modify" , function(e){
 		url : "/api/notstudent/modify/studentLectureHomeworkStuList/" ,
 		contentType : "application/json; charset=UTF-8",
 		data : formData,
-		dataType : "JASON",
 		contentType: false, 
 		processData: false,
-		success : function(result) {			
+		success : function(result) {
+			console.log("test");
 			alert("수정을 완료했습니다.");
-			location.href = "/lecture/nonStudnet/getlectureHomeworkStuList";
-			}		
+						}		
 	});
-	
+	 
 });
