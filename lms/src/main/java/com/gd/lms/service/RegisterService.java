@@ -76,8 +76,8 @@ public class RegisterService {
 	// 수강신청하기
 	public int insertRegister(RegisterCart registercart) {
 		log.debug(TeamColor.KHW+ "수강신청하기 서비스 진입 ajax api컨트롤러이용");
-		
-		return registerMapper.insertRegister(registercart);
+		registerMapper.insertRegister(registercart);
+		return registercart.getRegisterNo();
 	}
 	
 

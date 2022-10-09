@@ -6,15 +6,18 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gd.lms.vo.ProfessorAssess;
+import com.gd.lms.vo.SubjectAssess;
 
 @Mapper
 public interface AssessMapper {
 
 	
-	//
-	int insertPa(int studentNo);
-	//
-	int insertSa(int studentNo);
+	// 교수평가 인서트
+	
+	int insertProfessorA(ProfessorAssess professorassess);
+	
+	// 과목평가 인서트
+	int insertSubjectA(SubjectAssess subjectassess);
 	
 	// 교수평가 메뉴 누를 시 교수평가 List 불러오기 (학번 기준)
 	List<Map<String,Object>> selectAssessList(int studentNo);

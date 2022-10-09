@@ -6,7 +6,7 @@
 	<!--  1.7하기 전에 reg -->
 
 	<!--  1-7. 수강신청 완료 이후 professor_assess 테이블에 해당 register_no로 디비 자동삽입 -->
-	<insert id="insertPa" parameterType="int">
+	<insert id="insertPa" parameterType="com.gd.lms.vo.ProfessorAssess">
 	INSERT INTO professor_assess
 	(
 	register_no
@@ -22,22 +22,38 @@
 	)
 	</insert>
 
+	
 
-	<!--  1-75. 수강신청 완료 이후 professor_assess 테이블에 해당 register_no로 디비 자동삽입 -->
-	<insert id="insertSa" parameterType="int">
-	INSERT INTO professor_assess
-	(
-	register_no
-	)
+	<!--  수강신청 완료 이후 professor_assess 테이블에 해당 register_no로 디비 자동삽입 -->
+	<insert id="insertProfessorA" parameterType="com.gd.lms.vo.ProfessorAssess">
+	INSERT INTO 
+		professor_assess 
+		(
+		register_no
+		, subject_approve_no
+		)
+	VALUES 
+		(
+		#{registerNo}
+		, #{subjectApproveNo}
+		)	
+	</insert>
+
+
+
+	<!--  1-75. 수강신청 완료 이후 subject_assess 테이블에 해당 register_no로 디비 자동삽입 -->
+	<insert id="insertSubjectA" parameterType="com.gd.lms.vo.SubjectAssess">
+	INSERT INTO 
+		subject_assess
+		(
+		register_no
+		, subject_approve_no
+		)
 	VALUE
-	(
-		(SELECT
-		MAX(register_no)
-		FROM
-		register
-		WHERE
-		student_no=#{No})
-	)
+		(
+		#{registerNo}
+		, #{subjectApproveNo}
+		)
 	</insert>
 
 

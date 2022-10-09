@@ -114,12 +114,11 @@
 
 
 	<!--  1-5. 수강신청 완료 >> register에 최종 제출 & >>> 이때 장바구니 삭제(1-45) -->
-	<insert id="insertRegister" parameterType="com.gd.lms.vo.RegisterCart">					
+	<insert id="insertRegister" parameterType="com.gd.lms.vo.RegisterCart" useGeneratedKeys="true" keyProperty="registerNo">					
 	INSERT INTO register(student_no, subject_approve_no, create_date)
 		    SELECT register_cart.student_no, register_cart.subject_approve_no, register_cart.create_date
 		        FROM register_cart
 				  	WHERE student_no = #{studentNo} AND subject_approve_no=#{subjectApproveNo};
-				  		
 	</insert>
 
 
@@ -127,16 +126,7 @@
 	
 
 
-	<!--  1-6. 수강신청 완료 >> register에 최종 제출시 미반영된 create_date update -->
-	<insert id="updateRegisterCreateDate" parameterType="int">	
-	UPDATE
-		register
-	SET
-		create_date = NOW()
-	WHERE student_no=${studentNo}
-	</insert>
 	
-
 
 	<!--  학생의 수강신청한 강의 리스트 불러오기... 이지만 어지간한건 다 선택함-->
 	<select id="selectStudentMyRegisterList" parameterType="int" resultType="map">
@@ -144,7 +134,6 @@
 		r.student_no studentNo
 		, r.subject_approve_no subjectApproveNo
 		, r.create_date createDateR
-		, r.update_date updateDateR
 		, sa.major_no majorNo
 		, sa.professor_no professorNo
 		, sa.year yearSa

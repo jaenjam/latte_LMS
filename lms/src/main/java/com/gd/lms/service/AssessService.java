@@ -12,6 +12,7 @@ import com.gd.lms.mapper.AssessMapper;
 import com.gd.lms.repository.SubjectApproveRepository;
 import com.gd.lms.vo.ProfessorAssess;
 import com.gd.lms.vo.Register;
+import com.gd.lms.vo.SubjectAssess;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +23,22 @@ public class AssessService {
 
 	@Autowired
 	AssessMapper assessmapper;
+	
+	
+	// 학생이 수강신청시 교수평가 인서트
+	public int addProfessorA(ProfessorAssess professorassess) {
+		log.debug(TeamColor.KHW +"학생이 수강신청시 교수평가 인서트 서비스 진입");
+	
+		return assessmapper.insertProfessorA(professorassess);
+	}
+	
+	// 학생이 수강신청시 과목평가 인서트
+	public int addSubjectA(SubjectAssess subjectassess) {
+		log.debug(TeamColor.KHW +"학생이 수강신청시 과목평가 인서트 서비스 진입");
+	
+		return assessmapper.insertSubjectA(subjectassess);
+	}
+	
 	
 	// 학생이 교수평가 메뉴 누를 시 교수평가 List 불러오기(수강중인 강의 리스트 불러오는 느낌)
 	public List<Map<String, Object>> assessList(int studentNo) {
