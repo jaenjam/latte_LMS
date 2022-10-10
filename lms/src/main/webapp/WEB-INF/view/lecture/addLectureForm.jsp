@@ -15,8 +15,8 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript" src="/js/lecture/addLectureForm.js"></script>
 
-<body>
         <!--**********************************
             Content body start
         ***********************************-->
@@ -65,7 +65,7 @@
 	                                        <div class="input-group mb-3">
 		                                            <div class="custom-file">
 		                                                <input type="file" class="custom-file-input" value="파일첨부하기" name="file" id="file">
-		                                                <label class="custom-file-label"> 파일을 첨부해주세요 </label>
+		                                                <label class="custom-file-label" id="filename"> 파일을 첨부해주세요 </label>
 		                                            </div>		                                           
 	                                        </div>
                                   		</div>
@@ -88,7 +88,6 @@
         <!--**********************************
             Content body end
         ***********************************-->
-</body>
 
 
 <!-- footer -->

@@ -35,10 +35,13 @@ public interface LectureMapper {
 	int insertLecturefile(LectureFile lectuefile);
 	
 	// 강의하는 과목의 과제 수정
-	int updateLectureOne(int lectureNo);	
+	int updateLectureOne(Lecture lecture);	
+	
+	// 기존 파일 정보 가져오기
+	String selectLectureFileExis(int lectureNo);	
 	
 	// 강의하는 과목의 과제 파일 수정
-	int updateLectureFile(int lectureNo);
+	int updateLectureFile(LectureFile lectureFile);
 	
 	// 강의하는 과목의 과제 삭제
 	int deleteLectureOne(int lectureNo);

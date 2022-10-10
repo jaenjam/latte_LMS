@@ -7,8 +7,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,18 +39,20 @@ public class  LectureController {
 		public String getlectureList(Model model
 				, @RequestParam("subjectApproveNo") int subjectApproveNo
 				, @RequestParam(required = false, defaultValue = "") String search
-				,  @PageableDefault Pageable pageable
+				,  @PageableDefault Pageable pageable 
 				){
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW +"LectureController의 lectureList 진입");
 
-
+			// pageable = PageRequest.of(0, 10, Sort.by("lectureNo").descending());
 			model.addAttribute("lectureList", lectureService.findLectureList(pageable, subjectApproveNo, search));
 			model.addAttribute("approveNo", subjectApproveNo);
 			
 			// 디버그
 			// log.debug(TeamColor.KHW+ lectureList);
-			log.debug(TeamColor.KHW+ model);
+			//log.debug(TeamColor.KHW+ model);
+
+			//log.debug(TeamColor.KHW +"model : " + model.getAttribute("lectureList"));
 			
 			
 			return "/lecture/getLectureList";
@@ -136,8 +141,8 @@ public class  LectureController {
 			
 			return "/lecture/modifyLecture";
 		}
+	
 		
-		/*
 		// 강의하는 과목의 과제 수정하기 Action
 		@PostMapping("/lecture/modifyLecture")
 		public String modifyLecture(
@@ -156,15 +161,15 @@ public class  LectureController {
 			log.debug(TeamColor.KHW+ "lectureNo : " + lectureNo);
 			log.debug(TeamColor.KHW+ "lectureFileNo : " + lectureFileNo);
 			log.debug(TeamColor.KHW+ "subjectApproveNo : " + subjectApproveNo);
-			log.debug(TeamColor.KHW+ "넘겨받은 파일 = newfile : " + lectureFile);
+			log.debug(TeamColor.KHW+ "넘겨받은 파일 = newfile : " + newlectureFile);
 			
 			
 			
 			// 과제 서비스 수정 서비스 실행
-			lectureService.modifyLecture(lecture, lectureNo, lectureFile, request);
+			int result = lectureService.modifyLecture(lecture, lectureNo, lectureFileNo, newlectureFile, request);
 			
 			
-			int result = 
+			
 					
 			
 			
@@ -177,14 +182,18 @@ public class  LectureController {
 		
 		}
 		
-		*/
+		
 		
 		
 		// 강의하는 과목의 과제 삭제하기 Action
 		@GetMapping("/lecture/removeLecture")
 		public String removeLectureForm(@RequestParam("lectureNo") int lectureNo, 
 				@RequestParam("subjectApproveNo") int subjectApproveNo
-				,Lecture lecture, RedirectAttributes rttr) {
+				, Lecture lecture
+				, String fileName
+				, HttpServletRequest request
+				, RedirectAttributes rttr
+				) {
 			
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 삭제하기 Action 컨트롤러 진입");
@@ -192,7 +201,7 @@ public class  LectureController {
 			log.debug(TeamColor.KHW +"강의하는 과목의 과제 삭제하기 Action 컨트롤러 진입시 전달받은 lectureNo : " + lectureNo);
 			log.debug(TeamColor.KHW +"강의하는 과목의 과제 삭제하기 Action 컨트롤러 진입시 전달받은 subjectApproveNo : " + subjectApproveNo);
 			// lectureService를 실행하여 form에서 입력받은 sql의 값 insert
-			int result =lectureService.removeLectureOne(lectureNo);
+			int result =lectureService.removeLectureOne(lectureNo, subjectApproveNo, fileName, request);
 			
 			
 			

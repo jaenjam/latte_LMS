@@ -1,6 +1,7 @@
 package com.gd.lms.service;
 
 import java.io.File;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,6 +18,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.mapper.LectureFileMapper;
 import com.gd.lms.mapper.LectureMapper;
 import com.gd.lms.repository.LectureRepository;
 import com.gd.lms.repository.SubjectApproveRepository;
@@ -41,18 +44,24 @@ import lombok.extern.slf4j.Slf4j;
 public class LectureService {
 	@Autowired
 	private LectureMapper lectureMapper;
+	
+	@Autowired
+	private LectureFileMapper lecturefilemapper;
+	
 	@Autowired 
 	private LectureRepository repository;
 	@Autowired
 	private SubjectApproveRepository subjectApproveRepository;
 	
 	
-	// 페이징>>> 잠시 잠궈둠
+	// 페이징
 	public Page<Lecture> findLectureList(Pageable pageable, int subjectApproveNo, String search){
+		log.debug("페이징서비스");
 		pageable = PageRequest.of(
 				pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber()-1,
-				pageable.getPageSize());
-
+				pageable.getPageSize(),
+				Sort.by("lectureNo").descending());
+		
 		SubjectApprove subject = subjectApproveRepository.findBySubjectApproveNo(subjectApproveNo);
 		log.debug(search);
 		return repository.findAllBySubjectApproveAndLectureTitleContains(subject, search, pageable);
@@ -154,7 +163,7 @@ public class LectureService {
 	}
 	
 	
-	/*
+	
 	// 강의하는 과목의 과제 수정하기
 	public int modifyLecture(Lecture lecture
 			, int lectureNo // 그냥.. 어떤 게시글인지
@@ -172,7 +181,7 @@ public class LectureService {
 		// 3) 본문 수정 + 파일첨부 취소하는 경우...?
 		//	  >>> 외래키로 연결되어있으니 lectureNo를 통해 기존의 파일정보를 불러오고 해당하는 로컬파일 및 디비 지움
 		
-		int result = lectureMapper.updateLectureOne(lectureNo);
+		int result = lectureMapper.updateLectureOne(lecture);
 		
 		// 디버깅
 		log.debug(TeamColor.KHW + "본문수정의 경우 : " + result);
@@ -180,24 +189,85 @@ public class LectureService {
 		// 본문 변경사항이 있으며 첨부파일의 변경사항도 있을 때
 		if (result !=0 && newlectureFile!= null) {
 			
-			// >>> 넘겨받은 lectureFileNo 를 기준으로 이미지 디비와 실제 로컬 파일을 지운다
-			int filede = lectureMapper.deleteLectureFileOne(lectureFileNo);
+			log.debug(TeamColor.KHW + "본문 변경사항이 있으며 첨부파일의 변경사항도 있음");
 			
-			// 
-			
-			log.debug(TeamColor.KHW + "새로운 파일로 수정하기 위해 기존 디비 지움 : " + filede);
-			
-			// 이후 로컬의 파일 지우기
 			String dir = request.getSession().getServletContext().getRealPath("/WEB-INF/view/lecture/uploadFile");
 			
-			if(  != null ) {
-				 String fullpath = dir + "/" + savedfile;
+			log.debug(TeamColor.KHW + dir);
+			
+			// 파일 삭제시작
+			//db lectureFileName 가져오기 
+			String lectureFileName =  lectureMapper.selectLectureFileExis(lectureNo);
+			
+			// 셀렉으로 있다면 파일 지워버리기
+			if( lectureFileName != null ) {
+				 String fullpath = dir + "/" + lectureFileName;
 			      File file = new File(fullpath);
 				 file.delete();
+				 log.debug(TeamColor.KHW +"파일삭제 완료");
 			}
 			
 			
 			
+			// 새로 다시 디비에 저장하기 위해 값 셋팅
+			String lectureFilename = ""; //  강의자료파일에서 저장된 이름
+			String lectureOriginname = ""; // 기존파일이름
+			String lectureType= ""; // 파일형식
+			
+						
+			List<LectureFile> list = new ArrayList<>();
+			
+			for(MultipartFile file : newlectureFile) {
+				// 
+				if(!file.isEmpty()) {
+					lectureOriginname = file.getOriginalFilename();
+					lectureType = file.getContentType();
+					
+					// 업로드한 파일을 vo내 존재하는 파일객체에 넣어주기
+					LectureFile LectureFile = new LectureFile();
+					
+					
+					LectureFile.setLectureOriginname(lectureOriginname);
+					LectureFile.setLectureFilename(UUID.randomUUID() + "_" + lectureOriginname);
+					LectureFile.setLectureType(lectureType);
+					LectureFile.setLectureNo(lectureNo);
+										
+					log.debug(TeamColor.KHW + "LectureFile에 저장된 것들 : " + LectureFile);
+					
+					
+					list.add(LectureFile);
+					
+					String saveFileName = dir + File.separator + LectureFile.getLectureFilename();
+					
+					Path savedir = Paths.get(saveFileName);
+					
+					try {
+						// 전송
+						file.transferTo(savedir);
+						
+						// 디비 업데이트
+						result =+ lectureMapper.updateLectureFile(LectureFile);
+						
+						// 파일 추가
+						log.debug(TeamColor.KHW + " 파일 수정 성공 result : " + result);
+					} catch(Exception e) {
+						log.debug(TeamColor.KHW + " 파일 수정 실패 result : " + result);
+						e.printStackTrace();
+					
+					}
+				}
+		
+			}
+			
+			
+			/*
+			//db file name 수정하기
+			
+			String newName = "bye";
+			
+			//db file update
+			
+			//file 저장
 			// 렉쳐파일형태의 vo 객체 생성 이후 변수 넣어주기(새로 업로드된)
 			LectureFile existlecturefile = new LectureFile();
 			
@@ -207,19 +277,53 @@ public class LectureService {
 			existlecturefile.getLectureType();
 	
 			// 새로운 파일 디비 삽입
-			
+				
+			}return lectureMapper.updateLectureOne(lectureNo);
+			*/
+		
 		}
-		
-		
-		return lectureMapper.updateLectureOne(lectureNo);
+		return 1;
 	}
 	
-	*/
 	
-	// 강의하는 과목의 과제 삭제하기
-	public int removeLectureOne(int lectureNo) {
-		log.debug(TeamColor.KHW+"강의하는 과목의 과제 삭제하기 서비스 진입");
-		return lectureMapper.deleteLectureOne(lectureNo);
+	
+	// 강의하는 과목의 과제 삭제하기 + 파일삭제 (못하면 디비라도 지워)
+	public int removeLectureOne(int lectureNo
+			, int subjectApproveNo
+			, String fileName
+			, HttpServletRequest request) {
+		log.debug(TeamColor.KHW+ "강의하는 과목의 과제 삭제하기 서비스 진입");
+		
+		log.debug(TeamColor.KHW+ "fileName : " + fileName);
+		log.debug(TeamColor.KHW+ "subjectApproveNo : " + subjectApproveNo);
+	
+		
+		/*
+		// 업로드된 파일 삭제
+    	String srcFileName = null;
+		
+    	
+    	// 파일 경로 설정
+    	String uploadPath = request.getSession().getServletContext().getRealPath("/WEB-INF/view/lecture/uploadFile");
+    	
+    	
+    	try {
+    		 srcFileName = URLDecoder.decode(fileName,"UTF-8");
+    		 
+    		 File file = new File(uploadPath +File.separator + srcFileName);
+    		 boolean result = file.delete(); 
+    		 log.debug(TeamColor.KHW + "srcFileName : " + srcFileName);
+    		 
+    	}
+    	*/
+		
+		int fileresult = lecturefilemapper.deleteLectureFile(lectureNo);
+		log.debug(TeamColor.KHW+ "fileresult : " + fileresult);
+		
+    	int result = lectureMapper.deleteLectureOne(lectureNo);
+    	log.debug(TeamColor.KHW+ "result : " + result);
+    	
+		return result;
 	}
 	
 	

@@ -9,7 +9,8 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
-
+<script type="text/javascript" src="/js/jquery/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/lecture/modifyLecture.js"></script>
 
 
         <!--**********************************
@@ -37,7 +38,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="${pageContext.request.contextPath}/lecture/modifyLecture?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}" method="post">
+                                    <form class="form-valide" action="${pageContext.request.contextPath}/lecture/modifyLecture?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}" method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="lectureNo">번호<span class="text-danger">*</span>
                                             </label>
@@ -80,7 +81,7 @@
                                          
                                          	<!--  기존 파일  -->
 											<label class="col-lg-4 col-form-label" for="lectureContent">기존 파일: ${lectureOne.lectureOriginname}
-												<input type="hiden" id="lectureFileNo" name="lectureFileNo" value="${lectureOne.lectureFileNo}">
+												<input type="hidden" id="lectureFileNo" name="lectureFileNo" value="${lectureOne.lectureFileNo}">
 								
 								
                                             </label>	
@@ -93,7 +94,7 @@
 	                                        <div class="input-group mb-3">
 		                                            <div class="custom-file">
 		                                                <input type="file" class="custom-file-input" value="파일첨부하기" name="newfile" id="newfile">
-		                                                <label class="custom-file-label"> 파일을 첨부해주세요 </label>
+		                                                <label class="custom-file-label" id="filename"> 파일을 첨부해주세요 </label>
 		                                            </div>
 		                                           
 	                                        </div>

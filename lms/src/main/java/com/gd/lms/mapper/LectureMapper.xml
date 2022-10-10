@@ -42,7 +42,7 @@
 		, l.create_date createDate
 		, l.update_date updateDate
 		, l.count 
-		, lf.lecturefile_no lecturefileNo
+		, lf.lecturefile_no lectureFileNo
 		, lf.lecture_filename lectureFilename
 		, lf.lecture_originname lectureOriginname
 		, lf.lecture_type lectureType
@@ -122,7 +122,7 @@
 	
 	
 	<!-- 강의하는 과목의 과제 수정하기 >>> 본문만 -->
-	<update id="updateLectureOne" parameterType="int">
+	<update id="updateLectureOne" parameterType="com.gd.lms.vo.Lecture">
 	UPDATE
 		lecture
 	SET
@@ -134,23 +134,34 @@
 	</update>
 	
 	
+	<!--  기존 파일 정보 가져오기ㅣ-->
+	<select id="selectLectureFileExis" resultType="String"  parameterType="int">
+	SELECT
+		lecture_filename lectureFileName
+	FROM
+		lecture_file
+	WHERE
+		lecture_no = #{lectureNo}	
 	
-	<!-- 강의하는 과목의 과제 수정하기 >>> 업로드 파일을 -->
-	<update id="updateLectureFile" parameterType="int">
+	</select>
+	
+	
+	<!-- 강의하는 과목의 과제 수정하기 >>> 파일디비를 -->
+	<update id="updateLectureFile" parameterType="com.gd.lms.vo.LectureFile">
 	UPDATE
 		lecture_file
 	SET
 		lecture_filename = #{lectureFilename}
-		lecture_originname = #{lectureOriginname}
-		lecture_type = #{lecture_type}
-		update_date = now
+		, lecture_originname = #{lectureOriginname}
+		, lecture_type = #{lectureType}
+		, update_date = now()
 	WHERE
 		lecture_no = #{lectureNo}
 		
 	<!--  쿼리스트링으로 연결받은 lectureNo 를 기준으로 이미지파일 테이블 값 셀렉 -->
 	</update>
 	
-	
+
 	
 	<!-- 강의하는 과목의 과제 삭제하기 -->	
 	<delete id="deleteLectureOne" parameterType="int">
@@ -185,6 +196,7 @@
 	, sh.homework_title homeworkTitle
 	, sh.homework_content homeworkContent
 	, sh.student_submitck studentSubmitCk
+	, sh.pf_homework_no pfHomeworkNo
 	, sh.score score
 	, l.subject_approve_no	subjectApproveNo
 	, sa.subject_no subjectNo

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.LectureFileMapper">
+
+	<!--  강의강좌파일 디비 지우기 -->
+	<delete id="deleteLectureFile" parameterType="int">
+	DELETE
+	FROM
+	lecture_file
+	WHERE
+	lecture_no = #{lectureNo}
+	</delete>
+
+
+</mapper>
