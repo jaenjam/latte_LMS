@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.lms.mapper.SubjectNoticeMapper">
+	
+	
+	<!--  강의하는 과목의 공지사항 리스트 보기 >>> 교수 학생 상관 X -->
+	<select id="selectSubjectNoticeList" parameterType="int" resultType="com.gd.lms.vo.SubjectNotice">
+	SELECT
+		sb.subject_notice_no subjctNoticeNo
+		, sb.sb_notice_title sbNoticeTitle
+		, sb.sb_notice_content sbNoticeContent
+		, sb.count 
+		, sb.create_date createDate
+		, sb.update_date updateDate
+		, sa.professor_no 
+		, sa.subject_no subjectNo
+		, pf.professor_name professorName 
+		FROM
+			subject_notice sb
+				RIGHT JOIN
+					subject_approve sa
+					ON
+						sb.subject_approve_no = sa.subject_approve_no
+						RIGHT JOIN
+							professor pf
+							ON
+							sa.professor_no = pf.professor_no		
+		WHERE
+			sb.subject_approve_no = #{subjectApproveNo};	
+	</select>
+
+
+	<!-- 공지사항 상세보기 -->
+	<select id="selectSubjectNoticeOne" parameterType="int" resultType="com.gd.lms.vo.SubjectNotice">
+	SELECT
+		subject_notice_no subjctNoticeNo
+		, sb_notice_title sbNoticeTitle
+		, sb_notice_content sbNoticeContent
+		, count 
+		, create_date createDate
+		, update_date updateDate
+	FROM
+		subject_notice
+	WHERE
+		subject_notice_no = #{subjectNoticeNo}
+	</select>
+
+
+
+	<!--  교수의 공지사항 작성하기 -->
+	<insert id="insertSubjectNotice" parameterType="com.gd.lms.vo.SubjectNotice">
+	INSERT INTO
+		subject_notice
+		(
+		subject_approve_no
+		, sb_notice_title
+		, sb_notice_content
+		, create_date
+		, update_date
+		)
+		VALUES 
+		(
+		#{subjectApproveNo}
+		, #{sbNoticeTitle}
+		, #{sbNoticeContent}
+		, NOW()
+		, NOW()
+		)
+	</insert>
+
+
+	<!-- 이미지 첨부를 위해 필요한 No 찾기 -->
+
+	<!-- 이미지 첨부하기 -->
+
+	<!--  조회수 증가 -->
+
+
+</mapper>

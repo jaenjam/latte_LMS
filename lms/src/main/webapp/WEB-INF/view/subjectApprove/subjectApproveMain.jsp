@@ -35,12 +35,24 @@
 			                                <h4 class="card-title">${MyRegister.subjectName}</h4>
 			                                <br>
 			                                <ul class="nav nav-pills mb-3">
-			                                    <li class="nav-item"><a href="#navpills-1" class="nav-link active show" data-toggle="tab" aria-expanded="false">과목과제</a>
+			                                 	<li class="nav-item"><a href="#navpills-2" class="nav-link" data-toggle="tab" aria-expanded="false">강의정보</a>
 			                                    </li>
-			                                    <li class="nav-item"><a href="#navpills-2" class="nav-link" data-toggle="tab" aria-expanded="false">강의</a>
+			                                    
+			                                    
+			                                    <li class="nav-item"><a href="#navpills-5" class="nav-link" data-toggle="tab" aria-expanded="true">과목공지사항</a>
 			                                    </li>
-			                                    <li class="nav-item"><a href="#navpills-3" class="nav-link" data-toggle="tab" aria-expanded="true">시험추가</a>
+			                                    
+			                                    
+			                                    <li class="nav-item"><a href="#navpills-1" class="nav-link active show" data-toggle="tab" aria-expanded="false">과제</a>
 			                                    </li>
+			                                    
+			                                    <li class="nav-item"><a href="#navpills-6" class="nav-link" data-toggle="tab" aria-expanded="false">과제일람</a>
+			                                    </li>
+			                                    
+			                                    <c:if test="${user eq 'professor'}"> 
+				                                    <li class="nav-item"><a href="#navpills-3" class="nav-link" data-toggle="tab" aria-expanded="true">시험추가</a>
+				                                    </li>
+			                                    </c:if>
 			                                    <li class="nav-item"><a href="#navpills-4" class="nav-link" data-toggle="tab" aria-expanded="true">출석체크</a>
 			                                    </li>
 			                                </ul>
@@ -48,13 +60,23 @@
 			                                    <div id="navpills-1" class="tab-pane active show">
 			                                        <div>
 														<a href="${pageContext.request.contextPath}/lecture/getLectureList?subjectApproveNo=${MyRegister.subjectApproveNo}">
-															<h4 class="mb-1">과목 과제</h4>
+															<h4 class="mb-1">과제일람</h4>
 														</a>
-														<p>${myRegisterListStu}</p>
-														<h3 class="m-0">$ 12,555</h3>
-														<div>${MyRegister}</div>
 			                                        </div>
 			                                    </div>
+			                                    
+			                                    
+			                                    <div id="navpills-5" class="tab-pane">
+			                                        <div>
+														<a href="${pageContext.request.contextPath}/subject/notice/getSubjectNoticeList?subjectApproveNo=${MyRegister.subjectApproveNo}">
+														<button type="submit" class="btn btn-primary">과목공지사항</button>
+														</a>	
+			                                        </div>
+			                                    </div>
+			                                    
+			                                    
+			                                    
+			                                    
 			                                    <div id="navpills-2" class="tab-pane">
 													<div>
 														<h4 class="mb-0">${MyRegister.subjectName}</h4>
@@ -63,6 +85,9 @@
 															요일: ${MyRegister.day}</p>
 													</div>
 			                                    </div>
+			                                    
+			                                    <!--  교수만 시험제출 보이게 -->
+			                                   	<c:if test="${user eq 'professor'}"> 
 			                                    <div id="navpills-3" class="tab-pane">
 			                                        <div>
 														<form action="${pageContext.request.contextPath}/test/addTestForm">
@@ -70,6 +95,9 @@
 														</form>
 			                                        </div>
 			                                    </div>
+			                                    </c:if>
+			                                    
+			                                    
 			                                    <div id="navpills-4" class="tab-pane">
 			                                        <div>
 			                                        	<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -111,6 +139,8 @@
 						                                </div>
 			                                        </div>
 			                                    </div>
+			                          		                                    
+			                                    
 			                                </div>
 			                            </div>
 			                         </div>
