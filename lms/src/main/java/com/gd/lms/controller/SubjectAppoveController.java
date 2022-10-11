@@ -26,12 +26,13 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class SubjectAppoveController {
 
-	// @Autowired subjectAppoveService subjectAppoveService;
+	
 	@Autowired
 	RegisterService registerService;
 	@Autowired
 	SubjectApproveService subjectApproveService;
 
+	
 	// 승인과목 메인 진입 (승인과목메인진입은 왼쪽 사이드바에서 주체에 따라 구분된 강의를 눌러 들어옴)
 	@GetMapping("/subjectApprove/subjectApproveMain")
 	public String getsubjectApproveMain(Model model, HttpServletRequest request,
@@ -40,8 +41,34 @@ public class SubjectAppoveController {
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW + "SubjectAppoveController의 승인과목메인진입 컨트롤러 실행");
 
+		
+		
 		// 세션 사용하기위해 선언 & 디버깅
 		HttpSession session = request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+	
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
+
 		log.debug(TeamColor.KHW + "SubjectAppoveController의 받아온 subjectApproveNo : " + subjectApproveNo);
 
 		// 이전 페이지에서 쿼리스트링으로 받아온 subjectApproveNo 세션저장 & 디버깅
@@ -52,15 +79,12 @@ public class SubjectAppoveController {
 
 		model.addAttribute("MyRegister", MyRegister);
 
-		// 교수의 강의리스트 확인
-		List<Map<String, Object>> myRegisterListProf = registerService
-				.getMyRegisterListProf((int) session.getAttribute("No"));
 
 		// myRegisterListProf확인
-		model.addAttribute("myRegisterListProf", myRegisterListProf);
+		//model.addAttribute("myRegisterListProf", myRegisterListProf);
 
-		log.debug(TeamColor.LJE + "SubjectApproveController getsubjectApproveMain myRegisterListProf : "
-				+ myRegisterListProf);
+		//log.debug(TeamColor.LJE + "SubjectApproveController getsubjectApproveMain myRegisterListProf : "
+		//		+ myRegisterListProf);
 
 		// 교수 출석페이지 구동을 위한 (승인된 수업듣는 학생리스트 출력)
 		List<Map<String, Object>> registerStudentList = registerService.getRegisterStudentList(subjectApproveNo);

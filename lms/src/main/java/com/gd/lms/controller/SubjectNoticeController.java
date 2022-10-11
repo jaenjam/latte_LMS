@@ -1,9 +1,11 @@
 package com.gd.lms.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.SubjectNoticeService;
 import com.gd.lms.vo.SubjectNotice;
 
@@ -31,18 +34,43 @@ public class SubjectNoticeController {
 	@Autowired	
 	SubjectNoticeService subjectnoticeservice;
 	
+	
+	@Autowired
+	RegisterService registerservice;
+	
+	
 	// 강의하는 과목의 공지사항 리스트 보기 (페이징적용)
 	@GetMapping("/subject/notice/getSubjectNoticeList")
 	public String getSubjectNoticeList(Model model
-			, @RequestParam("subjectApproveNo") int subjectApproveNo
+			, HttpServletRequest request, @RequestParam("subjectApproveNo") int subjectApproveNo
 			, @RequestParam(required = false, defaultValue = "") String search
 			,  @PageableDefault Pageable pageable ) {
 	
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"SubjectNoticeController의 getSubjectNoticeList 진입");
 		
-		;
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
 		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
 		// model.addAttribute("subjectNoticeList" , subjectnoticeservice.getSubjectNoticeList(subjectApproveNo));
 		model.addAttribute("subjectNoticeList" , subjectnoticeservice.findSubjectNotice(pageable, subjectApproveNo, search));
 		model.addAttribute("approveNo", subjectApproveNo);
@@ -55,10 +83,35 @@ public class SubjectNoticeController {
 	@GetMapping("/subject/notice/getSubjectNoticeOne")
 	public String getSubjectNoticeOne(Model model
 			, @RequestParam("subjectNoticeNo") int subjectNoticeNo
-			) {
+			, HttpServletRequest request) {
 		
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"SubjectNoticeController의 getSubjectNoticeOne 진입");
+		
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
 		
 		
 		log.debug(TeamColor.KHW +"subjectNoticeNo : " + subjectNoticeNo);
@@ -79,10 +132,37 @@ public class SubjectNoticeController {
 	// 강의하는 과목의 공지사항 작성하기 FORM
 	@GetMapping("/subject/notice/addSubjectNoticeForm")
 	public String addSubjectNoticeForm(Model model
+			, HttpServletRequest request	
 			, @RequestParam("subjectApproveNo") int subjectApproveNo) {
 		
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"SubjectNoticeController의 addSubjectNoticeForm 진입");
+		
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
+		
 		
 		// 기준이 되는 값 model에 담기
 		model.addAttribute("subjectApproveNo", subjectApproveNo);
@@ -105,6 +185,30 @@ public class SubjectNoticeController {
 		log.debug(TeamColor.KHW+ "강의하는 과목의 공지사항 작성하기 Action 컨트롤러 진입");
 		log.debug(TeamColor.KHW+ subjectApproveNo +" "+subjectNoticeTitle +"  "+subjectNoticeContent);
 		log.debug(TeamColor.KHW+ "subjectNoticeFile :" + subjectNoticeFile);
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
 		
 		// subjectnoticeservice를 실행하여 form 에서 입력받은 sql의 값 insert
 		int result = subjectnoticeservice.addSubjectNoticeOne(subjectApproveNo, subjectNoticeTitle, subjectNoticeContent, subjectNoticeFile, request);
@@ -130,9 +234,35 @@ public class SubjectNoticeController {
 	// 강의하는 과목의 공지사항 수정하기 Form
 	@GetMapping("/subject/notice/modifySubjectNotice")
 	public String modifySubjectNotice(Model model
+			, HttpServletRequest request	
 			, @RequestParam("subjectNoticeNo") int subjectNoticeNo) {
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW+ "강의하는 과목의 공지사항 수정하기 Form 컨트롤러 진입");
+		
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
 		
 		// 게시판 상세보기 긁어오기 및 subjectNoticeOne에 저장
 		
@@ -166,6 +296,31 @@ public class SubjectNoticeController {
 		log.debug(TeamColor.KHW+ "넘겨받은 파일 = newfile : " + newSubjectNoticeFile);
 	
 		
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
+		
 		// 공지사항 수정 서비스 실행
 		int result = subjectnoticeservice.modifySubjectNotice(subjectnotice, subjectNoticeNo, subjectNoticeFileNo, newSubjectNoticeFile, request);
 	
@@ -180,7 +335,8 @@ public class SubjectNoticeController {
 	
 	// 강의하는 과목의 공지사항 삭제하기 Action
 	@GetMapping("/subject/notice/removeSubjectNotice")
-	public String removeSubjectNotice(@RequestParam("subjectNoticeNo") int subjectNoticeNo
+	public String removeSubjectNotice(Model model
+			, @RequestParam("subjectNoticeNo") int subjectNoticeNo
 			, @RequestParam("subjectApproveNo") int subjectApproveNo
 			, SubjectNotice subjectnotice
 			, String fileName
@@ -193,6 +349,33 @@ public class SubjectNoticeController {
 		
 		log.debug(TeamColor.KHW +"강의하는 과목의 공지사항 삭제하기 Action 컨트롤러 진입시 전달받은 subjectNoticeNo : " + subjectNoticeNo);
 		log.debug(TeamColor.KHW +"강의하는 과목의 공지사항 삭제하기 Action 컨트롤러 진입시 전달받은 subjectApproveNo : " + subjectApproveNo);
+		
+		
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
+		
 		
 		// lectureService를 실행하여 form에서 입력받은 sql의 값 insert
 		int result =subjectnoticeservice.removeSubjectNoticeOne(subjectNoticeNo, subjectApproveNo, fileName, request);

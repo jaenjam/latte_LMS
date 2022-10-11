@@ -69,7 +69,11 @@
                                       
                                         <c:forEach var="sb" items="${subjectNoticeList.content}">
                                             <tr>
-                                                <td>${sb.subjectNoticeNo}</td>
+                                                <td>
+                                                ${subjectNoticeList.totalElements - (subjectNoticeList.pageable.pageNumber*subjectNoticeList.pageable.pageSize+status.index)}</td>
+                                               <!--${sb.subjectNoticeNo}<!--
+                                                
+                                                </td>
                                                 <td>
                                                 	<a href="${pageContext.request.contextPath}/subject/notice/getSubjectNoticeOne?subjectNoticeNo=${sb.subjectNoticeNo}">
                                                 		${sb.subjectNoticeTitle}

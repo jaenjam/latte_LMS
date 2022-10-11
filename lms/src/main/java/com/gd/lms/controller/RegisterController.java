@@ -2,6 +2,7 @@ package com.gd.lms.controller;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,11 +43,17 @@ public class RegisterController {
 		
 		// 세션 사용하기위해 선언
 		HttpSession session =  request.getSession();	
-				
-		// 학생이거나
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바용
+		List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+		//model myRegisterListStu에 저장
+		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		
+		// 학생이 아니면
 		if( session.getAttribute("user") != "student") {
-			log.debug(TeamColor.KHW +"학생이 아닙니다");
-			
+			log.debug(TeamColor.KHW +"학생이 아닙니다");			
 			return "home";
 		}
 		// 해당 기간이 아니면 아웃(이건 학사일정 만들고 나서 시도)
@@ -58,52 +65,5 @@ public class RegisterController {
 		return "/register/getRegisterForm";
 	}
 	
-	
-	// 학점에 따른 과목선택
-	/*
-	public String selectsubjectName() {
-		
-		
-	}
-	*/
-	
-	
-	
-	
-	
-	/*
-	
-	// 학점에 따른 과목선택 (ajax이용)
-	@RequestMapping(value="/", method = RequestMethod.POST)
-	@ResponseBody
-	public String selectsubjectName(int subjectCredit
-			, @RequestBody String filterJSON
-	        , HttpServletResponse response
-	        , ModelMap model 
-			) throws Exception{ 
-		
-		log.debug(TeamColor.KHW+ "selectsubjectName() 진입");
-		
-		// JSONObject 생성
-		JSONObject obj = new JSONObject();
-		
-		List<SubjectApprove> subjectList = null;
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			SubjectApprove subjectapprove = ()
-			
-			
-		} catch(Exception e){
-		    System.out.println(e.toString());
-		    obj.put("res", "error");
-		    
-		    }
-		
-		return ;
-	}
-	
-	*/
+
 }

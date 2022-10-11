@@ -222,50 +222,7 @@ public class StudentController {
 					model.addAttribute("myRegisterListStu", myRegisterListStu);
 					//log.debug(TeamColor.KHW + myRegisterListStu);
 					
-					/*
-	
-					/*
-					// 으음..
-					// 사이드바 리스트용
-					List<String> subjectPlusName = new ArrayList<String>();
-						for(Map<String, Object> data : myRegisterListStu) {
-							for(int k=0; k<=subjectPlusName.size(); k++) {
-								
-							subjectName.add((String) data.get("subjectName"));
-							}
-						}
-					
-					
-					
-					
-					
-					// 사이드바 리스트용
-					List<String> subjectName = new ArrayList<String>();
-						for(Map<String, Object> data : myRegisterListStu) {
-							subjectName.add((String) data.get("subjectName"));
-						}
-					
-						
-					// 해당 수강강의리스트는 사이드바에 넣으므로 세션에 저장 & 디버깅으로 확인
-					session.setAttribute("subjectName", (subjectName));					
-					log.debug(TeamColor.KHW + subjectName);
-						
-					
-					
-					// 리스트 클릭하면 넘어갈 주소얻기위한 숫자용
-					List<String> subjectNo = new ArrayList<String>();
-						for(Map<String, Object> data : myRegisterListStu) {
-							subjectNo.add((String) data.get("subjectNo"));
-						}
-				
-					
-					// 사이드바에서 타고 넘어갈 주소를 얻어야 하므로 subjectNo역시 세션에 저장 & 디버깅으로 확인
-					session.setAttribute("subjectNo", (subjectNo));
-					log.debug(TeamColor.KHW +subjectNo);
-	*/
-					
-					
-					
+		
 					
 					// 디버깅
 					log.debug(TeamColor.KHW + myRegisterListStu);
@@ -283,9 +240,11 @@ public class StudentController {
 	
 	
 	// 학생정보 상세보기 FORM (비밀번호입력전)
-	//@RequestMapping(value="/student/getStudentOne", method = {RequestMethod.GET, RequestMethod.POST})
 	@GetMapping("/getStudentOne") 
-	public String getStudentOne(Student student, Model model, HttpServletRequest request, @RequestParam("studentNo") int studentNo) {
+	public String getStudentOne(Student student
+			, Model model
+			, HttpServletRequest request
+			, @RequestParam("studentNo") int studentNo) {
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW+ "StudentController의 학생정보상세보기 폼 진입");
 		

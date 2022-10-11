@@ -56,7 +56,7 @@
                             		</div>
                             		<div>
                             			 <p style="white-space:pre-line;">
-                            			 <img src="${pageContext.request.contextPath}/images/noticeImg/${subjectNoticeOne.subjectNoticeFileName}${subjectNoticeOne.contentType}">
+                            			 <img src="${pageContext.request.contextPath}/images/noticeImg/${subjectNoticeOne.subjectNoticeFileName}${subjectNoticeOne.contentType}" style="max-width: 100%; height: auto;">
                             			 	
                             			 </p>
                             		</div>

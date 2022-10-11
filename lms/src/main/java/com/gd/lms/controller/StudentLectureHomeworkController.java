@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.service.RegisterService;
 import com.gd.lms.service.StudentLectureHomeworkService;
 import com.gd.lms.vo.StudentHomework;
 
@@ -27,16 +28,41 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentLectureHomeworkController {
 	@Autowired StudentLectureHomeworkService studentlecturehomeworkservice;
 	
+	@Autowired RegisterService registerservice;
+	
 	// 학생이 본인이 수강하는 과제 리스트 보기 (처음 폼 불러오기)
 	@GetMapping("/lecture/lectureStudentHomework/getlectureHomeworkStuList")
 	public String getStudentLectureHomeworList(
 			@RequestParam("subjectApproveNo") int subjectApproveNo
+			, HttpServletRequest request
 			, Model model) {
 		// 해당 컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"StudentLectureHomeworkController의 과제List 진입");
 		
 		log.debug(TeamColor.KHW +"넘겨받은 값 subjectApproveNo : " + subjectApproveNo);
 		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
 		
 		// 서비스 실행 & 객체에 넣어주기
 		List<Map<String, Object>> LectureHomeworList
@@ -68,6 +94,26 @@ public class StudentLectureHomeworkController {
 		// 세션 사용하기위해 선언
 		HttpSession session =  request.getSession();
 		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
 		
 		model.addAttribute("lectureNo", lectureNo );
 				
@@ -94,6 +140,9 @@ public class StudentLectureHomeworkController {
 		// 세션 사용하기위해 선언
 		HttpSession session =  request.getSession();
 		session.getAttribute("No");
+		
+		// 왼쪽 사이드바 메뉴를 위한 
+		registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
 		
 		//int result = studentlecturehomeworkservice.addLecture(lecture, lectureFile, request);
 				

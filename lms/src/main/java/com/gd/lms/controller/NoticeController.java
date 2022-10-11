@@ -50,7 +50,30 @@ public class NoticeController {
 		
 		//디버깅
 		log.debug(TeamColor.LJE + "NoticeController getNoticeOne");
+		
+		// 세션 사용하기위해 선언
+		
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerService.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
 			
+			log.debug(TeamColor.LJE + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.LJE + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+	
 		//noticeNo가 noticeList에 있는 no값이랑 일치하면 상세정보를 Map에 넣어준다.
 		Map<String, Object> noticeOne = noticeService.getNoticeOne(noticeNo);
 		
@@ -67,12 +90,13 @@ public class NoticeController {
 		
 		
 		//사이드 바(학생 수강 중인 강의 리스트 출력)
-		List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		//List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList((int)session.getAttribute("No"));
+		
 		
 		//model myRegisterListStu에 저장
-		model.addAttribute("myRegisterListStu", myRegisterListStu);
+		//model.addAttribute("myRegisterListStu", myRegisterListStu);
 		
-		log.debug(TeamColor.LJE + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+		//log.debug(TeamColor.LJE + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
 		
 		
 		
@@ -83,11 +107,18 @@ public class NoticeController {
 	
 	//공지 수정하기 form
 	@GetMapping("/notice/updateNotice")
-	public String updateNotice(Model model, int noticeNo) {
+	public String updateNotice(Model model
+			, int noticeNo
+			, HttpServletRequest request) {
 		
 		//디버깅
 		log.debug(TeamColor.LJE + "NoticeController getNoticeOne");
-			
+		
+		
+	
+		
+		
+		
 		//noticeNo에 해당하는 상세정보를 Map에 넣어준다.
 		Map<String, Object> notice = noticeService.getNoticeOne(noticeNo);
 		
