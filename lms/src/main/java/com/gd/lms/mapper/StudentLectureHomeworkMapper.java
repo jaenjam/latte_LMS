@@ -11,6 +11,13 @@ import com.gd.lms.vo.StudentHomeworkFile;
 @Mapper
 public interface StudentLectureHomeworkMapper {
 
+	
+	// 해당강의 듣는 학생 넘버추출
+	List selectStudents(int subjectApproveNo);
+	
+	// 수강 학생들에게 데이터 자동생성 
+	int insertAllStudentHomework(StudentHomework studenthomework);
+	
 	// 학생이 본인이 수강하는 과목의 과제 리스트 보기
 	List<Map<String, Object>> selectMyLecureHomeworkList(int subjectApproveNo);
 	

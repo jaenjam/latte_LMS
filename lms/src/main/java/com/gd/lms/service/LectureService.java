@@ -167,7 +167,6 @@ public class LectureService {
 	// 강의하는 과목의 과제 수정하기
 	public int modifyLecture(Lecture lecture
 			, int lectureNo // 그냥.. 어떤 게시글인지
-			, int lectureFileNo
 			, MultipartFile[] newlectureFile // 새로 넘겨받은 파일정보
 			, HttpServletRequest request) {
 		

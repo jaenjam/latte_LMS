@@ -1,6 +1,7 @@
 package com.gd.lms.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.mapper.LectureMapper;
+import com.gd.lms.mapper.StudentLectureHomeworkMapper;
 import com.gd.lms.service.LectureService;
 import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.Lecture;
+import com.gd.lms.vo.StudentHomework;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,8 +37,17 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class  LectureController {
 
-		@Autowired LectureService lectureService;
-		@Autowired RegisterService registerservice;
+		@Autowired 
+		LectureService lectureService;
+		
+		@Autowired 
+		RegisterService registerservice;
+		
+		@Autowired 
+		LectureMapper lecturemapper;
+		
+		@Autowired
+		StudentLectureHomeworkMapper studentlecturehomeworkmapper;
 		
 		// 강의하는 과목의 과제 목록 (교수가)
 		@GetMapping("/lecture/getLectureList")
@@ -198,6 +211,36 @@ public class  LectureController {
 				log.debug(TeamColor.KHW+"? :" +subjectApproveNo);
 				//int subjectApproveNo = lecture.getSubjectApprove();
 				//model.addAttribute("subjectApproveNo", subjectApproveNo);
+				
+				// 입력된 값을 통한 오토인크리먼트 받아오기
+				int lectureNo = lecturemapper.selectLectureNo(lectureTitle, lectureContent, subjectApproveNo);
+				log.debug(TeamColor.KHW + "오토인크리먼트 : " + lectureNo);
+				
+				
+				// 과제작성에 따라 학생들에게도 과제 자동 생성하기 시작
+				
+				//List<Map<String, Object>> 객체에 셀렉트로 뽑은 수강학생들 넣어주기
+				List<Map<String, Object>> student = studentlecturehomeworkmapper.selectStudents(subjectApproveNo);
+				log.debug(TeamColor.KHW +"student" + student);
+				
+				// 셀렉한 학생들의 리스트 크기만큼 반복문
+				for(int i=0; i<student.size(); i++) {
+					// vo객체 생성
+					StudentHomework stHomework = new StudentHomework();
+					// 강의듣는 학생넘버를 뽑아 셋팅(반복문 돌리는만큼 늘어남)
+					int studentNo = Integer.parseInt(student.get(i).get("student_no").toString());
+					
+					// 이를 다시 vo 객체에 셋팅
+					stHomework.setLectureNo(lectureNo);
+					stHomework.setStudentNo(studentNo);
+					log.debug(TeamColor.KHW + "stHomework" + stHomework);
+					
+					// 셋팅한 객체를 넣어 매퍼실행 및 결과확인 및 디버깅
+					int sturesult = studentlecturehomeworkmapper.insertAllStudentHomework(stHomework);
+					log.debug(TeamColor.KHW +"수강하는 학생들에게 자동 인서트 성공! : " + sturesult);
+				}
+				
+				
 				return "redirect:/lecture/getLectureList?subjectApproveNo="+subjectApproveNo;
 			} else {
 				log.debug(TeamColor.KHW +"과제작성 실패!");
@@ -214,8 +257,6 @@ public class  LectureController {
 				, HttpServletRequest request) {
 			// 해당 컨트롤러 진입여부 확인
 			log.debug(TeamColor.KHW+ "강의하는 과목의 과제 수정하기 Form 컨트롤러 진입");
-			
-			
 			
 
 			// 세션 사용하기위해 선언
@@ -257,9 +298,10 @@ public class  LectureController {
 		public String modifyLecture(
 				Lecture lecture // 본문용
 				, Model model // 넘겨주기용
-				, @RequestParam("lectureNo") int lectureNo // 게시글 수정용 넘버
-				, @RequestParam("lectureFileNo") int lectureFileNo // 기존파일정보 불러오기 위한
+				, @RequestParam("lectureNo") int lectureNo // 게시글 수정용 넘버				
 				, @RequestParam("subjectApproveNo") int subjectApproveNo // ?
+				, @RequestParam("lectureTitle") String lectureTitle
+				, @RequestParam("lectureContent") String lectureContent
 				, HttpServletRequest request
 				, @RequestParam("newfile") MultipartFile[] newlectureFile ) throws UnsupportedEncodingException {
 			
@@ -268,18 +310,16 @@ public class  LectureController {
 			
 			// 넘겨받은 값 확인
 			log.debug(TeamColor.KHW+ "lectureNo : " + lectureNo);
-			log.debug(TeamColor.KHW+ "lectureFileNo : " + lectureFileNo);
 			log.debug(TeamColor.KHW+ "subjectApproveNo : " + subjectApproveNo);
 			log.debug(TeamColor.KHW+ "넘겨받은 파일 = newfile : " + newlectureFile);
 			
-			
+			lecture.setLectureTitle(lectureTitle);
+			lecture.setLectureContent(lectureContent);
 			
 			// 과제 서비스 수정 서비스 실행
-			int result = lectureService.modifyLecture(lecture, lectureNo, lectureFileNo, newlectureFile, request);
+			int result = lectureService.modifyLecture(lecture, lectureNo, newlectureFile, request);
 			
 			
-			
-					
 			
 			
 			if(result != 0) { // 수정성공!
