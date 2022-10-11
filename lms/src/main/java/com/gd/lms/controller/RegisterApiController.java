@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gd.lms.commons.TeamColor;
+import com.gd.lms.service.AssessService;
 import com.gd.lms.service.RegisterService;
+import com.gd.lms.vo.ProfessorAssess;
 import com.gd.lms.vo.RegisterCart;
 import com.gd.lms.vo.SubjectApprove;
+import com.gd.lms.vo.SubjectAssess;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +33,8 @@ public class RegisterApiController {
 	@Autowired
 	RegisterService registerservice;
 	
+	@Autowired
+	AssessService assessservice;
 	
 	// 수강신청시 학생학번에 따른 담긴 수강목록 불러오기
 	@GetMapping("/get/MyRegisterCart")
@@ -131,13 +136,34 @@ public class RegisterApiController {
 		
 		// register 인서트
 		log.debug(TeamColor.KHW +"register 인서트 진입");
-		registerservice.insertRegister(registercart);
+		// selectkey를 이용한 바로 생성된 오토인크리먼트 받아오기
+		int regNo = registerservice.insertRegister(registercart);
+		log.debug(TeamColor.KHW + "오토인크리먼트 : " + regNo);
 		
 		// register_cart 딜리트
 		log.debug(TeamColor.KHW +"register_cart 딜리트 진입");
 		registerservice.removeRegisterCart(registercart);
 		
+		// vo 객체 생성 및 값 지정
+		ProfessorAssess professorassess = new ProfessorAssess();
+		professorassess.setRegisterNo(regNo);
+		professorassess.setSubjectApproveNo(subjectApproveNo);
+		log.debug(TeamColor.KHW +"professorassess 객체확인 : " + professorassess);
 		
+		// 수강신청에 따른 교수평가 인서트
+		log.debug(TeamColor.KHW +"수강신청에 따른 교수평가 인서트 진입");
+		assessservice.addProfessorA(professorassess);
+		
+		
+		// vo 객체 생성 및 값 지정
+		SubjectAssess subjectassess = new SubjectAssess();
+		subjectassess.setRegisterNo(regNo);
+		subjectassess.setSubjectApproveNo(subjectApproveNo);
+		log.debug(TeamColor.KHW +"subjectassess 객체확인 : " + subjectassess);
+		
+		// 수강신청에 따른 과목평가 인서트
+		log.debug(TeamColor.KHW +"수강신청에 따른 과목평가 인서트 진입");
+		assessservice.addSubjectA(subjectassess);
 		
 		return "success";
 	}

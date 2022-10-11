@@ -8,5 +8,5 @@ public class SubjectAssess {
 	private int registerNo; //개별수강신청번호
 	private int sAssessScore; //만족도평가점수
 	private String studentAssessCk; //만족도평가점수
-
+	private int subjectApproveNo; // 과목승인넘버 
 }

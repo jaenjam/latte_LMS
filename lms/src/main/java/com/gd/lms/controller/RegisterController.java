@@ -62,6 +62,8 @@ public class RegisterController {
 		model.addAttribute("approveSubjectList", subjectApproveMapper.selectSubjectApproveList());
 		log.debug(TeamColor.KHW +"approveSubjectList model값 : " + model);
 		
+	
+		
 		return "/register/getRegisterForm";
 	}
 	
