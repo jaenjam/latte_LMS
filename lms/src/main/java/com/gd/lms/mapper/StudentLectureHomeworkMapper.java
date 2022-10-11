@@ -30,8 +30,24 @@ public interface StudentLectureHomeworkMapper {
 	// 학생이 수강하는 과목의 과제 파일 첨부하기
 	int insertLectureHomeworkfile(StudentHomeworkFile studenthomeworkfile);
 	
+	// subjectApproveNo찾기
+	int selectApproveNo(int lectureNo);
+	
+	
+	// 학생이 본인이 수강하는 과목의 과제 목록보기
+	List<Map<String, Object>> selectMyHomeworkList (int subjectApproveNo, int studentNo);
+	
+	// 상세보기
+	Map<String, Object> selectMyHomeworkOne(int pfHomeworkNo); 
+	
 	// 학생이 수강하는 과목의 과제 수정하기
+	int updateMyHomeworkOne(StudentHomework studenthomework);
+	
+	// 기존파일정보가져오기
+	String selectHomeworkFileExis(int pfHomeworkNo);
+	
 	// 학생이 수강하는 과목의 과제 파일 수정하기 
+	int updateHomeworkFile(StudentHomeworkFile studenthomeworkfile);
 	
 	// 학생이 수강하는 과목의 과제 삭제하기
 	// 학생이 수강하는 과목의 과제 파일 삭제하기 

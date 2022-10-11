@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.mapper.LectureMapper;
 import com.gd.lms.mapper.StudentLectureHomeworkMapper;
+import com.gd.lms.vo.LectureFile;
 import com.gd.lms.vo.StudentHomework;
 import com.gd.lms.vo.StudentHomeworkFile;
 
@@ -126,12 +128,123 @@ public class StudentLectureHomeworkService {
 		}
 			
 	
-	// 학생이 수강하는 과목의 과제 파일 첨부하기
+	// 학생이 본인이 수강하는 과목의 과제 목록보기
+	public List<Map<String, Object>> getMyHomeworkList (
+			int subjectApproveNo
+			, int studentNo
+			) {
+		log.debug(TeamColor.KHW + "학생이 본인이 수강하는 과목의 과제 목록보기 서비스 진입");
+		
+		return studentlecturehomeworkmapper.selectMyHomeworkList(subjectApproveNo,studentNo);
+	}
+	
+	
+	// 본인의 과제 상세보기
+	public Map<String,Object> getMyhomeworkOne(int pfHomeworkNo){
+		log.debug(TeamColor.KHW +"본인의 과제 상세보기 서비스 진입");
+		return studentlecturehomeworkmapper.selectMyHomeworkOne(pfHomeworkNo); 
+	}
+	
 	
 	// 학생이 수강하는 과목의 과제 수정하기
-	// 학생이 수강하는 과목의 과제 파일 수정하기 
+	public int modifyHomework(StudentHomework studenthomework
+			, int pfHomeworkNo
+			, MultipartFile[] newsthFile // 새로 넘겨받은 파일정보
+			, HttpServletRequest request) {
+		
+		log.debug(TeamColor.KHW+"제출 과제 수정하기 서비스 진입");
+		
+		
+		int result = studentlecturehomeworkmapper.updateMyHomeworkOne(studenthomework);
+		
+		// 디버깅
+		
+		// 디버깅
+		log.debug(TeamColor.KHW + "본문수정의 경우 : " + result);
+		
+		// 본문 변경사항이 있으며 첨부파일의 변경사항도 있을 때
+				if (result !=0 && newsthFile!= null) {
+		
+					log.debug(TeamColor.KHW + "본문 변경사항이 있으며 첨부파일의 변경사항도 있음");
+					
+					String dir = request.getSession().getServletContext().getRealPath("/WEB-INF/view/lecture/uploadFileStu/uploadFile");
+					
+					log.debug(TeamColor.KHW + dir);
+					
+					// 파일 삭제시작
+					//db lectureFileName 가져오기 
+					String homeworkFilename =  studentlecturehomeworkmapper.selectHomeworkFileExis(pfHomeworkNo);
+					
+					// 셀렉으로 있다면 파일 지워버리기
+					if( homeworkFilename != null ) {
+						 String fullpath = dir + "/" + homeworkFilename;
+					      File file = new File(fullpath);
+						 file.delete();
+						 log.debug(TeamColor.KHW +"파일삭제 완료");
+					}
+					
+					
+					// 새로 다시 디비에 저장하기 위해 값 셋팅
+					String homeworkFileName = ""; // 저장된 이름
+					String homeworkOriginName = ""; // 기존파일이름
+					String homeworkFileType= ""; // 파일형식
+					
+								
+					List<StudentHomeworkFile> list = new ArrayList<>();
+					
+					for(MultipartFile file : newsthFile) {
+						// 
+						if(!file.isEmpty()) {
+							homeworkOriginName = file.getOriginalFilename();
+							homeworkFileType = file.getContentType();
+							
+							// 업로드한 파일을 vo내 존재하는 파일객체에 넣어주기
+							StudentHomeworkFile sthFile = new StudentHomeworkFile();
+							
+							
+							sthFile.setHomeworkOriginName(homeworkOriginName);
+							sthFile.setHomeworkFileName(homeworkFilename);
+							sthFile.setHomeworkFileType(homeworkFileType);
+							sthFile.setPfHomeworkNo(pfHomeworkNo);
+												
+							log.debug(TeamColor.KHW + "StudentHomeworkFile에 저장된 것들 : " + sthFile);
+							
+							
+							list.add(sthFile);
+							
+							String saveFileName = dir + File.separator + sthFile.getHomeworkFileName();
+							
+							Path savedir = Paths.get(saveFileName);
+							
+							try {
+								// 전송
+								file.transferTo(savedir);
+								
+								// 디비 업데이트
+								result =+ studentlecturehomeworkmapper.updateHomeworkFile(sthFile);
+								
+								// 파일 추가
+								log.debug(TeamColor.KHW + " 파일 수정 성공 result : " + result);
+							} catch(Exception e) {
+								log.debug(TeamColor.KHW + " 파일 수정 실패 result : " + result);
+								e.printStackTrace();
+							
+							}
+						}
+				
+					}
+					
+				
+				
+				}
+				return 1;
+			}
+	
+	
 	
 	// 학생이 수강하는 과목의 과제 삭제하기
+	
+	
 	// 학생이 수강하는 과목의 과제 파일 삭제하기 
 
 

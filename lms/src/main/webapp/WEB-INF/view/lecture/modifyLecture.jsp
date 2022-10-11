@@ -88,7 +88,7 @@
                                             <!--  기존파일 삭제하는 쿼리 -->
                                             
                                             <!--  안내문 .. 인데 나 지금 하나만 가능함 ㅎ; -->                                        
-	                                        <span style="font-size:11px; color: gray;">※첨부파일은 최대 10개까지 등록이 가능합니다.</span>
+	                                        <span style="font-size:11px; color: gray;">※첨부파일은 최대 1개까지 등록이 가능합니다.</span>
 	                                        
 	                                        <!--  새로운 파일  -->
 	                                        <div class="input-group mb-3">

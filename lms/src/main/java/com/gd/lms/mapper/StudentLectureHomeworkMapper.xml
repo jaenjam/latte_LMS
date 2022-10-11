@@ -127,9 +127,105 @@
 	</insert>
 	
 	
+	<!-- 과제제출을 위해 필요한 No찾기 -->
+	<select id="selectApproveNo" parameterType="int" resultType="int">
+	SELECT
+		subject_approve_no
+	FROM
+		lecture
+	WHERE
+	lecture_no=#{lectureNo};
+	</select>
 	
-	<!-- 학생이 수강하는 과목의 과제 수정하기  -->
+	
+	<!-- 특정과목의 본인의 과제리스트 보기 -->
+	<select id="selectMyHomeworkList" parameterType="int" resultType="map">
+	SELECT
+			sh.pf_homework_no pfHomeworkNo
+			,sh.homework_title homeworkTitle
+			,sh.homework_content homeworkContent
+			,sh.student_submitck studentSubmitck
+			,l.lecture_no lectureNo
+			,l.subject_approve_no subjectApproveNo
+			,l.lecture_title lectureTitle
+			,l.lecture_content lectureContent
+			,l.create_date createDate
+		FROM
+			student_homework sh
+		RIGHT JOIN
+			lecture l
+			ON
+			sh.lecture_no = l.lecture_no
+			WHERE
+			l.subject_approve_no = #{subjectApproveNo}
+			AND
+			sh.student_no=#{studentNo};
+	</select>
+	
+	
+	<!-- 본인이 제출한/이미생성된 과제 보기 -->
+	<select id="selectMyHomeworkOne" parameterType="int" resultType="map">
+	SELECT
+		sh.pf_homework_no pfHomeworkNo
+		,sh.homework_title homeworkTitle
+		,sh.homework_content homeworkContent
+		,sh.student_submitck studentSubmitck
+		,shf.homework_filename homeworkFileName
+		,shf.homework_originname homeworkOriginName
+		,shf.homework_filetype homeworkFiltType
+		,l.subject_approve_no subjectApproveNo
+	FROM
+		student_homework sh
+		LEFT JOIN
+			student_homework_file shf
+			ON
+			sh.pf_homework_no = shf.pf_homework_no
+			LEFT JOIN
+				lecture l
+				ON
+				sh.lecture_no = l.lecture_no
+	WHERE
+			sh.pf_homework_no = #{pfHomeworkNo};
+	</select>
+	
+	<!-- 학생이 수강하는 과목의 과제 수정하기 본문만  -->
+	<update id="updateMyHomeworkOne" parameterType="com.gd.lms.vo.StudentHomework">
+	UPDATE
+		student_homework
+	SET
+		homework_title = #{homeworkTitle}
+		, homework_content = #{homeworkContent}	
+	WHERE
+		pf_homework_no = #{pfHomeworkNo}	
+	</update>
+	
+	
+	<!--  기존 파일정보 가져오기 -->
+	<select id="selectHomeworkFileExis" resultType="String"  parameterType="int">
+	SELECT
+		homework_filename homeworkFileName
+	FROM
+		student_homework_file
+	WHERE
+		pf_homework_no = #{pfHomeworkNo}	
+	</select>
+	
+	
 	<!-- 학생이 수강하는 과목의 과제 파일 수정하기  -->
+	<update id="updateHomeworkFile" parameterType="com.gd.lms.vo.StudentHomeworkFile">
+	UPDATE
+		student_homework_file
+	SET
+		homework_filename = #{homeworkFileName}
+		, homework_originname = #{homeworkOriginName}
+		, homework_filetype = #{homeworkFileType}
+		, update_date = NOW()
+	WHERE
+		pf_homework_no = #{pfHomeworkNo}		
+	
+	</update>
+	
+	
 	
 	<!-- 학생이 수강하는 과목의 과제 삭제하기  -->
 	<!-- 학생이 수강하는 과목의 과제 파일 삭제하기  -->

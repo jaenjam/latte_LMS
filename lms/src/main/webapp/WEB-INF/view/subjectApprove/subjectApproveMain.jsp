@@ -57,15 +57,8 @@
 			                                    </li>
 			                                </ul>
 			                                <div class="tab-content br-n pn">
-			                                    <div id="navpills-1" class="tab-pane active show">
-			                                        <div>
-														<a href="${pageContext.request.contextPath}/lecture/getLectureList?subjectApproveNo=${MyRegister.subjectApproveNo}">
-															<h4 class="mb-1">과제일람</h4>
-														</a>
-			                                        </div>
-			                                    </div>
-			                                    
-			                                    
+			                                
+			                               			                                    
 			                                    <div id="navpills-5" class="tab-pane">
 			                                        <div>
 														<a href="${pageContext.request.contextPath}/subject/notice/getSubjectNoticeList?subjectApproveNo=${MyRegister.subjectApproveNo}">
@@ -74,6 +67,21 @@
 			                                        </div>
 			                                    </div>
 			                                    
+			                                    <div id="navpills-1" class="tab-pane active show">
+			                                        <div>
+														<a href="${pageContext.request.contextPath}/lecture/getLectureList?subjectApproveNo=${MyRegister.subjectApproveNo}">
+															<h4 class="mb-1">과제일람</h4>
+														</a>
+			                                        </div>
+			                                    </div>
+			                                    
+			                                    <div id="navpills-6" class="tab-pane">
+			                                    <div>
+														<a href="${pageContext.request.contextPath}/lecture/lectureStudentHomework/getlectureHomeworkStuList?subjectApproveNo=${MyRegister.subjectApproveNo}">
+														<button type="submit" class="btn btn-primary">나의과제</button>
+														</a>	
+			                                        </div>
+			                                    </div>
 			                                    
 			                                    
 			                                    

@@ -30,7 +30,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제일람</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">나의과제일람</a></li>
                     </ol>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                             <div class="row">
                             	<div class="col-sm-9">
                             	
-                               		<h4 class="card-title"> 과제 </h4>
+                               		<h4 class="card-title"> 나의과제일람 </h4>
                                 </div>
                              
                             </div>
@@ -53,7 +53,6 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>번호</th>
                                                 <th>제목</th>
                                                 <th>작성일</th>
                                                 <th>제출여부</th>
@@ -62,9 +61,9 @@
                                         </thead>
                                         <tbody>
                                       
-                                        <c:forEach var="L" items="${LectureHomeworList}">
+                                        <c:forEach var="L" items="${myHomeworkList}">
                                             <tr>
-                                                <td>${L.lectureNo}</td>
+                                                
                                                 <td>
                                                 <!--  해당 넘버의 과제상세보기 로 연결 -->
                                                 	<a href="${pageContext.request.contextPath}/lecture/getLectureOne?lectureNo=${L.lectureNo}">
@@ -75,15 +74,26 @@
                                                 
                                                 <!--  제출여부  -->                                             
                                                 <td> 
-                                      
-	                                                ??? 안나옴 ㅋㅋㅅㅂ
+                                                	<c:if test="${L.studentSubmitck != 'null'}">
+                                                			${L.studentSubmitck}
+                                                	</c:if>
+                                      				<c:if test="${L.studentSubmitck == 'null'}">
+                                      					미제출
+                                      				</c:if>
                                                 </td>
                                                 
                                                 
                                                 <td>
-	                                                <a href="${pageContext.request.contextPath}/lecture/addLectureForm?subjectApproveNo=${subjectApproveNo}">
+                                                <c:if test="${L.homeworkTitle == null }">
+	                                                <a href="${pageContext.request.contextPath}/lecture/lectureStudentHomework/modifyHomework?pfHomeworkNo=${L.pfHomeworkNo}&subjectApproveNo=${L.subjectApproveNo}">
 	                                					<button type="button" class="btn btn-primary">제출하러가기</button>
 	                                				</a>
+	                                			</c:if>	
+	                                			<c:if test="${L.homeworkTitle != null }">
+	                                				<a href="${pageContext.request.contextPath}/lecture/lectureStudentHomework/getHomeworkOne?pfHomeworkNo=${L.pfHomeworkNo}">
+	                                					<button type="button" class="btn btn-primary">제출한과제 확인</button>
+	                                				</a>
+	                                			</c:if>
                                                 </td>
                                             </tr>
                                         </c:forEach>
