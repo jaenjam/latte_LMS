@@ -30,19 +30,39 @@
 	</select>
 
 
+	<!--  공지사항 조회수 -->
+	<update id="subjectNoticeHit" parameterType="int">
+		UPDATE
+			subject_notice
+		SET
+			count=count+1
+		WHERE
+			subject_notice_no = #{subjectNoticeNo}
+	</update>
+
+
 	<!-- 공지사항 상세보기 -->
-	<select id="selectSubjectNoticeOne" parameterType="int" resultType="com.gd.lms.vo.SubjectNotice">
+	<select id="selectSubjectNoticeOne" parameterType="int" resultType="Map">
 	SELECT
-		subject_notice_no subjctNoticeNo
-		, sb_notice_title sbNoticeTitle
-		, sb_notice_content sbNoticeContent
-		, count 
-		, create_date createDate
-		, update_date updateDate
+		sb.subject_notice_no subjectNoticeNo
+		, sb.subject_approve_no subjectApproveNo
+		, sb.subject_notice_title subjectNoticeTitle
+		, sb.subject_notice_content subjectNoticeContent
+		, sb.count 
+		, sb.create_date createDate
+		, sb.update_date updateDate
+		, sbf.subject_notice_file_no subjectNoticeFileNo
+		, sbf.subject_notice_file_name subjectNoticeFileName
+		, sbf.subject_notice_origin_name subjectNoticeOriginName
+		, sbf.content_type contentType
 	FROM
-		subject_notice
+		subject_notice sb
+			LEFT JOIN
+			subject_notice_file sbf
+			ON
+			sb.subject_notice_no = sbf.subject_notice_no
 	WHERE
-		subject_notice_no = #{subjectNoticeNo}
+		sb.subject_notice_no = #{subjectNoticeNo}
 	</select>
 
 
@@ -53,16 +73,16 @@
 		subject_notice
 		(
 		subject_approve_no
-		, sb_notice_title
-		, sb_notice_content
+		, subject_notice_title
+		, subject_notice_content
 		, create_date
 		, update_date
 		)
 		VALUES 
 		(
 		#{subjectApproveNo}
-		, #{sbNoticeTitle}
-		, #{sbNoticeContent}
+		, #{subjectNoticeTitle}
+		, #{subjectNoticeContent}
 		, NOW()
 		, NOW()
 		)
@@ -70,10 +90,98 @@
 
 
 	<!-- 이미지 첨부를 위해 필요한 No 찾기 -->
+	<select id="selectSubjectNoticeNo" parameterType="com.gd.lms.vo.SubjectNotice" resultType="int">
+	SELECT
+		subject_notice_no subjectNoticeNo
+	FROM
+		subject_notice
+	WHERE
+		subject_notice_title = #{subjectNoticeTitle}
+	AND
+		subject_notice_content = #{subjectNoticeContent}			
+	AND
+		subject_approve_no = #{subjectApproveNo}
+	</select>
+	
+	
+	<!-- 공지사항 이미지 첨부하기 -->
+	<insert id="insertSubjectNoticefile" parameterType="com.gd.lms.vo.SubjectNoticeFile">
+	INSERT INTO
+		subject_notice_file
+		(
+		subject_notice_no
+		, subject_notice_file_name
+		, subject_notice_origin_name
+		, content_type
+		, create_date
+		, update_date
+		)
+		VALUES
+		(
+		#{subjectNoticeNo}
+		, #{subjectNoticeFileName}
+		, #{subjectNoticeOriginName}
+		, #{contentType}
+		, NOW()
+		, NOW()
+		)
+	</insert>
 
-	<!-- 이미지 첨부하기 -->
 
-	<!--  조회수 증가 -->
+	<!--  공지사항 수정하기 - 본문만 -->
+	<update id="updateSubjectNoticeOne" parameterType="com.gd.lms.vo.SubjectNotice">
+	UPDATE
+		subject_notice
+	SET
+		subject_notice_title = #{subjectNoticeTitle}	
+		, subject_notice_content = #{subjectNoticeContent}
+		, update_date = now()
+	WHERE
+		subject_notice_no = #{subjectNoticeNo}	
+	</update>
 
 
+	<!--  기존 파일정보 가져오기 -->
+	<select id="selectSubjectFileExis" resultType="String" parameterType="int">
+	SELECT
+		subject_notice_file_name subjectNoticeFileName
+	FROM
+		subject_notice_file
+	WHERE
+		subject_notice_no = #{subjectNoticeNo}	
+	</select>
+	
+	
+	<!-- 공지사항 파일 수정하기 -->
+	<update id="updateSubjectNoticeFile" parameterType="com.gd.lms.vo.SubjectNoticeFile">
+	UPDATE
+		subject_notice_file
+	SET
+		subject_notice_file_name = #{subjectNoticeFileName}	
+		, subject_notice_origin_name = #{subjectNoticeOriginName}
+		, content_type = #{contentType}
+	WHERE
+		subject_notice_no = #{subjectNoticeNo}
+	</update>
+	
+	
+	<!--  공지사항 삭제하기 -->
+	<delete id="delteSubjectNoticeOne" parameterType="int">
+	DELETE
+	FROM
+		subject_notice
+	WHERE
+		subject_notice_no = #{subjectNoticeNo}	
+	
+	</delete>
+	
+	<!-- 공지사항 파일 삭제하기  -->
+	<delete id = "deleteSubjectNoticeFileOne" parameterType="int">
+	DELETE
+	FROM
+		subject_notice_file
+	WHERE
+		subject_notice_file_no = #{subjectNoticeFileNo}	
+	
+	</delete>
 </mapper>

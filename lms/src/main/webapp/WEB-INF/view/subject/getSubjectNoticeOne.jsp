@@ -21,8 +21,8 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과제상세보기</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과목공지사항</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">과목공지사항상세보기</a></li>
                     </ol>
                 </div>
             </div>
@@ -41,24 +41,32 @@
                             	<br>
                             		<div class="row">
                             			<div class="col-sm-10">
-	                            			<h4>${lectureOne.lectureTitle}</h4>
+	                            			<h4>${subjectNoticeOne.subjectNoticeTitle}</h4>
 	                            		</div>
 	                            		<div class="col-sm-2" >
-	                            			<p style="float:right;">${lectureOne.count}</p>
+	                            			<p style="float:right;">${subjectNoticeOne.count}</p>
 	                            		</div>
                             		</div>
                             			<hr>
                             			<br>
                             		<div>
                             			 <p style="white-space:pre-line;">
-                            			 	${lectureOne.lectureContent}
+                            			 	${subjectNoticeOne.subjectNoticeContent}
                             			 </p>
                             		</div>
-                            			<br>
+                            		<div>
+                            			 <p style="white-space:pre-line;">
+                            			 <img src="${pageContext.request.contextPath}/images/noticeImg/${subjectNoticeOne.subjectNoticeFileName}${subjectNoticeOne.contentType}">
+                            			 	
+                            			 </p>
+                            		</div>
+                            		
+                            		
+                            		<br>
                             		<div class="row">
                                         	 <label class="col-lg-2 col-form-label" for="updateDate">
                                         	 	파일이름                                         	 	
-                                        	 	<a href="${pageContext.request.contextPath}/lecture/downloadLecture?fileName=${lectureOne.lectureFilename}&lectureNo=${lectureOne.lectureNo}">${lectureOne.lectureOriginname}</a>
+                                        	 	<a href="${pageContext.request.contextPath}/subject/notice/downloadSubjectNotice?fileName=${subjectNoticeOne.subjectNoticeFileName}&subjectNoticeNo=${subjectNoticeOne.subjectNoticeNo}">${subjectNoticeOne.subjectNoticeOriginName}</a>
                                         	 </label>
                                      </div>
                                       	<br>
@@ -66,26 +74,17 @@
                             			
 	                              	<div style="float:right">
 		                              	<c:if test="${user eq 'professor'}"> 
-											<a href="${pageContext.request.contextPath}/lecture/modifyLecture?lectureNo=${lectureOne.lectureNo}">
+											<a href="${pageContext.request.contextPath}/subject/notice/modifySubjectNotice?subjectNoticeNo=${subjectNoticeOne.subjectNoticeNo}">
 												<button type="button" class="btn btn-primary"> 수정 </button>
 												</a>
-											<a href="${pageContext.request.contextPath}/lecture/removeLecture?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}">
+											<a href="${pageContext.request.contextPath}/subject/notice/removeSubjectNotice?subjectNoticeNo=${subjectNoticeOne.subjectNoticeNo}&subjectApproveNo=${subjectNoticeOne.subjectApproveNo}">
 		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn"> 삭제 </button>
-		                                    </a>
-		                                    <a href="${pageContext.request.contextPath}/lecture/notStudent/getlectureHomeworkStuList?lectureNo=${lectureOne.lectureNo}&subjectApproveNo=${lectureOne.subjectApproveNo}">
-		                                        <button class="btn btn-primary" type="button" name="deleteNoticeBtn"> 과제제출일람 </button>
 		                                    </a>
 		                                </c:if>
 		                                
-		                                 <c:if test="${user eq 'student'}"> 
-		                                    	 <button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기 </button>
-		                                 		
-		                                 		<!-- 과제제출 -->
-			                                 	<a href="${pageContext.request.contextPath}/lecture/lectureStudentHomework/submitHomework?lectureNo=${lectureOne.lectureNo}">
-													<button type="button" class="btn btn-primary"> 과제제출 </button>
-												</a>
-		                                 
-		                                 </c:if> 
+		                               
+		                                <button class="btn btn-primary" type="button" name="backPage" id="backPage"> 뒤로가기 </button>
+		                             
 		                                
 									</div>
 						        </div>
