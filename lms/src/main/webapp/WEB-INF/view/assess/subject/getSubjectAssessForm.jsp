@@ -30,7 +30,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">강의평가</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">수강평가</a></li>
                     </ol>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                                 <br>
                                 
                                 
-            <form name="reviewform" class="reviewform" id="reviewform" method="post" action="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm">                    
+            <form name="reviewform" class="reviewform" id="reviewform" method="post" action="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm">                    
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
@@ -69,16 +69,22 @@
                                         </thead>
                                         <tbody>
                                       
-                                        <c:forEach var="A" items="${AssessPfOne}">
+                                        <c:forEach var="A" items="${AssessSbOne}">
                                             <tr>
                                                <td>${A.yearS}</td>
                                                 <td>${A.semesterS}</td>
                                                 <td>${A.subjectCredit}</td>
                                                 <td> ${A.subjectName} </td>
-                                                <td> ${A.professorAssessScore} </td>
-                                                <td> ${A.professorAssessCk} </td>
+                                                <td> ${A.subjectAssessScore} </td>
+                                                <td> ${A.subjectAssessCk} </td>
                                                 <td>
                                                 	<input type="hidden" id="registerNo" name="registerNo" value="${A.registerNo}">
+                                                 
+                                                   	<input type="hidden" id="subjectAssessNo" name="subjectAssessNo" value="${A.subjectAssessNo}">
+                                                 	<c:if test="${A.subjectAssessCk == 'N' }">
+                                                 		<input type="hidden" id="subjectAssessCk" name="subjectAssessCk" value="Y">
+                                                 	</c:if>
+                                                 
                                                  </td>
                                             </tr>
                                         </c:forEach>

@@ -79,6 +79,11 @@
                                                 <td> ${A.professorAssessCk} </td>
                                                 <td>
                                                 	<input type="hidden" id="registerNo" name="registerNo" value="${A.registerNo}">
+                                                	<input type="hidden" id="professorAssessNo" name="professorAssessNo" value="${A.professorAssessNo}">
+                                                 	<c:if test="${A.professorAssessCk == 'N' }">
+                                                 		<input type="hidden" id="professorAssessCk" name="professorAssessCk" value="Y">
+                                                 	</c:if>
+                                                 
                                                  </td>
                                             </tr>
                                         </c:forEach>

@@ -23,7 +23,7 @@
 
 
 
-	<!--  1-75. 수강신청 완료 이후 subject_assess 테이블에 해당 register_no로 디비 자동삽입 -->
+	<!-- 수강신청 완료 이후 subject_assess 테이블에 해당 register_no로 디비 자동삽입 -->
 	<insert id="insertSubjectA" parameterType="com.gd.lms.vo.SubjectAssess">
 	INSERT INTO 
 		subject_assess
@@ -50,6 +50,7 @@
 		, sa.professor_no professorNo
 		, sa.year yearS
 		, sa.semester semesterS
+		, pa.professor_assess_no professorAssessNo
 		, pa.register_no registerNo
 		, pa.professor_assess_score professorAssessScore
 		, pa.professor_assess_ck professorAssessCk
@@ -77,7 +78,7 @@
 									sa.subject_no = s.subject_no
 							
 	WHERE
-		student_no = #{No};					
+		student_no = #{No}					
 	</select>
 	
 	
@@ -90,6 +91,7 @@
 			, sa.professor_no professorNo
 			, sa.year yearS
 			, sa.semester semesterS
+			, pa.professor_assess_no professorAssessNo
 			, pa.register_no registerNo
 			, pa.professor_assess_score professorAssessScore
 			, pa.professor_assess_ck professorAssessCk
@@ -116,7 +118,7 @@
 										ON
 										sa.subject_no = s.subject_no
 	WHERE
-			r.register_no= #{registerNo}	
+			pa.professor_assess_no= #{professorAssessNo}	
 	</select>
 	
 	
@@ -126,13 +128,30 @@
 	professor_assess
 	(register_no
 	, professor_assess_score
+	, professor_assess_ck
 	, professor_assess_content
 	)
 	VALUES
 	(#{registerNo}
 	, #{professorAssessScore}
+	, #{professorAssessCk}
 	, #{professorAssessContent})
 	</insert>
+	
+	
+	<!-- 별점기반 교수 평가 입력 업데이트 -->
+	<update id="updateAssessPfOne" parameterType="com.gd.lms.vo.ProfessorAssess">
+	UPDATE
+		professor_assess
+	SET
+		
+		 professor_assess_score = #{professorAssessScore}
+		, professor_assess_content = #{professorAssessContent}
+		, professor_assess_ck = #{professorAssessCk}
+		
+	WHERE
+		professor_assess_no = #{professorAssessNo}
+	</update>
 	
 	
 	
@@ -147,6 +166,7 @@
 		, sa.professor_no professorNo
 		, sa.year yearS
 		, sa.semester semesterS
+		, sba.subject_assess_no subjectAssessNo
 		, sba.register_no registerNo
 		, sba.subject_assess_score subjectAssessScore
 		, sba.subject_assess_ck subjectAssessCk
@@ -174,8 +194,48 @@
 									sa.subject_no = s.subject_no
 							
 	WHERE
-		student_no = #{No};	
+		student_no = #{No}
 	</select>
+	
+	
+	<!--  버튼 누르고 과목평가 상세보기  -->
+	<select id="selectAssessSbOne" parameterType="int" resultType="map">
+ 	SELECT DISTINCT
+			r.subject_approve_no subjectApproveNo
+			, r.create_date createDate
+			, sa.professor_no professorNo
+			, sa.year yearS
+			, sa.semester semesterS
+			, sba.subject_assess_no subjectAssessNo
+			, sba.register_no registerNo
+			, sba.subject_assess_score subjectAssessScore
+			, sba.subject_assess_ck subjectAssessCk
+			, sba.subject_assess_content subjectAssessContent
+			, pf.professor_name professorName
+			, s.subject_name subjectName
+			, s.subject_credit subjectCredit
+	FROM
+			register r
+				RIGHT JOIN
+				subject_approve sa 
+					ON
+					r.subject_approve_no = sa.subject_approve_no
+							RIGHT JOIN
+							subject_assess sba 
+								ON
+								r.register_no= sba.register_no
+								RIGHT JOIN
+								professor pf 
+									ON
+									sa.professor_no = pf.professor_no
+									RIGHT JOIN
+										subject s 
+										ON
+										sa.subject_no = s.subject_no
+	WHERE
+			sba.subject_assess_no=#{subjectAssessNo}
+	</select>
+	
 	
 	
 	
@@ -193,6 +253,19 @@
 	, #{subjectAssessContent})
 	</insert>
 
+
+	<!--  별점기반 과목평가 입력 >>> 자동인서트라 이젠 업데이트임 -->
+	<update id="updateAssessSbOne" parameterType="com.gd.lms.vo.SubjectAssess">
+	UPDATE
+		subject_assess
+	SET
+		subject_assess_score = #{subjectAsssessScore}
+		, subject_assess_content = #{subjectAssessContent}
+		, subject_assess_ck = #{subjectAssessCk}
+		
+	WHERE
+		subject_assess_no = #{subjectAssessNo}
+	</update>
 
 
 </mapper>

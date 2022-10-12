@@ -18,6 +18,7 @@ import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.AssessService;
 import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.ProfessorAssess;
+import com.gd.lms.vo.SubjectAssess;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -77,11 +78,12 @@ public class AssessController {
 	}
 	
 	
-	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 폼 불러오기
+	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 폼 불러오기(업데이트 용)
 	@GetMapping("/assess/professor/getProfessorAssessForm")
 	public String getAssessPfForm(Model model
 			, HttpServletRequest request
-			, @RequestParam("registerNo") int registerNo) {
+			
+			, @RequestParam("professorAssessNo") int professorAssessNo) {
 		// 해당컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"AssessController의 getAssessPfForm 진입");
 		
@@ -113,8 +115,8 @@ public class AssessController {
 		
 		
 		// 받아온 registerNo 확인
-		log.debug(TeamColor.KHW +"승인과목넘버 :" + registerNo);
-		model.addAttribute("AssessPfOne", assessservice.assessFormPf(registerNo));
+		log.debug(TeamColor.KHW +"승인과목넘버 :" + professorAssessNo);
+		model.addAttribute("AssessPfOne", assessservice.assessFormPf(professorAssessNo));
 		
 		return "/assess/professor/getProfessorAssessForm";
 	}
@@ -125,6 +127,8 @@ public class AssessController {
 	public String addAssessPfOne(@RequestParam("rate") int professorAssessScore
 			, @RequestParam("reviewTextarea") String professorAssessContent
 			, @RequestParam("registerNo") int registerNo
+			, @RequestParam("professorAssessNo") int professorAssessNo
+			, @RequestParam("professorAssessCk") String professorAssessCk
 			, Model model
 			, HttpServletRequest request
 			, ProfessorAssess professorassess
@@ -157,26 +161,29 @@ public class AssessController {
 		}
 		
 		
-		
-		
-		// 받아온 값 확인
+			// 받아온 값 확인
 		log.debug(TeamColor.KHW + "점수 : " + professorAssessScore);
 		log.debug(TeamColor.KHW + "평가내용 : " + professorAssessContent);
-		model.addAttribute("AssessPfOne", assessservice.addAssessPfOne(registerNo, professorAssessScore, professorAssessContent));
+		log.debug(TeamColor.KHW + "평가여부 : " + professorAssessCk);
+		model.addAttribute("AssessPfOne", assessservice.modifyAssessPfOne( professorAssessScore, professorAssessContent, professorAssessCk, professorAssessNo));
 		
 		
-		return "redirect:/assess/professor/getProfessorAssessForm?registerNo="+professorassess.getRegisterNo();
+		return "redirect:/assess/professor/getProfessorAssessFormOne?professorAssessNo="+professorAssessNo;
 	}
 	
 	
-	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 폼 불러오기
+	
+	
+	
+	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 상세보기
 	@GetMapping("/assess/professor/getProfessorAssessFormOne")
-	public String getAssessPfFormOne(Model model
+	public String getProfessorAssessFormOne( @RequestParam("professorAssessNo") int professorAssessNo
+			, Model model
 			, HttpServletRequest request	
-			, @RequestParam("registerNo") int registerNo) {
+			) {
 		
 		// 해당컨트롤러 진입여부 확인
-		log.debug(TeamColor.KHW +"AssessController의 getAssessPfFormOne 진입");
+		log.debug(TeamColor.KHW +"AssessController의 getProfessorAssessFormOne 진입");
 		
 		// 세션 사용하기위해 선언
 		HttpSession session =  request.getSession();
@@ -203,8 +210,8 @@ public class AssessController {
 		
 		
 		// 받아온 registerNo 확인
-		log.debug(TeamColor.KHW +"승인과목넘버 :" + registerNo);
-		model.addAttribute("AssessPfOne", assessservice.assessFormPf(registerNo));
+		log.debug(TeamColor.KHW +"professorAssessNo :" + professorAssessNo);
+		model.addAttribute("AssessPfOne", assessservice.assessFormPf(professorAssessNo));
 		
 		return "/assess/professor/getProfessorAssessFormOne";
 	}
@@ -222,7 +229,7 @@ public class AssessController {
 		// 해당컨트롤러 진입여부 확인
 		log.debug(TeamColor.KHW +"AssessController의 getAssessPfList 진입");
 		
-		
+		log.debug(TeamColor.KHW +"학번 : " + studentNo);
 
 		// 세션 사용하기위해 선언
 			HttpSession session =  request.getSession();
@@ -248,23 +255,24 @@ public class AssessController {
 			}
 		
 		
-		
-		
 		log.debug(TeamColor.KHW +"학번 : " + studentNo);
 		
 		model.addAttribute("registerList", assessservice.selectSubjectAssessList(studentNo));
+		model.getAttribute("registerList").toString();
 		log.debug(TeamColor.KHW +model.getAttribute("registerList").toString());
+		
 		return "/assess/subject/getSubjectAssessList";
 	}
 	
 	
-	// 이후 평가하기를 누를시 그 특정 과목 평가 폼 불러오기
-	@GetMapping("/assess/subject/getSubjectrAssessForm")
+	// 이후 평가하기를 누를시 그 특정 과목 평가 폼 불러오기(업데이트용)
+	@GetMapping("/assess/subject/getSubjectAssessForm")
 	public String getAssessSbForm(Model model
 			, HttpServletRequest request
-			, @RequestParam("registerNo") int registerNo) {
+			, @RequestParam("subjectAssessNo") int subjectAssessNo) {
+		
 		// 해당컨트롤러 진입여부 확인
-		log.debug(TeamColor.KHW +"AssessController의 getAssessPfForm 진입");
+		log.debug(TeamColor.KHW +"AssessController의 getAssessSbForm 진입");
 		
 		
 
@@ -296,13 +304,114 @@ public class AssessController {
 		
 		
 		// 받아온 registerNo 확인
-		log.debug(TeamColor.KHW +"승인과목넘버 :" + registerNo);
-		model.addAttribute("AssessSbOne", assessservice.assessFormPf(registerNo));
+		log.debug(TeamColor.KHW +"승인과목넘버 :" + subjectAssessNo);
+		model.addAttribute("AssessSbOne", assessservice.assessFormSb(subjectAssessNo));
 		
 		return "/assess/subject/getSubjectAssessForm";
 	}
 	
 	
+	// 별점 입력후 반영 Action
+	@PostMapping("/assess/subject/getSubjectAssessForm")
+	public String addAssessSbOne(@RequestParam("rate") int subjectAsssessScore
+			, @RequestParam("reviewTextarea") String subjectAssessContent
+			, @RequestParam("registerNo") int registerNo
+			, @RequestParam("subjectAssessNo") int subjectAssessNo
+			, @RequestParam("subjectAssessCk") String subjectAssessCk
+			, Model model
+			, HttpServletRequest request
+			, SubjectAssess subjectassess
+			) {
+		// 해당컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"AssessController의 addAssessSbOne 진입");
+		
+		log.debug(TeamColor.KHW +"subjectAssessNo : " + subjectAssessNo);
+		
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
+		
+		// 받아온 값 확인
+		log.debug(TeamColor.KHW + "점수 : " + subjectAsssessScore);
+		log.debug(TeamColor.KHW + "평가내용 : " + subjectAssessContent);
+		log.debug(TeamColor.KHW + "평가여부 : " + subjectAssessCk);
+		model.addAttribute("AssessSbOne", assessservice.modifyAssessSbOne( subjectAsssessScore, subjectAssessContent, subjectAssessCk, subjectAssessNo));
+		
+		
+		return "redirect:/assess/subject/getSubjectAssessFormOne?subjectAssessNo="+subjectAssessNo;
+	}
+	
+	
+	
+	
+	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 상세보기
+	@GetMapping("/assess/subject/getSubjectAssessFormOne")
+	public String getSubjectAssessFormOne( @RequestParam("subjectAssessNo") int subjectAssessNo
+			, Model model
+			, HttpServletRequest request	
+			) {
+		
+		// 해당컨트롤러 진입여부 확인
+		log.debug(TeamColor.KHW +"AssessController의 getProfessorAssessFormOne 진입");
+		
+		// 세션 사용하기위해 선언
+		HttpSession session =  request.getSession();
+		session.getAttribute("No");
+		String user = (String) session.getAttribute("user");
+		
+		// 사이드바를 위한 서비스실행
+		if(user == "professor") { // 교수면 이거			
+			List<Map<String, Object>> myRegisterListProf = registerservice.getMyRegisterListProf((Integer)session.getAttribute("No"));
+			// myRegisterListProf확인
+			model.addAttribute("myRegisterListProf", myRegisterListProf);
+			
+			log.debug(TeamColor.KHW + "NoticeController noticeList myRegisterListProf : " + myRegisterListProf);
+		
+		}
+		else if (user == "student") { // 학생이면 이거
+			List<Map<String,Object>> myRegisterListStu = registerservice.getMyRegisterList((Integer)session.getAttribute("No"));
+	
+			model.addAttribute("myRegisterListStu", myRegisterListStu);
+			
+			log.debug(TeamColor.KHW + "NoticeController getNoticeOne myRegisterListStu : " + myRegisterListStu);
+			
+		}
+		
+		
+		// 받아온 registerNo 확인
+		log.debug(TeamColor.KHW +"subjectAssessNo :" + subjectAssessNo);
+		model.addAttribute("AssessPfOne", assessservice.assessFormSb(subjectAssessNo));
+		
+		return "/assess/subject/getSubjectAssessFormOne";
+	}
+	
+	
+	
+	
+	
+	
+	/*
 	// 상세보기를 누를 시 one 불러오기
 	@GetMapping("/assess/professor/getSubjectAssessFormOne")
 	public String getAssessSbFormOne(Model model
@@ -346,6 +455,8 @@ public class AssessController {
 		
 		return "/assess/professor/getSubjectAssessFormOne";
 	}
+	*/
+	
 	
 	// 별점 입력후 반영 Action
 	

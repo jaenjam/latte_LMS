@@ -17,7 +17,7 @@
 <body>
 
 
-<!--  듣고있는 강의 리스트 / 평가제출여부 -->
+<!--  듣고있는 강의 리스트(이지만 과목평가로 향ㅎ는 / 평가제출여부 -->
 
 <!--**********************************
             Content body start
@@ -28,7 +28,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">강의평가</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">수강평가</a></li>
                     </ol>
                 </div>
             </div>
@@ -91,21 +91,21 @@
                                                
                                                 <td> 
                                                 <c:if test="${L.subjectAssessCk == 'N'}">
-	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm?registerNo=${L.registerNo}"> 
+	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm?subjectAssessNo=${L.subjectAssessNo}"> 
 		                                          		<button type="button" class="btn  vbtn-primary">
 		                                                	평가하기 
 		                                                </button> 
 	                                                </a> 
 	                                             </c:if>   
 	                                             <c:if test="${L.subjectAssessCk == null}">
-	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm?registerNo=${L.registerNo}"> 
+	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm?subjectAssessNo=${L.subjectAssessNo}"> 
 		                                                <button type="button" class="btn btn-primary">
 		                                                	평가하기 
 		                                                </button> 
 	                                                </a> 
 	                                             </c:if>   
 	                                             <c:if test="${L.subjectAssessCk == 'Y'}">
-	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessFormOne?registerNo=${L.registerNo}"> 
+	                                                <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessFormOne?subjectAssessNo=${L.subjectAssessNo}"> 
 		                                                <button type="button" class="btn btn-primary">
 		                                                	상세보기 
 		                                                </button> 

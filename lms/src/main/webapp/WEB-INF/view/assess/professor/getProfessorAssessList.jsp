@@ -92,7 +92,7 @@
                                                
                                                 <td> 
                                                	 <c:if test="${L.professorAssessCk == 'N'}">
-	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm?registerNo=${L.registerNo}"> 
+	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm?professorAssessNo=${L.professorAssessNo}"> 
 		                                                <button type="button" class="btn btn-primary">
 		                                                	평가하기 
 		                                                </button> 
@@ -100,7 +100,7 @@
 	                                              </c:if>
 	                                                
 	                                               <c:if test="${L.professorAssessCk == null}">
-	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm?registerNo=${L.registerNo}"> 
+	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessForm?professorAssessNo=${L.professorAssessNo}"> 
 		                                                <button type="button" class="btn btn-primary">
 		                                                	평가하기 
 		                                                </button> 
@@ -108,7 +108,7 @@
 	                                             </c:if>
 	                                                
 	                                             <c:if test="${L.professorAssessCk == 'Y'}">
-	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessFormOne?registerNo=${L.registerNo}"> 
+	                                                <a href="${pageContext.request.contextPath}/assess/professor/getProfessorAssessFormOne?professorAssessNo=${L.professorAssessNo}"> 
 		                                                <button type="button" class="btn btn-primary">
 		                                                	상세보기 
 		                                                </button> 

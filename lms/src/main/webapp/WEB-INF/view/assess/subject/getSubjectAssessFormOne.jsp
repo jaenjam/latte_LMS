@@ -30,7 +30,7 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">나의 강의실</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">강의평가</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">수강평가</a></li>
                     </ol>
                 </div>
             </div>
@@ -64,28 +64,36 @@
                                                 <th>과목</th>
                                                 
                                                 <th>별점</th>
+                                                <th>평가여부</th>
                                                 <th>평가내용</th>
                                             </tr>
                                         </thead>
+                                        
+                                        <c:forEach var="A" items="${AssessPfOne}">
                                         <tbody>
                                       
-                                        <c:forEach var="A" items="${AssessPfOne}">
+                                       
                                             <tr>
                                                <td>${A.yearS}</td>
                                                 <td>${A.semesterS}</td>
                                                 <td>${A.subjectCredit}</td>
                                                 <td> ${A.subjectName} </td>
-                                                <td> ${A.professorAssessScore} </td>
-                                                <td> ${A.professorAssessContent} </td>
+                                                <td> ${A.subjectAssessScore} </td>
+                                                <td> ${A.subjectAssessCk} </td>
                                                 <td>
                                                 	<input type="hidden" id="registerNo" name="registerNo" value="${A.registerNo}">
+                                                 	${A.subjectAssessContent}
                                                  </td>
                                             </tr>
-                                        </c:forEach>
+                                        
                                         </tbody>
-                                       
+                                       </c:forEach>
                                     </table>
                                     
+                                   <hr>					
+                                    <a href="${pageContext.request.contextPath}/assess/subject/getSubjectAssessForm?subjectApproveNo=${A.subjectApproveNo}">	
+									    </a>	     <button type="button" class="btn btn-primary" name="save" id="save"> 수정하기 </button>
+									
                                    
 								      
 								   </div>

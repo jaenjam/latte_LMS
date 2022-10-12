@@ -49,21 +49,22 @@ public class AssessService {
 	
 	
 	// 이후 평가하기를 누를시 그 특정 과목을 맡은 교수평가 폼 불러오기
-	public List<Map<String, Object>> assessFormPf(int reigisterNo) {
+	public List<Map<String, Object>> assessFormPf(int professorAssessNo) {
 		log.debug(TeamColor.KHW +"상세보기 서비스 진입");
 		
-		return assessmapper.selectAssessPfOne(reigisterNo);
+		return assessmapper.selectAssessPfOne(professorAssessNo);
 	}
 	
 	
-	// 별점 입력후 반영 Action
-	public int addAssessPfOne(int registerNo, int professorAssessScore, String professorAssessContent) {
-		log.debug(TeamColor.KHW +"별점추가  서비스 진입");
+	// 별점입력후 반영 Action
+	public int modifyAssessPfOne( int professorAssessScore, String professorAssessContent, String professorAssessCk, int professorAssessNo) {
+		log.debug(TeamColor.KHW +"별점업데이트  서비스 진입");	
 		
-		return assessmapper.insertAssessPfOne(registerNo, professorAssessScore, professorAssessContent);
+		return assessmapper.updateAssessPfOne( professorAssessScore, professorAssessContent, professorAssessCk, professorAssessNo);
 	}
+	
 
-
+	/// 과목평가 시작
 	// 학생이 과목평가 메뉴 누를 시 과목평가 List 불러오기(수강중인 강의 리스트 불러오는 느낌)
 	public List<Map<String, Object>> selectSubjectAssessList(int studentNo) { 
 		log.debug(TeamColor.KHW +"과목평가리스트셀렉 진입");
@@ -73,9 +74,19 @@ public class AssessService {
 	
 	
 	// 이후 평가하기를 누를시 그 특정 과목 평가 폼 불러오기
+	public List<Map<String, Object>> assessFormSb(int subjectAssessNo) {
+		log.debug(TeamColor.KHW +"상세보기 서비스 진입");
+		
+		return assessmapper.selectAssessSbOne(subjectAssessNo);
+	}
 	
-	
-	
+	// 별점입력후 반영 Action
+	public int modifyAssessSbOne( int subjectAsssessScore, String subjectAssessContent, String subjectAssessCk, int subjectAssessNo) {
+		log.debug(TeamColor.KHW +"별점업데이트  서비스 진입");	
+		log.debug(TeamColor.KHW+"subjectAssessNo : " +subjectAssessNo);
+		
+		return assessmapper.updateAssessSbOne( subjectAsssessScore, subjectAssessContent, subjectAssessCk, subjectAssessNo);
+	}
 	
 	
 	
