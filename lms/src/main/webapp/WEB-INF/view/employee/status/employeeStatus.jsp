@@ -9,6 +9,8 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/status/employeeStatus.js"></script>
+
 <style>
 	.btn {
 		float:right;
@@ -56,28 +58,36 @@
                                                 <th>재직상태</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <c:forEach var="e" items="${EmployeeStatusList}">
-                                            <tr>
-                                                <td>${e.employeeNo}</td>
-                                                <td>${e.employeeName}</td>
-                                                <td>${e.employeeActive}</td>
-                                                <td>
-                                                	<select id="employeeState" name="employeeState">
-                                                		<option value="${e.employeeState}" selected>
-                                                			${e.employeeState}
-                                                		</option>
-                                                		<c:if test="${e.employeeState eq 'Y'}">
-                                                			<option value="N">N</option>
-                                                		</c:if>
-                                                		<c:if test="${e.employeeState eq 'N'}">
-                                                			<option value="Y">Y</option>
-                                                		</c:if>
-                                                	</select>
-                                                </td>
-                                            </tr>
+                                        
+                                        <c:forEach varStatus = "status" var="e" items="${EmployeeStatusList}">
+                                           <form action="${pageContext.request.contextPath}/statusEmployeeAction?employeeNo=${e.employeeNo}"
+                                           method="post" id="updateEmployeeStatus${status.index}">
+	                                            <tbody>
+	                                            <tr>
+	                                                <td>${e.employeeNo}</td>
+	                                                <td>${e.employeeName}</td>
+	                                                <td>${e.employeeActive}</td>
+	                                                <td>
+	                                                	<select id="employeeState" name="employeeState">
+	                                                		<option value="${e.employeeState}" selected>
+	                                                			${e.employeeState}
+	                                                		</option>
+	                                                		<c:if test="${e.employeeState eq 'Y'}">
+	                                                			<option value="N">N</option>
+	                                                		</c:if>
+	                                                		<c:if test="${e.employeeState eq 'N'}">
+	                                                			<option value="Y">Y</option>
+	                                                		</c:if>
+	                                                	</select>
+	                                                </td>
+	                                                	<td>
+	                                                		<button onclick="updateEmployeeStatus(${status.index})" type="button" class="btn btn-primary">변경</button>
+	                                                	</td>
+	                                                
+	                                            </tr>
+                                            </form>
+                                            </tbody>
                                         </c:forEach>
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>

@@ -346,5 +346,15 @@
 				employee_no = #{employeeNo}
 	
 	</update>
+	
+	<!-- 직원 재직상태 수정 -->
+	<update id="updateStatusEmployee" parameterType="com.gd.lms.vo.Employee">
+		UPDATE
+			employee
+		SET
+			employee_state = #{employeeState}
+		WHERE
+			employee_no = #{employeeNo}
+	</update>
 
 </mapper>

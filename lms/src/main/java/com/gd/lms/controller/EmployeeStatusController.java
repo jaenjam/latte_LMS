@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.StudentService;
+import com.gd.lms.vo.Employee;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,5 +85,16 @@ public class EmployeeStatusController {
 		
 		//employee/status/EmployeeStatus로
 		return "/employee/status/employeeStatus";
+	}
+	
+	//관리자 재직상태변경
+	@PostMapping("/statusEmployeeAction")
+	public String EmployeeStatusList(Employee employee) {
+		log.debug(TeamColor.LJE + "EmployeeStatusController EmployeeStatusList");
+		
+		int row = employeeService.modifyStatusEmployee(employee);
+		log.debug(TeamColor.LJE + "row : " + row);
+		
+		return "redirect:/employee/status/employeeStatus";
 	}
 }

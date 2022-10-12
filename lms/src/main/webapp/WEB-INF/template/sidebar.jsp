@@ -307,23 +307,6 @@
 
 
 
-
-
-
-			<!-- 커뮤니티 -->
-
-
-			<li class="mega-menu mega-menu-sm"><a class="has-arrow"
-				href="javascript:void(5)" aria-expanded="false"> <i
-					class="icon-note menu-icon"></i> <span class="nav-text">소통</span>
-			</a>
-				<ul aria-expanded="false">
-					<li><a href="./form-basic.html">커뮤니티</a></li>
-				</ul></li>
-
-
-
-
 			<!-- FAQ -->
 
 

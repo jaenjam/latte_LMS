@@ -126,4 +126,11 @@ public class EmployeeService {
 		return employeeMapper.updateEmployeeImg(employeeImg);
 	}
 	
+	//관리자 재직상태수정
+	public int modifyStatusEmployee(Employee employee) {
+		log.debug(TeamColor.LJE + "EmployeeService modifyStatusEmployee 실행");
+		
+		return employeeMapper.updateStatusEmployee(employee);
+	}
+	
 }

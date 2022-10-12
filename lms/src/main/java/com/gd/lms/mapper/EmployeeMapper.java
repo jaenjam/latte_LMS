@@ -56,4 +56,7 @@ public interface EmployeeMapper {
 
 	//관리자 사진 수정
 	int updateEmployeeImg(EmployeeImg employeeImg);
+	
+	//관리자 재직상태 수정
+	int updateStatusEmployee(Employee employee);
 }
