@@ -10,8 +10,11 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface TestMapper {
 	
+	// 학생이 자신이 수강하는 시험응시과목 확인하기
+	List<Map<String,Object>> selectTestList(int studentNo);
+		
 	// 시험지 상세보기(join해서 세부적인 요소 끌고오기)
-	public List<Map<String,Object>> selectTestOne(int testNo);
+	List<Map<String,Object>> selectTestOne(int testNo);
 	
 	// 승인된 과목리스트를 뽑아주기 
 	List<Map<String,Object>> selectSubjectApproveList();

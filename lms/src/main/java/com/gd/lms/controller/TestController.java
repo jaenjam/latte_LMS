@@ -37,6 +37,15 @@ public class TestController {
 	TestRepository repository;
 	@Autowired RegisterService registerService;
 	
+	// 수강하는과목 시험지리스트 확인하기
+	@GetMapping("/test/doTest")
+	public String TestList(Model model) {
+		
+		log.debug(TeamColor.JJY + "testController TestList(시험지 리스트)실행");
+		
+		return "/test/doTest";
+	}
+	
 	// 시험지 상세보기
 	@GetMapping("/test/TestOne")
 	public String TestOne(Model model) {

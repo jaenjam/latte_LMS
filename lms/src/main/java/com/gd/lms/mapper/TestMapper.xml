@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.lms.mapper.TestMapper">
 
+
+	<!-- 학생이 자신이 수강하는 과목 시험지 리스트 확인하기-->
+	<select id="selectTestList" resultType="map">
+		
+		SELECT 
+			r.subject_approve_no ,sa.subject_no,s.subject_name,sa.professor_no,p.professor_name,sa.year
+		FROM 
+			register r 
+		LEFT JOIN 
+			subject_approve sa
+		ON 
+			r.subject_approve_no = sa.subject_approve_no
+		LEFT JOIN 
+			subject s
+		ON 
+			s.subject_no = sa.subject_no
+		LEFT JOIN 
+			professor p
+		ON 
+			p.professor_no = sa.professor_no
+		WHERE 
+			student_no = #{studentNo}
+		
+	</select>
 	<!-- 시험지 상세보기 -->
 	<select id="selectTestOne" resultType="map">
 	
