@@ -1,5 +1,8 @@
-function nullCheck() {
+let multipleTest = 0;
+let multipleTestExample = 0;
 
+function nullCheck() {
+    
     //null check
     for(let k = 1; k<11; k++){
         let txtEle = $('.test_table'+ k +'input[type=text]');
@@ -25,8 +28,6 @@ function creatTest() {
     let testName = $('#testName').val().toString();
     let subjectApproveNo = $('#approveNo').val();
 
-    console.log(subjectApproveNo +" "+testName);
-
 
     $.ajax({
         url: '/api/test/create/test/' + subjectApproveNo+'/'+testName,
@@ -40,23 +41,22 @@ function creatTest() {
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
         }
     });
-
 }
 
 function createMultipleTest(testNo) {
-    console.log("testNo :"+testNo);
 
     for(let i = 1 ; i<11; i++){
         let question = document.getElementById("multipleChoiceQuestion"+i).value;
         let radio = $('input[name=answer_radio'+i+']:checked').val();
 
-        console.log("순번 : " + question +"  " + radio);
 
        $.ajax({
             url: '/api/test/create/MultipleTest/' + testNo+'/'+question + '/'+radio,
             type: "GET",
             contentType: 'application/json',
             success: function (data) {
+                multipleTest++;
+                console.log("multipleTest : " + multipleTest);
                 createMultipleTestExample(data, i);
             },
             error: function (request, status, error) {
@@ -67,18 +67,18 @@ function createMultipleTest(testNo) {
 }
 
 function createMultipleTestExample(MultiPleTestNo, index) {
-    console.log(index+"번문제 보기 만들기 시작");
     for(let i = 1 ; i<5; i++){
-
         let nowExample = $('#multipleChoiceExample'+i+'_'+index).val();
         $.ajax({
             url: '/api/test/create/MultipleTestExample/' + MultiPleTestNo+'/'+i + '/'+nowExample,
             type: "GET",
             contentType: 'application/json',
             success: function (data) {
-	
-				
-
+                multipleTestExample++;
+                console.log("multipleTestExample : " + multipleTestExample);
+                if(multipleTestExample == 40){
+                    successAlert();
+                }
             },
             error: function (request, status, error) {
                 alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -86,5 +86,10 @@ function createMultipleTestExample(MultiPleTestNo, index) {
             }
         });
     }
+}
 
+
+function successAlert() {
+    alert("문제가 출제 되었습니다.");
+    location.href = "/test/testList"
 }
