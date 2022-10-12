@@ -70,7 +70,7 @@
 											<td><button type="submit" class="btn btn-light">미출제</button></td>
 											</c:if>
 											<c:if test="${not empty N.test_name}">
-											<td><a href="${pageContext.request.contextPath}/test/multipleTest?subjectApproveNo=">
+											<td><a href="${pageContext.request.contextPath}/test/multipleTest?testNo=${N.test_no}">
 											<button type="submit" class="btn btn-primary">응시</button>
 											</a></td>						
 											</c:if>

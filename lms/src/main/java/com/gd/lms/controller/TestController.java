@@ -37,6 +37,20 @@ public class TestController {
 	TestRepository repository;
 	@Autowired RegisterService registerService;
 	
+	// 객관식 시험지
+	@GetMapping("/test/doMultipleTest")
+	public String doMultipleTest(Model model,int testNo) {
+		
+		log.debug(TeamColor.JJY + "multipleTest실행");
+		
+		List<Map<String,Object>> testOne = testService.getTestOne(testNo);
+		model.addAttribute("testOne",testOne);
+		
+		log.debug(TeamColor.JJY + "multipleTest model 값 : " + model);
+		
+		return "/test/doMultipleTest";
+	}
+	
 	// 수강하는과목 시험지리스트 확인하기
 	@GetMapping("/test/doTest")
 	public String TestList(Model model, HttpServletRequest request) {

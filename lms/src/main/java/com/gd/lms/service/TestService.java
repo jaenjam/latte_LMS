@@ -20,6 +20,14 @@ public class TestService {
 	@Autowired
 	TestMapper testMapper;
 	
+	// 객관식시험지 
+	public List<Map<String,Object>> getTestOne(int testNo){
+		
+		log.debug(TeamColor.JJY + "testService getTestOne 실행");
+		return testMapper.selectTestOne(testNo);
+	}
+
+	
 	// 학생이 시험볼수있게 리스트 뺴주기
 	public List<Map<String,Object>> getTestList(int studentNo){
 		
