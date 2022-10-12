@@ -100,12 +100,12 @@
 											<select id="approveActive" name="approveActive">
 													<c:forEach items="${a.approveActive}">
 														<c:if test="${a.approveActive == 'Y'}">
-															<option value=${a.approveActive} selected>${a.approveActive}</option>
+															<option value="${a.approveActive}" selected>${a.approveActive}</option>
 															<option value="N">N</option>
 														</c:if>
 														
 														<c:if test="${a.approveActive == 'N'}">
-															<option value=${a.approveActive} selected>${a.approveActive}</option>
+															<option value="${a.approveActive}" selected>${a.approveActive}</option>
 															<option value="Y">Y</option>
 														</c:if>
 													</c:forEach>
@@ -130,7 +130,7 @@
 														<option value ="금">금</option>
 													</c:if>
 													<c:if test="${a.day == '월'}">
-														<option value =${a.day} selected>${a.day}</option>
+														<option value ="${a.day}" selected>${a.day}</option>
 														<option value ="화">화</option>
 														<option value ="수">수</option>
 														<option value ="목">목</option>
@@ -139,7 +139,7 @@
 													
 													<c:if test="${a.day == '화'}">
 														<option value ="월">월</option>
-														<option value =${a.day} selected>${a.day}</option>
+														<option value ="${a.day}" selected>${a.day}</option>
 														<option value ="수">수</option>
 														<option value ="목">목</option>
 														<option value ="금">금</option>
@@ -148,7 +148,7 @@
 													<c:if test="${a.day == '수'}">
 														<option value ="월">월</option>
 														<option value ="화">화</option>
-														<option value =${a.day} selected>${a.day}</option>
+														<option value ="${a.day}" selected>${a.day}</option>
 														<option value ="목">목</option>
 														<option value ="금">금</option>
 													</c:if>
@@ -157,7 +157,7 @@
 														<option value ="월">월</option>
 														<option value ="화">화</option>
 														<option value ="수">수</option>
-														<option value =${a.day} selected>${a.day}</option>
+														<option value ="${a.day}" selected>${a.day}</option>
 														<option value ="금">금</option>
 													</c:if>
 													
@@ -166,7 +166,7 @@
 														<option value ="화">화</option>
 														<option value ="수">수</option>
 														<option value ="목">목</option>
-														<option value =${a.day} selected>${a.day}</option>
+														<option value ="${a.day}" selected>${a.day}</option>
 													</c:if>
 												 </c:forEach>
 											</select>

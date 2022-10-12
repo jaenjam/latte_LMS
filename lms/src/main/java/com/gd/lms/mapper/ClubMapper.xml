@@ -297,7 +297,7 @@
 		c.club_no = ci.club_no
 
 		ORDER BY
-		c.club_no desc
+		c.club_no asc
 
 	</select>
 

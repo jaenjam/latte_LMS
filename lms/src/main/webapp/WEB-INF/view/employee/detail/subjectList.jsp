@@ -100,9 +100,6 @@
 <!--**********************************
             Content body end
         ***********************************-->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/subject.js"></script>
-
 
 
 <!-- footer -->
