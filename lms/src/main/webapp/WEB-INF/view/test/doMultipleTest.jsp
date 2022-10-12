@@ -125,7 +125,7 @@
 							<form action="${pageContext.request.contextPath}/addTest"
 								method="post">
 								<c:forEach var="N" items="${testOne}">
-									<div>${N.multiplechoice_question}</div>
+									<div></div>
 
 								</c:forEach>
 								<button type="submit" class="btn btn-primary"
