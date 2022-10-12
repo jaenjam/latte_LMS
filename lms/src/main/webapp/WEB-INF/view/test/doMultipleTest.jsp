@@ -173,13 +173,9 @@
 								method="post">
 								<c:set var="i" value="1" />
 								<c:forEach var="N" items="${testOne}">
-
-
 									<c:if test="${i==5}">
 										<c:set var="i" value="1" />
 									</c:if>
-
-
 									<c:if test="${i==1}">
 										<div style="font-size: 25px;">${N.multiplechoice_question}
 											&nbsp(${N.multiplechoice_score}점)</div>
@@ -192,16 +188,11 @@
 										</div>
 										<br />
 									</c:if>
-
 									<br />
-
 									<div style="font-size: 20px;">${i}.&nbsp
 										${N.multiple_test_example_content}</div>
 									<c:set var="i" value="${i+1}" />
-
 									<br />
-
-
 								</c:forEach>
 
 								<button type="submit" class="btn btn-primary"

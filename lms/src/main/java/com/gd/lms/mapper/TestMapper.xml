@@ -62,7 +62,7 @@
 
 		SELECT
 			s.subject_approve_no,s.major_no,s.subject_no,s.professor_no,s.YEAR,s.semester,s.start_date,s.end_date,s.total_date,
-			m.major_name,p.professor_name,j.subject_name,t.test_name
+			m.major_name,p.professor_name,p.professor_no,j.subject_name,t.test_name
 		FROM
 			subject_approve s
 		LEFT JOIN
