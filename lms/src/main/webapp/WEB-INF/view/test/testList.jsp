@@ -67,9 +67,17 @@
 											<td>${N.professor_name}</td>
 											<td>${N.YEAR}</td>
 											<td>${N.semester}</td>
-											<td><a href="${pageContext.request.contextPath}/test/multipleTest?subjectApproveNo=${N.subject_approve_no}">
-											<button type="submit" class="btn btn-primary">출제</button>
-											</a></td>						
+											<c:if test="${not empty N.test_name}">
+												<td>
+													<button type="submit" class="btn">출제완료</button>
+												</td>
+											</c:if>
+											<c:if test="${empty N.test_name}">
+												<td><a
+													href="${pageContext.request.contextPath}/test/multipleTest?subjectApproveNo=${N.subject_approve_no}">
+														<button type="submit" class="btn btn-primary">출제</button>
+												</a></td>
+											</c:if>
 										</tr>
 									</c:forEach>
 								</tbody>
