@@ -126,6 +126,7 @@
 						                                                <th>학생</th>
 						                                                <th>출석일</th>
 						                                                <th>출석상태</th>
+						                                                <th>출석상태변경</th>
 						                                                <th>비고</th>
 						                                            </tr>
 						                                        </thead>
@@ -139,6 +140,13 @@
 						                                                	${r.attendanceDate}
 						                                                </td>
 						                                                <td>${r.attendanceState}</td>
+						                                                <td>
+							                                                <form action="${pageContext.request.contextPath}/attendance/updateAttendanceState?majorNo=${r.majorNo}&studentNo=${r.studentNo}">
+							                                                	<button type="button" class="btn mb-1 btn-rounded btn-success" id="attendanceState" name="attendanceState" value="출석">출석</button>
+							                                                	<button type="button" class="btn mb-1 btn-rounded btn-danger" id="attendanceState" name="attendanceState" value="결석">결석</button>
+							                                                	<button type="button" class="btn mb-1 btn-rounded btn-warning" id="attendanceState" name="attendanceState" value="지각">지각</button>
+							                                                </form>
+						                                                </td>
 						                                                <td>${r.attendanceEtc}</td>
 						                                            </tr>
 						                                        </c:forEach>
