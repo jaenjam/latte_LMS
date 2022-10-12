@@ -27,11 +27,15 @@
 	:768px)
 {
 	font-size
-	:
-	12px
-	;
 	
-
+	
+	:
+	
+	
+	12px
+	
+	
+	;
 }
 
 }
@@ -120,14 +124,27 @@
 							<div class="row">
 								<div class="col-sm-9">
 									<h4 class="card-title">시험응시</h4>
+									<br/>
 								</div>
 							</div>
 							<form action="${pageContext.request.contextPath}/addTest"
 								method="post">
+								<c:set var="i" value="1"/>
 								<c:forEach var="N" items="${testOne}">
-									<div></div>
-
+								
+								<c:if test="${i==5}">
+									<c:set var="i" value="1"/>
+								</c:if>
+								
+								<c:if test="${i==1}">
+									<div>${N.multiplechoice_question}(${N.multiplechoice_score}점)</div>	
+								</c:if>
+								
+								<div>${N.multiple_test_example_content}</div>
+								<c:set var="i" value="${i+1}"/>
+								
 								</c:forEach>
+								
 								<button type="submit" class="btn btn-primary"
 									style="float: right;">제출</button>
 							</form>
