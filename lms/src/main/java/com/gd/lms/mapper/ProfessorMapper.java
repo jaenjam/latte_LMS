@@ -46,5 +46,8 @@ public interface ProfessorMapper {
 	
 	// 사진수정하기
 	int updateProfessorImg(ProfessorImg professorImg);
+	
+	//교수 재직상태 수정
+	int updateStatusProfessor(Professor professor);
 
 }

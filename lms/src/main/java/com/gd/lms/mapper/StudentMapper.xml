@@ -318,4 +318,16 @@
 			student_no = #{studentNo}
 	
 	</update>
+	
+	
+	<!-- 학생 재학상태 수정 -->
+	<update id="updateStatusStudent" parameterType="com.gd.lms.vo.Student">
+		UPDATE
+			student
+		SET
+			student_state = #{studentState}
+		WHERE
+			student_no = #{studentNo}
+	</update>
+	
 </mapper>

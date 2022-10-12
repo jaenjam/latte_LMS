@@ -259,5 +259,15 @@
 		WHERE
 				professor_no = #{professorNo}
 	</update>
+	
+	<!-- 교수 재직상태 수정 -->
+	<update id="updateStatusProfessor" parameterType="com.gd.lms.vo.Professor">
+		UPDATE
+			professor
+		SET
+			professor_state = #{professorState}
+		WHERE
+			professor_no = #{professorNo}
+	</update>
 
 </mapper>

@@ -49,4 +49,7 @@ public interface StudentMapper {
 	
 	//학생 사진수정
 	int updateStudentImg(StudentImg studentImg);
+	
+	//학생 재학상태 수정
+	int updateStatusStudent(Student student);
 }

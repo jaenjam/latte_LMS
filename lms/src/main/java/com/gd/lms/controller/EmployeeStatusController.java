@@ -14,6 +14,8 @@ import com.gd.lms.service.EmployeeService;
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.StudentService;
 import com.gd.lms.vo.Employee;
+import com.gd.lms.vo.Professor;
+import com.gd.lms.vo.Student;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +48,18 @@ public class EmployeeStatusController {
 		return "/employee/status/studentStatus";
 	}
 	
+	//학생 재학상태변경
+	@PostMapping("/statusStudentAction")
+	public String studentStatusList(Student student) {
+		log.debug(TeamColor.LJE + "EmployeeStatusController studentStatusList");
+		
+		int row = studentService.modifyStatusStudent(student);
+		log.debug(TeamColor.LJE + "row : " + row);
+		
+		return "redirect:/employee/status/studentStatus";
+	}
+	
+	
 	//재직/재학 상태 - 교수리스트 보여주기
 	@GetMapping("/employee/status/professorStatus")
 	public String professorStatusList(Model model) {
@@ -64,6 +78,17 @@ public class EmployeeStatusController {
 		
 		//employee/status/professorStatus로
 		return "/employee/status/professorStatus";
+	}
+	
+	//교수 재직상태변경
+	@PostMapping("/statusProfessorAction")
+	public String professorStatusList(Professor professor) {
+		log.debug(TeamColor.LJE + "EmployeeStatusController professorStatusList");
+		
+		int row = professorService.modifyStatusProfessor(professor);
+		log.debug(TeamColor.LJE + "row : " + row);
+		
+		return "redirect:/employee/status/professorStatus";
 	}
 	
 	

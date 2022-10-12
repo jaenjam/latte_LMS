@@ -9,6 +9,8 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/status/professorStatus.js"></script>
+
 <style>
 	.btn {
 		float:right;
@@ -42,7 +44,7 @@
                             <div class="card-body">
                             <div class="row">
                             	<div class="col-sm-9">
-                               		<h4 class="card-title">관리자 재직상태변경</h4>
+                               		<h4 class="card-title">교수 재직상태변경</h4>
                                 </div>
                             </div>
                                 <br>
@@ -56,28 +58,35 @@
                                                 <th>재직상태</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <c:forEach var="p" items="${professorStatusList}">
-                                            <tr>
-                                                <td>${p.professorNo}</td>
-                                                <td>${p.majorNo} (${p.majorName})</td>
-                                                <td>${p.professorName}</td>
-                                                <td>
-                                                	<select id="professorState" name="professorState">
-                                                		<option value="${p.professorState}" selected>
-                                                			${p.professorState}
-                                                		</option>
-                                                		<c:if test="${p.professorState eq 'Y'}">
-                                                			<option value="N">N</option>
-                                                		</c:if>
-                                                		<c:if test="${p.professorState eq 'N'}">
-                                                			<option value="Y">Y</option>
-                                                		</c:if>
-                                                	</select>
-                                                </td>
-                                            </tr>
+                                        
+                                        <c:forEach varStatus="status" var="p" items="${professorStatusList}">
+                                        <form action="${pageContext.request.contextPath}/statusProfessorAction?professorNo=${p.professorNo}"
+                                           method="post" id="updateProfessorStatus${status.index}">
+                                            <tbody>
+	                                            <tr>
+	                                                <td>${p.professorNo}</td>
+	                                                <td>${p.majorNo} (${p.majorName})</td>
+	                                                <td>${p.professorName}</td>
+	                                                <td>
+	                                                	<select id="professorState" name="professorState">
+	                                                		<option value="${p.professorState}" selected>
+	                                                			${p.professorState}
+	                                                		</option>
+	                                                		<c:if test="${p.professorState eq 'Y'}">
+	                                                			<option value="N">N</option>
+	                                                		</c:if>
+	                                                		<c:if test="${p.professorState eq 'N'}">
+	                                                			<option value="Y">Y</option>
+	                                                		</c:if>
+	                                                	</select>
+	                                                </td>
+		                                                	<td>
+		                                                		<button onclick="updateProfessorStatus(${status.index})" type="button" class="btn btn-primary">변경</button>
+		                                                	</td>
+	                                            </tr>
+	                                        </form>
+                                            </tbody>
                                         </c:forEach>
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>

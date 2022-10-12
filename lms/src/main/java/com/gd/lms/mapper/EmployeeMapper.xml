@@ -347,7 +347,7 @@
 	
 	</update>
 	
-	<!-- 직원 재직상태 수정 -->
+	<!-- 관리자 재직상태 수정 -->
 	<update id="updateStatusEmployee" parameterType="com.gd.lms.vo.Employee">
 		UPDATE
 			employee

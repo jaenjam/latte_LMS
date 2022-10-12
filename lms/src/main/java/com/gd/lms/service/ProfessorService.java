@@ -110,4 +110,11 @@ public class ProfessorService {
 		
 		return professorMapper.updateProfessorImg(professorImg);
 	}
+	
+	//교수 재직상태수정
+	public int modifyStatusProfessor(Professor professor) {
+		log.debug(TeamColor.LJE + "ProfessorService modifyStatusProfessor 실행");
+		
+		return professorMapper.updateStatusProfessor(professor);
+	}
 }

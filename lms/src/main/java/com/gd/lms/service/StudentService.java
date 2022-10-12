@@ -125,4 +125,11 @@ public class StudentService {
 		return studentMapper.updateStudentImg(studentImg);
 	}
 	
+	//학생 재학상태수정
+	public int modifyStatusStudent(Student student) {
+		log.debug(TeamColor.LJE + "StudentService modifyStausStudent 실행");
+		
+		return studentMapper.updateStatusStudent(student);
+	}
+	
 }

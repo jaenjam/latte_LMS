@@ -9,6 +9,9 @@
 
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/status/studentStatus.js"></script>
+
+
 <style>
 	.btn {
 		float:right;
@@ -56,42 +59,49 @@
                                                 <th>학적상태</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <c:forEach var="s" items="${studentStatusList}">
-                                            <tr>
-                                                <td>${s.studentNo}</td>
-                                                <td>${s.majorNo} (${s.majorName})</td>
-                                                <td>${s.studentName}</td>
-                                                <td>
-                                                	<select id="studentState" name="studentState">
-                                                		<option value="${p.professorState}" selected>
-                                                			${s.studentState}
-                                                		</option>
-                                                		<c:if test="${s.studentState eq '휴학'}">
-                                                			<option value="재적">재적</option>
-                                                			<option value="자퇴">자퇴</option>
-                                                			<option value="재학">재학</option>
-                                                		</c:if>
-                                                		<c:if test="${s.studentState eq '재적'}">
-                                                			<option value="휴학">휴학</option>
-                                                			<option value="자퇴">자퇴</option>
-                                                			<option value="재학">재학</option>
-                                                		</c:if>
-                                                		<c:if test="${s.studentState eq '자퇴'}">
-                                                			<option value="휴학">휴학</option>
-                                                			<option value="재적">재적</option>
-                                                			<option value="재학">재학</option>
-                                                		</c:if>
-                                                		<c:if test="${s.studentState eq '재학'}">
-                                                			<option value="휴학">휴학</option>
-                                                			<option value="재적">재적</option>
-                                                			<option value="자퇴">자퇴</option>
-                                                		</c:if>
-                                                	</select>
-                                                </td>
-                                            </tr>
+                                        
+                                        <c:forEach varStatus="status" var="s" items="${studentStatusList}">
+	                                        <form action="${pageContext.request.contextPath}/statusStudentAction?studentNo=${s.studentNo}"
+	                                           method="post" id="updateStudentStatus${status.index}">
+	                                            <tbody>
+		                                            <tr>
+		                                                <td>${s.studentNo}</td>
+		                                                <td>${s.majorNo} (${s.majorName})</td>
+		                                                <td>${s.studentName}</td>
+		                                                <td>
+		                                                	<select id="studentState" name="studentState">
+		                                                		<option value="${s.studentState}" selected>
+		                                                			${s.studentState}
+		                                                		</option>
+		                                                		<c:if test="${s.studentState eq '휴학'}">
+		                                                			<option value="재적">재적</option>
+		                                                			<option value="자퇴">자퇴</option>
+		                                                			<option value="재학">재학</option>
+		                                                		</c:if>
+		                                                		<c:if test="${s.studentState eq '재적'}">
+		                                                			<option value="휴학">휴학</option>
+		                                                			<option value="자퇴">자퇴</option>
+		                                                			<option value="재학">재학</option>
+		                                                		</c:if>
+		                                                		<c:if test="${s.studentState eq '자퇴'}">
+		                                                			<option value="휴학">휴학</option>
+		                                                			<option value="재적">재적</option>
+		                                                			<option value="재학">재학</option>
+		                                                		</c:if>
+		                                                		<c:if test="${s.studentState eq '재학'}">
+		                                                			<option value="휴학">휴학</option>
+		                                                			<option value="재적">재적</option>
+		                                                			<option value="자퇴">자퇴</option>
+		                                                		</c:if>
+		                                                	</select>
+		                                                </td>
+		                                                	<td>
+		                                                		<button onclick="updateStudentStatus(${status.index})" type="button" class="btn btn-primary">변경</button>
+		                                                	</td>
+		                                            </tr>
+	                                            </form>
+	                                        </tbody>
                                         </c:forEach>
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
