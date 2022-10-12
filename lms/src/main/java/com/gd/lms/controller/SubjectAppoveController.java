@@ -100,13 +100,25 @@ public class SubjectAppoveController {
 
 	// 관리자의 승인과목 정보 수정
 	@PostMapping("/modifySubjectApprove")
-	public String modifySubjectApprove(int year, String semester, String approveActive, String subjectRoom, String day, int startTime, int endTime,int subjectApproveNo) {
+	public String modifySubjectApprove(
+			 @RequestParam("semester") String semester
+			, @RequestParam("approveActive") String approveActive
+			, @RequestParam("subjectRoom") String subjectRoom
+			, @RequestParam("subjectDay") String day
+			, @RequestParam("startTime") int startTime
+			, @RequestParam("endTime") int endTime
+			, @RequestParam("subjectApproveNo") int subjectApproveNo) {
 
 		log.debug(TeamColor.CSJ + "modifySubjectApproveController실행");
-
+		
+		// 받은 값 확인
+		log.debug(TeamColor.KHW +"approveActive :" + approveActive);
+		log.debug(TeamColor.KHW +"day :" + day);
+		log.debug(TeamColor.KHW +"startTime :" + startTime);
+		
 		// row가 1이면 성공! 0이면 실패!
 
-		int row = subjectApproveService.modifySubjectApprove(year, semester, approveActive, subjectRoom, day, startTime, endTime, subjectApproveNo);
+		int row = subjectApproveService.modifySubjectApprove( semester, approveActive, subjectRoom, day, startTime, endTime, subjectApproveNo);
 		log.debug(TeamColor.CSJ + "row값 (subjectApproveService Active값) : " + row);
 
 		return "redirect:/employee/detail/subjectApproveList";

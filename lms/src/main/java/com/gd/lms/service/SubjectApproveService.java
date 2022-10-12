@@ -25,10 +25,10 @@ public class SubjectApproveService {
 	
 	
 	// SubjectApprove 정보 변경
-		public int modifySubjectApprove(int year, String semester, String approveActive, String subjectRoom, String day,  int startTime, int endTime,int subjectApproveNo) {
+		public int modifySubjectApprove( String semester, String approveActive, String subjectRoom, String day,  int startTime, int endTime,int subjectApproveNo) {
 			log.debug(TeamColor.CSJ+ "modifySubjectApprove service 실행");
 			
-			return subjectApproveMapper.updateSubjectApprove(year, semester, approveActive, subjectRoom, day, startTime, endTime, subjectApproveNo);
+			return subjectApproveMapper.updateSubjectApprove( semester, approveActive, subjectRoom, day, startTime, endTime, subjectApproveNo);
 		}
 	
 	//승인과목 리스트(EmployeeDetailController로)

@@ -13,13 +13,14 @@
 		
 		SET
 
-		year = #{year}
-		,semester = #{semester}
+		
+		semester = #{semester}
+		,approve_active = #{approveActive}
 		,subject_room = #{subjectRoom}
 		,day = #{day}
-		,approve_active = #{approveActive}
 		,start_time = #{startTime}
 		,end_time = #{endTime}
+		
 
 		WHERE
 		subject_approve_no = #{subjectApproveNo}

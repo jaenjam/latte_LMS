@@ -70,7 +70,7 @@
 									</tr>
 								</thead>
 								<c:forEach var="a" items="${subjectApproveList}">
-									<form action="${pageContext.request.contextPath}/modifySubjectApprove?subjectApproveNo=${a.subjectApproveNo}&year=${a.year}&semester=${a.semester}&approveActive=${a.approveActive}&subjectRoom=${a.subjectRoom}&day=${a.day}&startTime=${a.startTime}&endTime=${a.endTime}" method="post">
+									<form action="${pageContext.request.contextPath}/modifySubjectApprove?subjectApproveNo=${a.subjectApproveNo}" method="post">
 									<tbody>
 
 										<tr>
@@ -79,52 +79,118 @@
 											<td>${a.subjectNo}(${a.subjectName})</td>
 											<td>${a.professorNo}(${a.professorName})</td>
 											<td>
-											<c:if test = "${a.year eq null}">
-											<input type="text" name="year" value="${a.year}" style="width:36px;height:20px;font-size:13px;">
+												<c:if test = "${a.year eq null}">
+													<input type="text" name="year" id="year" value="${a.year}" style="width:36px;height:20px;font-size:13px;">
+												</c:if>
+												<c:if test = "${a.year != null}">
+													${a.year}
+												</c:if>
+											</td>
+											<td>
+											<c:if test = "${a.semester eq null}">
+												<input type="text" name="semester" id="semester" value="${a.semester}" style="width:36px;height:20px;font-size:13px;">
 											</c:if>
-											${a.year}</td>
-											<td><c:if test = "${a.semester eq null}">
-											<input type="text" name="semester" value="${a.semester}" style="width:36px;height:20px;font-size:13px;">
+											<c:if test = "${a.semester != null}">
+												<input type="text" name="semester" id="semester" value="${a.semester}" style="width:36px;height:20px;font-size:13px;">
 											</c:if>
-											${a.semester}</td>
 											<td>${a.startDate}</td>
 											<td>${a.endDate}</td>
 											<td>${a.totalDate}</td>
-											<td><select id="approveActive" name="approveActive">
-													<option value="${a.approveActive}" selected>
-														${a.approveActive}</option>
-													<c:if test="${a.approveActive eq 'Y'}">
-														<option value="N">N</option>
-													</c:if>
-													<c:if test="${a.approveActive eq 'N'}">
-														<option value="Y">Y</option>
-													</c:if>
-											</select></td>
 											<td>
-											<c:if test = "${a.subjectRoom eq null}">
-											<input type="text" name="subjectRoom" value="${a.subjectRoom}" style="width:65px;height:20px;font-size:13px;">
-											</c:if>
-											${a.subjectRoom}</td>
-											<td>
-											<c:if test = "${a.day eq null}">
-											<select id="subjectDay" name="day">
-											<option value ="월">월</option>
-											<option value ="화">화</option>
-											<option value ="수">수</option>
-											<option value ="목">목</option>
-											<option value ="금">금</option>
+											<select id="approveActive" name="approveActive">
+													<c:forEach items="${a.approveActive}">
+														<c:if test="${a.approveActive == 'Y'}">
+															<option value=${a.approveActive} selected>${a.approveActive}</option>
+															<option value="N">N</option>
+														</c:if>
+														
+														<c:if test="${a.approveActive == 'N'}">
+															<option value=${a.approveActive} selected>${a.approveActive}</option>
+															<option value="Y">Y</option>
+														</c:if>
+													</c:forEach>
 											</select>
-											</c:if>
-											${a.day}</td>
+											</td>
 											<td>
-											<c:if test = "${a.startTime eq null}">
-											<input type="text" name="startTime" value="${a.startTime}" style="width:20px;height:20px;font-size:13px;">
-											</c:if>
-											${a.startTime}</td>
-											<td><c:if test = "${a.endTime eq null}">
-											<input type="text" name="endTime" value="${a.endTime}" style="width:20px;height:20px;font-size:13px;">
+												<c:if test = "${a.subjectRoom eq null}">
+												<input type="text" name="subjectRoom" value="${a.subjectRoom}" style="width:65px;height:20px;font-size:13px;">
+												</c:if>
+													<c:if test = "${a.subjectRoom != null}">
+												<input type="text" name="subjectRoom" value="${a.subjectRoom}" style="width:65px;height:20px;font-size:13px;">
+												</c:if>
+											</td>
+											<td>
+											<select id="subjectDay" name="subjectDay">
+												<c:forEach items="${a.day}">
+													<c:if test = "${a.day eq null}">
+														<option value ="월" selected>월</option>
+														<option value ="화">화</option>
+														<option value ="수">수</option>
+														<option value ="목">목</option>
+														<option value ="금">금</option>
+													</c:if>
+													<c:if test="${a.day == '월'}">
+														<option value =${a.day} selected>${a.day}</option>
+														<option value ="화">화</option>
+														<option value ="수">수</option>
+														<option value ="목">목</option>
+														<option value ="금">금</option>
+													</c:if>
+													
+													<c:if test="${a.day == '화'}">
+														<option value ="월">월</option>
+														<option value =${a.day} selected>${a.day}</option>
+														<option value ="수">수</option>
+														<option value ="목">목</option>
+														<option value ="금">금</option>
+													</c:if>
+													
+													<c:if test="${a.day == '수'}">
+														<option value ="월">월</option>
+														<option value ="화">화</option>
+														<option value =${a.day} selected>${a.day}</option>
+														<option value ="목">목</option>
+														<option value ="금">금</option>
+													</c:if>
+													
+													<c:if test="${a.day == '목'}">
+														<option value ="월">월</option>
+														<option value ="화">화</option>
+														<option value ="수">수</option>
+														<option value =${a.day} selected>${a.day}</option>
+														<option value ="금">금</option>
+													</c:if>
+													
+													<c:if test="${a.day == '금'}">
+														<option value ="월">월</option>
+														<option value ="화">화</option>
+														<option value ="수">수</option>
+														<option value ="목">목</option>
+														<option value =${a.day} selected>${a.day}</option>
+													</c:if>
+												 </c:forEach>
+											</select>
+											</td>
+											<td>
+												<c:if test = "${a.startTime eq null}">
+												<input type="text" name="startTime" id="startTime" value="${a.startTime}" style="width:20px;height:20px;font-size:13px;">
+												</c:if>
+												<c:if test = "${a.startTime != null}">
+												<input type="text" name="startTime"  id="startTime" value="${a.startTime}" style="width:20px;height:20px;font-size:13px;">
+												</c:if>
+										
+											</td>
+											
+											<td>
+											<c:if test = "${a.endTime eq null}">
+												<input type="text" name="endTime" id="endTime" value="${a.endTime}" style="width:20px;height:20px;font-size:13px;">
 											</c:if> 
-											${a.endTime}</td>
+											<c:if test = "${a.endTime != null}">
+												<input type="text" name="endTime" id="endTime" value="${a.endTime}" style="width:20px;height:20px;font-size:13px;">
+											</c:if> 
+											
+											</td>
+											
 											<td>
 												<button type="submit" class="btn btn-primary">변경</button>
 											</td>
