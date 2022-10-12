@@ -15,7 +15,6 @@ function nullCheck() {
             }
         }
     }
-
     creatTest()
 }
 
@@ -35,6 +34,7 @@ function creatTest() {
         contentType: 'application/json',
         success: function (data) {
             createMultipleTest(data);
+            
         },
         error: function (request, status, error) {
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -76,6 +76,8 @@ function createMultipleTestExample(MultiPleTestNo, index) {
             type: "GET",
             contentType: 'application/json',
             success: function (data) {
+	
+				
 
             },
             error: function (request, status, error) {
