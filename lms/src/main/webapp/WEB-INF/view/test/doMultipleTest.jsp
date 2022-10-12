@@ -37,6 +37,12 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -48,7 +54,19 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	12px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -148,7 +166,7 @@
 							<div class="row">
 								<div class="col-sm-9">
 									<h4 class="card-title" style="font-size: 25px;">시험응시</h4>
-									<br /> <br /> <br /> <br />
+									<br /> <br /> 
 								</div>
 							</div>
 							<form action="${pageContext.request.contextPath}/addTest"
@@ -165,6 +183,14 @@
 									<c:if test="${i==1}">
 										<div style="font-size: 25px;">${N.multiplechoice_question}
 											&nbsp(${N.multiplechoice_score}점)</div>
+										<br />
+										<div style="font-size:20px">선택 : &nbsp
+											<input type="radio" value="1" name="answerSelect"> 1 &nbsp
+											<input type="radio" value="2" name="answerSelect"> 2 &nbsp
+											<input type="radio" value="3" name="answerSelect"> 3 &nbsp
+											<input type="radio" value="4" name="answerSelect"> 4 &nbsp
+										</div>
+										<br />
 									</c:if>
 
 									<br />
@@ -174,6 +200,7 @@
 									<c:set var="i" value="${i+1}" />
 
 									<br />
+
 
 								</c:forEach>
 
