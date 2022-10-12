@@ -161,6 +161,18 @@
 	
 	</insert>
 
+	<!-- 학생 시험완료시 재시험, TestAnswer 불가능하게 버튼 타입변경 -->
+	<select id="selectDoTestButton" resultType="map">
+		SELECT distinct m.test_no, t.student_no
+		
+		FROM test_answer t
+		
+		INNER JOIN multiple_test m
+		ON t.multiplechoice_no = m.multiplechoice_no
+		
+		WHERE student_no = #{studentNo}
+	</select>
+
 
 	<!-- 시험에 따른 학생이 입력한 답 TestAnswer테이블에 추가 -->
 	<insert id="insertTestAnswer" parameterType="com.gd.lms.vo.TestAnswer">

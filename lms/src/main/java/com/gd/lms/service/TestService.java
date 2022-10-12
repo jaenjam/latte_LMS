@@ -75,5 +75,11 @@ public class TestService {
 		
 		return testMapper.insertTestAnswer(multiplechoiceNo, studentNo, multiplechoiceAnswer);
 	}
+	
+	public List<Map<String, Object>> getDoTestButton(int studentNo){
+		log.debug(TeamColor.LJE + "TestService getDoTestButton 실행");
+		
+		return testMapper.selectDoTestButton(studentNo);
+	}
 
 }

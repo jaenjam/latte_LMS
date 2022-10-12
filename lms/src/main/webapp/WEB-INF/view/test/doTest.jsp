@@ -69,11 +69,28 @@
 											<c:if test="${empty N.test_name}">
 											<td><button type="submit" class="btn btn-light">미출제</button></td>
 											</c:if>
-											<c:if test="${not empty N.test_name}">
-											<td><a href="${pageContext.request.contextPath}/test/doMultipleTest?testNo=${N.test_no}">
-											<button type="submit" class="btn btn-primary">응시</button>
-											</a></td>						
-											</c:if>
+											
+											<!-- <td><a href="${pageContext.request.contextPath}/test/doMultipleTest?testNo=${N.test_no}">
+												<button type="submit" class="btn btn-primary">응시</button>
+												</a></td> -->
+											
+											<c:forEach var="t" items="${test}">
+												<!-- 응시 -->
+												<c:if test="${not empty N.test_name}">
+												
+												
+												<c:if test="${N.test_no ne t.test_no}">					
+												</c:if>
+												
+												
+												<!-- 응시완료 -->
+												<c:if test="${N.test_no eq t.test_no}">
+												<td><a href="">
+												<button type="submit" class="btn btn-light">응시완료</button>
+												</a></td>					
+												</c:if>
+												</c:if>
+											</c:forEach>
 										</tr>
 									</c:forEach>
 								</tbody>

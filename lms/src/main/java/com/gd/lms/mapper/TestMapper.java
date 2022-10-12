@@ -36,5 +36,8 @@ public interface TestMapper {
 
 	//학생 답안 추가
 	int insertTestAnswer(int multiplechoiceNo, int studentNo, int answerSelect);
+	
+	//학생 시험제출완료시 버튼타입변경
+	List<Map<String, Object>> selectDoTestButton(int studentNo);
 
 }
