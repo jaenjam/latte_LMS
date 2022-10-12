@@ -7,7 +7,7 @@
 	<select id="selectTestList" resultType="map">
 		
 		SELECT 
-			r.subject_approve_no ,sa.subject_no,s.subject_name,sa.professor_no,p.professor_name,sa.year
+			r.subject_approve_no ,sa.subject_no,s.subject_name,sa.professor_no,p.professor_name,sa.year,t.test_name,sa.semester
 		FROM 
 			register r 
 		LEFT JOIN 
@@ -22,6 +22,10 @@
 			professor p
 		ON 
 			p.professor_no = sa.professor_no
+		LEFT JOIN
+			test t
+		ON 
+			t.subject_approve_no = sa.subject_approve_no
 		WHERE 
 			student_no = #{studentNo}
 		

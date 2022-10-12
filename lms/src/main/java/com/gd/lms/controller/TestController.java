@@ -39,9 +39,19 @@ public class TestController {
 	
 	// 수강하는과목 시험지리스트 확인하기
 	@GetMapping("/test/doTest")
-	public String TestList(Model model) {
+	public String TestList(Model model, HttpServletRequest request) {
 		
 		log.debug(TeamColor.JJY + "testController TestList(시험지 리스트)실행");
+		
+		// 로그인 시 세션에 학번이 저장되므로 사용해주기
+		HttpSession session =  request.getSession();
+		int studentNo = (Integer)session.getAttribute("No");
+		 
+		List<Map<String,Object>> testList = testService.getTestList(studentNo);
+		model.addAttribute("testList",testList);
+		
+		// model에 값 제대로 들어가있나 확인
+		log.debug(TeamColor.JJY+"model 값 testList >> : " + model);
 		
 		return "/test/doTest";
 	}
