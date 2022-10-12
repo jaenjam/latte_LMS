@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.lms.service.ProfessorService;
 import com.gd.lms.service.RegisterService;
+import com.gd.lms.service.TimeTableService;
 import com.gd.lms.vo.Professor;
 import com.gd.lms.vo.ProfessorImg;
 
@@ -43,6 +44,7 @@ public class ProfessorController {
 	@Autowired
 	RegisterService registerService;
 	@Autowired NoticeService noticeService;
+	@Autowired TimeTableService timetableService;
 
 	// 로그인폼
 	@GetMapping("loginForm")
@@ -126,6 +128,49 @@ public class ProfessorController {
 			model.addAttribute("professorImg", professorImg);
 
 			log.debug(TeamColor.LJE + "ProfessorController professorLogin professorImg : " + professorImg);
+			
+			
+			
+			//교수 시간표 : 월
+			Map<String, Object> Mon1 = timetableService.getProfessorTimeTableMon(professorNo);
+			
+			model.addAttribute("Mon", Mon1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 월요일 수업 값 확인 : " + Mon1);
+			
+			
+			//교수 시간표 : 화
+			Map<String, Object> Tue1 = timetableService.getProfessorTimeTableTue(professorNo);
+			
+			model.addAttribute("Tue", Tue1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 화요일 수업 값 확인 : " + Tue1);
+			
+			
+			//교수 시간표 : 수
+			Map<String, Object> Wed1 = timetableService.getProfessorTimeTableWed(professorNo);
+			
+			model.addAttribute("Wed", Wed1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 수요일 수업 값 확인 : " + Wed1);
+			
+			
+			//교수 시간표 : 목
+			Map<String, Object> Thu1 = timetableService.getProfessorTimeTableThu(professorNo);
+			
+			model.addAttribute("Thu", Thu1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 목요일 값 확인 : " + Thu1);
+			
+			
+			//교수 시간표 : 금
+			Map<String, Object> Fri1 = timetableService.getProfessorTimeTableFri(professorNo);
+			
+			model.addAttribute("Fri", Fri1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 금요일 값 확인 : " + Fri1);
+			
+			
 			
 			
 			result = "/home";

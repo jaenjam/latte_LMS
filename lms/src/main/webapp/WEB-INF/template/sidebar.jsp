@@ -170,7 +170,7 @@
 				</a>
 
 					<ul aria-expanded="false">
-						<li><a href="./chart-flot.html">시간표</a></li>
+						<li><a href="${pageContext.request.contextPath}/timetable/professorTimeTable?professorNo=${No}">시간표</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/professor/mylecture?professorNo=${No}">내강의</a>
 						</li>						

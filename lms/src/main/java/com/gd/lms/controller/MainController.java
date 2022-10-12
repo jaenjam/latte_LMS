@@ -176,7 +176,52 @@ public class MainController {
 			log.debug(TeamColor.LJE + "MainController gomain studentTimeTable 금요일 값 확인 : " + Fri);
 			
 			
+////////////////////////////////////////////////////////////////////////////////////////////////////////			
+			
+			
+			//교수 시간표 : 월
+			Map<String, Object> Mon1 = timetableService.getProfessorTimeTableMon(No);
+			
+			model.addAttribute("Mon", Mon1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 월요일 수업 값 확인 : " + Mon1);
+			
+			
+			//교수 시간표 : 화
+			Map<String, Object> Tue1 = timetableService.getProfessorTimeTableTue(No);
+			
+			model.addAttribute("Tue", Tue1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 화요일 수업 값 확인 : " + Tue1);
+			
+			
+			//교수 시간표 : 수
+			Map<String, Object> Wed1 = timetableService.getProfessorTimeTableWed(No);
+			
+			model.addAttribute("Wed", Wed1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 수요일 수업 값 확인 : " + Wed1);
+			
+			
+			//교수 시간표 : 목
+			Map<String, Object> Thu1 = timetableService.getProfessorTimeTableThu(No);
+			
+			model.addAttribute("Thu", Thu1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 목요일 값 확인 : " + Thu1);
+			
+			
+			//교수 시간표 : 금
+			Map<String, Object> Fri1 = timetableService.getProfessorTimeTableFri(No);
+			
+			model.addAttribute("Fri", Fri1);
+			
+			log.debug(TeamColor.LJE + "MainController gomain professorTimeTable 금요일 값 확인 : " + Fri1);
+			
+			
+////////////////////////////////////////////////////////////////////////////////////////////////////////			
 							
+			
 			//사이드 바(학생 수강 중인 강의 리스트 출력)
 			List<Map<String,Object>> myRegisterListStu = registerService.getMyRegisterList(No);
 			

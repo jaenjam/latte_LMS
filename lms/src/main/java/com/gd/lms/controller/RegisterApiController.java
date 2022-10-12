@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gd.lms.commons.TeamColor;
 import com.gd.lms.service.AssessService;
+import com.gd.lms.service.AttendanceService;
 import com.gd.lms.service.RegisterService;
 import com.gd.lms.vo.ProfessorAssess;
 import com.gd.lms.vo.RegisterCart;
@@ -35,6 +36,8 @@ public class RegisterApiController {
 	
 	@Autowired
 	AssessService assessservice;
+	
+	@Autowired AttendanceService attendanceService; 
 	
 	// 수강신청시 학생학번에 따른 담긴 수강목록 불러오기
 	@GetMapping("/get/MyRegisterCart")
@@ -164,6 +167,14 @@ public class RegisterApiController {
 		// 수강신청에 따른 과목평가 인서트
 		log.debug(TeamColor.KHW +"수강신청에 따른 과목평가 인서트 진입");
 		assessservice.addSubjectA(subjectassess);
+		
+		
+		//개별 수강신청에 따른 시간표 자동생성
+		log.debug(TeamColor.LJE + "RegisterApiController insertRegister autoInsertAttendance");
+		
+		//int row = attendanceService.autoInsertAttendance(studentNo, subjectApproveNo, attendanceDate);
+		
+		
 		
 		return "success";
 	}

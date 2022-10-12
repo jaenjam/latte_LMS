@@ -52,4 +52,43 @@ public class TimeTableService {
 		
 		return timetableMapper.selectStudentTimeTableFri(studentNo);
 	}
+	
+	
+	
+	
+	//교수 시간표:월
+	public Map<String, Object> getProfessorTimeTableMon(int professorNo){
+		log.debug(TeamColor.LJE + "TimeTableService getProfessorTimeTable 월요일 실행");
+		
+		return timetableMapper.selectProfessorTimeTableMon(professorNo);
+	}
+	
+	//교수 시간표:화
+	public Map<String, Object> getProfessorTimeTableTue(int professorNo){
+		log.debug(TeamColor.LJE + "TimeTableService getProfessorTimeTable 화요일 실행");
+		
+		return timetableMapper.selectProfessorTimeTableTue(professorNo);
+	}
+	
+	
+	//교수 시간표:수
+	public Map<String, Object> getProfessorTimeTableWed(int professorNo){
+		log.debug(TeamColor.LJE + "TimeTableService getProfessorTimeTable 수요일 실행");
+		
+		return timetableMapper.selectProfessorTimeTableWed(professorNo);
+	}
+	
+	//교수 시간표:목
+	public Map<String, Object> getProfessorTimeTableThu(int professorNo){
+		log.debug(TeamColor.LJE + "TimeTableService getProfessorTimeTable 목요일 실행");
+		
+		return timetableMapper.selectProfessorTimeTableThu(professorNo);
+	}
+	
+	//교수 시간표:금
+	public Map<String, Object> getProfessorTimeTableFri(int professorNo){
+		log.debug(TeamColor.LJE + "TimeTableService getProfessorTimeTable 금요일 실행");
+		
+		return timetableMapper.selectProfessorTimeTableFri(professorNo);
+	}
 }
