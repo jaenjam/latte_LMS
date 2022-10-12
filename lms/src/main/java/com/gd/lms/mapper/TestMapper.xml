@@ -162,4 +162,18 @@
 	</insert>
 
 
+	<!-- 시험에 따른 학생이 입력한 답 TestAnswer테이블에 추가 -->
+	<insert id="insertTestAnswer" parameterType="com.gd.lms.vo.TestAnswer">
+	INSERT INTO test_answer(
+		 multiplechoice_no
+		,student_no
+		,answer_select
+		,answer_score)
+	VALUES (
+		 #{multiplechoiceNo}
+		,#{studentNo}
+		,#{answerSelect}
+		,10)
+	</insert>
+	
 </mapper>

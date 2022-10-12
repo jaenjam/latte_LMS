@@ -57,5 +57,13 @@ public class TestApiController {
 
         testService.addMultipleTestExample(multiplechoiceNo,multipleTestExampleNo, multipleTestExampleContent);
     }
+    
+    
+    @GetMapping("/create/testAnswer/{multiplechoiceNo}/{studentNo}/{answerSelect}")
+    public void createTestAnswer(@PathVariable int multiplechoiceNo, @PathVariable int studentNo,
+                                          @PathVariable int answerSelect){
+
+        testService.addTestAnswer(multiplechoiceNo,studentNo, answerSelect);
+    }
 
 }

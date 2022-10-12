@@ -1,145 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- header.jsp -->
 <c:import url="/WEB-INF/template/header.jsp"></c:import>
+
+
 <!-- sidebar.jsp -->
 <c:import url="/WEB-INF/template/sidebar.jsp"></c:import>
 
-<style>
-.stepper-wrapper {
-	margin-top: auto;
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
-
-.stepper-item {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1;
-	@media
-	(
-	max-width
-	:768px)
-{
-	font-size
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	:
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	12px
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	;
-}
-
-}
-.stepper-item::before {
-	position: absolute;
-	content: "";
-	border-bottom: 2px solid #ccc;
-	width: 100%;
-	top: 20px;
-	left: -50%;
-	z-index: 2;
-}
-
-.stepper-item::after {
-	position: absolute;
-	content: "";
-	border-bottom: 2px solid #ccc;
-	width: 100%;
-	top: 20px;
-	left: 50%;
-	z-index: 2;
-}
-
-.stepper-item .step-counter {
-	position: relative;
-	z-index: 5;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #ccc;
-	margin-bottom: 6px;
-}
-
-.stepper-item.active {
-	font-weight: bold;
-}
-
-.stepper-item.completed .step-counter {
-	background-color: #4bb543;
-}
-
-.stepper-item.completed::after {
-	position: absolute;
-	content: "";
-	border-bottom: 2px solid #4bb543;
-	width: 100%;
-	top: 20px;
-	left: 50%;
-	z-index: 3;
-}
-
-.stepper-item:first-child::before {
-	content: none;
-}
-
-.stepper-item:last-child::after {
-	content: none;
-}
-</style>
 
 <div class="row page-titles mx-0">
 
@@ -169,33 +37,41 @@
 									<br /> <br /> 
 								</div>
 							</div>
-							<form action="${pageContext.request.contextPath}/addTest"
-								method="post">
+							<form>
+								<input id="student_no" value="${No}" type="hidden">
 								<c:set var="i" value="1" />
-								<c:forEach var="N" items="${testOne}">
+								<c:forEach var="N" items="${testOne}" varStatus="status">
 									<c:if test="${i==5}">
 										<c:set var="i" value="1" />
 									</c:if>
+
+
 									<c:if test="${i==1}">
+										<input id="multiple_question_no_${status.index}" value="${N.multiplechoice_no}" type="hidden">
 										<div style="font-size: 25px;">${N.multiplechoice_question}
-											&nbsp(${N.multiplechoice_score}점)</div>
+											&nbsp;(${N.multiplechoice_score}점)</div>
 										<br />
-										<div style="font-size:20px">선택 : &nbsp
-											<input type="radio" value="1" name="answerSelect"> 1 &nbsp
-											<input type="radio" value="2" name="answerSelect"> 2 &nbsp
-											<input type="radio" value="3" name="answerSelect"> 3 &nbsp
-											<input type="radio" value="4" name="answerSelect"> 4 &nbsp
+										<div style="font-size:20px">선택 : &nbsp;
+											<input name="answer_radio${status.index}" type="radio" value="1" name="answerSelect"> 1 &nbsp;
+											<input name="answer_radio${status.index}" type="radio" value="2" name="answerSelect"> 2 &nbsp;
+											<input name="answer_radio${status.index}"type="radio" value="3" name="answerSelect"> 3 &nbsp;
+											<input name="answer_radio${status.index}" type="radio" value="4" name="answerSelect"> 4 &nbsp;
 										</div>
 										<br />
 									</c:if>
+
 									<br />
-									<div style="font-size: 20px;">${i}.&nbsp
+
+									<div style="font-size: 20px;">${i}.&nbsp;
 										${N.multiple_test_example_content}</div>
 									<c:set var="i" value="${i+1}" />
+
 									<br />
+
+
 								</c:forEach>
 
-								<button type="submit" class="btn btn-primary"
+								<button onclick="answerSubmit()" type="button" class="btn btn-primary"
 									style="float: right;">제출</button>
 							</form>
 
@@ -206,5 +82,8 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/doMultipleTest.js"></script>
 
 <c:import url="/WEB-INF/template/footer.jsp"></c:import>

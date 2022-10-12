@@ -34,5 +34,7 @@ public interface TestMapper {
 	// 객관식답안보기 추가하기
 	int insertMultipleTestExample(int multiplechoiceNo,String multipleTestExampleNo,String multipleTestExampleContent);
 
+	//학생 답안 추가
+	int insertTestAnswer(int multiplechoiceNo, int studentNo, int answerSelect);
 
 }

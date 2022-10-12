@@ -67,5 +67,13 @@ public class TestService {
 		
 		return testMapper.insertMultipleTestExample(multiplechoiceNo, multipleTestExampleNo, multipleTestExampleContent);
 	}
+	
+	// 학생답안지 추가하기
+	public int addTestAnswer(int multiplechoiceNo, int studentNo, int multiplechoiceAnswer){
+		
+		log.debug(TeamColor.LJE + "TestService addTestAnswer 실행");
+		
+		return testMapper.insertTestAnswer(multiplechoiceNo, studentNo, multiplechoiceAnswer);
+	}
 
 }
