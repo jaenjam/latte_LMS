@@ -20,8 +20,7 @@
 		,day = #{day}
 		,start_time = #{startTime}
 		,end_time = #{endTime}
-		
-
+		,total_date = DATEDIFF('#{endDate}'-'#{startDate}')
 		WHERE
 		subject_approve_no = #{subjectApproveNo}
 

@@ -36,7 +36,7 @@
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="javascript:void(4)">장학
-						관리</a></li>
+						</a></li>
 				<li class="breadcrumb-item active"><a href="javascript:void(0)">학생
 						장학 관리</a></li>
 			</ol>
