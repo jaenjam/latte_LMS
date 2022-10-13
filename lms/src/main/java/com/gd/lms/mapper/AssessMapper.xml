@@ -45,8 +45,7 @@
 	distinct
 		r.student_no
 		, r.subject_approve_no subjectApproveNo
-		, r.create_date createDate
-		
+		, r.create_date createDate		
 		, sa.professor_no professorNo
 		, sa.year yearS
 		, sa.semester semesterS
@@ -55,6 +54,11 @@
 		, pa.professor_assess_score professorAssessScore
 		, pa.professor_assess_ck professorAssessCk
 		, pa.professor_assess_ck professorAssessContent
+		, sba.subject_assess_no subjectAssessNo
+		, sba.register_no registerNo
+		, sba.subject_assess_score subjectAssessScore
+		, sba.subject_assess_ck subjectAssessCk
+		, sba.subject_assess_content subjectAssessContent
 		, pf.professor_name professorName
 		, s.subject_name subjectName
 		, s.subject_credit subjectCredit
@@ -69,13 +73,17 @@
 							ON
 							r.register_no= pa.register_no 
 							LEFT JOIN
-							professor pf
+								subject_assess sba
 								ON
-								sa.professor_no = pf.professor_no
+								r.register_no= sba.register_no
 								LEFT JOIN
-									subject s
+								professor pf
 									ON
-									sa.subject_no = s.subject_no
+									sa.professor_no = pf.professor_no
+									LEFT JOIN
+										subject s
+										ON
+										sa.subject_no = s.subject_no
 							
 	WHERE
 		student_no = #{No}					
