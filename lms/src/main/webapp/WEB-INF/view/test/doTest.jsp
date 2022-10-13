@@ -70,16 +70,16 @@
 											<td><button type="submit" class="btn btn-light">미출제</button></td>
 											</c:if>
 											
-											<!-- <td><a href="${pageContext.request.contextPath}/test/doMultipleTest?testNo=${N.test_no}">
-												<button type="submit" class="btn btn-primary">응시</button>
-												</a></td> -->
-											
 											<c:forEach var="t" items="${test}">
 												<!-- 응시 -->
 												<c:if test="${not empty N.test_name}">
 												
 												
-												<c:if test="${N.test_no ne t.test_no}">					
+												<c:if test="${N.test_no ne t.test_no}">		
+																							<td><a href="${pageContext.request.contextPath}/test/doMultipleTest?testNo=${N.test_no}">
+												<button type="submit" class="btn btn-primary">응시</button>
+												</a></td> 
+															
 												</c:if>
 												
 												

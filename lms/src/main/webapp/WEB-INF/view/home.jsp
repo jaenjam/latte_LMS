@@ -20,7 +20,7 @@
 
             <div class="container-fluid mt-3">
             
-            
+            <c:if test="${user ne 'employee'}">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -1180,7 +1180,7 @@
                         </div>                        
                     </div>
                 </div>
-            
+            </c:if>
                 <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="card">
@@ -1340,8 +1340,8 @@
                             <div class="card-body">
                                 <div class="text-center">
                                     <img src="./images/users/8.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">Ana Liem</h5>
-                                    <p class="m-0">Senior Manager</p>
+                                    <h5 class="mt-3 mb-1">이재은</h5>
+                                    <p class="m-0">JAEEUN LEE</p>
                                     <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
                                 </div>
                             </div>
@@ -1352,8 +1352,8 @@
                             <div class="card-body">
                                 <div class="text-center">
                                     <img src="./images/users/5.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">John Abraham</h5>
-                                    <p class="m-0">Store Manager</p>
+                                    <h5 class="mt-3 mb-1">김희원</h5>
+                                    <p class="m-0">HEEWON KIM</p>
                                     <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
                                 </div>
                             </div>
@@ -1364,8 +1364,8 @@
                             <div class="card-body">
                                 <div class="text-center">
                                     <img src="./images/users/7.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">John Doe</h5>
-                                    <p class="m-0">Sales Man</p>
+                                    <h5 class="mt-3 mb-1">정지영</h5>
+                                    <p class="m-0">GIYOUNG JUNG</p>
                                     <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
                                 </div>
                             </div>
@@ -1376,8 +1376,8 @@
                             <div class="card-body">
                                 <div class="text-center">
                                     <img src="./images/users/1.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">Mehedi Titas</h5>
-                                    <p class="m-0">Online Marketer</p>
+                                    <h5 class="mt-3 mb-1">추서정</h5>
+                                    <p class="m-0">SEOJEONG COUU</p>
                                     <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
                                 </div>
                             </div>

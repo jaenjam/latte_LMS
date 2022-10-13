@@ -67,7 +67,7 @@ public class TestController {
 		// model에 값 제대로 들어가있나 확인
 		log.debug(TeamColor.JJY+"model 값 testList >> : " + model);
 		
-		
+		//시험완료시 시험완료 버튼연동
 		List<Map<String, Object>> test = testService.getDoTestButton(studentNo);
 		
 		model.addAttribute("test",test);
